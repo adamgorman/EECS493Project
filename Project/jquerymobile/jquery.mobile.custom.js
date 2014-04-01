@@ -6887,6 +6887,14 @@ $.mobile.links = function( target ) {
 })( jQuery );
 
 
+(function( $, undefined ) {
+
+$.mobile.nojs = function( target ) {
+	$( ":jqmData(role='nojs')", target ).addClass( "ui-nojs" );
+};
+
+})( jQuery );
+
 (function( $ ) {
 	var	meta = $( "meta[name=viewport]" ),
 		initialContent = meta.attr( "content" ),
