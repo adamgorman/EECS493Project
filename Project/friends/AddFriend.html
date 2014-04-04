@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="ui-mobile">
 <head>
-    <title>Logout Popup</title>
+    <title>Add Friend Popup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
@@ -12,12 +12,21 @@
 <body>
 <div data-role="page" id="page1" data-dialog="true">
     <div data-role="header">
-        <h2>Logout</h2>
+        <h2>Add a Friend</h2>
     </div>
     <div data-role="content">
-        <p>Are you sure you would like to logout?</p>
-        <a href="#" data-role="button">Yes</a>
-        <a href="#" data-role="button" data-rel="back">No</a>
+        <form>
+            <div>
+                <label>Enter Your Friend's Username:</label>
+                <input type="text" placeholder="Username" />
+            </div>
+            <div>
+                <span style="display: none">Request was sent to: Izzy Iguana</span>
+            </div>
+            <div>
+                <input type="submit" value="Send Request" />
+            </div>
+        </form>
     </div>
 </div>
 </body>
