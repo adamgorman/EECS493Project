@@ -10,12 +10,43 @@
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
 </head>
 <body>
-<div data-role="page" id="page1" data-dialog="true">
+<div data-role="page" data-dialog="true">
     <div data-role="header">
         <h2>Friend Requests</h2>
     </div>
     <div data-role="content">
-        <p>Request List</p>
+        <ul data-role="listview" data-inset="true">
+            <li style="vertical-align: top; min-height: 30px">
+                <img src="tempProfilePictures/Pelican.PNG" style="max-height: 80px; max-width: 80px;">
+                <h2>
+                    <span>Patrick Pelican</span>
+                    <span style="position: absolute; right: 0px; top:7px">
+                        <a class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline" href="#">Confirm</a>
+                        <a class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline" href="#">Deny</a>
+                    </span>
+                </h2>
+            </li>
+            <li style="vertical-align: top; min-height: 30px">
+                <img src="tempProfilePictures/Whale.PNG" style="max-height: 80px; max-width: 80px;">
+                <h2>
+                    <span>Wallace Whale</span>
+                    <span style="position: absolute; right: 0px; top:7px">
+                        <a class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline" href="#">Confirm</a>
+                        <a class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline" href="#">Deny</a>
+                    </span>
+                </h2>
+            </li>
+            <li style="vertical-align: top; min-height: 30px">
+                <img src="tempProfilePictures/Frog.PNG" style="max-height: 80px; max-width: 80px;">
+                <h2>
+                    <span>Frank Frog</span>
+                    <span style="position: absolute; right: 0px; top:7px">
+                        <a class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline" href="#">Confirm</a>
+                        <a class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline" href="#">Deny</a>
+                    </span>
+                </h2>
+            </li>
+        </ul>
     </div>
 </div>
 </body>
