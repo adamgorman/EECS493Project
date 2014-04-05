@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="ui-mobile">
 <head>
-    <title>Logout Popup</title>
+    <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
@@ -10,14 +10,19 @@
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
 </head>
 <body>
-<div data-role="page" data-dialog="true">
-    <div data-role="header">
-        <h2>Logout</h2>
-    </div>
+<div data-role="page">
     <div data-role="content">
-        <p>Are you sure you would like to logout?</p>
-        <a href="Login.html" data-role="button" id="logout-button">Yes</a>
-        <a href="#" data-role="button" data-rel="back">No</a>
+        <div style="margin: 150px 40px 50px 40px; padding: 10px; background: #ffffff;" class="ui-overlay-shadow ui-corner-all">
+            <h1 style="text-align: center">Workout Carrot</h1>
+            <form id="login-form" style="padding-bottom: 10px;">
+                <input name="username" type="text" placeholder="Username" />
+                <input name="password" type="password" placeholder="Password" />
+                <input type="submit" value="Login" />
+            </form>
+            <div  style="text-align: right">
+                <a href="#">Create an Account</a>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="Main.js"></script>
