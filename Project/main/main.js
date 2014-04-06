@@ -6,7 +6,9 @@ $("#login-form").submit(function() {
     var name = $('#login-form input:text[name=username]').val();
     var password = $('#login-form input:password[name=password]').val();
     if(name == "Username" && password == "Password") {
-        window.location.replace("main.html");
+        $('#login-form input:text[name=username]').val("");
+        $('#login-form input:password[name=password]').val("");
+        $.mobile.changePage("main.html");
     }
     return false;
 });
