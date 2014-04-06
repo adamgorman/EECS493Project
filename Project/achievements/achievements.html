@@ -9,9 +9,20 @@
     <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
     <link rel="stylesheet" href="achievements.css" type="text/css" media="screen">
+    <script type="text/javascript" src="../share/jquery.share.js"></script>
+    <link rel="stylesheet" href="../share/jquery.share.css" type="text/css" media="screen">
+
+    <script>
+        $(function() {
+            $( "#dialog" ).dialog();
+        });
+    </script>
+
 </head>
 <body>
-<div data-role="page" id="page2">
+
+<div data-role="page" id="page3">
+
     <div data-role="panel" id="panel">
         <ul data-role="listview">
             <li><a href="../main/main.html" id="home-button">Home</a></li>
@@ -27,27 +38,78 @@
         <h1>Workout Carrot</h1>
         <a href="#" data-role="button" id="input-data-button" class="ui-btn-icon-right">Input</a>
     </div>
+
+    <div data-role="popup" id="popupPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+
+        <!--<button data-theme="a" data-icon="back" data-mini="true">Back</button>
+        <button data-theme="a" data-icon="grid" data-mini="true">Menu</button>
+        <button data-theme="a" data-icon="search" data-mini="true">Search</button>-->
+        <div id="mydiv">
+            <h2 class="share">Share on Facebook or Twitter</h2>
+        </div>
+
+    </div>
+    <h1>Achievements</h1>
     <div data-role="content">
         <div>
             <ul data-role="listview" data-inset="true">
                 <li>
-                    <a href="#" target="_blank" class="achv">Joe Schmoe has logged in for 5 days in a row!</a>
-                    <img src="checkmark.jpg">
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                        <img src="dumbbell.jpg">
+                        <h1 class="achv">Joe Schmoe has worked out 6 times this week!</h1></a>
                 </li>
-                <li><a href="#" data-inline="true" class="achv">Joe Schmoe has lost 3 pounds since March 3, 2014. He is 2 pounds away from reaching his goal! </a></li>
-                <li><a href="#" class="achv">Joe Schmoe has worked out 4 times this week!</a></li>
-                <li><a href="#" class="achv">Joe Schmoe has reached his goal weight!</a></li>
-                <li><a href="#" class="achv">Joe Schmoe is following a healthy diet!</a></li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                        <img src="target.jpg">
+                        <h1 class="achv">Joe Schmoe has reached his goal weight!</h1></a>
+                </li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                        <img src="scale.jpg">
+                        <h1 class="achv">Joe Schmoe has lost 4 pounds since March 3, 2014. He is 1 pound away from reaching his goal! </h1></a>
+                </li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                        <img src="healthy.jpg">
+                        <h1 class="achv">Joe Schmoe is following a healthy diet!</h1></a>
+                </li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <img src="checkmark.jpg">
+                    <h1 class="achv">Joe Schmoe has logged in for 5 days in a row!</h1></a>
+                </li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <img src="dumbbell.jpg">
+                    <h1 class="achv">Joe Schmoe has worked out 3 times this week!</h1></a>
+                </li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <img src="healthy.jpg">
+                    <h1 class="achv">Joe Schmoe is following a healthy diet!</h1></a>
+                </li>
+                <li>
+                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <img src="scale.jpg">
+                    <h1 class="achv">Joe Schmoe has lost 3 pounds since March 3, 2014. He is 2 pounds away from reaching his goal! </h1></a>
+                </li>
             </ul>
         </div>
     </div>
+
 </div>
-<!--<script type="text/javascript" src="achievements.js"></script>-->
+
+<script type="text/javascript" src="achievements.js"></script>
 <script>
     $("li").click(function () {
-        var win=window.open("https://www.facebook.com/sharer/sharer.php?u=file:///C:/Users/Carla/WebstormProjects/test2/index.html", '_blank');
-        win.focus();
+//        var win=window.open("https://www.facebook.com/sharer/sharer.php?u=file:///C:/Users/Carla/WebstormProjects/test2/index.html", '_blank');
+//        win.focus();
+
     });
 </script>
+
+
+
+
 </body>
 </html>
