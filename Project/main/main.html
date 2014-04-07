@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html class="ui-mobile">
+<head>
+    <title>Main Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="panel" id="panel">
+        <ul data-role="listview">
+            <li><a href="../main/main.html">Home</a></li>
+            <li><a href="../achievements/achievements.html">Achievements</a></li>
+            <li><a href="../friends/friends.html">Friends</a></li>
+            <li><a href="../feed/feed.html">Feed</a></li>
+            <li><a href="../settings/settings.html">Settings</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#panel" data-role="button" id="open-panel-button">Menu</a>
+        <h1>Workout Carrot</h1>
+        <a href="input.html" data-role="button" id="input-data-button">Input</a>
+    </div>
+    <div data-role="content">
+        <p>Main Page Content</p>
+    </div>
+</div>
+<script type="text/javascript" src="../main.js"></script>
+</body>
+</html>

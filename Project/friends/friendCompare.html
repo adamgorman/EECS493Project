@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="ui-mobile">
+<head>
+    <title>Friend Compare Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="panel" id="panel">
+        <ul data-role="listview">
+            <li><a href="../main/main.html" id="home-button">Home</a></li>
+            <li><a href="../achievements/achievements.html" id="achievements-button">Achievements</a></li>
+            <li><a href="friends.html" id="friends-button">Friends</a></li>
+            <li><a href="../feed/feed.html" id="feed-button">Feed</a></li>
+            <li><a href="../settings/settings.html" id="settings-button">Settings</a></li>
+            <li><a href="../main/logout.html" id="logout-button">Logout</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#panel" data-role="button" id="open-panel-button" class="ui-btn-icon-left ui-icon-bars">Menu</a>
+        <h1>Workout Carrot</h1>
+        <a href="../main/input.html" data-role="button" id="input-data-button">Input</a>
+    </div>
+    <div data-role="content">
+        <table style="width: 100%;" data-type="table" data-mode="reflow">
+            <thead>
+                <tr>
+                    <td style="width: 20%; padding-bottom: 20px;"></td>
+                    <th>
+                        <div>You</div>
+                        <img src="tempProfilePictures/Toucan.PNG" style="width: 100px; height: 100px;" />
+                    </th>
+                    <th>
+                        <div>Sid Starfish</div>
+                        <img src="tempProfilePictures/Starfish.PNG" style="width: 100px; height: 100px;" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th style="width: 20%; padding-bottom: 20px;">Weight</th>
+                    <td class="compare-cell">14 lb</td>
+                    <td class="compare-cell">5 lb</td>
+                </tr>
+                <tr>
+                    <th style="width: 20%; padding-bottom: 20px;">Average Calories/Day</th>
+                    <td class="compare-cell">1200 Cal</td>
+                    <td class="compare-cell">400 Cal</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Average Exercise/Week</th>
+                    <td class="compare-cell">40 hr</td>
+                    <td class="compare-cell">0 hr</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Achievement 1</th>
+                    <td class="compare-cell">X</td>
+                    <td class="compare-cell">-</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Achievement 2</th>
+                    <td class="compare-cell">-</td>
+                    <td class="compare-cell">-</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Achievement 3</th>
+                    <td class="compare-cell">X</td>
+                    <td class="compare-cell">X</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Achievement 4</th>
+                    <td class="compare-cell">X</td>
+                    <td class="compare-cell">-</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Achievement 5</th>
+                    <td class="compare-cell">X</td>
+                    <td class="compare-cell">-</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
