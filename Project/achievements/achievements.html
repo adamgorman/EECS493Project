@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="achievements.css" type="text/css" media="screen">
     <script type="text/javascript" src="../share/jquery.share.js"></script>
     <link rel="stylesheet" href="../share/jquery.share.css" type="text/css" media="screen">
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
 
     <script>
         $(function() {
@@ -98,15 +99,23 @@
     </div>
 
 </div>
-
-<script type="text/javascript" src="achievements.js"></script>
-<script>
-    $("li").click(function () {
-//        var win=window.open("https://www.facebook.com/sharer/sharer.php?u=file:///C:/Users/Carla/WebstormProjects/test2/index.html", '_blank');
-//        win.focus();
-
+<div id = "fb-root"></div>
+<!--<script>
+    FB.init({appId: '496828853760637',
+        status: true,
+        cookie:true
     });
-</script>
+</script>-->
+<script type="text/javascript" src="achievements.js"></script>
+<!--<script>
+    window.fbAsyncInit = function() {
+        FB.init({appId: '496828853760637', status: true, cookie: true});
+    };
+    (function() {
+        var e = document.createElement('script'); e.async = true; e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        document.getElementById('fb-root').appendChild(e);
+    }());
+</script>-->
 
 
 
