@@ -12,3 +12,7 @@ $("#login-form").submit(function() {
     }
     return false;
 });
+var inputType;
+$(".input-popup-button").on("click", function(event) {
+    inputType = event.target.text;
+});
