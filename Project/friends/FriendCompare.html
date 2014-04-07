@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="ui-mobile">
 <head>
-    <title>Friends Page</title>
+    <title>Friend Compare Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
@@ -9,6 +9,11 @@
     <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
 </head>
+<style>
+    .compare-cell {
+
+    }
+</style>
 <body>
 <div data-role="page">
     <div data-role="panel" id="panel">
@@ -27,29 +32,39 @@
         <a href="../main/Input.html" data-role="button" id="input-data-button">Input</a>
     </div>
     <div data-role="content">
-        <div class="ui-grid-a">
-            <div class="ui-block-a"><a href="AddFriend.html" data-role="button">Add a Friend</a></div>
-            <div class="ui-block-b"><a href="FriendRequests.html" data-role="button">Friend Requests</a></div>
-        </div>
-        <div>
-            <ul data-role="listview" data-inset="true">
-                <li><a href="#">
-                    <img src="tempProfilePictures/Starfish.PNG">
-                    <h2>Sid Starfish</h2>
-                    <p>Goal: Gain 100 lb</p></a>
-                </li>
-                <li><a href="#">
-                    <img src="tempProfilePictures/Lion.PNG">
-                    <h2>Leo Lion</h2>
-                    <p>Goal: Maintain Weight</p></a>
-                </li>
-                <li><a href="#">
-                    <img src="tempProfilePictures/Bee.PNG">
-                    <h2>Bert Bee</h2>
-                    <p>Goal: Lose 0.4 lb</p></a>
-                </li>
-            </ul>
-        </div>
+        <table style="width: 100%;" data-type="table" data-mode="reflow">
+            <thead>
+                <tr>
+                    <td style="width: 40%; padding-bottom: 20px;"></td>
+                    <th>
+                        <div>You</div>
+                        <img src="tempProfilePictures/Toucan.PNG" style="width: 100px; height: 100px;" />
+                    </th>
+                    <th>
+                        <div>Sid Starfish</div>
+                        <img src="tempProfilePictures/Starfish.PNG" style="width: 100px; height: 100px;" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Weight</th>
+                    <td>212 lb</td>
+                    <td>739</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Average Calories/Day</th>
+                    <td>1750 Cal</td>
+                    <td>2000 Cal</td>
+                </tr>
+                <tr>
+                    <th style="width: 40%; padding-bottom: 20px;">Average Exercise/Week</th>
+                    <td>7 hr</td>
+                    <td>12 hr</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
 <script type="text/javascript" src="Friends.js"></script>
