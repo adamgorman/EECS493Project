@@ -8,7 +8,7 @@ $("#login-form").submit(function() {
     if(name == "Username" && password == "Password") {
         $('#login-form input:text[name=username]').val("");
         $('#login-form input:password[name=password]').val("");
-        $.mobile.changePage("main.html");
+        $.mobile.changePage("main/main.html");
     }
     return false;
 });
