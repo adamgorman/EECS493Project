@@ -3,13 +3,722 @@
 <head>
     <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <link rel="stylesheet" href="../main/amcharts_3.4.7.free/samples/style.css" type="text/css">
+
+
+
     <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+    <!--<link rel="stylesheet" href="jquery-ui.css">-->
+    <!--<script src="jquery-ui.min.js"></script>-->
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<script src="Chart.js"></script>-->
+
+    <!--<script type="text/javascript" src="../DevExpressChartJS-13.2.8/Lib/js/dx.chartjs.js"></script>-->
+
+    <!--<link rel="stylesheet" type="text/css" href="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/css/reset.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/css/site.css" media="screen and (min-width: 740px)" />-->
+    <!--<link rel="stylesheet" type="text/css" href="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/css/phone.css" media="screen and (max-width: 739px)"/>-->
+
+    <!--<script type="text/javascript" src="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/scripts/tools.js"></script>-->
+    <!--<script type="text/javascript" src="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/scripts/themes.js"></script>-->
+
+    <script type="text/javascript" src="../main/amcharts_3.4.7.free/amcharts/amcharts.js"></script>
+
+    <script type="text/javascript" src="../main/amcharts_3.4.7.free/amcharts/serial.js"></script>
+
+    <script src="../main/jquery.swipeplanes-1.2.min.js"></script>
+
+
+    <script>
+        $(document).ready(function(){
+            $('.myslider1').swipePlanes();
+            $('.myslider2').swipePlanes();
+        });
+    </script>
+
+
+    <script type="text/javascript">
+
+//    $('#nav1').click(function() {
+//
+//        console.log("I was clicked");
+//        serverdata = "Pretend I'm data fetched from server #1."
+//        $('#updatepage').text(serverdata);
+//        return false;
+//    });
+//
+//    $('#nav2').click(function() {
+//        console.log("I was clicked");
+//
+//        serverdata = "Pretend I'm data fetched from another server far, far away."
+//        $('#updatepage').text(serverdata);
+//        return false;
+//    });
+
+    var chart3;
+    var graph3;
+    var chart2;
+    var graph2;
+    var chart;
+    var graph;
+
+    // note, some of tada points don't have value field
+    var chartData = [
+        {
+            "year": "1950",
+            "value": -0.307
+        },
+        {
+            "year": "1951",
+            "value": -0.168
+        },
+        {
+            "year": "1952",
+            "value": -0.073
+        },
+        {
+            "year": "1953",
+            "value": -0.027
+        },
+        {
+            "year": "1954",
+            "value": -0.251
+        },
+        {
+            "year": "1955",
+            "value": -0.281
+        },
+        {
+            "year": "1956",
+            "value": -0.348
+        },
+        {
+            "year": "1957",
+            "value": -0.074
+        },
+        {
+            "year": "1958",
+            "value": -0.011
+        },
+        {
+            "year": "1959",
+            "value": -0.074
+        },
+        {
+            "year": "1960",
+            "value": -0.124
+        },
+        {
+            "year": "1961",
+            "value": -0.024
+        },
+        {
+            "year": "1962",
+            "value": -0.022
+        },
+        {
+            "year": "1963",
+            "value": 0
+        },
+        {
+            "year": "1964",
+            "value": -0.296
+        },
+        {
+            "year": "1965",
+            "value": -0.217
+        },
+        {
+            "year": "1966",
+            "value": -0.147
+        },
+        {
+            "year": "1967"
+        },
+        {
+            "year": "1968"
+        },
+        {
+            "year": "1969"
+        },
+        {
+            "year": "1970"
+        },
+        {
+            "year": "1971",
+            "value": -0.19
+        },
+        {
+            "year": "1972",
+            "value": -0.056
+        },
+        {
+            "year": "1973",
+            "value": 0.077
+        },
+        {
+            "year": "1974",
+            "value": -0.213
+        },
+        {
+            "year": "1975",
+            "value": -0.17
+        },
+        {
+            "year": "1976",
+            "value": -0.254
+        },
+        {
+            "year": "1977",
+            "value": 0.019
+        },
+        {
+            "year": "1978",
+            "value": -0.063
+        },
+        {
+            "year": "1979",
+            "value": 0.05
+        },
+        {
+            "year": "1980",
+            "value": 0.077
+        },
+        {
+            "year": "1981",
+            "value": 0.12
+        },
+        {
+            "year": "1982",
+            "value": 0.011
+        },
+        {
+            "year": "1983",
+            "value": 0.177
+        },
+        {
+            "year": "1984"
+        },
+        {
+            "year": "1985"
+        },
+        {
+            "year": "1986"
+        },
+        {
+            "year": "1987"
+        },
+        {
+            "year": "1988"
+        },
+        {
+            "year": "1989",
+            "value": 0.104
+        },
+        {
+            "year": "1990",
+            "value": 0.255
+        },
+        {
+            "year": "1991",
+            "value": 0.21
+        },
+        {
+            "year": "1992",
+            "value": 0.065
+        },
+        {
+            "year": "1993",
+            "value": 0.11
+        },
+        {
+            "year": "1994",
+            "value": 0.172
+        },
+        {
+            "year": "1995",
+            "value": 0.269
+        },
+        {
+            "year": "1996",
+            "value": 0.141
+        },
+        {
+            "year": "1997",
+            "value": 0.353
+        },
+        {
+            "year": "1998",
+            "value": 0.548
+        },
+        {
+            "year": "1999",
+            "value": 0.298
+        },
+        {
+            "year": "2000",
+            "value": 0.267
+        },
+        {
+            "year": "2001",
+            "value": 0.411
+        },
+        {
+            "year": "2002",
+            "value": 0.462
+        },
+        {
+            "year": "2003",
+            "value": 0.47
+        },
+        {
+            "year": "2004",
+            "value": 0.445
+        },
+        {
+            "year": "2005",
+            "value": 0.47
+        }
+    ];
+
+
+    AmCharts.ready(function () {
+        // SERIAL CHART
+        chart = new AmCharts.AmSerialChart();
+        chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+        chart.marginTop = 0;
+        chart.marginRight = 0;
+        chart.dataProvider = chartData;
+        chart.categoryField = "year";
+        chart.dataDateFormat = "YYYY";
+        chart.balloon.cornerRadius = 6;
+
+        chart2 = new AmCharts.AmSerialChart();
+        chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+        chart2.marginTop = 0;
+        chart2.marginRight = 0;
+        chart2.dataProvider = chartData;
+        chart2.categoryField = "year";
+        chart2.dataDateFormat = "YYYY";
+        chart2.balloon.cornerRadius = 6;
+
+        chart3 = new AmCharts.AmSerialChart();
+        chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+        chart3.marginTop = 0;
+        chart3.marginRight = 0;
+        chart3.dataProvider = chartData;
+        chart3.categoryField = "year";
+        chart3.dataDateFormat = "YYYY";
+        chart3.balloon.cornerRadius = 6;
+
+
+        // AXES
+        // category
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+        categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY
+        categoryAxis.dashLength = 1;
+        categoryAxis.minorGridEnabled = true;
+        categoryAxis.axisColor = "#DADADA";
+
+        // value
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.axisAlpha = 0;
+        valueAxis.dashLength = 1;
+        valueAxis.inside = true;
+        chart.addValueAxis(valueAxis);
+        chart2.addValueAxis(valueAxis);
+        chart3.addValueAxis(valueAxis);
+
+
+
+        // GRAPH
+        graph = new AmCharts.AmGraph();
+        graph.lineColor = "#b6d278";
+        graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+        graph.bullet = "round";
+        graph.bulletSize = 8;
+        graph.bulletBorderColor = "#FFFFFF";
+
+        graph.bulletBorderThickness = 2;
+        graph.bulletBorderAlpha = 1;
+        graph.connect = false; // this makes the graph not to connect data points if data is missing
+        graph.lineThickness = 2;
+        graph.valueField = "value";
+        graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
+        chart.addGraph(graph);
+
+        graph2 = new AmCharts.AmGraph();
+        graph2.lineColor = "#b6d278";
+        graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+        graph2.bullet = "round";
+        graph2.bulletSize = 8;
+        graph2.bulletBorderColor = "#FFFFFF";
+
+        graph2.bulletBorderThickness = 2;
+        graph2.bulletBorderAlpha = 1;
+        graph2.connect = false; // this makes the graph not to connect data points if data is missing
+        graph2.lineThickness = 2;
+        graph2.valueField = "value";
+        graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
+        chart2.addGraph(graph2);
+
+        graph3 = new AmCharts.AmGraph();
+        graph3.lineColor = "#b6d278";
+        graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+        graph3.bullet = "round";
+        graph3.bulletSize = 8;
+        graph3.bulletBorderColor = "#FFFFFF";
+
+        graph3.bulletBorderThickness = 2;
+        graph3.bulletBorderAlpha = 1;
+        graph3.connect = false; // this makes the graph not to connect data points if data is missing
+        graph3.lineThickness = 2;
+        graph3.valueField = "value";
+        graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
+        chart3.addGraph(graph3);
+
+        // CURSOR
+//        var chartCursor = new AmCharts.ChartCursor();
+//        chartCursor.cursorAlpha = 0;
+//        chartCursor.cursorPosition = "mouse";
+//        chartCursor.categoryBalloonDateFormat = "YYYY";
+//        chartCursor.graphBulletSize = 2;
+//        chart.addChartCursor(chartCursor);
+//        chart2.addChartCursor(chartCursor);
+//        chart3.addChartCursor(chartCursor);
+
+        chart.creditsPosition = "bottom-right";
+        chart3.creditsPosition = "bottom-left";
+
+//        chart.creditsPosition = "bottom-right";
+
+
+
+
+        // WRITE
+        chart.write("a");
+        chart2.write("b");
+        chart3.write("c");
+    });
+
+
+    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
+        chart.invalidateSize();
+        chart2.invalidateSize();
+        chart3.invalidateSize();
+
+
+        console.log("helo sam 2")
+
+
+        //un-highlight and highlight only the buttons in the same navbar widget
+        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
+
+        //this bit is the same, you could chain it off of the last call by using two `.end()`s
+        $(this).addClass('ui-navbar-btn-active');
+
+
+        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
+        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
+    })
+//
+//    $(document).delegate('.ui-navbar ul li > b', 'click', function () {
+//        chart.invalidateSize();
+//        chart2.invalidateSize();
+//
+//
+//        console.log("helo sam")
+//
+//        //un-highlight and highlight only the buttons in the same navbar widget
+//        $(this).closest('.ui-navbar').find('b').removeClass('ui-navbar-btn-active');
+//
+//        //this bit is the same, you could chain it off of the last call by using two `.end()`s
+//        $(this).addClass('ui-navbar-btn-active');
+//
+//
+//        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
+//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
+//    })
+
+
+//    $(function () {
+//        $("nav").tabs({
+//            select: function (event, ui) {
+//                console.log('Calling chart.invalidateSize()');
+//                chart.invalidateSize();
+////                chart2.invalidateSize();
+//            }
+//        });
+//    });
+//
+//    $(function () {
+//        $(document).delegate('[data-role="navbar"] a', 'click', function ()  {
+//            select: function (event, ui) {
+//                console.log('Calling chart.invalidateSize()');
+//                chart.invalidateSize();
+//    //                chart2.invalidateSize();
+//            }
+//        });
+//    });
+
+
+//
+//    $('div[data-role="navbar"] a').live('click', function () {
+//        $(this).addClass('ui-btn-active');
+//        $('div.content_div').hide();
+//        $('div#' + $(this).attr('data-href')).show();
+//    });
+
+    // FOR Swipe
+    $(document).on('swipeleft', '[data-role="tab"]', function(event){
+        if(event.handled !== true) // This will prevent event triggering more then once
+        {
+            var nextpage = $(this).next('[data-role="tab"]');
+            // swipe using id of next page if exists
+            if (nextpage.length > 0) {
+                $.mobile.change( {transition: "slide", reverse: false}, true, true);
+            }
+            event.handled = true;
+        }
+        return false;
+    });
+
+    $(document).on('swiperight', '[data-role="tab"]', function(event){
+        if(event.handled !== true) // This will prevent event triggering more then once
+        {
+            var prevpage = $(this).prev('[data-role="tab"]');
+            if (prevpage.length > 0) {
+                $.mobile.change( {transition: "slide", reverse: true}, true, true);
+            }
+            event.handled = true;
+        }
+        return false;
+    });
+
+
+
+//    $(window).resize(function(){
+//        console.log("helloooo")
+//        var newwidth = $(window).width();
+//        var newheight = $(window).height();
+//        $("#element").height(newheight).width(newwidth);
+//    });
+//
+//
+//$(window).resize(function() {
+//
+//    $(‘#element’).css(‘width’, window.innerWidth);
+
+//});
+
+    </script>
+
+
+
+
+
+    <style>
+
+
+
+
+        .box2 {
+            overflow: hidden;
+            position: relative;
+            /*width: 550px;*/
+
+            /*display: table;*/
+
+            border: 2px solid blue;
+            margin: 4px;
+
+        }
+
+        .myslider1{
+            width: 500px;
+            height: 150px;
+            border: 1px solid #CCC;
+        }
+
+        .slide1{
+            width: 200px;
+            height: 150px;
+            background: #E8E8E8;
+        }
+
+
+        /*html, body {*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+        /*}*/
+
+        /*body > div  {*/
+            /*width: 90%;*/
+            /*height: 100%;*/
+            /*background: green;*/
+        /*}*/
+
+        /*body > div > div {*/
+            /*width: 100%;*/
+            /*background: red;*/
+        /*}*/
+
+
+        .myslider2{
+            margin: 5px;
+
+            /*background:green;*/
+            width: 400px;
+            height: 250px;
+            position: relative;
+            right: 0
+            border: 1px solid #CCC;
+            overflow: auto;
+
+        }
+
+        .slide2{
+            margin: 5px;
+            /*background:green;*/
+            width: 400px;
+            height: 250px;
+            position: relative;
+            right: 0
+
+
+        }
+        
+        div#element {
+
+            width 100vw;
+        }
+        
+
+
+        #a, #b {
+            display: none;
+        }
+
+        .box {
+            /*border: 2px solid #000000;*/
+
+            margin: 4px;
+
+            margin-left: auto;
+            margin-right: auto;
+            /*margin-right: 2500px;*/
+            padding-right: 0px;
+
+         }
+
+        /*#tabs { width: 100%: }*/
+        /*#tabs .tab { height: 300px; }*/
+        /*p { margin: 10px 0; }*/
+
+        /*.testing {*/
+            /*margin-top: 25px;*/
+        /*}*/
+
+        .supervisor-info .avatar {
+            background-image: url(../img/profile-picture-icon-md.png);
+            width: 50px;
+            height: 50px;
+            margin: 0px 12px 4px 4px;
+            float: left;
+            -moz-background-size: 50px 50px;
+            -o-background-size: 50px 50px;
+            -webkit-background-size: 50px 50px;
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+        }
+
+        .supervisor-info .name {
+            margin-left: 60px;
+            border: 1px solid #000000;
+            font-size: 1.5em;
+            padding: 0px 0 0 0;
+            -moz-box-sizing: 50px 50px;
+            -o-background-size: 50px 50px;
+            -webkit-box-sizing: 50px;
+        }
+
+        .goals {
+            /*margin-left: 60px;*/
+            margin: 5px 0px 5px 3px;
+            /*float: left;*/
+
+            border: 1px solid #000000;
+            font-size: 1.5em;
+            padding: 0px 0 0 0;
+            -moz-box-sizing: 50px 50px;
+            -o-background-size: 50px 50px;
+            -webkit-box-sizing: 50px;
+
+        }
+
+        .smaller {
+            font-size: .95em;
+
+        }
+
+        /*.box{*/
+            /*background-color: lightgray;*/
+            /*border: 1px solid black;*/
+            /*width: 100%;*/
+            /*margin: 0px auto;*/
+            /*position: relative;*/
+            /*font-weight: bold;*/
+            /*text-align: center;*/
+            /*padding: 5px;*/
+            /*margin: 0px 43px;*/
+        /*}*/
+
+        /*.ui-block-a,*/
+        /*.ul-block-b*/
+        /*{*/
+            /*background-color: lightgray;*/
+            /*border: 1px solid black;*/
+            /*width: 10px;*/
+            /*height: 63px;*/
+            /*font-weight: bold;*/
+            /*text-align: center;*/
+            /*padding: 5px;*/
+            /*margin-right: 5px;*/
+            /*margin: 0px 10px;*/
+        /*}*/
+        /*.ui-block-b*/
+        /*{*/
+            /*background-color: lightgray;*/
+            /*border: 1px solid black;*/
+            /*height: 63px;*/
+            /*font-weight: bold;*/
+            /*text-align: center;*/
+            /*padding: 30px;*/
+        /*}*/
+    </style>
+
+    <!--<script type="text/javascript">-->
+        <!--$(window).resize(function(){-->
+            <!--console.log("helloooo")-->
+            <!--var newwidth = $(window).width();-->
+            <!--var newheight = $(window).height();-->
+            <!--$("#element").height(newheight).width(newwidth);-->
+        <!--});-->
+    <!--</script>-->
+
+
 </head>
 <body>
+
+
+
 <div data-role="page" id="page1">
     <div data-role="panel" id="panel">
         <ul data-role="listview">
@@ -26,10 +735,220 @@
         <h1>Workout Carrot</h1>
         <a href="#" data-role="button" id="input-data-button">Input</a>
     </div>
-    <div data-role="content">
-        <p>Main Page Content</p>
-    </div>
+
+        <div data-role="content" class="ui-content">
+            <div>
+                <div class="supervisor-info">
+                     <div class="avatar"></div>
+                      <div class="name">Hello Sammy!<br class="smaller">Weight:145lbs</br></div>
+                 </div>
+        <!--<span class="box">Hello, Sammy! Your current goal is to lose 5lbs.</span>-->
+        <!--<div class="name">Sammy</div>-->
+            </div>
+
+            <div id="Goals" class="goals">
+                Goals: Lose #5lbs.
+            </div>
+
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-href="a" >Calories</a></li>
+                    <li><a href="#" data-href="b">Exercise</a></li>
+                    <li><a href="#" data-href="c" class="ui-btn-active ui-state-persist">Goals</a></li>
+                </ul>
+            </div><!-- /navbar -->
+            <!--<div class="content_div">onLoad Content</div>-->
+            <!--<div data-role="page" id="a" style="width:95%; height:250px;" class="content_div box">-->
+                <!--ID USED TO BE IN HERE-->
+
+
+
+            <div class="box2">
+            <div id="#element" class="myslider2">
+
+                <div>
+
+                    <div class="slide2">
+                        <div id="a" style="width:95%; height:250px;" class="content_div box">Some 'A' Content
+                            <!--<div data-role="page"></div>-->
+                        </div>
+                    <!--</div>-->
+                    <!--<div data-role="page" id="b">-->
+
+                        <div id="b"  style="width:95%; height:250px;" class="content_div box">Some 'A' Content
+                            <!--<div data-role="page"></div>-->
+
+                        </div>
+                    <!--</div>-->
+                    <!--<div data-role="page" id="c">-->
+
+                        <div id="c"  style="width:95%; height:250px;" class="content_div box">Some 'C' Content
+                            <!--<div data-role="page"></div>-->
+
+                        </div>
+
+                    </div>
+
+                    <div class="slide2">
+                        hello
+                    </div>
+
+                 </div>
+
+
+
+            <!--</div>-->
+                <!--slider ends-->
+            </div>
+            </div>
+
+            <!--<div data-role="tab" id="article2">-->
+                <!--<div data-role="content">-->
+                    <!--<p>Article 3</p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        </div>
+
+
+
+    <!--<div data-role="content" class="ui-content">-->
+        <!--<div>-->
+            <!--<div class="supervisor-info">-->
+                <!--<div class="avatar"></div>-->
+                <!--<div class="name">Hello Sammy! Your current goal is to #lose #5lbs</div>-->
+            <!--</div>-->
+              <!--<!--<span class="box">Hello, Sammy! Your current goal is to lose 5lbs.</span>-->-->
+            <!--<!--<div class="name">Sammy</div>-->-->
+        <!--</div>-->
+
+
+        <!--<div data-role="navbar">-->
+            <!--<ul>-->
+                <!--<li><a href="#" data-href="a">One (A)</a></li>-->
+                <!--<li><a href="#" data-href="b">Two (B)</a></li>-->
+            <!--</ul>-->
+        <!--</div><!-- /navbar -->-->
+        <!--<div class="content_div">onLoad Content</div>-->
+        <!--<div id="a" class="content_div">Some 'A' Content</div>-->
+        <!--<div id="b" class="content_div">Some 'B' Content</div>-->
+
+        <!--<!--<div class="testing">Main Page Content-->-->
+
+        <!--<!--</div>-->-->
+
+        <!--<!--<div data-role="navbar">-->-->
+            <!--<!--<ul>-->-->
+                <!--<!--<li><a href="#nav" id="nav1" class="ui-btn-active">One</a></li>-->-->
+                <!--<!--<li><a href="#nav" id="nav2">Two</a></li>-->-->
+                <!--<!--<li><a href="#nav" id="nav3">Two</a></li>-->-->
+
+            <!--<!--</ul>-->-->
+        <!--<!--</div><!-- /navbar -->-->-->
+
+        <!--<!--<div id="tabs">-->-->
+            <!--<!--<ul>-->-->
+                <!--<!--<li><a href="#tab1">Tab 1</a></li>-->-->
+                <!--<!--<li><a href="#tab2">Chart Tab</a></li>-->-->
+                <!--<!--<li><a href="#tab3">Tab 3</a></li>-->-->
+            <!--<!--</ul>-->-->
+            <!--<!--<div id="tab1" class="tab">-->-->
+                <!--<!--<p>This is just some empty tab. Click "Chart Tab" to display the chart.</p>-->-->
+                <!--<!--<p>Once you do jQuery UI Tabs "select" event is executed and chart.invalidateSize() is called</p>-->-->
+                <!--<!--<p>Make sure you're running at least 2.7.6 version of amCharts</p>-->-->
+            <!--<!--</div>-->-->
+            <!--<!--<div id="tab2" class="tab">-->-->
+                    <!--<!--<div id="chartdiv" style="width:100%; height:400px;"></div>-->-->
+
+
+
+            <!--<!--</div>-->-->
+            <!--<!--<div id="tab3" class="tab">This is too an empty tab</div>-->-->
+        <!--<!--</div>-->-->
+
+
+        <!--<!--<div class="chart">-->-->
+
+        <!--<!--</div>-->-->
+
+        <!--<!--<div id="tab2" class="tab"></div>-->-->
+
+
+
+        <!--<!--<canvas id="myChart" width="400" height="400"></canvas>-->-->
+
+
+
+    <!--</div>-->
+
+    <!--<div data-role="page" style="width:400px" id="page1">-->
+
+        <!--<div data-role="navbar">-->
+                <!--<ul>-->
+                    <!--<li><a href="#page1" class="ui-btn-activeui-statepersist">Mesparties</a></li>-->
+                    <!--<li><a href="#page2">Parties en cours</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div data-role="content">-->
+                <!--from 1st page-->
+            <!--</div>-->
+
+    <!--</div>-->
+
+
+    <!--<div data-role="page" id="page2" style="width:400px">-->
+        <!--<div data-role="header">-->
+            <!--<h1>Welcome to the Hunt</h1>-->
+        <!--</div>-->
+        <!--<div data-role="navbar">-->
+            <!--<ul>-->
+                <!--<li><a href="#page1" >Mes parties</a></li>-->
+                <!--<li><a href="#page2" class="ui-btn-active ui-state-persist">Partiesecours</a>    </li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div data-role="content">-->
+            <!--from 2nd page-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div id="tabs">-->
+        <!--<ul>-->
+            <!--<li><a href="#tab1">Tab 1</a>-->
+
+            <!--</li>-->
+            <!--<li><a href="#tab2">Chart Tab</a>-->
+
+            <!--</li>-->
+            <!--<li><a href="#tab3">Tab 3</a>-->
+
+            <!--</li>-->
+        <!--</ul>-->
+        <!--<div id="tabs" data-role="navbar">-->
+        <!--<ul>-->
+        <!--<li><a href="#tab1 class="ui-btn-active">One-->
+        <!--<!--<div class="box">-->-->
+
+        <!--<!--<div id="tab2" style="width:100%; height:400px;"></div>-->-->
+        <!--<!--</div>-->-->
+
+        <!--</a></li>-->
+        <!--<li><a href="#tab2">Two</a></li>-->
+        <!--<li><a href="#tab3">Three</a></li>-->
+        <!--</ul>-->
+
+
+
+
+
+
+    </div><!-- /navbar -->
 </div>
-<script type="text/javascript" src="main.js"></script>
+
+
+
+<!--<script src="jquery-ui.min.js"></script>-->
+
+<!--<script type="text/javascript" src="../main/main.js"></script>-->
 </body>
 </html>
