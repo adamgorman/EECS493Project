@@ -1,0 +1,15 @@
+#outerbox {
+    border-color: red;
+}
+#innerbox1 .adbox1 {
+    border-width: 0;
+    border-color: red;
+    float:left;
+}
+#innterbox2 .adbox2 {
+    width: 300px;
+
+    border-width: 0;
+    border-color: red;
+    float:left;
+}

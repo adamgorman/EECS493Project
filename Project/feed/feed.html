@@ -1,10 +1,97 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<html class="ui-mobile">
+<head>
+    <title>Main Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+    <link rel="stylesheet" href="feed.css" type="text/css" media="screen">
+    <script type="text/javascript" src="../share/jquery.share.js"></script>
+    <link rel="stylesheet" href="../share/jquery.share.css" type="text/css" media="screen">
 </head>
 <body>
+
+<div data-role="page" id="page4">
+
+    <div data-role="panel" id="panel">
+        <ul data-role="listview">
+            <li><a href="../main/main.html" id="home-button">Home</a></li>
+            <li><a href="../achievements/achievements.html" id="achievements-button">Achievements</a></li>
+            <li><a href="../friends/friends.html" id="friends-button">Friends</a></li>
+            <li><a href="../feed/feed.html" id="feed-button">Feed</a></li>
+            <li><a href="../settings/settings.html" id="settings-button">Settings</a></li>
+            <li><a href="../main/logout.html" id="logout-button">Logout</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#panel" data-role="button" id="open-panel-button" class="ui-btn-icon-left ui-icon-bars">Menu</a>
+        <h1>Workout Carrot</h1>
+        <a href="#" data-role="button" id="input-data-button" class="ui-btn-icon-right">Input</a>
+    </div>
+    <div class="outerbox"></div>
+
+    <h1>News Feed</h1>
+    <div data-role="content">
+        <div>
+            <ul data-role="listview" data-inset="true">
+                <li>
+
+                    <div class="innerbox1">
+                        <img src="male.jpg">
+                    </div>
+                    <a href="#" class="innerbox2">
+                        <img src="dumbbell.jpg">
+                        <h1 class="achv">Bob has worked out 5 times this week!</h1></a>
+                </li>
+                <br>
+                <li>
+                    <div class="innerbox1">
+                        <img src="female.jpg">
+                    </div>
+                    <a href="#" class="innerbox2">
+                        <img src="healthy.jpg">
+                        <h1 class="achv">Suzy is following a health diet!</h1></a>
+                </li>
+                <br>
+                <li>
+                    <div class="innerbox1">
+                        <img src="female.jpg">
+                    </div>
+                    <a href="#" class="innerbox2">
+                        <img src="checkmark.jpg">
+                        <h1 class="achv">Mary logged in for 5 days in a row!</h1></a>
+                </li>
+                <br>
+                <li>
+                    <div class="innerbox1">
+                        <img src="male.jpg">
+                    </div>
+                    <a href="#" class="innerbox2">
+                        <img src="target.jpg">
+                        <h1 class="achv">John reached his target weight!</h1></a>
+                </li>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="feed.js"></script>
+<script>
+    $("li").click(function () {
+//        go to compare page
+
+
+    });
+
+</script>
+
+
+
 
 </body>
 </html>
