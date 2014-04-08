@@ -13,12 +13,6 @@
     <link rel="stylesheet" href="../share/jquery.share.css" type="text/css" media="screen">
     <script src="http://connect.facebook.net/en_US/all.js"></script>
 
-    <script>
-        $(function() {
-            $( "#dialog" ).dialog();
-        });
-    </script>
-
 </head>
 <body>
 
@@ -40,73 +34,97 @@
         <a href="#" data-role="button" id="input-data-button" class="ui-btn-icon-right">Input</a>
     </div>
 
-    <div data-role="popup" id="popupPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
 
-        <!--<button data-theme="a" data-icon="back" data-mini="true">Back</button>
-        <button data-theme="a" data-icon="grid" data-mini="true">Menu</button>
-        <button data-theme="a" data-icon="search" data-mini="true">Search</button>-->
-        <div id="mydiv">
-            <h2 class="share">Share on Facebook or Twitter</h2>
-        </div>
 
-    </div>
     <h1>Achievements</h1>
     <div data-role="content">
         <div>
             <ul data-role="listview" data-inset="true">
-                <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                <li id="test1">
+                    <a href="#share_achievement" data-rel="dialog">
                         <img src="dumbbell.jpg">
                         <h2>Workout</h2>
-                        <p class="achv">worked out 6 times this week!</p></a>
+                        <p>worked out 6 times this week!</p></a>
                 </li>
-                <li>
+                <li id="test2">
                     <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                         <img src="target.jpg">
                         <h2>Goal</h2>
-                        <p class="achv">reached his goal weight!</p></a>
+                        <p>reached his goal weight!</p></a>
                 </li>
-                <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                <li id="test3">
+                    <a href="#" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                         <img src="scale.jpg">
                         <h2>Lost Weight</h2>
-                        <p class="achv">lost 4 pounds since March 3, 2014.</p></a>
+                        <p>lost 4 pounds since March 3, 2014.</p></a>
                 </li>
                 <li>
                     <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                         <img src="healthy.jpg">
                         <h2>Healthy</h2>
-                        <p class="achv">following a healthy diet!</p></a>
+                        <p>following a healthy diet!</p></a>
                 </li>
                 <li>
                     <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                     <img src="checkmark.jpg">
                         <h2>Log-in</h2>
-                    <p class="achv">logged in for 5 days in a row!</p></a>
+                    <p>logged in for 5 days in a row!</p></a>
                 </li>
                 <li>
                     <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                     <img src="dumbbell.jpg">
                     <h2>Workout</h2>
-                    <p class="achv">Joe Schmoe has worked out 3 times this week!</p></a>
+                    <p>Joe Schmoe has worked out 3 times this week!</p></a>
                 </li>
                 <li>
                     <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                     <img src="healthy.jpg">
                     <h2>Healthy</h2>
-                    <p class="achv">following a healthy diet!</p></a>
+                    <p>following a healthy diet!</p></a>
                 </li>
                 <li>
                     <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
                     <img src="scale.jpg">
                     <h2>Lost Weight</h2>
-                    <p class="achv">lost 3 pounds since March 3, 2014.</p></a>
+                    <p>lost 3 pounds since March 3, 2014.</p></a>
                 </li>
             </ul>
         </div>
     </div>
 
 </div>
+
+<!--<script>
+    $("li").click(function() {
+        //alert("clicked");
+        var value=$(this).html();
+        $("#dup").html(value);
+    });
+</script>-->
+
+
+<div id="share_achievement" data-role="dialog">
+    <div data-role="header" data-theme="d">
+        <h1>Share Achievement</h1>
+    </div>
+    <div data-role="content">
+        <div id="dup"></div>
+        <div id="mydiv">
+            <h2 class="share"></h2>
+        </div>
+
+    </div>
+</div>
+<script>
+    $("li").click(function() {
+        //alert("clicked");
+        var value=$(this).html();
+        $("#dup").html(value);
+        $(this).css("text-align", "left");
+    });
+//    $(this).css("text-align", "left");
+</script>
+<script type="text/javascript" src="achievements.js"></script>
 <div id = "fb-root"></div>
 <!--<script>
     FB.init({appId: '496828853760637',
@@ -114,7 +132,7 @@
         cookie:true
     });
 </script>-->
-<script type="text/javascript" src="achievements.js"></script>
+
 <!--<script>
     window.fbAsyncInit = function() {
         FB.init({appId: '496828853760637', status: true, cookie: true});
