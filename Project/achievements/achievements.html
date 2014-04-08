@@ -34,68 +34,49 @@
         <a href="#" data-role="button" id="input-data-button" class="ui-btn-icon-right">Input</a>
     </div>
 
-
-
     <h1>Achievements</h1>
+    <table>
+        <tr>
+            <td>
+                <th>Workout</th>
+            </td>
+            <td><button id = "w1">4 times this week</button></td>
+            <td><button id = "w2">5 times this week</button></td>
+            <td><button id = "w3">6 times this week</button></td>
+            <td><button id = "w4">7 times this week</button></td>
+        </tr>
+        <tr>
+            <td>
+            <th>Healthy Diet</th>
+            </td>
+            <td><button id = "h1">healthy</button></td>
+        </tr>
+        <tr>
+            <td>
+            <th>Target Weight</th>
+            </td>
+            <td><button id = "t1">target</button></td>
+        </tr>
+        <tr>
+            <td>
+            <th>Lost Weight</th>
+            </td>
+            <td><button id = "l1">lost 1 pounds this week</button></td>
+            <td><button id = "l2">lost 2 pounds this week</button></td>
+            <td><button id = "l3">lost 3 pounds this week</button></td>
+        </tr>
+        <tr>
+            <td>
+            <th>Logged in</th>
+            </td>
+            <td><button id = "i1">5 days in a row</button></td>
+            <td><button id = "i2">10 days in a row</button></td>
+            <td><button id = "i3">15 days in a row</button></td>
+        </tr>
+    </table>
     <div data-role="content">
         <div>
-            <ul data-role="listview" data-inset="true">
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                        <table>
-                            <tr width="10">
-                                <td><img src="dumbbell.jpg"></td>
-                                <td>
-                                    <th>Workout</th>
-
-                                </td>
-                            </tr>
-
-                        </table>
-                            <p>worked out 6 times this week!</p>
-                </a></li>
-                <li id="test2">
-                    <a href="#share_achievement" data-rel="dialog">
-                        <img src="target.jpg">
-                        <h2>Goal</h2>
-                        <p>reached his goal weight!</p></a>
-                </li>
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                        <img src="scale.jpg">
-                        <h2>Lost Weight</h2>
-                        <p>lost 4 pounds since March 3, 2014.</p></a>
-                </li>
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                        <img src="healthy.jpg">
-                        <h2>Healthy</h2>
-                        <p>following a healthy diet!</p></a>
-                </li>
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                    <img src="checkmark.jpg">
-                        <h2>Log-in</h2>
-                    <p>logged in for 5 days in a row!</p></a>
-                </li>
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                    <img src="dumbbell.jpg">
-                    <h2>Workout</h2>
-                    <p>Joe Schmoe has worked out 3 times this week!</p></a>
-                </li>
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                    <img src="healthy.jpg">
-                    <h2>Healthy</h2>
-                    <p>following a healthy diet!</p></a>
-                </li>
-                <li>
-                    <a href="#share_achievement" data-rel="dialog">
-                    <img src="scale.jpg">
-                    <h2>Lost Weight</h2>
-                    <p>lost 3 pounds since March 3, 2014.</p></a>
-                </li>
+            <ul data-role="listview" data-inset="true" id="achv_list">
             </ul>
         </div>
     </div>
@@ -117,8 +98,8 @@
     </div>
     <div data-role="content">
         <div>
-            <ul data-role="listview" data-inset="true">
-                    <div id="dup"></div></ul>
+            <!--<ul data-role="listview" data-inset="true">-->
+                    <div id="dup"></div>
         </div>
         <div id="mydiv">
             <h2 class="share"></h2>
@@ -128,10 +109,8 @@
 </div>
 <script>
     $("li").click(function() {
-        //alert("clicked");
         var value=$(this).html();
         $("#dup").html(value);
-
     });
 //    $(this).css("text-align", "left");
 </script>
