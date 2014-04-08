@@ -8,7 +8,7 @@ $('#mydiv').share({
 });
 
 $("#w1").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="dumbbell.jpg"></td>'+
@@ -17,10 +17,13 @@ $("#w1").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>worked out 4 times this week!</p></a>').listview('refresh')
+        '<p>worked out 4 times this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#w2").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="dumbbell.jpg"></td>'+
@@ -29,10 +32,13 @@ $("#w2").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>worked out 5 times this week!</p></a>').listview('refresh')
+        '<p>worked out 5 times this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#w3").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="dumbbell.jpg"></td>'+
@@ -41,10 +47,13 @@ $("#w3").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>worked out 6 times this week!</p></a>').listview('refresh')
+        '<p>worked out 6 times this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#w4").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="dumbbell.jpg"></td>'+
@@ -53,34 +62,43 @@ $("#w4").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>worked out 7 times this week!</p></a>').listview('refresh')
+        '<p>worked out 7 times this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#h1").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="healthy.jpg"></td>'+
         '<td>'+
-        '<th>Healthy</th>'+
+        '<th>Healthy Diet</th>'+
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>following a healthy diet!</p></a>').listview('refresh')
+        '<p>following a healthy diet!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#t1").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="target.jpg"></td>'+
         '<td>'+
-        '<th>Target</th>'+
+        '<th>Target Weight</th>'+
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>reached his target weight!</p></a>').listview('refresh')
+        '<p>reached his target weight!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#l1").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="scale.jpg"></td>'+
@@ -89,10 +107,13 @@ $("#l1").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>lost 1 pound this week!</p></a>').listview('refresh')
+        '<p>lost 1 pound this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#l2").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="scale.jpg"></td>'+
@@ -101,10 +122,13 @@ $("#l2").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>lost 2 pounds this week!</p></a>').listview('refresh')
+        '<p>lost 2 pounds this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#l3").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="scale.jpg"></td>'+
@@ -113,10 +137,13 @@ $("#l3").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>lost 3 pounds this week!</p></a>').listview('refresh')
+        '<p>lost 3 pounds this week!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#i1").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="checkmark.jpg"></td>'+
@@ -125,10 +152,13 @@ $("#i1").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>logged in 5 days in a row!</p></a>').listview('refresh')
+        '<p>logged in 5 days in a row!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#i2").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="checkmark.jpg"></td>'+
@@ -137,12 +167,13 @@ $("#i2").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>logged in 10 days in a row!</p></a>').listview('refresh')
-    var value=$("#i2").html();
-    $("#dup").html(value);
+        '<p>logged in 10 days in a row!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 $("#i3").click(function () {
-    $('ul').append('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
+    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<table>'+
         '<tr width="10">'+
         '<td><img src="checkmark.jpg"></td>'+
@@ -151,7 +182,10 @@ $("#i3").click(function () {
         '</td>'+
         '</tr>'+
         '</table>'+
-        '<p>logged in 15 days in a row!</p></a>').listview('refresh')
+        '<p>logged in 15 days in a row!</p></a>'))
+    $("#dup").html(value).listview();
+    $("#dup").html(value).listview('refresh');
+    $('ul').append(value).listview('refresh');
 });
 
 

@@ -99,7 +99,10 @@
     <div data-role="content">
         <div>
             <!--<ul data-role="listview" data-inset="true">-->
-                    <div id="dup"></div>
+            <script>
+                $("#dup").html(value).listview();
+            </script>
+            <div id="dup"></div>
         </div>
         <div id="mydiv">
             <h2 class="share"></h2>
@@ -107,13 +110,13 @@
 
     </div>
 </div>
-<script>
+<!--<script>
     $("li").click(function() {
         var value=$(this).html();
         $("#dup").html(value);
     });
 //    $(this).css("text-align", "left");
-</script>
+</script>-->
 <script type="text/javascript" src="achievements.js"></script>
 <div id = "fb-root"></div>
 <!--<script>

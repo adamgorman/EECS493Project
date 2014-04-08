@@ -63,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="achievements.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="achievements.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/achievements/achievements.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7399381" vertical-offset="1902" max-vertical-offset="3213">
-              <caret line="140" column="21" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3791">
+              <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -83,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="achievements.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="achievements.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/achievements/achievements.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.666667" vertical-offset="1411" max-vertical-offset="2465">
-              <caret line="112" column="30" selection-start-line="111" selection-start-column="8" selection-end-line="112" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.6117647" vertical-offset="928" max-vertical-offset="2516">
+              <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="81" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -117,8 +117,8 @@
         <option value="$PROJECT_DIR$/feed/feed.css" />
         <option value="$PROJECT_DIR$/feed/feed.html" />
         <option value="$PROJECT_DIR$/achievements/achievements.css" />
-        <option value="$PROJECT_DIR$/achievements/achievements.html" />
         <option value="$PROJECT_DIR$/achievements/achievements.js" />
+        <option value="$PROJECT_DIR$/achievements/achievements.html" />
       </list>
     </option>
   </component>
@@ -743,6 +743,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/achievements/achievements.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3791">
+          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/achievements/achievements.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
@@ -753,16 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/achievements/achievements.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.666667" vertical-offset="1411" max-vertical-offset="2465">
-          <caret line="112" column="30" selection-start-line="111" selection-start-column="8" selection-end-line="112" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/achievements/achievements.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7399381" vertical-offset="1902" max-vertical-offset="3213">
-          <caret line="140" column="21" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.6117647" vertical-offset="928" max-vertical-offset="2516">
+          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="81" selection-end-column="10" />
           <folding />
         </state>
       </provider>
