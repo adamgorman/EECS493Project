@@ -40,50 +40,58 @@
     <div data-role="content">
         <div>
             <ul data-role="listview" data-inset="true">
-                <li id="test1">
+                <li>
                     <a href="#share_achievement" data-rel="dialog">
-                        <img src="dumbbell.jpg">
-                        <h2>Workout</h2>
-                        <p>worked out 6 times this week!</p></a>
-                </li>
+                        <table>
+                            <tr width="10">
+                                <td><img src="dumbbell.jpg"></td>
+                                <td>
+                                    <th>Workout</th>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                            <p>worked out 6 times this week!</p>
+                </a></li>
                 <li id="test2">
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <a href="#share_achievement" data-rel="dialog">
                         <img src="target.jpg">
                         <h2>Goal</h2>
                         <p>reached his goal weight!</p></a>
                 </li>
-                <li id="test3">
-                    <a href="#" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                <li>
+                    <a href="#share_achievement" data-rel="dialog">
                         <img src="scale.jpg">
                         <h2>Lost Weight</h2>
                         <p>lost 4 pounds since March 3, 2014.</p></a>
                 </li>
                 <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <a href="#share_achievement" data-rel="dialog">
                         <img src="healthy.jpg">
                         <h2>Healthy</h2>
                         <p>following a healthy diet!</p></a>
                 </li>
                 <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <a href="#share_achievement" data-rel="dialog">
                     <img src="checkmark.jpg">
                         <h2>Log-in</h2>
                     <p>logged in for 5 days in a row!</p></a>
                 </li>
                 <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <a href="#share_achievement" data-rel="dialog">
                     <img src="dumbbell.jpg">
                     <h2>Workout</h2>
                     <p>Joe Schmoe has worked out 3 times this week!</p></a>
                 </li>
                 <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <a href="#share_achievement" data-rel="dialog">
                     <img src="healthy.jpg">
                     <h2>Healthy</h2>
                     <p>following a healthy diet!</p></a>
                 </li>
                 <li>
-                    <a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">
+                    <a href="#share_achievement" data-rel="dialog">
                     <img src="scale.jpg">
                     <h2>Lost Weight</h2>
                     <p>lost 3 pounds since March 3, 2014.</p></a>
@@ -105,10 +113,13 @@
 
 <div id="share_achievement" data-role="dialog">
     <div data-role="header" data-theme="d">
-        <h1>Share Achievement</h1>
+        <h2>Share Achievement</h2>
     </div>
     <div data-role="content">
-        <div id="dup"></div>
+        <div>
+            <ul data-role="listview" data-inset="true">
+                    <div id="dup"></div></ul>
+        </div>
         <div id="mydiv">
             <h2 class="share"></h2>
         </div>
@@ -120,7 +131,7 @@
         //alert("clicked");
         var value=$(this).html();
         $("#dup").html(value);
-        $(this).css("text-align", "left");
+
     });
 //    $(this).css("text-align", "left");
 </script>
