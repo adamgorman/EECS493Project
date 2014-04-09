@@ -1,7 +1,11 @@
-th
-{
-    text-align:left;
-}
 p{
     text-align: left;
+    padding-left: 4em;
+}
+h2{
+    padding-left: 3em;
+}
+
+.achv_list{
+    margin: 1em;
 }

@@ -15,6 +15,7 @@
 
 </head>
 <body>
+<!--10 achievements: workout counter, lost weight counter, days under 2000 calories counter, login counter-->
 
 <div data-role="page" id="page3">
 
@@ -40,30 +41,23 @@
             <td>
                 <th>Workout</th>
             </td>
-            <td><button id = "w1">4 times this week</button></td>
-            <td><button id = "w2">5 times this week</button></td>
-            <td><button id = "w3">6 times this week</button></td>
-            <td><button id = "w4">7 times this week</button></td>
+            <td><button id = "w1">5 times this week</button></td>
+            <td><button id = "w2">6 times this week</button></td>
+            <td><button id = "w3">7 times this week</button></td>
         </tr>
         <tr>
             <td>
             <th>Healthy Diet</th>
             </td>
             <td><button id = "h1">healthy</button></td>
-        </tr>
-        <tr>
-            <td>
-            <th>Target Weight</th>
-            </td>
-            <td><button id = "t1">target</button></td>
+            <td><button id = "h2">healthy</button></td>
         </tr>
         <tr>
             <td>
             <th>Lost Weight</th>
             </td>
-            <td><button id = "l1">lost 1 pounds this week</button></td>
-            <td><button id = "l2">lost 2 pounds this week</button></td>
-            <td><button id = "l3">lost 3 pounds this week</button></td>
+            <td><button id = "l1">lost 3 pounds this week</button></td>
+            <td><button id = "l2">lost 5 pounds this week</button></td>
         </tr>
         <tr>
             <td>
@@ -75,12 +69,81 @@
         </tr>
     </table>
     <div data-role="content">
+        <h2>Workout Achievements</h2>
         <div>
-            <ul data-role="listview" data-inset="true" id="achv_list">
+            <ul data-role="listview" data-inset="true" class="achv_list">
+                <li id="a1"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Beginner Bunny</h2>
+                    <p>Achieved by working out 5 times in 1 week</p>
+                </a></li>
+                <li id="a2"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Happy Hare</h2>
+                    <p>Achieved by working out 6 times in 1 week</p>
+                </a></li>
+                <li id="a3"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Radical Rabbit</h2>
+                    <p>Achieved by working out 7 times in 1 week</p>
+                </a></li>
             </ul>
         </div>
-    </div>
+        <br>
+        <h2>Diet Achievements</h2>
+        <div>
+            <ul data-role="listview" data-inset="true" class="achv_list">
+                <li id="b1"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Baby Carrot</h2>
+                    <p>Achieved by consuming less than 2000 calories 3 days in 1 week</p>
+                </a></li>
+                <li id="b2"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Carrot Pro</h2>
+                    <p>Achieved by consuming less than 2000 calories 5 days in 1 week</p>
+                </a></li>
+            </ul>
+        </div>
+        <br>
+        <h2>Lost Weight Achievements</h2>
+        <div>
+            <ul data-role="listview" data-inset="true" class="achv_list">
+                <li id="c1"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Level 1</h2>
+                    <p>Achieved by losing 3 pounds from starting weight</p>
+                </a></li>
+                <li id="c2"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Level 2</h2>
+                    <p>Achieved by losing 5 pounds from starting weight</p>
+                </a></li>
+            </ul>
+        </div>
+        <br>
+        <h2>Login Achievements</h2>
+        <div>
+            <ul data-role="listview" data-inset="true" class="achv_list">
+                <li id="d1"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Level 1</h2>
+                    <p>Achieved by logging in 5 days in a row</p>
+                </a></li>
+                <li id="d2"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Level 2</h2>
+                    <p>Achieved by logging in 10 days in a row</p>
+                </a></li>
+                <li id="d3"><a data-rel="dialog">
+                    <img src="x.jpg">
+                    <h2>Level 3</h2>
+                    <p>Achieved by logging in 15 days in a row</p>
+                </a></li>
+            </ul>
+        </div>
 
+    </div>
 </div>
 
 <!--<script>
@@ -92,22 +155,18 @@
 </script>-->
 
 
+
 <div id="share_achievement" data-role="dialog">
     <div data-role="header" data-theme="d">
         <h2>Share Achievement</h2>
     </div>
     <div data-role="content">
         <div>
-            <!--<ul data-role="listview" data-inset="true">-->
-            <script>
-                $("#dup").html(value).listview();
-            </script>
             <div id="dup"></div>
         </div>
         <div id="mydiv">
             <h2 class="share"></h2>
         </div>
-
     </div>
 </div>
 <!--<script>
