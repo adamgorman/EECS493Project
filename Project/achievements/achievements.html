@@ -72,20 +72,35 @@
         <h2>Workout Achievements</h2>
         <div>
             <ul data-role="listview" data-inset="true" class="achv_list">
-                <li id="a1"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Beginner Bunny</h2>
-                    <p>Achieved by working out 5 times in 1 week</p>
+                <li><a href="#share_achievement" data-rel="dialog">
+                    <div id="a1">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2>Beginner Bunny</h2><p>Achieved by working out 5 times in 1 week</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
-                <li id="a2"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Happy Hare</h2>
-                    <p>Achieved by working out 6 times in 1 week</p>
+                <li data-inset="true"><a data-rel="dialog">
+                    <div id="a2">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2>Happy Hare</h2><p>Achieved by working out 6 times in 1 week</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
-                <li id="a3"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Radical Rabbit</h2>
-                    <p>Achieved by working out 7 times in 1 week</p>
+                <li data-inset="true"><a data-rel="dialog">
+                    <div id="a3">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2>Radical Rabbit</h2><p>Achieved by working out 7 times in 1 week</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
             </ul>
         </div>
@@ -161,9 +176,17 @@
         <h2>Share Achievement</h2>
     </div>
     <div data-role="content">
-        <div>
-            <div id="dup"></div>
-        </div>
+        <!--<ul data-role="listview" data-inset="true" class="achv_list">
+            <li><a data-rel="dialog">
+                <div id="dup"></div>
+            </a></li>
+        </ul>-->
+        <table>
+            <tr><b>Congratulations!</b></tr>
+            <tr>
+                <div id="dup"></div>
+            </tr>
+        </table>
         <div id="mydiv">
             <h2 class="share"></h2>
         </div>

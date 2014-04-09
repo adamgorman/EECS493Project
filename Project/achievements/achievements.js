@@ -7,27 +7,23 @@ $('#mydiv').share({
 });
 
 $("#w1").click(function () {
-    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
-        '<img src="dumbbell.jpg">'+
-        '<h2>Workout</h2>'+'<p>worked out 5 times this week!</p>'+
-        '</a>'))
-    $("#a1").html(value).listview();
-    $("#a1").html(value).listview('refresh');
+    var value=('<table><tr><td><img src="checkmark.jpg"></td><td><h2>Beginner Bunny Achieved!</h2>'+
+        '<p>You worked out 5 times in 1 week</p></td></tr></table>')
+    $("#a1").html(value);
+
 });
-$("#a1").click(function () {
-    var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
-        '<img src="dumbbell.jpg">'+
-        '<h2>Workout</h2>'+'<p>worked out 5 times this week!</p>'+
-        '</a>'))
-    $("#dup").html(value).listview();
-    $("#dup").html(value).listview('refresh');
+$("li").click(function () {
+    var value=('<table><tr><td><img src="checkmark.jpg"></td><td><h2>Beginner Bunny Achieved!</h2>'+
+        '<p>You worked out 5 times in 1 week</p></td></tr></table>')
+    $("#dup").html(value);
+    alert("clicked");
 });
 $("#w2").click(function () {
     var value=(('<li>'+'<a href="#share_achievement" data-rel="dialog">'+
         '<img src="dumbbell.jpg">'+
         '<h2>Workout</h2>'+'<p>worked out 6 times this week!</p>'+
         '</a>'))
-    $("#a2").html(value).listview();
+    $("#a2").html(value).listview({ inset: true });
     $("#a2").html(value).listview('refresh');
 });
 $("#a2").click(function () {
