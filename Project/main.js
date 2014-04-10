@@ -1,25 +1,19 @@
-/**
- * Created by Adam on 3/27/14.
- */
-
-var model = {
-    AchievementNumber: 5
+// Global Data
+var constants = {
+    achievementNumber: 5
 };
 
-$("#login-form").submit(function() {
-    var name = $('#login-form input:text[name=username]').val();
-    var password = $('#login-form input:password[name=password]').val();
-    if(name == "Username" && password == "Password") {
-        $('#login-form input:text[name=username]').val("");
-        $('#login-form input:password[name=password]').val("");
-        $.mobile.changePage("main/main.html");
-    }
-    return false;
-});
+var websiteData = {
+    inputType: "Food"
+};
+var user;
 
+// Global Functions
 $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
-    if(pageId == "friends-page") {
+    if(pageId == "input-popup") {
+        inputPopupInit();
+    } else if(pageId == "friends-page") {
         friendsInit();
     } else if(pageId == "friend-compare-page") {
         friendCompareInit();
@@ -29,6 +23,41 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     console.log(pageId);
 });
 
+// Login Page
+$("#login-form").submit(function() {
+    var name = $('#login-form input:text[name=username]').val();
+    var password = $('#login-form input:password[name=password]').val();
+    $('#login-form input:text[name=username]').val("");
+    $('#login-form input:password[name=password]').val("");
+    $('#login-form .form-error-text').text("");
+    if(name == "Username" && password == "Password") {
+        $.mobile.changePage("main/main.html");
+    } else {
+        $('#login-form .form-error-text').text("Invalid Username/Password.");
+    }
+    return false;
+});
+
+// Input Page
+$('#input-page a').on('click', function(event) {
+    websiteData.inputType = $(event.target).text();
+});
+
+// Input Popup
+var inputPopupInit = function() {
+    if(websiteData.inputType == "Food") {
+        $('div[data-role=header] h2').text("Food Input");
+        $('label').text("Enter the Calories Consumed Today:");
+    } else if(websiteData.inputType == "Exercise") {
+        $('div[data-role=header] h2').text("Exercise Input");
+        $('label').text("Enter the Hours Exercised Today:");
+    } else {
+        $('div[data-role=header] h2').text("Weight Input");
+        $('label').text("Enter Your Current Weight:");
+    }
+};
+
+// Friends Page
 var friendsInit = function() {
     var person = $('<li id="new-person"><a href="friendCompare.html">'+
         '<img>'+
@@ -56,6 +85,7 @@ var friendsInit = function() {
     $('ul#friends-list').listview('refresh');
 };
 
+// Friends Compare Page
 var friendCompareInit = function() {
     // names
     $('#friend-name-cell').text("Sid Starfish");
@@ -71,11 +101,11 @@ var friendCompareInit = function() {
     $('tr.calories-row td.friend-cell span').text("380");
 
     // exercise
-    $('tr.exercise-row td.personal-cell span').text("50");
+    $('tr.exercise-row td.personal-cell span').text("16");
     $('tr.exercise-row td.friend-cell span').text("0");
 
     // achievements
-    for(i = 1; i <= model.AchievementNumber; i++) {
+    for(i = 1; i <= constants.achievementNumber; i++) {
         var temp = "tr.achievement" + i + "-row td.personal-cell";
         if(i % 2 == 0) { //change this compare with database info
             $(temp).text("X");
@@ -83,7 +113,7 @@ var friendCompareInit = function() {
             $(temp).text("-");
         }
     }
-    for(i = 1; i <= model.AchievementNumber; i++) {
+    for(i = 1; i <= constants.achievementNumber; i++) {
         var temp = "tr.achievement" + i + "-row td.friend-cell";
         if(i % 2 == 1) { //change this compare with database info
             $(temp).text("X");
@@ -93,6 +123,7 @@ var friendCompareInit = function() {
     }
 };
 
+// Friend Requests Page
 var friendRequestInit = function() {
     var person = $('<li id="new-person">'+
         '<img>'+
