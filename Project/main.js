@@ -19,13 +19,42 @@ $("#login-form").submit(function() {
 
 $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
-    if(pageId == "friend-compare-page") {
+    if(pageId == "friends-page") {
+        friendsInit();
+    } else if(pageId == "friend-compare-page") {
         friendCompareInit();
     } else if(pageId == "friend-request-popup") {
         friendRequestInit();
     }
     console.log(pageId);
 });
+
+var friendsInit = function() {
+    var person = $('<li id="new-person"><a href="friendCompare.html">'+
+        '<img>'+
+        '<h2></h2>'+
+        '<p>Goal: <span></span></p></a>'+
+        '</li>');
+    $('ul#friends-list').append(person.clone());
+    $('li#new-person img').attr('src', 'tempProfilePictures/Starfish.PNG');
+    $('li#new-person h2').text("Sid Starfish");
+    $('li#new-person p span').text("Gain 100 lb");
+    $('li#new-person').removeAttr('id');
+
+    $('ul#friends-list').append(person.clone());
+    $('li#new-person img').attr('src', 'tempProfilePictures/Lion.PNG');
+    $('li#new-person h2').text("Leo Lion");
+    $('li#new-person p span').text("Maintain Weight");
+    $('li#new-person').removeAttr('id');
+
+    $('ul#friends-list').append(person.clone());
+    $('li#new-person img').attr('src', 'tempProfilePictures/Bee.PNG');
+    $('li#new-person h2').text("Bert Bee");
+    $('li#new-person p span').text("Lose 0.4 lb");
+    $('li#new-person').removeAttr('id');
+
+    $('ul#friends-list').listview('refresh');
+};
 
 var friendCompareInit = function() {
     // names
@@ -76,17 +105,17 @@ var friendRequestInit = function() {
         '</h2>'+
         '</li>');
     $('ul#friend-request-list').append(person.clone());
-    $('ul#friend-request-list #new-person img').attr('src', 'tempProfilePictures/Pelican.PNG');
-    $('ul#friend-request-list #new-person span.friend-request-list-name').text("Patrick Pelican");
-    $('ul#friend-request-list #new-person').removeAttr('id');
+    $('li#new-person img').attr('src', 'tempProfilePictures/Pelican.PNG');
+    $('li#new-person span.friend-request-list-name').text("Patrick Pelican");
+    $('#new-person').removeAttr('id');
     $('ul#friend-request-list').append(person.clone());
-    $('ul#friend-request-list #new-person img').attr('src', 'tempProfilePictures/Whale.PNG');
-    $('ul#friend-request-list #new-person span.friend-request-list-name').text("Wallace Whale");
-    $('ul#friend-request-list #new-person').removeAttr('id');
+    $('li#new-person img').attr('src', 'tempProfilePictures/Whale.PNG');
+    $('li#new-person span.friend-request-list-name').text("Walter Whale");
+    $('li#new-person').removeAttr('id');
     $('ul#friend-request-list').append(person.clone());
-    $('ul#friend-request-list #new-person img').attr('src', 'tempProfilePictures/Frog.PNG');
-    $('ul#friend-request-list #new-person span.friend-request-list-name').text("Frank Frog");
-    $('ul#friend-request-list #new-person').removeAttr('id');
+    $('li#new-person img').attr('src', 'tempProfilePictures/Frog.PNG');
+    $('li#new-person span.friend-request-list-name').text("Frank Frog");
+    $('li#new-person').removeAttr('id');
 
     $('ul#friend-request-list').listview('refresh');
 };
