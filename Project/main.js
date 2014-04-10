@@ -4,7 +4,7 @@ var constants = {
 };
 
 var websiteData = {
-    inputType: "Food"
+    inputType: null
 };
 var user;
 
@@ -27,7 +27,6 @@ $(document).on("pagecontainerbeforeshow", function(event) {
 $("#login-form").submit(function() {
     var name = $('#login-form input:text[name=username]').val();
     var password = $('#login-form input:password[name=password]').val();
-    $('#login-form input:text[name=username]').val("");
     $('#login-form input:password[name=password]').val("");
     $('#login-form .form-error-text').text("");
     if(name == "Username" && password == "Password") {
@@ -55,6 +54,19 @@ var inputPopupInit = function() {
         $('div[data-role=header] h2').text("Weight Input");
         $('label').text("Enter Your Current Weight:");
     }
+    $('#input-form').on("submit", function() {
+        var num = $('#input-form input:text').val();
+        if(num == "") {
+            $('#input-form .form-error-text').text("Please enter a value.");
+        } else if(isNaN(num)) {
+            $('#input-form .form-error-text').text("Input should be a number.");
+        } else {
+            $.mobile.changePage("input.html");
+            websiteData.inputType = null;
+        }
+        $('#input-form input:text').val("");
+        return false;
+    });
 };
 
 // Friends Page
