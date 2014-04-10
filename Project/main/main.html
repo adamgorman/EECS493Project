@@ -34,18 +34,51 @@
 
     <script type="text/javascript" src="../main/amcharts_3.4.7.free/amcharts/serial.js"></script>
 
-    <script src="../main/jquery.swipeplanes-1.2.min.js"></script>
+<!-- jQuery library -->
+    <!--<script type = 'text/javascript' src = '../main/iosslider/_lib/jquery-1.4.min.js'></script>-->
+
+    <script tyoe="text/javascript" src="../main/iosslider/_src/jquery.iosslider.js"></script>
+
+    <!--<script src="../main/jquery.swipeplanes-1.2.min.js"></script>-->
 
 
-    <script>
-        $(document).ready(function(){
-            $('.myslider1').swipePlanes();
-            $('.myslider2').swipePlanes();
-        });
-    </script>
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+            <!--$('.myslider1').swipePlanes();-->
+            <!--$('.myslider2').swipePlanes();-->
+        <!--});-->
+    <!--</script>-->
 
 
     <script type="text/javascript">
+
+
+    $(document).on("pagecontainerbeforeshow", function(event) {
+        var pageId = $('body').pagecontainer('getActivePage').prop('id');
+        if(pageId == "page1") {
+            profileIn();
+            goalin();
+
+            recentActivityIn();
+            recentActivityIn2();
+
+
+
+        }
+        console.log(pageId);
+    });
+
+
+    $(document).ready(function() {
+
+        $('.iosSlider').iosSlider({
+            snapToChildren: true,
+            desktopClickDrag: true,
+            infiniteSlider: true,
+            snapSlideCenter: true
+        });
+
+    });
 
 //    $('#nav1').click(function() {
 //
@@ -421,6 +454,8 @@
         chart3.invalidateSize();
 
 
+
+
         console.log("helo sam 2")
 
 
@@ -433,6 +468,31 @@
 
         //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
         $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
+
+
+    });
+
+
+    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
+
+
+        recentActivityIn
+        recentActivityIn2.show();
+
+        console.log("helo sam 4")
+
+
+        //un-highlight and highlight only the buttons in the same navbar widget
+        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
+
+        //this bit is the same, you could chain it off of the last call by using two `.end()`s
+        $(this).addClass('ui-navbar-btn-active');
+
+
+        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
+
+        $('#' + $(this).attr('data-href')).show().siblings('.activity').hide();
+
     })
 //
 //    $(document).delegate('.ui-navbar ul li > b', 'click', function () {
@@ -482,35 +542,194 @@
 //        $('div#' + $(this).attr('data-href')).show();
 //    });
 
-    // FOR Swipe
-    $(document).on('swipeleft', '[data-role="tab"]', function(event){
-        if(event.handled !== true) // This will prevent event triggering more then once
-        {
-            var nextpage = $(this).next('[data-role="tab"]');
-            // swipe using id of next page if exists
-            if (nextpage.length > 0) {
-                $.mobile.change( {transition: "slide", reverse: false}, true, true);
-            }
-            event.handled = true;
-        }
-        return false;
-    });
+//    // FOR Swipe
+//    $(document).on('swipeleft', '[data-role="tab"]', function(event){
+//        if(event.handled !== true) // This will prevent event triggering more then once
+//        {
+//            var nextpage = $(this).next('[data-role="tab"]');
+//            // swipe using id of next page if exists
+//            if (nextpage.length > 0) {
+//                $.mobile.change( {transition: "slide", reverse: false}, true, true);
+//            }
+//            event.handled = true;
+//        }
+//        return false;
+//    });
+//
+//    $(document).on('swiperight', '[data-role="tab"]', function(event){
+//        if(event.handled !== true) // This will prevent event triggering more then once
+//        {
+//            var prevpage = $(this).prev('[data-role="tab"]');
+//            if (prevpage.length > 0) {
+//                $.mobile.change( {transition: "slide", reverse: true}, true, true);
+//            }
+//            event.handled = true;
+//        }
+//        return false;
+//    });
 
-    $(document).on('swiperight', '[data-role="tab"]', function(event){
-        if(event.handled !== true) // This will prevent event triggering more then once
-        {
-            var prevpage = $(this).prev('[data-role="tab"]');
-            if (prevpage.length > 0) {
-                $.mobile.change( {transition: "slide", reverse: true}, true, true);
-            }
-            event.handled = true;
-        }
-        return false;
-    });
+
+// Making it like adam's
+    var profileIn = function() {
+        var profile = $('<li id="newPro">'+
+                '<img>'+
+                '<h1></h1>'+
+                '<p>Weight: <span></span></p>'+
+                '</li>');
+        $('ul#profileid').append(profile.clone());
+        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newPro h1').text("Sammy Hajalie");
+        $('li#newPro p span').text("145 lbs");
+
+//        console.log("you not here yet");
+
+        $('ul#profileid').listview('refresh');
+    };
+
+
+    var goalin = function() {
+        var profile = $('<li id="newGoal">'+
+                '<h1></h1>'+
+                '<p><span></span></p>'+
+                '</li>');
+        $('ul#goalmain').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newGoal h1').text("Goal:");
+        $('li#newGoal p span').text("Gain 5 lbs");
+
+//        console.log("you not here yet");
+
+        $('ul#goalmain').listview('refresh');
+    };
+
+
+    var recentActivityIn = function() {
+        var profile = $('<li id="newActivity">'+
+                '<h1></h1>'+
+                '<p><span></span></p>'+
+                '</li>');
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity h1').text("Goal:");
+        $('li#newActivity p span').text("Gain 5 lbs");
+
+
+//        console.log("you not here yet");
+
+        $('ul#youractivityid').listview('refresh');
+    };
+
+    var recentActivityIn2 = function() {
+        var profile = $('<li id="newActivity2">'+
+                '<h1></h1>'+
+                '<p><span></span></p>'+
+                '</li>');
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("WEIGHT 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("WEIGHT 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+        $('ul#youractivityid2').append(profile.clone());
+//        $('li#newPro img').attr('src', 'img/mypic.jpg');
+        $('li#newActivity2 h1').text("WEIGHT:");
+        $('li#newActivity2 p span').text("Gain 5 lbs");
+
+
+//        console.log("you not here yet");
+
+        $('ul#youractivityid').listview('refresh');
+    };
 
 
 
-//    $(window).resize(function(){
+    //    $(window).resize(function(){
 //        console.log("helloooo")
 //        var newwidth = $(window).width();
 //        var newheight = $(window).height();
@@ -531,6 +750,98 @@
 
 
     <style>
+
+
+
+
+
+    body {
+        /* overflow: hidden; */
+        margin: 0;
+    }
+
+    .responsive_height {
+        /*height: 0;*/
+        height: 350px;
+        padding: 0 0 40% 0; /* responsive slider height = 40% of the browser width; ie. slide image aspect ratio: w10xh4 */
+        position: relative;
+        overflow: visible;
+    }
+
+    .responsive_height > .container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        height: 350px;
+
+        overflow: hidden;
+
+        border-radius: 25px;
+        border: 1.4px double dodgerblue;
+
+
+        margin: 10px 0px 10px 0px;
+        /*padding: 50px;*/
+        /*width: 95%;*/
+        /*height: 95%;*/
+    }
+
+    .iosSlider {
+        width: 100%;
+        height: 100%;
+        height: 350px;
+
+        /*background: #aaa;*/
+    }
+
+    .iosSlider .slider {
+        width: 100%;
+        height: 100%;
+        height: 350px;
+
+    }
+
+    .iosSlider .slider .item {
+        position: relative;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+        height: 350px;
+
+        margin: 0 0 0 0;
+    }
+
+    .iosSlider .slider .item .content_div {
+        height: 100%;
+        width: 100%;
+        height: 350px;
+
+    }
+
+    @import url(http://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+    .content_div {
+        /*{background: #282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg');color: #fff;*/
+        /*width		: 100%;*/
+        /*height		: 500px;*/
+        /*font-size	: 11px;*/
+        /*border-radius: 25px;*/
+        /*border: 2px solid;*/
+        /*margin: 15px;*/
+        padding: 2px;
+        /*height: 220px;*/
+        /*width: 95%;*/
+        /*height: 95%;*/
+        /*margin-right: 7px;*/
+        /*margin-left: 3px;*/
+        /*margin-bottom: 7px;*/
+        /*margin-top: 7px;*/
+        border-radius: 35px;
+        /*border: 2px solid;*/
+        /*border-right-width: 5px;*/
+
+    }
 
         /*body {*/
             /*width: 100%;*/
@@ -607,9 +918,10 @@
         
         div#element {
 
-            width 100vw;
+            width: 100vw;
         }
         
+
 
 
         #a, #b {
@@ -678,7 +990,31 @@
 
         }
 
-        /*.box{*/
+        .book {
+            overflow: auto;
+            height: 265px;
+            /*width: 95%;*/
+            margin: 10px;
+            border-radius: 25px;
+            /*margin-left: 10px;*/
+            padding: 15px;
+            /*padding-bottom: 15px;*/
+            /*margin-bottom: 15px;*/
+        }
+
+        .activityH {
+            border-radius: 50px;
+            color: white;
+            background-color: #3388cc;
+            margin: 5px;
+
+        }
+
+
+
+
+
+    /*.box{*/
             /*background-color: lightgray;*/
             /*border: 1px solid black;*/
             /*width: 100%;*/
@@ -748,23 +1084,34 @@
 
         <div data-role="content" class="ui-content">
             <div>
-                <div class="supervisor-info">
-                     <div class="avatar"></div>
-                      <div class="name">Hello Sammy!<br class="smaller">Weight:145lbs</br></div>
-                 </div>
+                <!--<div class="supervisor-info">-->
+                    <ul data-role="listview" data-inset="true" id="profileid"></ul>
+
+
+
+                     <!--<div class="avatar"></div>-->
+                      <!--<div class="name">Hello Sammy!<br class="smaller">Weight:145lbs</br></div>-->
+                 <!--</div>-->
         <!--<span class="box">Hello, Sammy! Your current goal is to lose 5lbs.</span>-->
         <!--<div class="name">Sammy</div>-->
             </div>
 
-            <div id="Goals" class="goals">
-                Goals: Lose #5lbs.
+            <div>
+                <ul data-role="listview" data-inset="true" id="goalmain"></ul>
+
+
             </div>
 
-            <div data-role="navbar">
+
+            <!--<div id="Goals" class="goals">-->
+                <!--Goals: Lose #5lbs.-->
+            <!--</div>-->
+
+            <div data-role="navbar" class="navybar">
                 <ul>
-                    <li><a href="#" data-href="a" >Calories</a></li>
-                    <li><a href="#" data-href="b">Exercise</a></li>
-                    <li><a href="#" data-href="c" class="ui-btn-active ui-state-persist">Goals</a></li>
+                    <li><a href="#" data-href="a"  >Calories</a></li>
+                    <li><a href="#" data-href="b" >Exercise</a></li>
+                    <li><a href="#" data-href="c" class="ui-btn-active ui-state-persist ">Weight</a></li>
                 </ul>
             </div><!-- /navbar -->
             <!--<div class="content_div">onLoad Content</div>-->
@@ -773,202 +1120,63 @@
 
 
 
-            <div class="box2">
-            <div id="#element" class="myslider2">
+            <!--<div class="box2">-->
+            <div class='responsive_height'>
+                <div class='container'>
+            <div id="#element" class='iosSlider'>
 
-                <div>
+                <div class='slider'>
 
-                    <div class="slide2">
-                        <div id="a"  style="width:95%; height:250px;" class="content_div ">Some 'A' Content
-                            <!--<div data-role="page"></div>-->
+                    <div class='item'>
+                        <div id="a"  class="content_div ">
                         </div>
 
                         <!--<div id="a" style="width:95%; height:250px;" class="content_div box">Some 'A' Content-->
-                            <!--&lt;!&ndash;<div data-role="page"></div>&ndash;&gt;-->
-                        <!--</div>-->
-                    <!--</div>-->
+
                     <!--<div data-role="page" id="b">-->
 
-                        <div id="b" style="width:95%; height:250px;" class="content_div ">Some 'A' Content
-                            <!--<div data-role="page"></div>-->
-
+                        <div id="b" class="content_div ">
                         </div>
-                    <!--</div>-->
-                    <!--<div data-role="page" id="c">-->
 
-                        <div id="c" style="width:95%; height:250px;" class="content_div ">Some 'C' Content
-                            <!--<div data-role="page"></div>-->
+
+                        <div id="c"  class="content_div ">
 
                         </div>
 
                     </div>
 
-                    <div class="slide2">
-                        <div style="margin: 20px">
-                            <h3>Activity Feed</h3>
-                              <p>You Worked Out for 4 hours!</p>
+                    <div class='item'>
+                        <div>
+                            <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
+                            <div class="ui-body book">
+                                <ul data-role="listview"  id="youractivityid" class="activity"></ul>
+                                <ul data-role="listview"  id="youractivityid2" class="activity"></ul>
 
-                              <p>You ate 2100 calories yesterday</p>
+                                <ul data-role="listview"  id="youractivityid3" class="activity"></ul>
+
+
+                            </div>
 
                         </div>
                     </div>
 
                  </div>
 
+                </div>
+                </div>
 
-
-            <!--</div>-->
-                <!--slider ends-->
-            </div>
-            </div>
-
-            <!--<div data-role="tab" id="article2">-->
-                <!--<div data-role="content">-->
-                    <!--<p>Article 3</p>-->
-                <!--</div>-->
-            <!--</div>-->
-
-        </div>
-
-
-
-    <!--<div data-role="content" class="ui-content">-->
-        <!--<div>-->
-            <!--<div class="supervisor-info">-->
-                <!--<div class="avatar"></div>-->
-                <!--<div class="name">Hello Sammy! Your current goal is to #lose #5lbs</div>-->
-            <!--</div>-->
-              <!--<!--<span class="box">Hello, Sammy! Your current goal is to lose 5lbs.</span>-->-->
-            <!--<!--<div class="name">Sammy</div>-->-->
-        <!--</div>-->
-
-
-        <!--<div data-role="navbar">-->
-            <!--<ul>-->
-                <!--<li><a href="#" data-href="a">One (A)</a></li>-->
-                <!--<li><a href="#" data-href="b">Two (B)</a></li>-->
-            <!--</ul>-->
-        <!--</div><!-- /navbar -->-->
-        <!--<div class="content_div">onLoad Content</div>-->
-        <!--<div id="a" class="content_div">Some 'A' Content</div>-->
-        <!--<div id="b" class="content_div">Some 'B' Content</div>-->
-
-        <!--<!--<div class="testing">Main Page Content-->-->
-
-        <!--<!--</div>-->-->
-
-        <!--<!--<div data-role="navbar">-->-->
-            <!--<!--<ul>-->-->
-                <!--<!--<li><a href="#nav" id="nav1" class="ui-btn-active">One</a></li>-->-->
-                <!--<!--<li><a href="#nav" id="nav2">Two</a></li>-->-->
-                <!--<!--<li><a href="#nav" id="nav3">Two</a></li>-->-->
-
-            <!--<!--</ul>-->-->
-        <!--<!--</div><!-- /navbar -->-->-->
-
-        <!--<!--<div id="tabs">-->-->
-            <!--<!--<ul>-->-->
-                <!--<!--<li><a href="#tab1">Tab 1</a></li>-->-->
-                <!--<!--<li><a href="#tab2">Chart Tab</a></li>-->-->
-                <!--<!--<li><a href="#tab3">Tab 3</a></li>-->-->
-            <!--<!--</ul>-->-->
-            <!--<!--<div id="tab1" class="tab">-->-->
-                <!--<!--<p>This is just some empty tab. Click "Chart Tab" to display the chart.</p>-->-->
-                <!--<!--<p>Once you do jQuery UI Tabs "select" event is executed and chart.invalidateSize() is called</p>-->-->
-                <!--<!--<p>Make sure you're running at least 2.7.6 version of amCharts</p>-->-->
-            <!--<!--</div>-->-->
-            <!--<!--<div id="tab2" class="tab">-->-->
-                    <!--<!--<div id="chartdiv" style="width:100%; height:400px;"></div>-->-->
-
-
-
-            <!--<!--</div>-->-->
-            <!--<!--<div id="tab3" class="tab">This is too an empty tab</div>-->-->
-        <!--<!--</div>-->-->
-
-
-        <!--<!--<div class="chart">-->-->
-
-        <!--<!--</div>-->-->
-
-        <!--<!--<div id="tab2" class="tab"></div>-->-->
-
-
-
-        <!--<!--<canvas id="myChart" width="400" height="400"></canvas>-->-->
-
-
-
-    <!--</div>-->
-
-    <!--<div data-role="page" style="width:400px" id="page1">-->
-
-        <!--<div data-role="navbar">-->
-                <!--<ul>-->
-                    <!--<li><a href="#page1" class="ui-btn-activeui-statepersist">Mesparties</a></li>-->
-                    <!--<li><a href="#page2">Parties en cours</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div data-role="content">-->
-                <!--from 1st page-->
-            <!--</div>-->
-
-    <!--</div>-->
-
-
-    <!--<div data-role="page" id="page2" style="width:400px">-->
-        <!--<div data-role="header">-->
-            <!--<h1>Welcome to the Hunt</h1>-->
-        <!--</div>-->
-        <!--<div data-role="navbar">-->
-            <!--<ul>-->
-                <!--<li><a href="#page1" >Mes parties</a></li>-->
-                <!--<li><a href="#page2" class="ui-btn-active ui-state-persist">Partiesecours</a>    </li>-->
-            <!--</ul>-->
-        <!--</div>-->
-        <!--<div data-role="content">-->
-            <!--from 2nd page-->
-        <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div id="tabs">-->
-        <!--<ul>-->
-            <!--<li><a href="#tab1">Tab 1</a>-->
-
-            <!--</li>-->
-            <!--<li><a href="#tab2">Chart Tab</a>-->
-
-            <!--</li>-->
-            <!--<li><a href="#tab3">Tab 3</a>-->
-
-            <!--</li>-->
-        <!--</ul>-->
-        <!--<div id="tabs" data-role="navbar">-->
-        <!--<ul>-->
-        <!--<li><a href="#tab1 class="ui-btn-active">One-->
-        <!--<!--<div class="box">-->-->
-
-        <!--<!--<div id="tab2" style="width:100%; height:400px;"></div>-->-->
-        <!--<!--</div>-->-->
-
-        <!--</a></li>-->
-        <!--<li><a href="#tab2">Two</a></li>-->
-        <!--<li><a href="#tab3">Three</a></li>-->
-        <!--</ul>-->
+                </div>
 
 
 
 
 
 
-    </div><!-- /navbar -->
+
+
+    </div>
 </div>
 
 
-
-<!--<script src="jquery-ui.min.js"></script>-->
-
-<!--<script type="text/javascript" src="../main/main.js"></script>-->
 </body>
 </html>
