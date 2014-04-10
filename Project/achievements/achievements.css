@@ -1,8 +1,18 @@
-p{
-    text-align: left;
-    padding-left: 4em;
+
+
+#dup{
+    border: 2px solid;
+    border-radius:15px;
+    font-size: 65%;
 }
-h2{
-    padding-left: 3em;
+#share_header{
+    font-size: smaller;
 }
 
+img {
+    padding-top: .2cm;
+    padding-left: .2cm;
+}
+.adjust_indent{
+    text-indent: 20px;
+}

@@ -39,7 +39,7 @@
     <table>
         <tr>
             <td>
-                <th>Workout</th>
+            <th>Workout</th>
             </td>
             <td><button id = "w1">5 times this week</button></td>
             <td><button id = "w2">6 times this week</button></td>
@@ -68,36 +68,38 @@
             <td><button id = "i3">15 days in a row</button></td>
         </tr>
     </table>
+
     <div data-role="content">
         <h2>Workout Achievements</h2>
         <div>
-            <ul data-role="listview" data-inset="true" class="achv_list">
-                <li><a href="#share_achievement" data-rel="dialog">
+            <ul data-role="listview" data-inset="true" class="achv_list" data-rel="dialog">
+                <li><a id="ws1" href="#not_achieved">
                     <div id="a1">
+
                         <table>
                             <tr>
                                 <td><img src="x.jpg"></td>
-                                <td><h2>Beginner Bunny</h2><p>Achieved by working out 5 times in 1 week</p></td>
+                                <td><h2 class ="adjust_indent">Beginner Bunny</h2><p class ="adjust_indent">Worked out 5 times in 1 week</p></td>
                             </tr>
                         </table>
                     </div>
                 </a></li>
-                <li data-inset="true"><a data-rel="dialog">
+                <li><a id="ws2" href="#not_achieved">
                     <div id="a2">
                         <table>
                             <tr>
                                 <td><img src="x.jpg"></td>
-                                <td><h2>Happy Hare</h2><p>Achieved by working out 6 times in 1 week</p></td>
+                                <td><h2 class ="adjust_indent">Healthy Hare</h2><p class ="adjust_indent">Worked out 6 times in 1 week</p></td>
                             </tr>
                         </table>
                     </div>
                 </a></li>
-                <li data-inset="true"><a data-rel="dialog">
+                <li><a id="ws3" href="#not_achieved">
                     <div id="a3">
                         <table>
                             <tr>
                                 <td><img src="x.jpg"></td>
-                                <td><h2>Radical Rabbit</h2><p>Achieved by working out 7 times in 1 week</p></td>
+                                <td><h2 class ="adjust_indent">Radical Rabbit</h2><p class ="adjust_indent">Worked out 7 times in 1 week</p></td>
                             </tr>
                         </table>
                     </div>
@@ -107,53 +109,88 @@
         <br>
         <h2>Diet Achievements</h2>
         <div>
-            <ul data-role="listview" data-inset="true" class="achv_list">
-                <li id="b1"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Baby Carrot</h2>
-                    <p>Achieved by consuming less than 2000 calories 3 days in 1 week</p>
+            <ul data-role="listview" data-inset="true" class="achv_list" data-rel="dialog">
+                <li><a id="hs1" href="#not_achieved">
+                    <div id="b1">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">Baby Carrot</h2><p class ="adjust_indent">Under 2000 cals 3 days in 1 week</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
-                <li id="b2"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Carrot Pro</h2>
-                    <p>Achieved by consuming less than 2000 calories 5 days in 1 week</p>
+                <li><a id="hs2" href="#not_achieved">
+                    <div id="b2">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">Carrot Pro</h2><p class ="adjust_indent">Under 2000 cals 5 days in 1 week</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
             </ul>
         </div>
         <br>
         <h2>Lost Weight Achievements</h2>
         <div>
-            <ul data-role="listview" data-inset="true" class="achv_list">
-                <li id="c1"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Level 1</h2>
-                    <p>Achieved by losing 3 pounds from starting weight</p>
+            <ul data-role="listview" data-inset="true" class="achv_list" data-rel="dialog">
+                <li><a id="ls1" href="#not_achieved">
+                    <div id="c1">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">Slim Carrot</h2><p class ="adjust_indent">Lost 3 pounds from starting weight</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
-                <li id="c2"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Level 2</h2>
-                    <p>Achieved by losing 5 pounds from starting weight</p>
+                <li><a id="ls2" href="#not_achieved">
+                    <div id="c2">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">Slender Carrot</h2><p class ="adjust_indent">Lost 5 pounds from starting weight</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
             </ul>
         </div>
         <br>
         <h2>Login Achievements</h2>
         <div>
-            <ul data-role="listview" data-inset="true" class="achv_list">
-                <li id="d1"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Level 1</h2>
-                    <p>Achieved by logging in 5 days in a row</p>
+            <ul data-role="listview" data-inset="true" class="achv_list" data-rel="dialog">
+                <li><a id="is1" href="#not_achieved">
+                    <div id="d1">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">5 Carrot Log</h2><p class ="adjust_indent">Logged in 5 days in a row</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
-                <li id="d2"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Level 2</h2>
-                    <p>Achieved by logging in 10 days in a row</p>
+                <li><a id="is2" href="#not_achieved">
+                    <div id="d2">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">10 Carrot Log</h2><p class ="adjust_indent">Logged in 10 days in a row</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
-                <li id="d3"><a data-rel="dialog">
-                    <img src="x.jpg">
-                    <h2>Level 3</h2>
-                    <p>Achieved by logging in 15 days in a row</p>
+                <li><a id="is3" href="#not_achieved">
+                    <div id="d3">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">15 Carrot Log</h2><p class ="adjust_indent">Logged in 15 days in a row</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
             </ul>
         </div>
@@ -169,25 +206,27 @@
     });
 </script>-->
 
-
+<div id="not_achieved" data-role="dialog">
+    <div data-role="header" data-theme="d">
+        <h2>Not yet!</h2>
+    </div>
+    <div data-role="content">
+        <table>
+            <tr>
+                <td><img src="x.jpg"></td>
+                <td><p>You have not achieved this goal yet!</p></td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <div id="share_achievement" data-role="dialog">
     <div data-role="header" data-theme="d">
-        <h2>Share Achievement</h2>
+        <h2 id="share_header">Share Achievement</h2>
     </div>
     <div data-role="content">
-        <!--<ul data-role="listview" data-inset="true" class="achv_list">
-            <li><a data-rel="dialog">
-                <div id="dup"></div>
-            </a></li>
-        </ul>-->
-        <table>
-            <tr><b>Congratulations!</b></tr>
-            <tr>
-                <div id="dup"></div>
-            </tr>
-        </table>
-        <div id="mydiv">
+        <div id="dup"></div>
+        <div id="mydiv" style="background-color:#d6d6d6" align="right">
             <h2 class="share"></h2>
         </div>
     </div>
