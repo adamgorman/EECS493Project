@@ -1,3 +1,4 @@
+/* Friend Compare Page */
 .compare-cell {
     width: 40%;
     padding: 5px 5px 20px 5px;
@@ -7,4 +8,27 @@
     width: 20%;
     padding: 5px 5px 20px 5px;
     text-align: center;
+}
+
+/* Friend Request Popup */
+#friend-request-list li {
+    vertical-align: top;
+    min-height: 30px;
+    /*max-height: 60px;*/
+}
+#friend-request-list li img {
+    max-width: 60px;
+}
+#friend-request-list li span.friend-request-list-name {
+    position: absolute;
+    left: 65px;
+}
+#friend-request-list li span.friend-request-list-button-holder {
+    position: absolute;
+    right: 0px;
+    top:5px;
+    background: white;
+}
+#friend-request-list li span.friend-request-list-button-holder a.confirm-button {
+    margin-right: 5px;
 }

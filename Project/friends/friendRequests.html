@@ -6,48 +6,20 @@
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <link rel="stylesheet" href="../main.css">
     <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
 </head>
 <body>
-<div data-role="page" data-dialog="true">
+<div data-role="page" data-dialog="true" id="friend-request-popup">
     <div data-role="header">
         <h2>Requests</h2>
     </div>
     <div data-role="content">
-        <ul data-role="listview" data-inset="true">
-            <li style="vertical-align: top; min-height: 30px">
-                <img src="tempProfilePictures/Pelican.PNG" style="max-height: 60px; max-width: 60px;">
-                <h2>
-                    <span style="position: absolute; left: 65px;">Patrick Pelican</span>
-                    <span style="position: absolute; right: 0px; top:7px; background: white;">
-                        <a style="margin-right: 0px;" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline" href="#">Confirm</a>
-                        <a class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline" href="#">Deny</a>
-                    </span>
-                </h2>
-            </li>
-            <li style="vertical-align: top; min-height: 30px">
-                <img src="tempProfilePictures/Whale.PNG" style="max-height: 60px; max-width: 60px;">
-                <h2>
-                    <span style="position: absolute; left: 65px;">Wallace Whale</span>
-                    <span style="position: absolute; right: 0px; top:7px; background: white;">
-                        <a style="margin-right: 0px;" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline" href="#">Confirm</a>
-                        <a class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline" href="#">Deny</a>
-                    </span>
-                </h2>
-            </li>
-            <li style="vertical-align: top; min-height: 30px">
-                <img src="tempProfilePictures/Frog.PNG" style="max-height: 60px; max-width: 60px;">
-                <h2>
-                    <span style="position: absolute; left: 65px;">Frank Frog</span>
-                    <span style="position: absolute; right: 0px; top:7px; background: white;">
-                        <a style="margin-right: 0px;" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline" href="#">Confirm</a>
-                        <a class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline" href="#">Deny</a>
-                    </span>
-                </h2>
-            </li>
+        <ul data-role="listview" data-inset="true" id="friend-request-list">
         </ul>
     </div>
 </div>
+<script src="../main.js"></script>
 </body>
 </html>

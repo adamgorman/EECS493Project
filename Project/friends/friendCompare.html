@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
 </head>
 <body>
-<div data-role="page">
+<div data-role="page" id="friend-compare-page">
     <div data-role="panel" id="panel">
         <ul data-role="listview">
             <li><a href="../main/main.html" id="home-button">Home</a></li>
@@ -36,57 +36,58 @@
                         <div>You</div>
                         <img src="tempProfilePictures/Toucan.PNG" style="width: 100px; height: 100px;" />
                     </th>
-                    <th>
-                        <div>Sid Starfish</div>
+                    <th class="friend-cell">
+                        <div id="friend-name-cell"></div>
                         <img src="tempProfilePictures/Starfish.PNG" style="width: 100px; height: 100px;" />
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="weight-row">
                     <th style="width: 20%; padding-bottom: 20px;">Weight</th>
-                    <td class="compare-cell">14 lb</td>
-                    <td class="compare-cell">5 lb</td>
+                    <td class="compare-cell personal-cell"><span></span> lb</td>
+                    <td class="compare-cell friend-cell"><span></span> lb</td>
                 </tr>
-                <tr>
+                <tr class="calories-row">
                     <th style="width: 20%; padding-bottom: 20px;">Average Calories per Day</th>
-                    <td class="compare-cell">1200 Cal</td>
-                    <td class="compare-cell">400 Cal</td>
+                    <td class="compare-cell personal-cell"><span></span> Cal</td>
+                    <td class="compare-cell friend-cell"><span></span> Cal</td>
                 </tr>
-                <tr>
+                <tr class="exercise-row">
                     <th style="width: 40%; padding-bottom: 20px;">Average Exercise per Week</th>
-                    <td class="compare-cell">40 hr</td>
-                    <td class="compare-cell">0 hr</td>
+                    <td class="compare-cell personal-cell"><span></span> hr</td>
+                    <td class="compare-cell friend-cell"><span></span> hr</td>
                 </tr>
-                <tr>
+                <tr class="achievement1-row">
                     <th style="width: 40%; padding-bottom: 20px;">A1</th>
-                    <td class="compare-cell">X</td>
-                    <td class="compare-cell">-</td>
+                    <td class="compare-cell personal-cell">X</td>
+                    <td class="compare-cell friend-cell">-</td>
                 </tr>
-                <tr>
+                <tr class="achievement2-row">
                     <th style="width: 40%; padding-bottom: 20px;">A2</th>
-                    <td class="compare-cell">-</td>
-                    <td class="compare-cell">-</td>
+                    <td class="compare-cell personal-cell">-</td>
+                    <td class="compare-cell friend-cell">-</td>
                 </tr>
-                <tr>
+                <tr class="achievement3-row">
                     <th style="width: 40%; padding-bottom: 20px;">A3</th>
-                    <td class="compare-cell">X</td>
-                    <td class="compare-cell">X</td>
+                    <td class="compare-cell personal-cell">X</td>
+                    <td class="compare-cell friend-cell">X</td>
                 </tr>
-                <tr>
+                <tr class="achievement4-row">
                     <th style="width: 40%; padding-bottom: 20px;">A4</th>
-                    <td class="compare-cell">X</td>
-                    <td class="compare-cell">-</td>
+                    <td class="compare-cell personal-cell">X</td>
+                    <td class="compare-cell friend-cell">-</td>
                 </tr>
-                <tr>
+                <tr class="achievement5-row">
                     <th style="width: 40%; padding-bottom: 20px;">A5</th>
-                    <td class="compare-cell">X</td>
-                    <td class="compare-cell">-</td>
+                    <td class="compare-cell personal-cell">X</td>
+                    <td class="compare-cell friend-cell">-</td>
                 </tr>
             </tbody>
         </table>
 
     </div>
 </div>
+<script src="../main.js"></script>
 </body>
 </html>
