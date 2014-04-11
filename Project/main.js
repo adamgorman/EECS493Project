@@ -1,8 +1,9 @@
+Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");
 // Global Data
 var constants = {
-    achievementNumber: 5
+    achievementNumber: 5,
+    achievementNames: ["A1", "A2", "A3", "A4", "A5"]
 };
-
 var websiteData = {
     inputType: null
 };
@@ -13,14 +14,17 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
     if(pageId == "input-popup") {
         inputPopupInit();
+    } else if(pageId == "input-page") {
+        inputPageInit();
     } else if(pageId == "friends-page") {
         friendsInit();
     } else if(pageId == "friend-compare-page") {
         friendCompareInit();
     } else if(pageId == "friend-request-popup") {
         friendRequestInit();
+    } else if(pageId == "add-friend-popup") {
+        addFriendInit();
     }
-    console.log(pageId);
 });
 
 // Login Page
@@ -29,40 +33,54 @@ $("#login-form").submit(function() {
     var password = $('#login-form input:password[name=password]').val();
     $('#login-form input:password[name=password]').val("");
     $('#login-form .form-error-text').text("");
-    if(name == "Username" && password == "Password") {
-        $.mobile.changePage("main/main.html");
-    } else {
-        $('#login-form .form-error-text').text("Invalid Username/Password.");
-    }
+    $.mobile.loading( 'show', {
+        text: "Logging in...",
+        textVisible: true
+    });
+    user = user = Parse.User.logIn(name, password, {
+        success: function(user) {
+            $.mobile.loading('hide');
+            $.mobile.changePage("main/main.html");
+       },
+       error: function(user, error) {
+           $.mobile.loading('hide');
+           $('#login-form .form-error-text').text("Error: " + error.message);
+       }
+    });
     return false;
 });
 
 // Input Page
-$('#input-page a').on('click', function(event) {
-    websiteData.inputType = $(event.target).text();
-});
+var inputPageInit = function() {
+    $('#input-page a').on('click', function (event) {
+        websiteData.inputType = $(event.target).text();
+    })
+};
 
 // Input Popup
 var inputPopupInit = function() {
     if(websiteData.inputType == "Food") {
         $('div[data-role=header] h2').text("Food Input");
-        $('label').text("Enter the Calories Consumed Today:");
+        $('label').text("Enter Your Calories Consumed Today:");
+        $('input[type=number]').attr("placeholder", "Calories");
     } else if(websiteData.inputType == "Exercise") {
         $('div[data-role=header] h2').text("Exercise Input");
-        $('label').text("Enter the Hours Exercised Today:");
+        $('label').text("Enter Your Hours Exercised Today:");
+        $('input[type=number]').attr("placeholder", "Hours");
     } else {
         $('div[data-role=header] h2').text("Weight Input");
         $('label').text("Enter Your Current Weight:");
+        $('input[type=number]').attr("placeholder", "Pounds");
     }
-    $('#input-form').on("submit", function() {
-        var num = $('#input-form input:text').val();
-        if(num == "") {
+
+    $('#input-popup #input-form').on("submit", function() {
+        var num = $('#input-form input[type=number]').val();
+        if(num == "" || num == null) {
             $('#input-form .form-error-text').text("Please enter a value.");
-        } else if(isNaN(num)) {
-            $('#input-form .form-error-text').text("Input should be a number.");
         } else {
-            $.mobile.changePage("input.html");
+            var num = $('#input-form input[type=number]').val("");
             websiteData.inputType = null;
+            $.mobile.changePage("input.html");
         }
         $('#input-form input:text').val("");
         return false;
@@ -78,19 +96,19 @@ var friendsInit = function() {
         '</li>');
     $('ul#friends-list').append(person.clone());
     $('li#new-person img').attr('src', 'tempProfilePictures/Starfish.PNG');
-    $('li#new-person h2').text("Sid Starfish");
+    $('li#new-person h2').text("Starcommander512");
     $('li#new-person p span').text("Gain 100 lb");
     $('li#new-person').removeAttr('id');
 
     $('ul#friends-list').append(person.clone());
     $('li#new-person img').attr('src', 'tempProfilePictures/Lion.PNG');
-    $('li#new-person h2').text("Leo Lion");
+    $('li#new-person h2').text("Leonardo.Lion");
     $('li#new-person p span').text("Maintain Weight");
     $('li#new-person').removeAttr('id');
 
     $('ul#friends-list').append(person.clone());
     $('li#new-person img').attr('src', 'tempProfilePictures/Bee.PNG');
-    $('li#new-person h2').text("Bert Bee");
+    $('li#new-person h2').text("BertDaBee");
     $('li#new-person p span').text("Lose 0.4 lb");
     $('li#new-person').removeAttr('id');
 
@@ -161,4 +179,37 @@ var friendRequestInit = function() {
     $('li#new-person').removeAttr('id');
 
     $('ul#friend-request-list').listview('refresh');
+    checkNoFriendRequests();
+    $(".confirm-button").on('click', function(event) {
+        $(event.target).closest('li').remove();
+        checkNoFriendRequests();
+    });
+    $(".deny-button").on('click', function(event) {
+        $(event.target).closest('li').remove();
+        checkNoFriendRequests();
+    });
+};
+var checkNoFriendRequests = function() {
+    if($('ul#friend-request-list li').size() == 0) {
+        $('#no-friend-requests').show();
+    } else {
+        $('#no-friend-requests').hide();
+    }
+};
+
+// Add Friend Popup
+var addFriendInit = function() {
+    $('#add-friend-popup #add-friend-form').on("submit", function() {
+        var username = $('#add-friend-popup input[type=text]').val();
+        $('#add-friend-popup input[type=text]').val("");
+        if(username == 'BertDaBee') { // already friend
+            $('#add-friend-popup .form-error-text').text(username + " is already your friend.");
+        } else if(username == 'Adam') { // friend request processing
+            $('#add-friend-popup .form-error-text').text("Request to " + username + " is pending.");
+        } else {
+            // some server stuff
+            $.mobile.changePage("friends.html");
+        }
+        return false;
+    });
 };

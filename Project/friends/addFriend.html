@@ -15,17 +15,16 @@
         <h2>Add a Friend</h2>
     </div>
     <div data-role="content">
-        <form style="padding: 10px;">
+        <form style="padding: 10px;" id="add-friend-form">
             <div>
                 <label>Enter Your Friend's Username:</label>
                 <input type="text" placeholder="Username" />
             </div>
-            <div>
-                <span style="display: none">Request was sent to: Izzy Iguana</span>
-            </div>
+            <div id="add-friend-error"></div>
             <div style="margin-top: 20px;">
                 <input type="submit" value="Send Request" />
             </div>
+            <div class="form-error-text"></div>
         </form>
     </div>
 </div>
