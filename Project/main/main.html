@@ -1,3 +1,21 @@
+<!--HELLLO GABE!
+DATA NEEDED FOR THIS PAGE IS
+
+NAME OF USER
+CURRENT WEIGHT OF USER
+CURRENT WEIGHT GOAL - done in settings
+AND THE 3 ARRAYS of 2 elements each
+    - weight per day, timetamp
+    - excise day, timestamp
+    - calrores day, timestamp
+
+    - and can possibly make the array of 2 elements each if you give me the data in an array(we talked about this
+
+-->
+
+
+
+
 <!DOCTYPE html>
 <html class="ui-mobile">
 <head>
@@ -58,15 +76,20 @@
         if(pageId == "page1") {
             profileIn();
             goalin();
-
-//            recentActivityIn.write("section1");
-//            recentActivityIn2.write("section2");
-//            recentActivityIn.write("section3");
-
+            recentActivityIn();
+            recentActivityIn2();
+            recentActivityIn3();
 
 
 
         }
+//        if (pageId == "feed1") {
+//            recentActivityIn();
+//
+//        }
+//        if (pageId == "feed2") {
+//            recentActivityIn2()
+//        }
         console.log(pageId);
     });
 
@@ -326,11 +349,6 @@
         }
     ];
 
-    if (chartData[0] == null) {
-        console.log("no graph");
-    }
-
-
 
     AmCharts.ready(function () {
         // SERIAL CHART
@@ -460,11 +478,6 @@
         chart2.invalidateSize();
         chart3.invalidateSize();
 
-//        recentActivityIn.invalidateSize();
-//        recentActivityIn2.invalidateSize();
-
-
-
 
 
 
@@ -480,25 +493,61 @@
 
         //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
         $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
-        $('#' + $(this).attr('data-href')).show().siblings('.content2').hide();
+//        $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();
+
+
+    });
+
+
+
+
+    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
+
+
+
+
+        console.log("helo sam 3")
+
+
+        //un-highlight and highlight only the buttons in the same navbar widget
+        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
+
+        //this bit is the same, you could chain it off of the last call by using two `.end()`s
+        $(this).addClass('ui-navbar-btn-active');
+
+
+        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
+//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
+        $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();
 
 
 
     });
 
+
+
+
 //
-//    $('.ui-navbar ul li > a').click(function(e) {
+//    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
 //
-////        $(this.hash).show();
-//        $('.container2 > div').hide();
-//        $(this.hash).show();
-////        e.preventDefault(); //to prevent scrolling
-//    });
-
-
-
-
-
+//
+//
+//
+//        console.log("helo sam 4")
+//
+//
+//        //un-highlight and highlight only the buttons in the same navbar widget
+//        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
+//
+//        //this bit is the same, you could chain it off of the last call by using two `.end()`s
+//        $(this).addClass('ui-navbar-btn-active');
+//
+//
+//        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
+//
+//        $('#' + $(this).attr('data-href')).show().siblings('.activity').hide();
+//
+//    })
 //
 //    $(document).delegate('.ui-navbar ul li > b', 'click', function () {
 //        chart.invalidateSize();
@@ -675,6 +724,26 @@
                 '<h1></h1>'+
                 '<p><span></span></p>'+
                 '</li>');
+
+
+//        for (var i = 0; i < chartData.length; i++) {
+//            if (chartData[i] != null) {
+//
+//                console.log(chartData[i].value);
+//                $('ul#youractivityid2').append(profile.clone());
+//                $('li#newActivity2 h1').text("You weighed " + chartData[i].value + " lbs!");
+//                $('li#newActivity2 p span').text("on " + chartData[i].year);
+//                $('ul#youractivityid2').listview('refresh');
+//
+//            } else {
+//                $('li#newActivity3 h1').text("No data");
+//                //                $('li#newActivity3 p span').text("on " + chartData[i].year);
+//                $('ul#youractivityid2').listview('refresh');
+//
+//            }
+//        }
+
+
         $('ul#youractivityid2').append(profile.clone());
 //        $('li#newPro img').attr('src', 'img/mypic.jpg');
         $('li#newActivity2 h1').text("WEIGHT:");
@@ -729,8 +798,96 @@
 
 //        console.log("you not here yet");
 
-        $('ul#youractivityid').listview('refresh');
+        $('ul#youractivityid2').listview('refresh');
     };
+
+    var recentActivityIn3 = function() {
+        var profile = $('<li id="newActivity3">'+
+                '<h1></h1>'+
+                '<p><span></span></p>'+
+                '</li>');
+
+
+        console.log(chartData.length);
+
+
+        var cList = $('youractivityid3');
+
+
+        for (var i = 0; i < chartData.length; i++) {
+            if (chartData[i].value != null) {
+
+                console.log(chartData[i].value);
+//                $('ul#youractivityid2').append(profile.clone());
+
+//                var li = $('<li>').append(chartData.shift());
+//                $('<li id="newActivity3 h1">').append(li.year);
+
+//                $('ul#youractivityid3').append(profile.clone());
+               $('ul#youractivityid3').append(profile.clone());
+
+                $('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");
+                $('li#newActivity3 p span').text("on " + chartData[i].year);
+                $('li#newActivity3').removeAttr('id');
+
+
+
+
+//                $('ul#youractivityid3').listview('refresh');
+
+            } else {
+
+                continue;
+//                $('ul#youractivityid3').append(profile.clone());
+//
+//                $('li#newActivity3 h1').text("No data");
+//                                $('li#newActivity3 p span').text("on date");
+//
+////                $('ul#youractivityid3').append(profile.clone());
+//
+////                $('ul#youractivityid3').listview('refresh');
+
+            }
+        }
+
+
+//        $.each(chartData, function(i) {
+//            var li = $('<li/>')
+//                $('ul#youractivityid3').append(profile.clone());
+//        //        $('li#newPro img').attr('src', 'img/mypic.jpg');
+//                $('li#newActivity3 h1').text("WEIGHT:");
+//                $('li#newActivity3 p span').text("Gain 5 lbs")
+//                .appendTo(cList);
+//            var a = $('<a/>')
+//                    .addClass('ui-all')
+//                    .text( this )
+//                    .appendTo(li);
+//        });
+
+
+
+
+
+//        $('ul#youractivityid3').append(profile.clone());
+////        $('li#newPro img').attr('src', 'img/mypic.jpg');
+//        $('li#newActivity3 h1').text("WEIGHT:");
+//        $('li#newActivity3 p span').text("Gain 5 lbs");
+
+//        $('ul#youractivityid3').append(profile.clone());
+////        $('li#newPro img').attr('src', 'img/mypic.jpg');
+//        $('li#newActivity3 h1').text("WEIGHT:");
+//        $('li#newActivity3 p span').text("Gain 5 lbs");
+
+
+
+
+
+//        console.log("you not here yet");
+
+        $('ul#youractivityid3').listview('refresh');
+    };
+
+
 
 
 
@@ -746,7 +903,27 @@
 //
 //    $(‘#element’).css(‘width’, window.innerWidth);
 
-//});
+//
+//
+//    $(document).ready(function(){
+//        $('a#a').click(function(e) {
+//            e.preventDefault();
+//            $('div#feed2').hide();
+//            $('div#feed1').fadeIn();
+//            return false;
+//        });
+//
+//
+//        $('a#b').click(function(e) {
+//            e.preventDefault();
+//            $('div#feed1').hide();
+//            $('div#feed2').fadeIn();
+//            return false;
+//        });
+//
+//    });
+
+    //});
 
     </script>
 
@@ -929,7 +1106,7 @@
 
 
 
-        #a, #b {
+        #a, #b, #feed1, #feed2 {
             display: none;
         }
 
@@ -1114,9 +1291,9 @@
 
             <div data-role="navbar" class="navybar">
                 <ul>
-                    <li><a href="#" data-href="a section1" href="#section1"   >Calories</a></li>
-                    <li><a href="#" data-href="b section2" href="#section1">Exercise</a></li>
-                    <li><a href="#" data-href="c section3" href="#section1"class="ui-btn-active ui-state-persist ">Weight</a></li>
+                    <li><a href="#" data-href="a" data-href2="feed1"  >Calories</a></li>
+                    <li><a href="#" data-href="b" data-href2="feed2" >Exercise</a></li>
+                    <li><a href="#" data-href="c" data-href2="feed3" class="ui-btn-active ui-state-persist ">Weight</a></li>
                 </ul>
             </div><!-- /navbar -->
             <!--<div class="content_div">onLoad Content</div>-->
@@ -1133,44 +1310,46 @@
                 <div class='slider'>
 
                     <div class='item'>
-                        <div id="a"  class="content_div ">
+                        <div id="a"  class="content_div">
                         </div>
 
                         <!--<div id="a" style="width:95%; height:250px;" class="content_div box">Some 'A' Content-->
 
                     <!--<div data-role="page" id="b">-->
 
-                        <div id="b" class="content_div ">
+                        <div id="b" class="content_div">
                         </div>
 
 
-                        <div id="c"  class="content_div ">
+                        <div id="c"  class="content_div">
 
                         </div>
 
                     </div>
 
                     <div class='item'>
-                        <div class="container2">
+                        <div>
                             <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
                             <div class="ui-body book">
-                                <div id="section1"><ul data-role="listview"  id="youractivityid" class="content2"></ul>
-                                    <!--<script>recentActivityIn()</script>-->
 
-                                </div>
+                             <div id="feed1" class="act">
+                                <ul data-role="listview"  id="youractivityid" class="activity"></ul>
 
-                                <div id="section2">
-                                    <ul data-role="listview"  id="youractivityid2" class="content2"></ul>
-                                    <!--<script>recentActivityIn2()</script>-->
-                                 </div>
+                                 <p>hello1</p>
 
-                                <div id="section3"><ul data-role="listview"  id="youractivityid3" class="content2"
-                                    <script>recentActivityIn()</script>
+                             </div>
+                              <div id="feed2" class="act">
+                                <ul data-role="listview"  id="youractivityid2" class="activity"></ul>
+                                <p>hello2</p>
 
-                                    ></ul>
-
-                                </div>
-
+                              </div>
+                              <div id="feed3" class="act">
+                                 <ul data-role="listview"  id="youractivityid3" class="activity"></ul>
+                                   <p>hello</p>
+                                  <!--<script type="text/javascript">-->
+                                      <!--recentActivityIn();-->
+                                  <!--</script>-->
+                              </div>
 
                             </div>
 
