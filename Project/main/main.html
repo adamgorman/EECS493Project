@@ -59,8 +59,10 @@
             profileIn();
             goalin();
 
-            recentActivityIn();
-            recentActivityIn2();
+//            recentActivityIn.write("section1");
+//            recentActivityIn2.write("section2");
+//            recentActivityIn.write("section3");
+
 
 
 
@@ -324,6 +326,11 @@
         }
     ];
 
+    if (chartData[0] == null) {
+        console.log("no graph");
+    }
+
+
 
     AmCharts.ready(function () {
         // SERIAL CHART
@@ -453,6 +460,11 @@
         chart2.invalidateSize();
         chart3.invalidateSize();
 
+//        recentActivityIn.invalidateSize();
+//        recentActivityIn2.invalidateSize();
+
+
+
 
 
 
@@ -468,32 +480,25 @@
 
         //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
         $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
+        $('#' + $(this).attr('data-href')).show().siblings('.content2').hide();
+
 
 
     });
 
-
-    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
-
-
-        recentActivityIn
-        recentActivityIn2.show();
-
-        console.log("helo sam 4")
-
-
-        //un-highlight and highlight only the buttons in the same navbar widget
-        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
-
-        //this bit is the same, you could chain it off of the last call by using two `.end()`s
-        $(this).addClass('ui-navbar-btn-active');
+//
+//    $('.ui-navbar ul li > a').click(function(e) {
+//
+////        $(this.hash).show();
+//        $('.container2 > div').hide();
+//        $(this.hash).show();
+////        e.preventDefault(); //to prevent scrolling
+//    });
 
 
-        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
 
-        $('#' + $(this).attr('data-href')).show().siblings('.activity').hide();
 
-    })
+
 //
 //    $(document).delegate('.ui-navbar ul li > b', 'click', function () {
 //        chart.invalidateSize();
@@ -1109,9 +1114,9 @@
 
             <div data-role="navbar" class="navybar">
                 <ul>
-                    <li><a href="#" data-href="a"  >Calories</a></li>
-                    <li><a href="#" data-href="b" >Exercise</a></li>
-                    <li><a href="#" data-href="c" class="ui-btn-active ui-state-persist ">Weight</a></li>
+                    <li><a href="#" data-href="a section1" href="#section1"   >Calories</a></li>
+                    <li><a href="#" data-href="b section2" href="#section1">Exercise</a></li>
+                    <li><a href="#" data-href="c section3" href="#section1"class="ui-btn-active ui-state-persist ">Weight</a></li>
                 </ul>
             </div><!-- /navbar -->
             <!--<div class="content_div">onLoad Content</div>-->
@@ -1146,13 +1151,25 @@
                     </div>
 
                     <div class='item'>
-                        <div>
+                        <div class="container2">
                             <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
                             <div class="ui-body book">
-                                <ul data-role="listview"  id="youractivityid" class="activity"></ul>
-                                <ul data-role="listview"  id="youractivityid2" class="activity"></ul>
+                                <div id="section1"><ul data-role="listview"  id="youractivityid" class="content2"></ul>
+                                    <!--<script>recentActivityIn()</script>-->
 
-                                <ul data-role="listview"  id="youractivityid3" class="activity"></ul>
+                                </div>
+
+                                <div id="section2">
+                                    <ul data-role="listview"  id="youractivityid2" class="content2"></ul>
+                                    <!--<script>recentActivityIn2()</script>-->
+                                 </div>
+
+                                <div id="section3"><ul data-role="listview"  id="youractivityid3" class="content2"
+                                    <script>recentActivityIn()</script>
+
+                                    ></ul>
+
+                                </div>
 
 
                             </div>
