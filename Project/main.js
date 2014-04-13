@@ -5,14 +5,37 @@ var constants = {
     achievementNames: ["A1", "A2", "A3", "A4", "A5"]
 };
 var websiteData = {
-    inputType: null
+    inputType: null,
+    compareFriend: null
 };
-var user;
+var user = {
+    username: "ToucanSam",
+    pic: "tempProfilePictures/Toucan.PNG",
+    goal: 120,
+    weight: [],
+    calories: [],
+    exercise: [],
+    achievements: []
+};
+var friends = [
+    {username: "Leonardo.Lion", pic: "tempProfilePictures/Lion.PNG", goal: 175, weight: 200},
+    {username: "BertDaBee", pic: "tempProfilePictures/Bee.PNG", goal: 20, weight: 17.5},
+    {username: "Starcommander512", pic: "tempProfilePictures/Starfish.PNG", goal: 70, weight: 130}
+];
+var pendingRequests = [
+    {username: "Froggy", pic: "tempProfilePictures/Frog.PNG", goal: 175}
+];
+var friendsRequests = [
+    {username: "PPelican", pic: "tempProfilePictures/Pelican.PNG", goal: 175},
+    {username: "WallaceHermanWhale", pic: "tempProfilePictures/Whale.PNG", goal: 1000}
+];
 
 // Global Functions
 $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
-    if(pageId == "input-popup") {
+    if(pageId == "login-page") {
+        loginPageInit();
+    } else if(pageId == "input-popup") {
         inputPopupInit();
     } else if(pageId == "input-page") {
         inputPageInit();
@@ -28,27 +51,29 @@ $(document).on("pagecontainerbeforeshow", function(event) {
 });
 
 // Login Page
-$("#login-form").submit(function() {
-    var name = $('#login-form input:text[name=username]').val();
-    var password = $('#login-form input:password[name=password]').val();
-    $('#login-form input:password[name=password]').val("");
-    $('#login-form .form-error-text').text("");
-    $.mobile.loading( 'show', {
-        text: "Logging in...",
-        textVisible: true
+var loginPageInit = function() {
+    $("#login-form").submit(function() {
+        var name = $('#login-form input:text[name=username]').val();
+        var password = $('#login-form input:password[name=password]').val();
+        $('#login-form input:password[name=password]').val("");
+        $('#login-form .form-error-text').text("");
+        $.mobile.loading( 'show', {
+            text: "Logging in...",
+            textVisible: true
+        });
+        user = user = Parse.User.logIn(name, password, {
+            success: function(user) {
+                $.mobile.loading('hide');
+                $.mobile.changePage("main/main.html");
+            },
+            error: function(user, error) {
+                $.mobile.loading('hide');
+                $('#login-form .form-error-text').text("Error: " + error.message);
+            }
+        });
+        return false;
     });
-    user = user = Parse.User.logIn(name, password, {
-        success: function(user) {
-            $.mobile.loading('hide');
-            $.mobile.changePage("main/main.html");
-       },
-       error: function(user, error) {
-           $.mobile.loading('hide');
-           $('#login-form .form-error-text').text("Error: " + error.message);
-       }
-    });
-    return false;
-});
+};
 
 // Input Page
 var inputPageInit = function() {
@@ -89,28 +114,37 @@ var inputPopupInit = function() {
 
 // Friends Page
 var friendsInit = function() {
-    var person = $('<li id="new-person"><a href="friendCompare.html">'+
+    var person = $('<li id="new-person" data-icon="recycle" class="friend"><a href="friendCompare.html">'+
         '<img>'+
         '<h2></h2>'+
         '<p>Goal: <span></span></p></a>'+
         '</li>');
-    $('ul#friends-list').append(person.clone());
-    $('li#new-person img').attr('src', 'tempProfilePictures/Starfish.PNG');
-    $('li#new-person h2').text("Starcommander512");
-    $('li#new-person p span').text("Gain 100 lb");
-    $('li#new-person').removeAttr('id');
+    $('li.friend').remove();
+    $('p').remove();
 
-    $('ul#friends-list').append(person.clone());
-    $('li#new-person img').attr('src', 'tempProfilePictures/Lion.PNG');
-    $('li#new-person h2').text("Leonardo.Lion");
-    $('li#new-person p span').text("Maintain Weight");
-    $('li#new-person').removeAttr('id');
+    if(friends == null || friends.length == 0) {
+        $('#friends-header').after("<p style='padding: 0px 0px 0px 20px;'>No Current Friends</p>");
+    } else {
+        friends.forEach(function(friend) {
+            $('#friends-header').after(person.clone());
+            $('li#new-person img').attr('src', friend.pic);
+            $('li#new-person h2').text(friend.username);
+            $('li#new-person p span').text("Some goal");
+            $('li#new-person').removeAttr('id');
+        });
+    }
 
-    $('ul#friends-list').append(person.clone());
-    $('li#new-person img').attr('src', 'tempProfilePictures/Bee.PNG');
-    $('li#new-person h2').text("BertDaBee");
-    $('li#new-person p span').text("Lose 0.4 lb");
-    $('li#new-person').removeAttr('id');
+    if(pendingRequests == null || pendingRequests.length == 0) {
+        $('#pending-requests-header').after("<p style='padding: 0px 0px 20px 20px;'>No Current Pending Requests</p>");
+    } else {
+        pendingRequests.forEach(function(friend) {
+            $('#pending-requests-header').after(person.clone());
+            $('li#new-person img').attr('src', friend.pic);
+            $('li#new-person h2').text(friend.username);
+            $('li#new-person p span').text("Some goal");
+            $('li#new-person').removeAttr('id');
+        });
+    }
 
     $('ul#friends-list').listview('refresh');
 };

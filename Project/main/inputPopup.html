@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html class="ui-mobile">
 <head>
-    <title>Input Popup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
     <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <link rel="stylesheet" href="../main.css">
     <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
 </head>
 <body>
 <div data-role="page" data-dialog="true" id="input-popup">
@@ -15,10 +16,14 @@
         <h2>Input</h2>
     </div>
     <div data-role="content">
-        <form id="input-form" style="padding-bottom: 10px;">
-            <label for="input-value"></label>
-            <input id="input-value" data-clear-btn="true" type="number" />
-            <input type="submit" value="Submit" />
+        <form id="input-form" style="padding: 10px;">
+            <div>
+                <label for="input-value"></label>
+                <input id="input-value" data-clear-btn="true" type="number" />
+            </div>
+            <div style="margin-top: 20px">
+                <input type="submit" value="Submit" />
+            </div>
             <div class="form-error-text"></div>
         </form>
     </div>
