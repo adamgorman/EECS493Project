@@ -25,7 +25,7 @@ var friends = [
 var pendingRequests = [
     {username: "Froggy", pic: "tempProfilePictures/Frog.PNG", goal: 175}
 ];
-var friendsRequests = [
+var friendRequests = [
     {username: "PPelican", pic: "tempProfilePictures/Pelican.PNG", goal: 175},
     {username: "WallaceHermanWhale", pic: "tempProfilePictures/Whale.PNG", goal: 1000}
 ];
@@ -199,21 +199,16 @@ var friendRequestInit = function() {
         '</span>'+
         '</h2>'+
         '</li>');
-    $('ul#friend-request-list').append(person.clone());
-    $('li#new-person img').attr('src', 'tempProfilePictures/Pelican.PNG');
-    $('li#new-person span.friend-request-list-name').text("Patrick Pelican");
-    $('#new-person').removeAttr('id');
-    $('ul#friend-request-list').append(person.clone());
-    $('li#new-person img').attr('src', 'tempProfilePictures/Whale.PNG');
-    $('li#new-person span.friend-request-list-name').text("Walter Whale");
-    $('li#new-person').removeAttr('id');
-    $('ul#friend-request-list').append(person.clone());
-    $('li#new-person img').attr('src', 'tempProfilePictures/Frog.PNG');
-    $('li#new-person span.friend-request-list-name').text("Frank Frog");
-    $('li#new-person').removeAttr('id');
-
-    $('ul#friend-request-list').listview('refresh');
+    if(friendRequests != null) {
+        friendRequests.forEach(function (friend) {
+            $('ul#friend-request-list').append(person.clone());
+            $('li#new-person img').attr('src', friend.pic);
+            $('li#new-person span.friend-request-list-name').text(friend.username);
+            $('#new-person').removeAttr('id');
+        });
+    }
     checkNoFriendRequests();
+    $('ul#friend-request-list').listview('refresh')
     $(".confirm-button").on('click', function(event) {
         $(event.target).closest('li').remove();
         checkNoFriendRequests();
