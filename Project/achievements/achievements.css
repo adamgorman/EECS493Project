@@ -1,8 +1,6 @@
-
-
 #dup{
     border: 2px solid;
-    border-radius:15px;
+    /*border-radius:15px;*/
     font-size: 65%;
 }
 #share_header{
@@ -26,6 +24,18 @@ img {
     padding-left: 0cm;
 }
 
-.widget-with-icon:after {
-    display: none;
+#fb_div {
+    height:50px;
+    /*width:400px;*/
+    display: inline-block;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+#fb_icon{
+    /*opacity: .75;*/
+}
+
+#fb_icon:hover{
+    /*opacity: 5;*/
+    cursor: pointer;
 }
