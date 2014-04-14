@@ -2,35 +2,17 @@ Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhf
 
 // Global Data
 var constants = {
-    achievementNumber: 5,
-    achievementNames: ["A1", "A2", "A3", "A4", "A5"]
+
 };
 var websiteData = {
     inputType: null,
     compareFriend: null
 };
-var user = {
-    username: "ToucanSam",
-    pic: "tempProfilePictures/Toucan.PNG",
-    goal: 120,
-    weight: [],
-    calories: [],
-    exercise: [],
-    achievements: []
-};
-var friends = [
-    {username: "Leonardo.Lion", pic: "tempProfilePictures/Lion.PNG", goal: 175, weight: 200},
-    {username: "BertDaBee", pic: "tempProfilePictures/Bee.PNG", goal: 20, weight: 17.5},
-    {username: "Starcommander512", pic: "tempProfilePictures/Starfish.PNG", goal: 70, weight: 130}
-];
-var pendingRequests = [
-    {username: "Froggy", pic: "tempProfilePictures/Frog.PNG", goal: 175}
-];
+var user;
 
-var friendRequests = [
-    {username: "PPelican", pic: "tempProfilePictures/Pelican.PNG", goal: 175},
-    {username: "WallaceHermanWhale", pic: "tempProfilePictures/Whale.PNG", goal: 1000}
-];
+var friends = [];
+var sentRequests = [];
+var pendingRequests = [];
 
 // Global Functions
 $(document).on("pagecontainerbeforeshow", function(event) {
@@ -77,11 +59,29 @@ var loginPageInit = function() {
         return false;
     });
 };
-var setUserInformation = function(user) {
-    user.get("friendUsernames").forEach(function(fUsername) {
+var setUserInformation = function(rUser) {
+    user = rUser.attributes;
+    // friends
+    user.friendUsernames.forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
                 friends.push(buddy[0].attributes);
+            }
+        });
+    });
+    // sent friend requests
+    user.sentRequests.forEach(function(fUsername) {
+        new Parse.Query(Parse.User).equalTo("username", fUsername).find({
+            success: function(buddy) {
+                sentRequests.push(buddy[0].attributes);
+            }
+        });
+    });
+    // pending friend requests
+    user.pendingRequests.forEach(function(fUsername) {
+        new Parse.Query(Parse.User).equalTo("username", fUsername).find({
+            success: function(buddy) {
+                pendingRequests.unshift(buddy[0].attributes);
             }
         });
     });
@@ -137,21 +137,20 @@ var friendsInit = function() {
     if(friends == null || friends.length == 0) {
         $('#friends-header').after("<p style='padding: 0px 0px 0px 20px;'>No Current Friends</p>");
     } else {
-        friends.forEach(function(friend) {
+        friends.forEach(function(friend, index) {
             $('#friends-header').after(person.clone());
-            $('li#new-person img').attr('src', friend.pic);
+            $('li#new-person img').attr('src', friend.pic.url());
             $('li#new-person h2').text(friend.username);
             $('li#new-person p span').text("Some goal");
-            $('li#new-person').removeAttr('id');
+            $('li#new-person').data("friend-index", index).removeAttr('id');
         });
     }
-
-    if(pendingRequests == null || pendingRequests.length == 0) {
-        $('#pending-requests-header').after("<p style='padding: 0px 0px 20px 20px;'>No Current Pending Requests</p>");
+    if(sentRequests == null || sentRequests.length == 0) {
+        $('#sent-requests-header').after("<p style='padding: 0px 0px 20px 20px;'>No Current Sent Requests</p>");
     } else {
-        pendingRequests.forEach(function(friend) {
-            $('#pending-requests-header').after(person.clone());
-            $('li#new-person img').attr('src', friend.pic);
+        sentRequests.forEach(function(friend) {
+            $('#sent-requests-header').after(person.clone());
+            $('li#new-person img').attr('src', friend.pic.url());
             $('li#new-person h2').text(friend.username);
             $('li#new-person p span').text("Some goal");
             $('li#new-person').removeAttr('id').addClass('ui-disabled');
@@ -159,42 +158,46 @@ var friendsInit = function() {
     }
 
     $('ul#friends-list').listview('refresh');
+
+    $('ul#friends-list li').on('click', function(event) {
+        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")];
+    })
 };
 
 // Friends Compare Page
 var friendCompareInit = function() {
     // names
-    $('#friend-name-cell').text("Sid Starfish");
+    $('#friend-name-cell').text(websiteData.compareFriend.username);
 
     // pictures
+    $('#compare-me-pic').attr('src', user.pic.url());
+    $('#compare-friend-pic').attr('src', websiteData.compareFriend.pic.url());
 
     // weights
-    $('tr.weight-row td.personal-cell span').text("15");
-    $('tr.weight-row td.friend-cell span').text("7");
+    $('tr.weight-row td.personal-cell span').text("Weight");
+    $('tr.weight-row td.friend-cell span').text("Weight");
 
     // calories
-    $('tr.calories-row td.personal-cell span').text("1250");
-    $('tr.calories-row td.friend-cell span').text("380");
+    $('tr.calories-row td.personal-cell span').text("Cal");
+    $('tr.calories-row td.friend-cell span').text("Cal");
 
     // exercise
-    $('tr.exercise-row td.personal-cell span').text("16");
-    $('tr.exercise-row td.friend-cell span').text("0");
+    $('tr.exercise-row td.personal-cell span').text("Workout");
+    $('tr.exercise-row td.friend-cell span').text("Workout");
 
     // achievements
-    for(i = 1; i <= constants.achievementNumber; i++) {
-        var temp = "tr.achievement" + i + "-row td.personal-cell";
-        if(i % 2 == 0) { //change this compare with database info
-            $(temp).text("X");
+    for(i = 0; i <= user.achievementArray.length; i++) {
+        if(user.achievementArray[i] == 0) {
+            $("tr.achievement" + i + "-row td.personal-cell").text("-");
         } else {
-            $(temp).text("-");
+            $("tr.achievement" + i + "-row td.personal-cell").text("X");
         }
     }
-    for(i = 1; i <= constants.achievementNumber; i++) {
-        var temp = "tr.achievement" + i + "-row td.friend-cell";
-        if(i % 2 == 1) { //change this compare with database info
-            $(temp).text("X");
+    for(i = 0; i <= user.achievementArray.length; i++) {
+        if(websiteData.compareFriend.achievementArray[i] == 0) {
+            $("tr.achievement" + i + "-row td.friend-cell").text("-");
         } else {
-            $(temp).text("-");
+            $("tr.achievement" + i + "-row td.friend-cell").text("X");
         }
     }
 };
@@ -211,10 +214,10 @@ var friendRequestInit = function() {
         '</span>'+
         '</h2>'+
         '</li>');
-    if(friendRequests != null) {
-        friendRequests.forEach(function (friend) {
+    if(pendingRequests != null) {
+        pendingRequests.forEach(function (friend) {
             $('ul#friend-request-list').append(person.clone());
-            $('li#new-person img').attr('src', friend.pic);
+            $('li#new-person img').attr('src', friend.pic.url());
             $('li#new-person span.friend-request-list-name').text(friend.username);
             $('#new-person').removeAttr('id');
         });
@@ -243,14 +246,60 @@ var addFriendInit = function() {
     $('#add-friend-popup #add-friend-form').on("submit", function() {
         var username = $('#add-friend-popup input[type=text]').val();
         $('#add-friend-popup input[type=text]').val("");
-        if(username == 'BertDaBee') { // already friend
+        var index = alreadyPending(username);
+        if(alreadyFriend(username)) { // already friend
             $('#add-friend-popup .form-error-text').text(username + " is already your friend.");
-        } else if(username == 'Adam') { // friend request processing
-            $('#add-friend-popup .form-error-text').text("Request to " + username + " is pending.");
-        } else {
-            // some server stuff
+        } else if(alreadyRequested(username)) { // friend request processing
+            $('#add-friend-popup .form-error-text').text("Request to " + username + " is already sent.");
+        } else if(index  != -1) {
+            // add them as a friend on their account
+            // add them as a friend on your account
+            // friends.push(getPerson(username));
             $.mobile.changePage("friends.html");
+        } else {
+            getPersonForRequest(username);
         }
         return false;
     });
 };
+function alreadyFriend(username) {
+    var result = false;
+    friends.forEach(function(buddy) {
+        if(buddy.username == username) {
+            result = true;
+        }
+    });
+    return result;
+}
+function alreadyRequested(username) {
+    var result = false;
+    sentRequests.forEach(function(buddy) {
+        if(buddy.username == username) {
+            result = true;
+        }
+    });
+    return result;
+}
+function alreadyPending(username) {
+    var result = -1;
+    pendingRequests.forEach(function(buddy, index) {
+        if(buddy.username == username) {
+            result = index;
+        }
+    });
+    return result;
+}
+function getPersonForRequest(username) {
+    new Parse.Query(Parse.User).equalTo("username", username).find({
+        success: function(buddy) {
+            if(buddy.length == 0) {
+                $('#add-friend-popup .form-error-text').text(username + " does not exist.");
+            } else {
+                // add them as a sent request on your account
+                // add you to their pending requests
+                sentRequests.push(buddy[0].attributes);
+                $.mobile.changePage("friends.html");
+            }
+        }
+    });
+}
