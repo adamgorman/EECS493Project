@@ -1,4 +1,5 @@
 Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");
+
 // Global Data
 var constants = {
     achievementNumber: 5,
@@ -25,6 +26,7 @@ var friends = [
 var pendingRequests = [
     {username: "Froggy", pic: "tempProfilePictures/Frog.PNG", goal: 175}
 ];
+
 var friendRequests = [
     {username: "PPelican", pic: "tempProfilePictures/Pelican.PNG", goal: 175},
     {username: "WallaceHermanWhale", pic: "tempProfilePictures/Whale.PNG", goal: 1000}
@@ -61,8 +63,9 @@ var loginPageInit = function() {
             text: "Logging in...",
             textVisible: true
         });
-        user = user = Parse.User.logIn(name, password, {
+        user = Parse.User.logIn(name, password, {
             success: function(user) {
+                setUserInformation(user);
                 $.mobile.loading('hide');
                 $.mobile.changePage("main/main.html");
             },
@@ -72,6 +75,15 @@ var loginPageInit = function() {
             }
         });
         return false;
+    });
+};
+var setUserInformation = function(user) {
+    user.get("friendUsernames").forEach(function(fUsername) {
+        new Parse.Query(Parse.User).equalTo("username", fUsername).find({
+            success: function(buddy) {
+                friends.push(buddy[0].attributes);
+            }
+        });
     });
 };
 
@@ -142,7 +154,7 @@ var friendsInit = function() {
             $('li#new-person img').attr('src', friend.pic);
             $('li#new-person h2').text(friend.username);
             $('li#new-person p span').text("Some goal");
-            $('li#new-person').removeAttr('id');
+            $('li#new-person').removeAttr('id').addClass('ui-disabled');
         });
     }
 
