@@ -34,46 +34,30 @@
     <div class="outerbox"></div>
 
     <h1>News Feed</h1>
+    <button id="add_to_feed">Add to Feed!</button>
     <div data-role="content">
         <div>
-            <ul data-role="listview" data-inset="true">
+            <ul data-role="listview">
                 <li>
-
-                    <div class="innerbox1">
-                        <img src="male.jpg">
+                    <div>
+                        <table>
+                            <tr>
+                                <td><img src="male.jpg"></td>
+                                <td><h2 class ="adjust_indent">Bob Smith</h2><p class ="adjust_indent">achieved Beginner Bunny</p></td>
+                            </tr>
+                        </table>
                     </div>
-                    <a href="#" class="innerbox2">
-                        <img src="dumbbell.jpg">
-                        <h1 class="achv">Bob has worked out 5 times this week!</h1></a>
                 </li>
-                <br>
                 <li>
-                    <div class="innerbox1">
-                        <img src="female.jpg">
+                    <div>
+                        <table>
+                            <tr>
+                                <td><img src="female.jpg"></td>
+                                <td><h2 class ="adjust_indent">Suzy Jones</h2><p class ="adjust_indent">Achieved 5 Carrot Log</p></td>
+                            </tr>
+                        </table>
                     </div>
-                    <a href="#" class="innerbox2">
-                        <img src="healthy.jpg">
-                        <h1 class="achv">Suzy is following a health diet!</h1></a>
                 </li>
-                <br>
-                <li>
-                    <div class="innerbox1">
-                        <img src="female.jpg">
-                    </div>
-                    <a href="#" class="innerbox2">
-                        <img src="checkmark.jpg">
-                        <h1 class="achv">Mary logged in for 5 days in a row!</h1></a>
-                </li>
-                <br>
-                <li>
-                    <div class="innerbox1">
-                        <img src="male.jpg">
-                    </div>
-                    <a href="#" class="innerbox2">
-                        <img src="target.jpg">
-                        <h1 class="achv">John reached his target weight!</h1></a>
-                </li>
-                <br>
             </ul>
         </div>
     </div>
@@ -83,7 +67,7 @@
 <script type="text/javascript" src="feed.js"></script>
 <script>
     $("li").click(function () {
-//        go to compare page
+//        alert("This should go to the compare page")
 
 
     });

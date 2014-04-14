@@ -6,7 +6,7 @@
     font-size: 65%;
 }
 #share_header{
-    font-size: smaller;
+    font-size: 75%;
 }
 
 img {
@@ -14,5 +14,18 @@ img {
     padding-left: .2cm;
 }
 .adjust_indent{
-    text-indent: 20px;
+    /*text-indent: 20px;*/
+}
+
+.not_yet{
+    /*text-indent: 20px;*/
+    font-size: smaller;
+}
+
+#a2{
+    padding-left: 0cm;
+}
+
+.widget-with-icon:after {
+    display: none;
 }

@@ -13,3 +13,7 @@
     border-color: red;
     float:left;
 }
+
+.adjust_indent{
+    text-indent: 20px;
+}
