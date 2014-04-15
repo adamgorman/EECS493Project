@@ -19,6 +19,8 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
     if(pageId == "login-page") {
         loginPageInit();
+    } else if(pageId == "logout-popup") {
+        logoutPageInit();
     } else if(pageId == "input-popup") {
         inputPopupInit();
     } else if(pageId == "input-page") {
@@ -33,7 +35,7 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         addFriendInit();
     }
 });
-var compareUsersByUsername = function(a, b) {
+var compareUsersByUsername = function(a, b) { //intentionally backwards
     if(a.username > b.username)
         return -1;
     else if(a.username < b.username)
@@ -56,8 +58,6 @@ var loginPageInit = function() {
         user = Parse.User.logIn(name, password, {
             success: function(user) {
                 setUserInformation(user);
-                $.mobile.loading('hide');
-                $.mobile.changePage("main/main.html");
             },
             error: function(user, error) {
                 $.mobile.loading('hide');
@@ -90,8 +90,22 @@ var setUserInformation = function(rUser) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
                 pendingRequests.unshift(buddy[0].attributes);
+                $.mobile.loading('hide');
+                $.mobile.changePage("main/main.html");
             }
         });
+    });
+};
+
+// Logout Page
+var logoutPageInit = function() {
+    $('#logout-button').on('click', function() {
+        Parse.User.logOut();
+        user = null;
+        friends = [];
+        sentRequests = [];
+        pendingRequests = [];
+        $.mobile.changePage('../index.html');
     });
 };
 
@@ -141,7 +155,6 @@ var friendsInit = function() {
         '</li>');
     $('li.friend').remove();
     $('p').remove();
-
     if(friends == null || friends.length == 0) {
         $('#friends-header').after("<p style='padding: 0px 0px 0px 20px;'>No Current Friends</p>");
     } else {
