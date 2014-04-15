@@ -215,23 +215,30 @@ var friendRequestInit = function() {
         '</h2>'+
         '</li>');
     if(pendingRequests != null) {
-        pendingRequests.forEach(function (friend) {
+        pendingRequests.forEach(function (friend, index) {
             $('ul#friend-request-list').append(person.clone());
             $('li#new-person img').attr('src', friend.pic.url());
             $('li#new-person span.friend-request-list-name').text(friend.username);
-            $('#new-person').removeAttr('id');
+            $('#new-person').data("pending-index", index).removeAttr('id');
         });
     }
     checkNoFriendRequests();
-    $('ul#friend-request-list').listview('refresh')
+    $('ul#friend-request-list').listview('refresh');
     $(".confirm-button").on('click', function(event) {
+        var index = $(event.target).closest('li').data("pending-index");
+        friends.push(pendingRequests[index]);
+        pendingRequests.splice(index, 1);
         $(event.target).closest('li').remove();
         checkNoFriendRequests();
+        return false;
     });
     $(".deny-button").on('click', function(event) {
+        pendingRequests.splice($(event.target).closest('li').data("pending-index"), 1);
         $(event.target).closest('li').remove();
         checkNoFriendRequests();
+        return false;
     });
+    return false;
 };
 var checkNoFriendRequests = function() {
     if($('ul#friend-request-list li').size() == 0) {
@@ -251,10 +258,13 @@ var addFriendInit = function() {
             $('#add-friend-popup .form-error-text').text(username + " is already your friend.");
         } else if(alreadyRequested(username)) { // friend request processing
             $('#add-friend-popup .form-error-text').text("Request to " + username + " is already sent.");
+        } else if(username == user.username) {
+            $('#add-friend-popup .form-error-text').text("Cannot be friends with yourself.");
         } else if(index  != -1) {
-            // add them as a friend on their account
-            // add them as a friend on your account
-            // friends.push(getPerson(username));
+            // add them as your friend
+            // add you to their friends
+            friends.push(pendingRequests[index]);
+            pendingRequests.splice(index, 1);
             $.mobile.changePage("friends.html");
         } else {
             getPersonForRequest(username);
