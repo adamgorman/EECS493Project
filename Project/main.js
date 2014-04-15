@@ -33,6 +33,14 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         addFriendInit();
     }
 });
+var compareUsersByUsername = function(a, b) {
+    if(a.username > b.username)
+        return -1;
+    else if(a.username < b.username)
+        return 1;
+    else
+        return 0;
+};
 
 // Login Page
 var loginPageInit = function() {
@@ -137,6 +145,7 @@ var friendsInit = function() {
     if(friends == null || friends.length == 0) {
         $('#friends-header').after("<p style='padding: 0px 0px 0px 20px;'>No Current Friends</p>");
     } else {
+        friends.sort(compareUsersByUsername);
         friends.forEach(function(friend, index) {
             $('#friends-header').after(person.clone());
             $('li#new-person img').attr('src', friend.pic.url());
@@ -148,6 +157,7 @@ var friendsInit = function() {
     if(sentRequests == null || sentRequests.length == 0) {
         $('#sent-requests-header').after("<p style='padding: 0px 0px 20px 20px;'>No Current Sent Requests</p>");
     } else {
+        sentRequests.sort(compareUsersByUsername);
         sentRequests.forEach(function(friend) {
             $('#sent-requests-header').after(person.clone());
             $('li#new-person img').attr('src', friend.pic.url());
@@ -215,6 +225,7 @@ var friendRequestInit = function() {
         '</h2>'+
         '</li>');
     if(pendingRequests != null) {
+        pendingRequests.sort(compareUsersByUsername);
         pendingRequests.forEach(function (friend, index) {
             $('ul#friend-request-list').append(person.clone());
             $('li#new-person img').attr('src', friend.pic.url());
@@ -225,20 +236,11 @@ var friendRequestInit = function() {
     checkNoFriendRequests();
     $('ul#friend-request-list').listview('refresh');
     $(".confirm-button").on('click', function(event) {
-        var index = $(event.target).closest('li').data("pending-index");
-        friends.push(pendingRequests[index]);
-        pendingRequests.splice(index, 1);
-        $(event.target).closest('li').remove();
-        checkNoFriendRequests();
-        return false;
+        return confirmClickForRequests();
     });
     $(".deny-button").on('click', function(event) {
-        pendingRequests.splice($(event.target).closest('li').data("pending-index"), 1);
-        $(event.target).closest('li').remove();
-        checkNoFriendRequests();
-        return false;
+        return denyClickForRequests();
     });
-    return false;
 };
 var checkNoFriendRequests = function() {
     if($('ul#friend-request-list li').size() == 0) {
@@ -246,6 +248,20 @@ var checkNoFriendRequests = function() {
     } else {
         $('#no-friend-requests').hide();
     }
+};
+var confirmClickForRequests = function() {
+    var index = $(event.target).closest('li').data("pending-index");
+    friends.push(pendingRequests[index]);
+    pendingRequests.splice(index, 1);
+    $(event.target).closest('li').remove();
+    checkNoFriendRequests();
+    return false;
+};
+var denyClickForRequests = function() {
+    pendingRequests.splice($(event.target).closest('li').data("pending-index"), 1);
+    $(event.target).closest('li').remove();
+    checkNoFriendRequests();
+    return false;
 };
 
 // Add Friend Popup
@@ -272,7 +288,7 @@ var addFriendInit = function() {
         return false;
     });
 };
-function alreadyFriend(username) {
+var alreadyFriend = function(username) {
     var result = false;
     friends.forEach(function(buddy) {
         if(buddy.username == username) {
@@ -280,8 +296,8 @@ function alreadyFriend(username) {
         }
     });
     return result;
-}
-function alreadyRequested(username) {
+};
+var alreadyRequested = function(username) {
     var result = false;
     sentRequests.forEach(function(buddy) {
         if(buddy.username == username) {
@@ -289,8 +305,8 @@ function alreadyRequested(username) {
         }
     });
     return result;
-}
-function alreadyPending(username) {
+};
+var alreadyPending = function(username) {
     var result = -1;
     pendingRequests.forEach(function(buddy, index) {
         if(buddy.username == username) {
@@ -298,8 +314,8 @@ function alreadyPending(username) {
         }
     });
     return result;
-}
-function getPersonForRequest(username) {
+};
+var getPersonForRequest = function(username) {
     new Parse.Query(Parse.User).equalTo("username", username).find({
         success: function(buddy) {
             if(buddy.length == 0) {
@@ -312,4 +328,4 @@ function getPersonForRequest(username) {
             }
         }
     });
-}
+};
