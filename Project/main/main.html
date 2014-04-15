@@ -630,6 +630,12 @@ AND THE 3 ARRAYS of 2 elements each
                 '<h1></h1>'+
                 '<p>Weight: <span></span></p>'+
                 '</li>');
+
+        $('li#newPro').remove();
+//        $('p').remove();
+
+
+
         $('ul#profileid').append(profile.clone());
         $('li#newPro img').attr('src', 'img/mypic.jpg');
         $('li#newPro h1').text("Sammy Hajalie");
@@ -646,6 +652,10 @@ AND THE 3 ARRAYS of 2 elements each
                 '<h1></h1>'+
                 '<p><span></span></p>'+
                 '</li>');
+
+        $('li#newGoal').remove();
+//        $('p').remove();
+
         $('ul#goalmain').append(profile.clone());
 //        $('li#newPro img').attr('src', 'img/mypic.jpg');
         $('li#newGoal h1').text("Goal:");
@@ -662,6 +672,10 @@ AND THE 3 ARRAYS of 2 elements each
                 '<h1></h1>'+
                 '<p><span></span></p>'+
                 '</li>');
+
+
+
+
         $('ul#youractivityid').append(profile.clone());
 //        $('li#newPro img').attr('src', 'img/mypic.jpg');
         $('li#newActivity h1').text("Goal:");
@@ -808,6 +822,12 @@ AND THE 3 ARRAYS of 2 elements each
                 '</li>');
 
 
+        for (var j = 0; j < chartData.length; j++) {
+            $('li#newActivity3').remove();
+//            $('h1').remove();
+//            $('h1#newActivity3').remove();
+        }
+
         console.log(chartData.length);
 
 
@@ -815,6 +835,12 @@ AND THE 3 ARRAYS of 2 elements each
 
 
         for (var i = 0; i < chartData.length; i++) {
+
+//            $('li#newActivity3').remove();
+//            $('p').remove();
+//            $('h1').remove();
+
+
             if (chartData[i].value != null) {
 
                 console.log(chartData[i].value);
@@ -824,7 +850,7 @@ AND THE 3 ARRAYS of 2 elements each
 //                $('<li id="newActivity3 h1">').append(li.year);
 
 //                $('ul#youractivityid3').append(profile.clone());
-               $('ul#youractivityid3').append(profile.clone());
+                $('ul#youractivityid3').append(profile.clone());
 
                 $('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");
                 $('li#newActivity3 p span').text("on " + chartData[i].year);

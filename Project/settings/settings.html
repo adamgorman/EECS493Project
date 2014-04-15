@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html class="ui-mobile">
 <head lang="en">
-    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <link rel="stylesheet" href="../main.css">
+    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
+
+
+
+
+
+    <!--<meta charset="UTF-8">-->
     <title></title>
 </head>
 <body>
+    <div data-role="page" id="settings-page">
+        <div data-role="panel" id="panel">
+            <ul data-role="listview">
+                <li><a href="../main/main.html">Home</a></li>
+                <li><a href="../achievements/achievements.html">Achievements</a></li>
+                <li><a href="../friends/friends.html">Friends</a></li>
+                <li><a href="../feed/feed.html">Feed</a></li>
+                <li><a href="../settings/settings.html">Settings</a></li>
+                <li><a href="../main/logout.html">Logout</a></li>
+            </ul>
+        </div>
+        <div data-role="header" data-position="fixed">
+            <a href="#panel" data-role="button">Menu</a>
+            <h1>Workout Carrot</h1>
+            <a href="../main/input.html" data-role="button">Input</a>
+        </div>
+        <div data-role="content">
+
+            <label for="firstNameLabel">First Name:</label>
+            <input name="text-basic" id="firstNameLabel" value="John" type="text">
+
+            <label for="lastNameLabel">Last Name:</label>
+            <input name="text-basic" id="lastNameLabel" value="Smith" type="text">
+
+            <label for="InitalWeight">Enter Weight:</label>
+            <input name="number"  id="InitalWeight" value="" type="number">
+
+            <label for="GoalWeight">Enter Goal Weight:</label>
+            <input name="number"  id="GoalWeight" value="" type="number">
+
+            <label for="slider2">Keep your weight private to friends:</label>
+            <select name="slider2" id="slider2" data-role="slider">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select>
+
+
+            <!--<button class="ui-btn">Save Settings</button>-->
+
+
+
+
+
+        </div>
+
+
+
+
+     </div>
 
 </body>
+<script type="text/javascript">
+
+    var myswitch = $( "#slider2" );
+    myswitch[ 0 ].selectedIndex = 1;
+    myswitch.slider2( "refresh" );
+
+
+
+
+
+
+    var firstName = "John";
+    var lastName =  "Smith";
+    var test = document.getElementById('firstNameLabel').valueOf();
+
+    console.log(test);
+
+
+</script>
+
 </html>
