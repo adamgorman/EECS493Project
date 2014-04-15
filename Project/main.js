@@ -17,6 +17,7 @@ var pendingRequests = [];
 // Global Functions
 $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
+    initForAll();
     if(pageId == "login-page") {
         loginPageInit();
     } else if(pageId == "logout-popup") {
@@ -42,6 +43,9 @@ var compareUsersByUsername = function(a, b) { //intentionally backwards
         return 1;
     else
         return 0;
+};
+var initForAll = function() {
+    $('span.ui-li-count').text(pendingRequests.length);
 };
 
 // Login Page
