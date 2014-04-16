@@ -27,10 +27,8 @@ var achv8=('<table><tr><td><img src="checkmark.jpg"></td><td><h2 class ="adjust_
 var achv9=('<table><tr><td><img src="checkmark.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log Achieved!</h2>'+
     '<p class ="adjust_indent">Logged in 15 days in a row</p></td></tr></table>');
 
-var workout_counter = 5;
-var under_2000 = 4;
-var weight_counter = -3;
-var login_counter = 10;
+
+
 Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");
 
 var username = "username";
@@ -40,8 +38,12 @@ var password = "password";
 var user = Parse.User.logIn(username, password, {
     success: function (user) {
         // if login is successful
-//        alert("You have logged in");
+        alert("You have logged in");
         var aArray = user.get("achievementArray");
+        var workout_counter = user.get("workoutCounter");
+        var under_2000 = user.get("daysUnderTwoThousandCalorieCounter");
+        var weight_counter = user.get("currentWeight")-user.get("startingWeight");;
+        var login_counter = user.get("loginCounter");
         //    e.preventDefault();
         if(workout_counter >= 5)
             aArray[0]=1;
@@ -63,6 +65,8 @@ var user = Parse.User.logIn(username, password, {
             aArray[8]=1;
         if(login_counter >= 15)
             aArray[9]=1;
+        user.set("achievementArray",aArray);
+        user.save();
 
         $("#fb_icon").click(function () {
             FB.init({
