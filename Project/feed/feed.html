@@ -33,11 +33,10 @@
     <div class="outerbox"></div>
 
     <h1>News Feed</h1>
-    <button id="add_to_feed">Add to Feed!</button>
     <div data-role="content">
         <div>
-            <ul data-role="listview">
-                <li>
+            <ul data-role="listview" id="friendsFeed">
+                <!--<li>
                     <div>
                         <table>
                             <tr>
@@ -56,22 +55,13 @@
                             </tr>
                         </table>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
         <script>addFriends()</script>
     </div>
 
 </div>
-
-<script>
-    $("li").click(function () {
-//        alert("This should go to the compare page")
-
-
-    });
-
-</script>
 
 <script type="text/javascript" src="feed.js"></script>
 
