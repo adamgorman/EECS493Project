@@ -74,16 +74,8 @@ var loginPageInit = function() {
 };
 var setUserInformation = function(rUser) {
     user = rUser;
-    // friends
-    user.get('friendUsernames').forEach(function(fUsername) {
-        new Parse.Query(Parse.User).equalTo("username", fUsername).find({
-            success: function(buddy) {
-                friends.push(buddy[0]);
-            }
-        });
-    });
     // sent friend requests
-    user.get('sentRequests').forEach(function(fUsername) {
+    user.get('sentRequests').forEach(function(fUsername, index, array) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
                 sentRequests.push(buddy[0]);
@@ -91,14 +83,24 @@ var setUserInformation = function(rUser) {
         });
     });
     // pending friend requests
-    user.get('pendingRequests').forEach(function(fUsername) {
+    user.get('pendingRequests').forEach(function(fUsername, index, array) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
                 pendingRequests.push(buddy[0]);
             }
         });
     });
-    $.mobile.changePage("main/main.html");
+    // friends
+    user.get('friendUsernames').forEach(function(fUsername, index, array) {
+        new Parse.Query(Parse.User).equalTo("username", fUsername).find({
+            success: function(buddy) {
+                friends.push(buddy[0]);
+                if(array.length - 1 == index) $.mobile.changePage("main/main.html");
+            }
+        });
+    });
+    if(user.get('friendUsernames').length == 0)
+        $.mobile.changePage("main/main.html");
 };
 
 // Logout Page
@@ -279,7 +281,7 @@ var confirmClickForRequests = function() {
         if(buddy == user.get('username')) indexForFriend = i;
     });
     friend.get('sentRequests').splice(indexForFriend, 1);
-    // friend.save();
+    //* friend.save();
     user.get('friendUsernames').push(friend.get('username'));
     user.get('pendingRequests').splice(index, 1);
     user.save({
@@ -303,7 +305,7 @@ var denyClickForRequests = function() {
         if(buddy == user.get('username')) indexForFriend = i;
     });
     nonFriend.get('sentRequests').splice(indexForFriend, 1);
-    // nonFriend.save();
+    //* nonFriend.save();
     pendingRequests.splice(index, 1);
     $(event.target).closest('li').remove();
     checkNoFriendRequests();
@@ -337,7 +339,7 @@ var addFriendInit = function() {
                 if(buddy == user.get('username')) indexForFriend = i;
             });
             friend.get('sentRequests').splice(indexForFriend, 1);
-            // friend.save();
+            //* friend.save();
             user.get('friendUsernames').push(friend.get('username'));
             user.get('pendingRequests').splice(index, 1);
             user.save({
@@ -390,7 +392,7 @@ var getPersonForRequest = function(username) {
                 user.get('sentRequests').push(buddy[0].get('username'));
                 user.save();
                 buddy[0].get('pendingRequests').push(user.get('username'));
-                // buddy[0].save();
+                //* buddy[0].save();
                 sentRequests.push(buddy[0]);
                 $.mobile.changePage('friends.html');
             }
