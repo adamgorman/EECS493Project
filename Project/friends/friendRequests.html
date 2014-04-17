@@ -11,16 +11,16 @@
     <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
 </head>
 <body>
-<div data-role="page" data-dialog="true" id="logout-popup">
+<div data-role="page" data-dialog="true" id="friend-request-popup">
     <div data-role="header">
-        <h2>Logout</h2>
+        <h2>Requests</h2>
     </div>
     <div data-role="content">
-        <p>Are you sure you would like to logout?</p>
-        <a href="../index.html" data-role="button" id="logout-button">Yes</a>
-        <a href="#" data-role="button" data-rel="back">No</a>
+        <span style="display: none" id="no-friend-requests">No Friend Requests</span>
+        <ul data-role="listview" data-inset="true" id="friend-request-list">
+        </ul>
     </div>
 </div>
-<script type="text/javascript" src="../main.js"></script>
+<script src="../main.js"></script>
 </body>
 </html>

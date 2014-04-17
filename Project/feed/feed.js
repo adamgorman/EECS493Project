@@ -2,9 +2,9 @@
  * Created by Carla on 4/6/2014.
  */
 
-var feedFriends = [
+/*var feedFriends = [
     { "firstName":"John" , "lastName":"Doe",
-        "recentActivity":[{"activity":"logged in","date":"March 2, 2012"},{"activity":"cool","date":"March 27, 2012"}]},
+        "recentActivity":[{"activity":"logged in","date":"March 1, 2012"},{"activity":"cool","date":"March 27, 2012"}]},
     { "firstName":"Anna" , "lastName":"Smith",
         "recentActivity":[{"activity":"worked out","date":"March 25, 2012"}]},
     { "firstName":"Peter" , "lastName": "Jones",
@@ -39,4 +39,4 @@ var sortFeed = function(){
         return parseInt(a.id) < parseInt(b.id);
     })
     $('#friendsFeed').append(elems);
-};
+};*/
