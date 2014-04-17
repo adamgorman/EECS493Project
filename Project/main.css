@@ -1,10 +1,15 @@
 /* All Pages */
 .form-error-text {
     height: 10px;
-    color: red;
+    color: orangered;
     padding: 5px;
 }
 
+.form-confirm-text {
+    height: 10px;
+    color: lightseagreen;
+    padding: 5px;
+}
 
 /* Input Page */
 #input-page a.input-button {

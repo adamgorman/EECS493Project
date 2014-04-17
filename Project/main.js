@@ -37,14 +37,15 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     }
 });
 var compareUsersByUsername = function(a, b) { //intentionally backwards
-    if(a.username > b.username)
+    if(a.attributes.username > b.attributes.username)
         return -1;
-    else if(a.username < b.username)
+    else if(a.attributes.username < b.attributes.username)
         return 1;
     else
         return 0;
 };
 var initForAll = function() {
+    $.mobile.loading('hide');
     $('span.ui-li-count').text(pendingRequests.length);
 };
 
@@ -72,33 +73,32 @@ var loginPageInit = function() {
     });
 };
 var setUserInformation = function(rUser) {
-    user = rUser.attributes;
+    user = rUser;
     // friends
-    user.friendUsernames.forEach(function(fUsername) {
+    user.get('friendUsernames').forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
-                friends.push(buddy[0].attributes);
+                friends.push(buddy[0]);
             }
         });
     });
     // sent friend requests
-    user.sentRequests.forEach(function(fUsername) {
+    user.get('sentRequests').forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
-                sentRequests.push(buddy[0].attributes);
+                sentRequests.push(buddy[0]);
             }
         });
     });
     // pending friend requests
-    user.pendingRequests.forEach(function(fUsername) {
+    user.get('pendingRequests').forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
-                pendingRequests.unshift(buddy[0].attributes);
-                $.mobile.loading('hide');
-                $.mobile.changePage("main/main.html");
+                pendingRequests.push(buddy[0]);
             }
         });
     });
+    $.mobile.changePage("main/main.html");
 };
 
 // Logout Page
@@ -165,8 +165,8 @@ var friendsInit = function() {
         friends.sort(compareUsersByUsername);
         friends.forEach(function(friend, index) {
             $('#friends-header').after(person.clone());
-            $('li#new-person img').attr('src', friend.pic.url());
-            $('li#new-person h2').text(friend.username);
+            $('li#new-person img').attr('src', friend.get('pic').url());
+            $('li#new-person h2').text(friend.get('username'));
             $('li#new-person p span').text("Some goal");
             $('li#new-person').data("friend-index", index).removeAttr('id');
         });
@@ -177,8 +177,8 @@ var friendsInit = function() {
         sentRequests.sort(compareUsersByUsername);
         sentRequests.forEach(function(friend) {
             $('#sent-requests-header').after(person.clone());
-            $('li#new-person img').attr('src', friend.pic.url());
-            $('li#new-person h2').text(friend.username);
+            $('li#new-person img').attr('src', friend.get('pic').url());
+            $('li#new-person h2').text(friend.get('username'));
             $('li#new-person p span').text("Some goal");
             $('li#new-person').removeAttr('id').addClass('ui-disabled');
         });
@@ -187,7 +187,7 @@ var friendsInit = function() {
     $('ul#friends-list').listview('refresh');
 
     $('ul#friends-list li').on('click', function(event) {
-        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")];
+        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")].attributes;
     })
 };
 
@@ -197,7 +197,7 @@ var friendCompareInit = function() {
     $('#friend-name-cell').text(websiteData.compareFriend.username);
 
     // pictures
-    $('#compare-me-pic').attr('src', user.pic.url());
+    $('#compare-me-pic').attr('src', user.get('pic').url());
     $('#compare-friend-pic').attr('src', websiteData.compareFriend.pic.url());
 
     // weights
@@ -213,14 +213,14 @@ var friendCompareInit = function() {
     $('tr.exercise-row td.friend-cell span').text("Workout");
 
     // achievements
-    for(i = 0; i <= user.achievementArray.length; i++) {
-        if(user.achievementArray[i] == 0) {
+    for(i = 0; i <= user.get('achievementArray').length; i++) {
+        if(user.get('achievementArray')[i] == 0) {
             $("tr.achievement" + i + "-row td.personal-cell").text("-");
         } else {
             $("tr.achievement" + i + "-row td.personal-cell").text("X");
         }
     }
-    for(i = 0; i <= user.achievementArray.length; i++) {
+    for(i = 0; i <= user.get('achievementArray').length; i++) {
         if(websiteData.compareFriend.achievementArray[i] == 0) {
             $("tr.achievement" + i + "-row td.friend-cell").text("-");
         } else {
@@ -245,8 +245,8 @@ var friendRequestInit = function() {
         pendingRequests.sort(compareUsersByUsername);
         pendingRequests.forEach(function (friend, index) {
             $('ul#friend-request-list').append(person.clone());
-            $('li#new-person img').attr('src', friend.pic.url());
-            $('li#new-person span.friend-request-list-name').text(friend.username);
+            $('li#new-person img').attr('src', friend.get('pic').url());
+            $('li#new-person span.friend-request-list-name').text(friend.get('username'));
             $('#new-person').data("pending-index", index).removeAttr('id');
         });
     }
@@ -267,15 +267,44 @@ var checkNoFriendRequests = function() {
     }
 };
 var confirmClickForRequests = function() {
+    $.mobile.loading( 'show', {
+        text: "Adding Friend...",
+        textVisible: true
+    });
     var index = $(event.target).closest('li').data("pending-index");
-    friends.push(pendingRequests[index]);
-    pendingRequests.splice(index, 1);
-    $(event.target).closest('li').remove();
-    checkNoFriendRequests();
+    var indexForFriend;
+    var friend = pendingRequests[index];
+    friend.get('friendUsernames').push(user.get('username'));
+    friend.get('sentRequests').forEach(function(buddy, i) {
+        if(buddy == user.get('username')) indexForFriend = i;
+    });
+    friend.get('sentRequests').splice(indexForFriend, 1);
+    // friend.save();
+    user.get('friendUsernames').push(friend.get('username'));
+    user.get('pendingRequests').splice(index, 1);
+    user.save({
+        success: function() {
+            friends.push(pendingRequests[index]);
+            pendingRequests.splice(index, 1);
+            $(event.target).closest('li').remove();
+            $.mobile.loading('hide');
+            checkNoFriendRequests();
+            $('#friend-request-popup .form-confirm-text').text("You and " + friend.get('username') + " are now friends.");
+        }
+    });
     return false;
 };
 var denyClickForRequests = function() {
-    pendingRequests.splice($(event.target).closest('li').data("pending-index"), 1);
+    var index = $(event.target).closest('li').data("pending-index");
+    user.get('pendingRequests').splice(index, 1);
+    user.save();
+    var nonFriend = pendingRequests[index];
+    nonFriend.get('sentRequests').forEach(function(buddy, i) {
+        if(buddy == user.get('username')) indexForFriend = i;
+    });
+    nonFriend.get('sentRequests').splice(indexForFriend, 1);
+    // nonFriend.save();
+    pendingRequests.splice(index, 1);
     $(event.target).closest('li').remove();
     checkNoFriendRequests();
     return false;
@@ -284,14 +313,21 @@ var denyClickForRequests = function() {
 // Add Friend Popup
 var addFriendInit = function() {
     $('#add-friend-popup #add-friend-form').on("submit", function() {
+        $.mobile.loading( 'show', {
+            text: "Adding a Friend...",
+            textVisible: true
+        });
         var username = $('#add-friend-popup input[type=text]').val();
         $('#add-friend-popup input[type=text]').val("");
         var index = alreadyPending(username);
         if(alreadyFriend(username)) { // already friend
+            $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text(username + " is already your friend.");
         } else if(alreadyRequested(username)) { // friend request processing
+            $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text("Request to " + username + " is already sent.");
-        } else if(username == user.username) {
+        } else if(username == user.get('username')) {
+            $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text("Cannot be friends with yourself.");
         } else if(index  != -1) {
             // add them as your friend
@@ -308,7 +344,7 @@ var addFriendInit = function() {
 var alreadyFriend = function(username) {
     var result = false;
     friends.forEach(function(buddy) {
-        if(buddy.username == username) {
+        if(buddy.get('username') == username) {
             result = true;
         }
     });
@@ -317,7 +353,7 @@ var alreadyFriend = function(username) {
 var alreadyRequested = function(username) {
     var result = false;
     sentRequests.forEach(function(buddy) {
-        if(buddy.username == username) {
+        if(buddy.get('username') == username) {
             result = true;
         }
     });
@@ -326,7 +362,7 @@ var alreadyRequested = function(username) {
 var alreadyPending = function(username) {
     var result = -1;
     pendingRequests.forEach(function(buddy, index) {
-        if(buddy.username == username) {
+        if(buddy.get('username') == username) {
             result = index;
         }
     });
@@ -336,11 +372,12 @@ var getPersonForRequest = function(username) {
     new Parse.Query(Parse.User).equalTo("username", username).find({
         success: function(buddy) {
             if(buddy.length == 0) {
+                $.mobile.loading('hide');
                 $('#add-friend-popup .form-error-text').text(username + " does not exist.");
             } else {
                 // add them as a sent request on your account
                 // add you to their pending requests
-                sentRequests.push(buddy[0].attributes);
+                sentRequests.push(buddy[0]);
                 $.mobile.changePage("friends.html");
             }
         }
