@@ -40,7 +40,7 @@
         <div data-role="content">
 
             <label for="firstNameLabel">First Name:</label>
-            <input name="text-basic" id="firstNameLabel" value="John" type="text">
+            <input name="text-basic" id="firstNameLabel" value="Sammy" type="text">
 
             <label for="lastNameLabel">Last Name:</label>
             <input name="text-basic" id="lastNameLabel" value="Smith" type="text">
@@ -57,6 +57,11 @@
                 <option value="on">On</option>
             </select>
 
+            <form id="saveSettings">
+                <!--<input type="button" value="Button">-->
+                <input type="button" value="Save Settings">
+                <!--<input type="reset" value="Reset">-->
+            </form>
 
             <!--<button class="ui-btn">Save Settings</button>-->
 
@@ -76,14 +81,6 @@
 
     <script type="text/javascript">
 
-//                var myswitch = $( "#slider2" );
-//                myswitch[ 0 ].selectedIndex = 1;
-//                myswitch.slider( "refresh" );
-//
-//
-//
-//        var isPrivate = $("#slider2");
-//        console.log(isPrivate.value);
 
         var isPrivate = 0;
 
@@ -102,12 +99,6 @@
         });
 
 
-
-
-
-
-
-
         console.log(isPrivate);
 
 
@@ -120,7 +111,7 @@
 
 
 
-        var firstName = "John";
+        var firstName = "Sammy";
         var lastName = "Smith";
         var initialWeight = 1;
         var goalWeight = 1;
@@ -158,6 +149,12 @@
         });
         console.log(goalWeight);
 
+
+        $( "#saveSettings" ).click(function() {
+
+
+            alert( "Handler for .click() called." );
+        });
 
 
 

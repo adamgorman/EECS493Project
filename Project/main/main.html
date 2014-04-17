@@ -33,6 +33,12 @@ AND THE 3 ARRAYS of 2 elements each
 
     <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
     <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+
+
+    // for parse
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+
+
     <!--<link rel="stylesheet" href="jquery-ui.css">-->
     <!--<script src="jquery-ui.min.js"></script>-->
 
@@ -71,14 +77,158 @@ AND THE 3 ARRAYS of 2 elements each
     <script type="text/javascript">
 
 
+    // new used for parse
+    var exerciseArray;
+    var localexerciseArray =  new Array();
+    var localexerciseArray2;
+
+
+
+    var getGoalWeight = function() {
+
+        // get settings if array is ampty
+
+    };
+
+
+    // parse things
+    Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");
+    Parse.User.logOut();
+    var username = "username";
+    var password = "password";
+
+
+
+
+
+
+   var parseFunction = function() {
+
+
+       Parse.User.logIn(username, password, {
+           success: function (user) {
+               // if login is successful
+               alert("Welcome, " + user.get("firstName") + " " + user.get("lastName"));
+
+               user.save();
+               user.fetch({
+                   success: function (user) {
+                       //user has been refreshed.
+                   },
+                   error: function (error) {
+                       alert("Couldn't refresh user!");
+
+
+                   }
+               });
+
+
+               exerciseArray = user.get("exerciseEntries");
+               //debugger;
+
+               localexerciseArray.length = exerciseArray.length;
+
+               console.log(localexerciseArray.length);
+               for(var i = 0; i < exerciseArray.length; i++){
+                   //Get the objectiD of the input
+                   var exId = exerciseArray[i];
+
+//                   console.log(exId);
+//                   console.log(exId.length);
+                   //Open on query on the ExerciseInput table
+                   var inputQuery = new Parse.Query("ExerciseInput");
+
+
+                   //Look for the matching objectId
+                   inputQuery.equalTo("objectId", exId);
+                   inputQuery.find({
+                       success: function(result) {
+                           //When you find it, print its date and value variables.
+
+                           console.log("hello world");
+
+                           console.log("query returned: " + result[0].get("date") + " "
+                                   + result[0].get("value"));
+
+//                           localexerciseArray.push(
+//                               "year": result[0].get("date"),
+//                               "value": result[0].get("value")
+//                           );
+
+
+                            localexerciseArray[i] = {
+                                "year": result[0].get("date"),
+                                "value": result[0].get("value")
+                            }
+
+
+
+                       },
+                       error: function(result) {
+                          // alert("COULDN'T FIND OBJECT IN TABLE");
+                       }
+                   });
+               }
+
+
+
+//
+//               console.log(exerciseArray);
+//               console.log(localexerciseArray);
+
+           },
+           error: function (user, error) {
+               // Show the error message somewhere and let the user try again.
+               alert("Error: " + error.code + " " + error.message);
+
+               // got to log in page
+           }
+
+
+
+
+
+       });
+
+//
+
+
+
+
+   };
+//
+//    console.log("you suck");
+//    parseFunction();
+
+
+//    for (var i = 0; i < exerciseArray.length; i++) {
+    //        console.log("what??/");
+    //        console.log(exerciseArray);
+    // }
+    console.log(localexerciseArray, "sucks");
+
+
     $(document).on("pagecontainerbeforeshow", function(event) {
         var pageId = $('body').pagecontainer('getActivePage').prop('id');
         if(pageId == "page1") {
+
+            parseFunction();
+
+
+
             profileIn();
             goalin();
             recentActivityIn();
             recentActivityIn2();
             recentActivityIn3();
+
+
+//            parseFunction();
+
+            console.log("what??/");
+            buildChart();
+
+
 
 
 
@@ -127,6 +277,34 @@ AND THE 3 ARRAYS of 2 elements each
     var graph2;
     var chart;
     var graph;
+
+
+
+
+
+    console.log(exerciseArray);
+
+    for (var i = 0; i < localexerciseArray.length; i++) {
+            console.log("what??/");
+            console.log(localexerciseArray);
+    }
+
+
+    var buildChart = function() {
+
+        console.log("whhhhhhhhy");
+        console.log(exerciseArray);
+
+
+        for (var i = 0; i < localexerciseArray.length; i++) {
+            console.log(exerciseArray[i]);
+            console.log(localexerciseArray[i]);
+        }
+
+
+    };
+
+
 
 
 //
@@ -843,7 +1021,7 @@ AND THE 3 ARRAYS of 2 elements each
 
             if (chartData[i].value != null) {
 
-                console.log(chartData[i].value);
+//                console.log(chartData[i].value);
 //                $('ul#youractivityid2').append(profile.clone());
 
 //                var li = $('<li>').append(chartData.shift());
