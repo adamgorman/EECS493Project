@@ -330,11 +330,23 @@ var addFriendInit = function() {
             $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text("Cannot be friends with yourself.");
         } else if(index  != -1) {
-            // add them as your friend
-            // add you to their friends
-            friends.push(pendingRequests[index]);
-            pendingRequests.splice(index, 1);
-            $.mobile.changePage("friends.html");
+            var indexForFriend;
+            var friend = pendingRequests[index];
+            friend.get('friendUsernames').push(user.get('username'));
+            friend.get('sentRequests').forEach(function(buddy, i) {
+                if(buddy == user.get('username')) indexForFriend = i;
+            });
+            friend.get('sentRequests').splice(indexForFriend, 1);
+            // friend.save();
+            user.get('friendUsernames').push(friend.get('username'));
+            user.get('pendingRequests').splice(index, 1);
+            user.save({
+                success: function() {
+                    friends.push(pendingRequests[index]);
+                    pendingRequests.splice(index, 1);
+                    $.mobile.changePage("friends.html");
+                }
+            });
         } else {
             getPersonForRequest(username);
         }
@@ -375,10 +387,12 @@ var getPersonForRequest = function(username) {
                 $.mobile.loading('hide');
                 $('#add-friend-popup .form-error-text').text(username + " does not exist.");
             } else {
-                // add them as a sent request on your account
-                // add you to their pending requests
+                user.get('sentRequests').push(buddy[0].get('username'));
+                user.save();
+                buddy[0].get('pendingRequests').push(user.get('username'));
+                // buddy[0].save();
                 sentRequests.push(buddy[0]);
-                $.mobile.changePage("friends.html");
+                $.mobile.changePage('friends.html');
             }
         }
     });
