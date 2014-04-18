@@ -1,0 +1,63 @@
+/* All Pages */
+.form-error-text {
+    height: 10px;
+    color: orangered;
+    padding: 5px;
+}
+
+.form-confirm-text {
+    height: 10px;
+    color: lightseagreen;
+    padding: 5px;
+}
+
+/* Input Page */
+#input-page a.input-button {
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+/* Friend Compare Page */
+#friend-compare-page .compare-cell {
+    width: 40%;
+    padding: 5px 5px 20px 5px;
+    text-align: center;
+}
+#friend-compare-page .compare-heading {
+    width: 20%;
+    padding: 5px 5px 20px 5px;
+    text-align: center;
+}
+#friend-compare-page table {
+    width: 100%;
+}
+#friend-compare-page .left-cell {
+    width: 20%;
+    padding-bottom: 20px;
+}
+#friend-compare-page thead img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Friend Request Popup */
+#friend-request-popup li {
+    vertical-align: top;
+    min-height: 30px;
+}
+#friend-request-popup li img {
+    max-width: 60px;
+}
+#friend-request-popup li span.friend-request-list-name {
+    position: absolute;
+    left: 65px;
+}
+#friend-request-popup li span.friend-request-list-button-holder {
+    position: absolute;
+    right: 0px;
+    top:5px;
+    background: white;
+}
+#friend-request-popup li span.friend-request-list-button-holder a.confirm-button {
+    margin-right: 5px;
+}

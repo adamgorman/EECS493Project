@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
 </head>
 <body>
-<div data-role="page" id="friends-page">
+<div data-role="page" id="input-page">
     <div data-role="panel" id="panel">
         <ul data-role="listview">
             <li><a href="../main/main.html">Home</a></li>
@@ -28,18 +28,11 @@
         <a href="../main/input.html" data-role="button">Input</a>
     </div>
     <div data-role="content">
-        <div class="ui-grid-a">
-            <div class="ui-block-a"><a href="addFriend.html" data-role="button">Add Friend</a></div>
-            <div class="ui-block-b"><a href="friendRequests.html" data-role="button">Requests</a></div>
-        </div>
-        <div>
-            <ul data-role="listview" data-inset="true" id="friends-list">
-                <li data-role="list-divider" id="friends-header">Friends</li>
-                <li data-role="list-divider" id="sent-requests-header">Sent Requests</li>
-            </ul>
-        </div>
+        <a href="inputPopup.html" data-role="button" class="input-button">Food</a>
+        <a href="inputPopup.html" data-role="button" class="input-button">Exercise</a>
+        <a href="inputPopup.html" data-role="button" class="input-button">Weight</a>
     </div>
 </div>
-<script src="../main.js"></script>
+<script type="text/javascript" src="../main.js"></script>
 </body>
 </html>

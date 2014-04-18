@@ -63,6 +63,8 @@ AND THE 3 ARRAYS of 2 elements each
 
     <script tyoe="text/javascript" src="../main/iosslider/_src/jquery.iosslider.js"></script>
 
+    <script type="text/javascript" src="../main.js"></script>
+
     <!--<script src="../main/jquery.swipeplanes-1.2.min.js"></script>-->
 
 
@@ -74,1062 +76,1051 @@ AND THE 3 ARRAYS of 2 elements each
     <!--</script>-->
 
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">-->
 
 
-    // new used for parse
-    var exerciseArray;
-    var localexerciseArray =  new Array();
-    var localexerciseArray2;
+    <!--// new used for parse-->
+    <!--var exerciseArray;-->
+    <!--var localexerciseArray =  new Array();-->
+    <!--var localexerciseArray2;-->
 
 
 
-    var getGoalWeight = function() {
+    <!--var getGoalWeight = function() {-->
 
-        // get settings if array is ampty
+        <!--// get settings if array is ampty-->
 
-    };
+    <!--};-->
 
 
-    // parse things
-    Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");
-    Parse.User.logOut();
-    var username = "username";
-    var password = "password";
+    <!--// parse things-->
+    <!--Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");-->
+    <!--Parse.User.logOut();-->
+    <!--var username = "username";-->
+    <!--var password = "password";-->
 
 
 
 
 
 
-   var parseFunction = function() {
+   <!--var parseFunction = function() {-->
 
 
-       Parse.User.logIn(username, password, {
-           success: function (user) {
-               // if login is successful
-               alert("Welcome, " + user.get("firstName") + " " + user.get("lastName"));
+       <!--Parse.User.logIn(username, password, {-->
+           <!--success: function (user) {-->
+               <!--// if login is successful-->
+               <!--alert("Welcome, " + user.get("firstName") + " " + user.get("lastName"));-->
 
-               user.save();
-               user.fetch({
-                   success: function (user) {
-                       //user has been refreshed.
-                   },
-                   error: function (error) {
-                       alert("Couldn't refresh user!");
+               <!--user.save();-->
+               <!--user.fetch({-->
+                   <!--success: function (user) {-->
+                       <!--//user has been refreshed.-->
+                   <!--},-->
+                   <!--error: function (error) {-->
+                       <!--alert("Couldn't refresh user!");-->
 
 
-                   }
-               });
+                   <!--}-->
+               <!--});-->
 
 
-               exerciseArray = user.get("exerciseEntries");
-               //debugger;
+               <!--exerciseArray = user.get("exerciseEntries");-->
+               <!--//debugger;-->
 
-               localexerciseArray.length = exerciseArray.length;
+               <!--localexerciseArray.length = exerciseArray.length;-->
 
-               console.log(localexerciseArray.length);
-               for(var i = 0; i < exerciseArray.length; i++){
-                   //Get the objectiD of the input
-                   var exId = exerciseArray[i];
+               <!--console.log(localexerciseArray.length);-->
+               <!--for(var i = 0; i < exerciseArray.length; i++){-->
+                   <!--//Get the objectiD of the input-->
+                   <!--var exId = exerciseArray[i];-->
 
-//                   console.log(exId);
-//                   console.log(exId.length);
-                   //Open on query on the ExerciseInput table
-                   var inputQuery = new Parse.Query("ExerciseInput");
+<!--//                   console.log(exId);-->
+<!--//                   console.log(exId.length);-->
+                   <!--//Open on query on the ExerciseInput table-->
+                   <!--var inputQuery = new Parse.Query("ExerciseInput");-->
 
 
-                   //Look for the matching objectId
-                   inputQuery.equalTo("objectId", exId);
-                   inputQuery.find({
-                       success: function(result) {
-                           //When you find it, print its date and value variables.
+                   <!--//Look for the matching objectId-->
+                   <!--inputQuery.equalTo("objectId", exId);-->
+                   <!--inputQuery.find({-->
+                       <!--success: function(result) {-->
+                           <!--//When you find it, print its date and value variables.-->
 
-                           console.log("hello world");
+                           <!--console.log("hello world");-->
 
-                           console.log("query returned: " + result[0].get("date") + " "
-                                   + result[0].get("value"));
+                           <!--console.log("query returned: " + result[0].get("date") + " "-->
+                                   <!--+ result[0].get("value"));-->
 
-//                           localexerciseArray.push(
-//                               "year": result[0].get("date"),
-//                               "value": result[0].get("value")
-//                           );
+<!--//                           localexerciseArray.push(-->
+<!--//                               "year": result[0].get("date"),-->
+<!--//                               "value": result[0].get("value")-->
+<!--//                           );-->
 
 
-                            localexerciseArray[i] = {
-                                "year": result[0].get("date"),
-                                "value": result[0].get("value")
-                            }
+                            <!--localexerciseArray[i] = {-->
+                                <!--"year": result[0].get("date"),-->
+                                <!--"value": result[0].get("value")-->
+                            <!--}-->
 
 
 
-                       },
-                       error: function(result) {
-                          // alert("COULDN'T FIND OBJECT IN TABLE");
-                       }
-                   });
-               }
+                       <!--},-->
+                       <!--error: function(result) {-->
+                          <!--// alert("COULDN'T FIND OBJECT IN TABLE");-->
+                       <!--}-->
+                   <!--});-->
+               <!--}-->
 
 
 
-//
-//               console.log(exerciseArray);
-//               console.log(localexerciseArray);
+<!--//-->
+<!--//               console.log(exerciseArray);-->
+<!--//               console.log(localexerciseArray);-->
 
-           },
-           error: function (user, error) {
-               // Show the error message somewhere and let the user try again.
-               alert("Error: " + error.code + " " + error.message);
+           <!--},-->
+           <!--error: function (user, error) {-->
+               <!--// Show the error message somewhere and let the user try again.-->
+               <!--alert("Error: " + error.code + " " + error.message);-->
 
-               // got to log in page
-           }
+               <!--// got to log in page-->
+           <!--}-->
 
 
 
 
 
-       });
+       <!--});-->
 
-//
+<!--//-->
 
 
 
 
-   };
-//
-//    console.log("you suck");
-//    parseFunction();
+   <!--};-->
+<!--//-->
+<!--//    console.log("you suck");-->
+<!--//    parseFunction();-->
 
 
-//    for (var i = 0; i < exerciseArray.length; i++) {
-    //        console.log("what??/");
-    //        console.log(exerciseArray);
-    // }
-    console.log(localexerciseArray, "sucks");
+<!--//    for (var i = 0; i < exerciseArray.length; i++) {-->
+    <!--//        console.log("what??/");-->
+    <!--//        console.log(exerciseArray);-->
+    <!--// }-->
+    <!--console.log(localexerciseArray, "sucks");-->
 
 
-    $(document).on("pagecontainerbeforeshow", function(event) {
-        var pageId = $('body').pagecontainer('getActivePage').prop('id');
-        if(pageId == "page1") {
+    <!--$(document).on("pagecontainerbeforeshow", function(event) {-->
+        <!--var pageId = $('body').pagecontainer('getActivePage').prop('id');-->
+        <!--if(pageId == "page1") {-->
 
-            parseFunction();
+            <!--parseFunction();-->
 
 
 
-            profileIn();
-            goalin();
-            recentActivityIn();
-            recentActivityIn2();
-            recentActivityIn3();
+            <!--profileIn();-->
+            <!--goalin();-->
+            <!--recentActivityIn();-->
+            <!--recentActivityIn2();-->
+            <!--recentActivityIn3();-->
 
 
-//            parseFunction();
+<!--//            parseFunction();-->
 
-            console.log("what??/");
-            buildChart();
+            <!--console.log("what??/");-->
+            <!--buildChart();-->
 
 
 
 
 
-        }
-//        if (pageId == "feed1") {
-//            recentActivityIn();
-//
-//        }
-//        if (pageId == "feed2") {
-//            recentActivityIn2()
-//        }
-        console.log(pageId);
-    });
+        <!--}-->
+<!--//        if (pageId == "feed1") {-->
+<!--//            recentActivityIn();-->
+<!--//-->
+<!--//        }-->
+<!--//        if (pageId == "feed2") {-->
+<!--//            recentActivityIn2()-->
+<!--//        }-->
+        <!--console.log(pageId);-->
+    <!--});-->
 
 
-    $(document).ready(function() {
 
-        $('.iosSlider').iosSlider({
-            snapToChildren: true,
-            desktopClickDrag: true,
-            infiniteSlider: true,
-            snapSlideCenter: true
-        });
 
-    });
 
-//    $('#nav1').click(function() {
-//
-//        console.log("I was clicked");
-//        serverdata = "Pretend I'm data fetched from server #1."
-//        $('#updatepage').text(serverdata);
-//        return false;
-//    });
-//
-//    $('#nav2').click(function() {
-//        console.log("I was clicked");
-//
-//        serverdata = "Pretend I'm data fetched from another server far, far away."
-//        $('#updatepage').text(serverdata);
-//        return false;
-//    });
 
-    var chart3;
-    var graph3;
-    var chart2;
-    var graph2;
-    var chart;
-    var graph;
 
+<!--//    $('#nav1').click(function() {-->
+<!--//-->
+<!--//        console.log("I was clicked");-->
+<!--//        serverdata = "Pretend I'm data fetched from server #1."-->
+<!--//        $('#updatepage').text(serverdata);-->
+<!--//        return false;-->
+<!--//    });-->
+<!--//-->
+<!--//    $('#nav2').click(function() {-->
+<!--//        console.log("I was clicked");-->
+<!--//-->
+<!--//        serverdata = "Pretend I'm data fetched from another server far, far away."-->
+<!--//        $('#updatepage').text(serverdata);-->
+<!--//        return false;-->
+<!--//    });-->
 
-
-
-
-    console.log(exerciseArray);
-
-    for (var i = 0; i < localexerciseArray.length; i++) {
-            console.log("what??/");
-            console.log(localexerciseArray);
-    }
-
-
-    var buildChart = function() {
-
-        console.log("whhhhhhhhy");
-        console.log(exerciseArray);
-
-
-        for (var i = 0; i < localexerciseArray.length; i++) {
-            console.log(exerciseArray[i]);
-            console.log(localexerciseArray[i]);
-        }
-
-
-    };
-
-
-
-
-//
-    // note, some of tada points don't have value field
-    var chartData = [
-        {
-            "year": "1950",
-            "value": -0.307
-        },
-        {
-            "year": "1951",
-            "value": -0.168
-        },
-        {
-            "year": "1952",
-            "value": -0.073
-        },
-        {
-            "year": "1953",
-            "value": -0.027
-        },
-        {
-            "year": "1954",
-            "value": -0.251
-        },
-        {
-            "year": "1955",
-            "value": -0.281
-        },
-        {
-            "year": "1956",
-            "value": -0.348
-        },
-        {
-            "year": "1957",
-            "value": -0.074
-        },
-        {
-            "year": "1958",
-            "value": -0.011
-        },
-        {
-            "year": "1959",
-            "value": -0.074
-        },
-        {
-            "year": "1960",
-            "value": -0.124
-        },
-        {
-            "year": "1961",
-            "value": -0.024
-        },
-        {
-            "year": "1962",
-            "value": -0.022
-        },
-        {
-            "year": "1963",
-            "value": 0
-        },
-        {
-            "year": "1964",
-            "value": -0.296
-        },
-        {
-            "year": "1965",
-            "value": -0.217
-        },
-        {
-            "year": "1966",
-            "value": -0.147
-        },
-        {
-            "year": "1967"
-        },
-        {
-            "year": "1968"
-        },
-        {
-            "year": "1969"
-        },
-        {
-            "year": "1970"
-        },
-        {
-            "year": "1971",
-            "value": -0.19
-        },
-        {
-            "year": "1972",
-            "value": -0.056
-        },
-        {
-            "year": "1973",
-            "value": 0.077
-        },
-        {
-            "year": "1974",
-            "value": -0.213
-        },
-        {
-            "year": "1975",
-            "value": -0.17
-        },
-        {
-            "year": "1976",
-            "value": -0.254
-        },
-        {
-            "year": "1977",
-            "value": 0.019
-        },
-        {
-            "year": "1978",
-            "value": -0.063
-        },
-        {
-            "year": "1979",
-            "value": 0.05
-        },
-        {
-            "year": "1980",
-            "value": 0.077
-        },
-        {
-            "year": "1981",
-            "value": 0.12
-        },
-        {
-            "year": "1982",
-            "value": 0.011
-        },
-        {
-            "year": "1983",
-            "value": 0.177
-        },
-        {
-            "year": "1984"
-        },
-        {
-            "year": "1985"
-        },
-        {
-            "year": "1986"
-        },
-        {
-            "year": "1987"
-        },
-        {
-            "year": "1988"
-        },
-        {
-            "year": "1989",
-            "value": 0.104
-        },
-        {
-            "year": "1990",
-            "value": 0.255
-        },
-        {
-            "year": "1991",
-            "value": 0.21
-        },
-        {
-            "year": "1992",
-            "value": 0.065
-        },
-        {
-            "year": "1993",
-            "value": 0.11
-        },
-        {
-            "year": "1994",
-            "value": 0.172
-        },
-        {
-            "year": "1995",
-            "value": 0.269
-        },
-        {
-            "year": "1996",
-            "value": 0.141
-        },
-        {
-            "year": "1997",
-            "value": 0.353
-        },
-        {
-            "year": "1998",
-            "value": 0.548
-        },
-        {
-            "year": "1999",
-            "value": 0.298
-        },
-        {
-            "year": "2000",
-            "value": 0.267
-        },
-        {
-            "year": "2001",
-            "value": 0.411
-        },
-        {
-            "year": "2002",
-            "value": 0.462
-        },
-        {
-            "year": "2003",
-            "value": 0.47
-        },
-        {
-            "year": "2004",
-            "value": 0.445
-        },
-        {
-            "year": "2005",
-            "value": 0.47
-        }
-    ];
-
-
-    AmCharts.ready(function () {
-        // SERIAL CHART
-        chart = new AmCharts.AmSerialChart();
-        chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
-        chart.marginTop = 0;
-        chart.marginRight = 0;
-        chart.dataProvider = chartData;
-        chart.categoryField = "year";
-        chart.dataDateFormat = "YYYY";
-        chart.balloon.cornerRadius = 6;
-
-        chart2 = new AmCharts.AmSerialChart();
-        chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
-        chart2.marginTop = 0;
-        chart2.marginRight = 0;
-        chart2.dataProvider = chartData;
-        chart2.categoryField = "year";
-        chart2.dataDateFormat = "YYYY";
-        chart2.balloon.cornerRadius = 6;
-
-        chart3 = new AmCharts.AmSerialChart();
-        chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
-        chart3.marginTop = 0;
-        chart3.marginRight = 0;
-        chart3.dataProvider = chartData;
-        chart3.categoryField = "year";
-        chart3.dataDateFormat = "YYYY";
-        chart3.balloon.cornerRadius = 6;
-
-
-        // AXES
-        // category
-        var categoryAxis = chart.categoryAxis;
-        categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
-        categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY
-        categoryAxis.dashLength = 1;
-        categoryAxis.minorGridEnabled = true;
-        categoryAxis.axisColor = "#DADADA";
-
-        // value
-        var valueAxis = new AmCharts.ValueAxis();
-        valueAxis.axisAlpha = 0;
-        valueAxis.dashLength = 1;
-        valueAxis.inside = true;
-        chart.addValueAxis(valueAxis);
-        chart2.addValueAxis(valueAxis);
-        chart3.addValueAxis(valueAxis);
-
-
-
-
-
-        // GRAPH
-        graph = new AmCharts.AmGraph();
-        graph.lineColor = "#b6d278";
-        graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
-        graph.bullet = "round";
-        graph.bulletSize = 8;
-        graph.bulletBorderColor = "#FFFFFF";
-
-        graph.bulletBorderThickness = 2;
-        graph.bulletBorderAlpha = 1;
-        graph.connect = false; // this makes the graph not to connect data points if data is missing
-        graph.lineThickness = 2;
-        graph.valueField = "value";
-        graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-        chart.addGraph(graph);
-
-        graph2 = new AmCharts.AmGraph();
-        graph2.lineColor = "#b6d278";
-        graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
-        graph2.bullet = "round";
-        graph2.bulletSize = 8;
-        graph2.bulletBorderColor = "#FFFFFF";
-
-        graph2.bulletBorderThickness = 2;
-        graph2.bulletBorderAlpha = 1;
-        graph2.connect = false; // this makes the graph not to connect data points if data is missing
-        graph2.lineThickness = 2;
-        graph2.valueField = "value";
-        graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-        chart2.addGraph(graph2);
-
-        graph3 = new AmCharts.AmGraph();
-        graph3.lineColor = "#b6d278";
-        graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
-        graph3.bullet = "round";
-        graph3.bulletSize = 8;
-        graph3.bulletBorderColor = "#FFFFFF";
-
-        graph3.bulletBorderThickness = 2;
-        graph3.bulletBorderAlpha = 1;
-        graph3.connect = false; // this makes the graph not to connect data points if data is missing
-        graph3.lineThickness = 2;
-        graph3.valueField = "value";
-        graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-        chart3.addGraph(graph3);
-
-        // CURSOR
-//        var chartCursor = new AmCharts.ChartCursor();
-//        chartCursor.cursorAlpha = 0;
-//        chartCursor.cursorPosition = "mouse";
-//        chartCursor.categoryBalloonDateFormat = "YYYY";
-//        chartCursor.graphBulletSize = 2;
-//        chart.addChartCursor(chartCursor);
-//        chart2.addChartCursor(chartCursor);
-//        chart3.addChartCursor(chartCursor);
-
-        chart.creditsPosition = "bottom-right";
-        chart3.creditsPosition = "bottom-left";
-
-//        chart.creditsPosition = "bottom-right";
-
-
-
-
-        // WRITE
-        chart.write("a");
-        chart2.write("b");
-        chart3.write("c");
-    });
-
-
-    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
-        chart.invalidateSize();
-        chart2.invalidateSize();
-        chart3.invalidateSize();
-
-
-
-
-        console.log("helo sam 2")
-
-
-        //un-highlight and highlight only the buttons in the same navbar widget
-        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
-
-        //this bit is the same, you could chain it off of the last call by using two `.end()`s
-        $(this).addClass('ui-navbar-btn-active');
-
-
-        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
-        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
-//        $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();
-
-
-    });
-
-
-
-
-    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
-
-
-
-
-        console.log("helo sam 3")
-
-
-        //un-highlight and highlight only the buttons in the same navbar widget
-        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
-
-        //this bit is the same, you could chain it off of the last call by using two `.end()`s
-        $(this).addClass('ui-navbar-btn-active');
-
-
-        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
-//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
-        $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();
-
-
-
-    });
-
-
-
-
-//
-//    $(document).delegate('.ui-navbar ul li > a', 'click', function () {
-//
-//
-//
-//
-//        console.log("helo sam 4")
-//
-//
-//        //un-highlight and highlight only the buttons in the same navbar widget
-//        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
-//
-//        //this bit is the same, you could chain it off of the last call by using two `.end()`s
-//        $(this).addClass('ui-navbar-btn-active');
-//
-//
-//        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
-//
-//        $('#' + $(this).attr('data-href')).show().siblings('.activity').hide();
-//
-//    })
-//
-//    $(document).delegate('.ui-navbar ul li > b', 'click', function () {
-//        chart.invalidateSize();
-//        chart2.invalidateSize();
-//
-//
-//        console.log("helo sam")
-//
-//        //un-highlight and highlight only the buttons in the same navbar widget
-//        $(this).closest('.ui-navbar').find('b').removeClass('ui-navbar-btn-active');
-//
-//        //this bit is the same, you could chain it off of the last call by using two `.end()`s
-//        $(this).addClass('ui-navbar-btn-active');
-//
-//
-//        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM
-//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();
-//    })
-
-
-//    $(function () {
-//        $("nav").tabs({
-//            select: function (event, ui) {
-//                console.log('Calling chart.invalidateSize()');
-//                chart.invalidateSize();
-////                chart2.invalidateSize();
-//            }
-//        });
-//    });
-//
-//    $(function () {
-//        $(document).delegate('[data-role="navbar"] a', 'click', function ()  {
-//            select: function (event, ui) {
-//                console.log('Calling chart.invalidateSize()');
-//                chart.invalidateSize();
-//    //                chart2.invalidateSize();
-//            }
-//        });
-//    });
-
-
-//
-//    $('div[data-role="navbar"] a').live('click', function () {
-//        $(this).addClass('ui-btn-active');
-//        $('div.content_div').hide();
-//        $('div#' + $(this).attr('data-href')).show();
-//    });
-
-//    // FOR Swipe
-//    $(document).on('swipeleft', '[data-role="tab"]', function(event){
-//        if(event.handled !== true) // This will prevent event triggering more then once
-//        {
-//            var nextpage = $(this).next('[data-role="tab"]');
-//            // swipe using id of next page if exists
-//            if (nextpage.length > 0) {
-//                $.mobile.change( {transition: "slide", reverse: false}, true, true);
-//            }
-//            event.handled = true;
-//        }
-//        return false;
-//    });
-//
-//    $(document).on('swiperight', '[data-role="tab"]', function(event){
-//        if(event.handled !== true) // This will prevent event triggering more then once
-//        {
-//            var prevpage = $(this).prev('[data-role="tab"]');
-//            if (prevpage.length > 0) {
-//                $.mobile.change( {transition: "slide", reverse: true}, true, true);
-//            }
-//            event.handled = true;
-//        }
-//        return false;
-//    });
-
-
-// Making it like adam's
-    var profileIn = function() {
-        var profile = $('<li id="newPro">'+
-                '<img>'+
-                '<h1></h1>'+
-                '<p>Weight: <span></span></p>'+
-                '</li>');
-
-        $('li#newPro').remove();
-//        $('p').remove();
-
-
-
-        $('ul#profileid').append(profile.clone());
-        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newPro h1').text("Sammy Hajalie");
-        $('li#newPro p span').text("145 lbs");
-
-//        console.log("you not here yet");
-
-        $('ul#profileid').listview('refresh');
-    };
-
-
-    var goalin = function() {
-        var profile = $('<li id="newGoal">'+
-                '<h1></h1>'+
-                '<p><span></span></p>'+
-                '</li>');
-
-        $('li#newGoal').remove();
-//        $('p').remove();
-
-        $('ul#goalmain').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newGoal h1').text("Goal:");
-        $('li#newGoal p span').text("Gain 5 lbs");
-
-//        console.log("you not here yet");
-
-        $('ul#goalmain').listview('refresh');
-    };
-
-
-    var recentActivityIn = function() {
-        var profile = $('<li id="newActivity">'+
-                '<h1></h1>'+
-                '<p><span></span></p>'+
-                '</li>');
-
-
-
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity h1').text("Goal:");
-        $('li#newActivity p span').text("Gain 5 lbs");
-
-
-//        console.log("you not here yet");
-
-        $('ul#youractivityid').listview('refresh');
-    };
-
-    var recentActivityIn2 = function() {
-        var profile = $('<li id="newActivity2">'+
-                '<h1></h1>'+
-                '<p><span></span></p>'+
-                '</li>');
-
-
-//        for (var i = 0; i < chartData.length; i++) {
-//            if (chartData[i] != null) {
-//
-//                console.log(chartData[i].value);
-//                $('ul#youractivityid2').append(profile.clone());
-//                $('li#newActivity2 h1').text("You weighed " + chartData[i].value + " lbs!");
-//                $('li#newActivity2 p span').text("on " + chartData[i].year);
-//                $('ul#youractivityid2').listview('refresh');
-//
-//            } else {
-//                $('li#newActivity3 h1').text("No data");
-//                //                $('li#newActivity3 p span').text("on " + chartData[i].year);
-//                $('ul#youractivityid2').listview('refresh');
-//
-//            }
-//        }
-
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("WEIGHT 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("WEIGHT 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-        $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-        $('li#newActivity2 h1').text("WEIGHT:");
-        $('li#newActivity2 p span').text("Gain 5 lbs");
-
-
-//        console.log("you not here yet");
-
-        $('ul#youractivityid2').listview('refresh');
-    };
-
-    var recentActivityIn3 = function() {
-        var profile = $('<li id="newActivity3">'+
-                '<h1></h1>'+
-                '<p><span></span></p>'+
-                '</li>');
-
-
-        for (var j = 0; j < chartData.length; j++) {
-            $('li#newActivity3').remove();
-//            $('h1').remove();
-//            $('h1#newActivity3').remove();
-        }
-
-        console.log(chartData.length);
-
-
-        var cList = $('youractivityid3');
-
-
-        for (var i = 0; i < chartData.length; i++) {
-
-//            $('li#newActivity3').remove();
-//            $('p').remove();
-//            $('h1').remove();
-
-
-            if (chartData[i].value != null) {
-
-//                console.log(chartData[i].value);
-//                $('ul#youractivityid2').append(profile.clone());
-
-//                var li = $('<li>').append(chartData.shift());
-//                $('<li id="newActivity3 h1">').append(li.year);
-
-//                $('ul#youractivityid3').append(profile.clone());
-                $('ul#youractivityid3').append(profile.clone());
-
-                $('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");
-                $('li#newActivity3 p span').text("on " + chartData[i].year);
-                $('li#newActivity3').removeAttr('id');
-
-
-
-
-//                $('ul#youractivityid3').listview('refresh');
-
-            } else {
-
-                continue;
-//                $('ul#youractivityid3').append(profile.clone());
-//
-//                $('li#newActivity3 h1').text("No data");
-//                                $('li#newActivity3 p span').text("on date");
-//
-////                $('ul#youractivityid3').append(profile.clone());
-//
-////                $('ul#youractivityid3').listview('refresh');
-
-            }
-        }
-
-
-//        $.each(chartData, function(i) {
-//            var li = $('<li/>')
-//                $('ul#youractivityid3').append(profile.clone());
-//        //        $('li#newPro img').attr('src', 'img/mypic.jpg');
-//                $('li#newActivity3 h1').text("WEIGHT:");
-//                $('li#newActivity3 p span').text("Gain 5 lbs")
-//                .appendTo(cList);
-//            var a = $('<a/>')
-//                    .addClass('ui-all')
-//                    .text( this )
-//                    .appendTo(li);
-//        });
-
-
-
-
-
-//        $('ul#youractivityid3').append(profile.clone());
-////        $('li#newPro img').attr('src', 'img/mypic.jpg');
-//        $('li#newActivity3 h1').text("WEIGHT:");
-//        $('li#newActivity3 p span').text("Gain 5 lbs");
-
-//        $('ul#youractivityid3').append(profile.clone());
-////        $('li#newPro img').attr('src', 'img/mypic.jpg');
-//        $('li#newActivity3 h1').text("WEIGHT:");
-//        $('li#newActivity3 p span').text("Gain 5 lbs");
-
-
-
-
-
-//        console.log("you not here yet");
-
-        $('ul#youractivityid3').listview('refresh');
-    };
-
-
-
-
-
-    //    $(window).resize(function(){
-//        console.log("helloooo")
-//        var newwidth = $(window).width();
-//        var newheight = $(window).height();
-//        $("#element").height(newheight).width(newwidth);
-//    });
-//
-//
-//$(window).resize(function() {
-//
-//    $(‘#element’).css(‘width’, window.innerWidth);
-
-//
-//
-//    $(document).ready(function(){
-//        $('a#a').click(function(e) {
-//            e.preventDefault();
-//            $('div#feed2').hide();
-//            $('div#feed1').fadeIn();
-//            return false;
-//        });
-//
-//
-//        $('a#b').click(function(e) {
-//            e.preventDefault();
-//            $('div#feed1').hide();
-//            $('div#feed2').fadeIn();
-//            return false;
-//        });
-//
-//    });
-
-    //});
-
-    </script>
+    <!--var chart3;-->
+    <!--var graph3;-->
+    <!--var chart2;-->
+    <!--var graph2;-->
+    <!--var chart;-->
+    <!--var graph;-->
+
+
+
+
+
+    <!--console.log(exerciseArray);-->
+
+    <!--for (var i = 0; i < localexerciseArray.length; i++) {-->
+            <!--console.log("what??/");-->
+            <!--console.log(localexerciseArray);-->
+    <!--}-->
+
+
+    <!--var buildChart = function() {-->
+
+        <!--console.log("whhhhhhhhy");-->
+        <!--console.log(exerciseArray);-->
+
+
+        <!--for (var i = 0; i < localexerciseArray.length; i++) {-->
+            <!--console.log(exerciseArray[i]);-->
+            <!--console.log(localexerciseArray[i]);-->
+        <!--}-->
+
+
+    <!--};-->
+
+
+
+
+<!--//-->
+    <!--// note, some of tada points don't have value field-->
+    <!--var chartData = [-->
+        <!--{-->
+            <!--"year": "March 27, 2014",-->
+            <!--"value": -0.307-->
+        <!--},-->
+        <!--{-->
+            <!--"year": "April 31, 2014",-->
+            <!--"value": -0.168-->
+        <!--}-->
+<!--//        {-->
+<!--//            "year": "1952",-->
+<!--//            "value": -0.073-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1953",-->
+<!--//            "value": -0.027-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1954",-->
+<!--//            "value": -0.251-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1955",-->
+<!--//            "value": -0.281-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1956",-->
+<!--//            "value": -0.348-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1957",-->
+<!--//            "value": -0.074-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1958",-->
+<!--//            "value": -0.011-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1959",-->
+<!--//            "value": -0.074-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1960",-->
+<!--//            "value": -0.124-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1961",-->
+<!--//            "value": -0.024-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1962",-->
+<!--//            "value": -0.022-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1963",-->
+<!--//            "value": 0-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1964",-->
+<!--//            "value": -0.296-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1965",-->
+<!--//            "value": -0.217-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1966",-->
+<!--//            "value": -0.147-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1967"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1968"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1969"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1970"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1971",-->
+<!--//            "value": -0.19-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1972",-->
+<!--//            "value": -0.056-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1973",-->
+<!--//            "value": 0.077-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1974",-->
+<!--//            "value": -0.213-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1975",-->
+<!--//            "value": -0.17-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1976",-->
+<!--//            "value": -0.254-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1977",-->
+<!--//            "value": 0.019-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1978",-->
+<!--//            "value": -0.063-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1979",-->
+<!--//            "value": 0.05-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1980",-->
+<!--//            "value": 0.077-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1981",-->
+<!--//            "value": 0.12-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1982",-->
+<!--//            "value": 0.011-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1983",-->
+<!--//            "value": 0.177-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1984"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1985"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1986"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1987"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1988"-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1989",-->
+<!--//            "value": 0.104-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1990",-->
+<!--//            "value": 0.255-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1991",-->
+<!--//            "value": 0.21-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1992",-->
+<!--//            "value": 0.065-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1993",-->
+<!--//            "value": 0.11-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1994",-->
+<!--//            "value": 0.172-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1995",-->
+<!--//            "value": 0.269-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1996",-->
+<!--//            "value": 0.141-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1997",-->
+<!--//            "value": 0.353-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1998",-->
+<!--//            "value": 0.548-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "1999",-->
+<!--//            "value": 0.298-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "2000",-->
+<!--//            "value": 0.267-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "2001",-->
+<!--//            "value": 0.411-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "2002",-->
+<!--//            "value": 0.462-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "2003",-->
+<!--//            "value": 0.47-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "2004",-->
+<!--//            "value": 0.445-->
+<!--//        },-->
+<!--//        {-->
+<!--//            "year": "2005",-->
+<!--//            "value": 0.47-->
+<!--//        }-->
+    <!--];-->
+
+
+    <!--AmCharts.ready(function () {-->
+        <!--// SERIAL CHART-->
+        <!--chart = new AmCharts.AmSerialChart();-->
+        <!--chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
+        <!--chart.marginTop = 0;-->
+        <!--chart.marginRight = 0;-->
+        <!--chart.dataProvider = chartData;-->
+        <!--chart.categoryField = "year";-->
+        <!--chart.dataDateFormat = "YYYY";-->
+        <!--chart.balloon.cornerRadius = 6;-->
+
+        <!--chart2 = new AmCharts.AmSerialChart();-->
+        <!--chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
+        <!--chart2.marginTop = 0;-->
+        <!--chart2.marginRight = 0;-->
+        <!--chart2.dataProvider = chartData;-->
+        <!--chart2.categoryField = "year";-->
+        <!--chart2.dataDateFormat = "YYYY";-->
+        <!--chart2.balloon.cornerRadius = 6;-->
+
+        <!--chart3 = new AmCharts.AmSerialChart();-->
+        <!--chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
+        <!--chart3.marginTop = 0;-->
+        <!--chart3.marginRight = 0;-->
+        <!--chart3.dataProvider = chartData;-->
+        <!--chart3.categoryField = "year";-->
+        <!--chart3.dataDateFormat = "YYYY";-->
+        <!--chart3.balloon.cornerRadius = 6;-->
+
+
+        <!--// AXES-->
+        <!--// category-->
+        <!--var categoryAxis = chart.categoryAxis;-->
+        <!--categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true-->
+        <!--categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY-->
+        <!--categoryAxis.dashLength = 1;-->
+        <!--categoryAxis.minorGridEnabled = true;-->
+        <!--categoryAxis.axisColor = "#DADADA";-->
+
+        <!--// value-->
+        <!--var valueAxis = new AmCharts.ValueAxis();-->
+        <!--valueAxis.axisAlpha = 0;-->
+        <!--valueAxis.dashLength = 1;-->
+        <!--valueAxis.inside = true;-->
+        <!--chart.addValueAxis(valueAxis);-->
+        <!--chart2.addValueAxis(valueAxis);-->
+        <!--chart3.addValueAxis(valueAxis);-->
+
+
+
+
+
+        <!--// GRAPH-->
+        <!--graph = new AmCharts.AmGraph();-->
+        <!--graph.lineColor = "#b6d278";-->
+        <!--graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
+        <!--graph.bullet = "round";-->
+        <!--graph.bulletSize = 8;-->
+        <!--graph.bulletBorderColor = "#FFFFFF";-->
+
+        <!--graph.bulletBorderThickness = 2;-->
+        <!--graph.bulletBorderAlpha = 1;-->
+        <!--graph.connect = false; // this makes the graph not to connect data points if data is missing-->
+        <!--graph.lineThickness = 2;-->
+        <!--graph.valueField = "value";-->
+        <!--graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
+        <!--chart.addGraph(graph);-->
+
+        <!--graph2 = new AmCharts.AmGraph();-->
+        <!--graph2.lineColor = "#b6d278";-->
+        <!--graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
+        <!--graph2.bullet = "round";-->
+        <!--graph2.bulletSize = 8;-->
+        <!--graph2.bulletBorderColor = "#FFFFFF";-->
+
+        <!--graph2.bulletBorderThickness = 2;-->
+        <!--graph2.bulletBorderAlpha = 1;-->
+        <!--graph2.connect = false; // this makes the graph not to connect data points if data is missing-->
+        <!--graph2.lineThickness = 2;-->
+        <!--graph2.valueField = "value";-->
+        <!--graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
+        <!--chart2.addGraph(graph2);-->
+
+        <!--graph3 = new AmCharts.AmGraph();-->
+        <!--graph3.lineColor = "#b6d278";-->
+        <!--graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
+        <!--graph3.bullet = "round";-->
+        <!--graph3.bulletSize = 8;-->
+        <!--graph3.bulletBorderColor = "#FFFFFF";-->
+
+        <!--graph3.bulletBorderThickness = 2;-->
+        <!--graph3.bulletBorderAlpha = 1;-->
+        <!--graph3.connect = false; // this makes the graph not to connect data points if data is missing-->
+        <!--graph3.lineThickness = 2;-->
+        <!--graph3.valueField = "value";-->
+        <!--graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
+        <!--chart3.addGraph(graph3);-->
+
+        <!--// CURSOR-->
+<!--//        var chartCursor = new AmCharts.ChartCursor();-->
+<!--//        chartCursor.cursorAlpha = 0;-->
+<!--//        chartCursor.cursorPosition = "mouse";-->
+<!--//        chartCursor.categoryBalloonDateFormat = "YYYY";-->
+<!--//        chartCursor.graphBulletSize = 2;-->
+<!--//        chart.addChartCursor(chartCursor);-->
+<!--//        chart2.addChartCursor(chartCursor);-->
+<!--//        chart3.addChartCursor(chartCursor);-->
+
+        <!--chart.creditsPosition = "bottom-right";-->
+        <!--chart3.creditsPosition = "bottom-left";-->
+
+<!--//        chart.creditsPosition = "bottom-right";-->
+
+
+
+
+        <!--// WRITE-->
+        <!--chart.write("a");-->
+        <!--chart2.write("b");-->
+        <!--chart3.write("c");-->
+    <!--});-->
+
+
+    <!--$(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
+        <!--chart.invalidateSize();-->
+        <!--chart2.invalidateSize();-->
+        <!--chart3.invalidateSize();-->
+
+
+
+
+        <!--console.log("helo sam 2")-->
+
+
+        <!--//un-highlight and highlight only the buttons in the same navbar widget-->
+        <!--$(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
+
+        <!--//this bit is the same, you could chain it off of the last call by using two `.end()`s-->
+        <!--$(this).addClass('ui-navbar-btn-active');-->
+
+
+        <!--//this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
+        <!--$('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();-->
+<!--//        $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();-->
+
+
+    <!--});-->
+
+
+
+    <!--$(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
+
+        <!--console.log("helo sam 3")-->
+
+        <!--//un-highlight and highlight only the buttons in the same navbar widget-->
+        <!--$(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
+
+        <!--//this bit is the same, you could chain it off of the last call by using two `.end()`s-->
+        <!--$(this).addClass('ui-navbar-btn-active');-->
+
+
+        <!--//this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
+<!--//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();-->
+        <!--$('#' + $(this).attr('data-href2')).show().siblings('.act').hide();-->
+
+
+
+    <!--});-->
+
+
+
+
+<!--//-->
+<!--//    $(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
+<!--//-->
+<!--//-->
+<!--//-->
+<!--//-->
+<!--//        console.log("helo sam 4")-->
+<!--//-->
+<!--//-->
+<!--//        //un-highlight and highlight only the buttons in the same navbar widget-->
+<!--//        $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
+<!--//-->
+<!--//        //this bit is the same, you could chain it off of the last call by using two `.end()`s-->
+<!--//        $(this).addClass('ui-navbar-btn-active');-->
+<!--//-->
+<!--//-->
+<!--//        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
+<!--//-->
+<!--//        $('#' + $(this).attr('data-href')).show().siblings('.activity').hide();-->
+<!--//-->
+<!--//    })-->
+<!--//-->
+<!--//    $(document).delegate('.ui-navbar ul li > b', 'click', function () {-->
+<!--//        chart.invalidateSize();-->
+<!--//        chart2.invalidateSize();-->
+<!--//-->
+<!--//-->
+<!--//        console.log("helo sam")-->
+<!--//-->
+<!--//        //un-highlight and highlight only the buttons in the same navbar widget-->
+<!--//        $(this).closest('.ui-navbar').find('b').removeClass('ui-navbar-btn-active');-->
+<!--//-->
+<!--//        //this bit is the same, you could chain it off of the last call by using two `.end()`s-->
+<!--//        $(this).addClass('ui-navbar-btn-active');-->
+<!--//-->
+<!--//-->
+<!--//        //this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
+<!--//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();-->
+<!--//    })-->
+
+
+<!--//    $(function () {-->
+<!--//        $("nav").tabs({-->
+<!--//            select: function (event, ui) {-->
+<!--//                console.log('Calling chart.invalidateSize()');-->
+<!--//                chart.invalidateSize();-->
+<!--////                chart2.invalidateSize();-->
+<!--//            }-->
+<!--//        });-->
+<!--//    });-->
+<!--//-->
+<!--//    $(function () {-->
+<!--//        $(document).delegate('[data-role="navbar"] a', 'click', function ()  {-->
+<!--//            select: function (event, ui) {-->
+<!--//                console.log('Calling chart.invalidateSize()');-->
+<!--//                chart.invalidateSize();-->
+<!--//    //                chart2.invalidateSize();-->
+<!--//            }-->
+<!--//        });-->
+<!--//    });-->
+
+
+<!--//-->
+<!--//    $('div[data-role="navbar"] a').live('click', function () {-->
+<!--//        $(this).addClass('ui-btn-active');-->
+<!--//        $('div.content_div').hide();-->
+<!--//        $('div#' + $(this).attr('data-href')).show();-->
+<!--//    });-->
+
+<!--//    // FOR Swipe-->
+<!--//    $(document).on('swipeleft', '[data-role="tab"]', function(event){-->
+<!--//        if(event.handled !== true) // This will prevent event triggering more then once-->
+<!--//        {-->
+<!--//            var nextpage = $(this).next('[data-role="tab"]');-->
+<!--//            // swipe using id of next page if exists-->
+<!--//            if (nextpage.length > 0) {-->
+<!--//                $.mobile.change( {transition: "slide", reverse: false}, true, true);-->
+<!--//            }-->
+<!--//            event.handled = true;-->
+<!--//        }-->
+<!--//        return false;-->
+<!--//    });-->
+<!--//-->
+<!--//    $(document).on('swiperight', '[data-role="tab"]', function(event){-->
+<!--//        if(event.handled !== true) // This will prevent event triggering more then once-->
+<!--//        {-->
+<!--//            var prevpage = $(this).prev('[data-role="tab"]');-->
+<!--//            if (prevpage.length > 0) {-->
+<!--//                $.mobile.change( {transition: "slide", reverse: true}, true, true);-->
+<!--//            }-->
+<!--//            event.handled = true;-->
+<!--//        }-->
+<!--//        return false;-->
+<!--//    });-->
+
+
+<!--// Making it like adam's-->
+    <!--var profileIn = function() {-->
+        <!--var profile = $('<li id="newPro">'+-->
+                <!--'<img>'+-->
+                <!--'<h1></h1>'+-->
+                <!--'<p>Weight: <span></span></p>'+-->
+                <!--'</li>');-->
+
+        <!--$('li#newPro').remove();-->
+<!--//        $('p').remove();-->
+
+
+
+        <!--$('ul#profileid').append(profile.clone());-->
+        <!--$('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newPro h1').text("Sammy Hajalie");-->
+        <!--$('li#newPro p span').text("145 lbs");-->
+
+<!--//        console.log("you not here yet");-->
+
+        <!--$('ul#profileid').listview('refresh');-->
+    <!--};-->
+
+
+    <!--var goalin = function() {-->
+        <!--var profile = $('<li id="newGoal">'+-->
+                <!--'<h1></h1>'+-->
+                <!--'<p><span></span></p>'+-->
+                <!--'</li>');-->
+
+        <!--$('li#newGoal').remove();-->
+<!--//        $('p').remove();-->
+
+        <!--$('ul#goalmain').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newGoal h1').text("Goal:");-->
+        <!--$('li#newGoal p span').text("Gain 5 lbs");-->
+
+<!--//        console.log("you not here yet");-->
+
+        <!--$('ul#goalmain').listview('refresh');-->
+    <!--};-->
+
+
+    <!--var recentActivityIn = function() {-->
+        <!--var profile = $('<li id="newActivity">'+-->
+                <!--'<h1></h1>'+-->
+                <!--'<p><span></span></p>'+-->
+                <!--'</li>');-->
+
+
+
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity h1').text("Goal:");-->
+        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+
+
+<!--//        console.log("you not here yet");-->
+
+        <!--$('ul#youractivityid').listview('refresh');-->
+    <!--};-->
+
+    <!--var recentActivityIn2 = function() {-->
+        <!--var profile = $('<li id="newActivity2">'+-->
+                <!--'<h1></h1>'+-->
+                <!--'<p><span></span></p>'+-->
+                <!--'</li>');-->
+
+
+<!--//        for (var i = 0; i < chartData.length; i++) {-->
+<!--//            if (chartData[i] != null) {-->
+<!--//-->
+<!--//                console.log(chartData[i].value);-->
+<!--//                $('ul#youractivityid2').append(profile.clone());-->
+<!--//                $('li#newActivity2 h1').text("You weighed " + chartData[i].value + " lbs!");-->
+<!--//                $('li#newActivity2 p span').text("on " + chartData[i].year);-->
+<!--//                $('ul#youractivityid2').listview('refresh');-->
+<!--//-->
+<!--//            } else {-->
+<!--//                $('li#newActivity3 h1').text("No data");-->
+<!--//                //                $('li#newActivity3 p span').text("on " + chartData[i].year);-->
+<!--//                $('ul#youractivityid2').listview('refresh');-->
+<!--//-->
+<!--//            }-->
+<!--//        }-->
+
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("WEIGHT 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("WEIGHT 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
+        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+
+
+<!--//        console.log("you not here yet");-->
+
+        <!--$('ul#youractivityid2').listview('refresh');-->
+    <!--};-->
+
+    <!--var recentActivityIn3 = function() {-->
+        <!--var profile = $('<li id="newActivity3">'+-->
+                <!--'<h1></h1>'+-->
+                <!--'<p><span></span></p>'+-->
+                <!--'</li>');-->
+
+
+        <!--for (var j = 0; j < chartData.length; j++) {-->
+            <!--$('li#newActivity3').remove();-->
+<!--//            $('h1').remove();-->
+<!--//            $('h1#newActivity3').remove();-->
+        <!--}-->
+
+        <!--console.log(chartData.length);-->
+
+
+        <!--var cList = $('youractivityid3');-->
+
+
+        <!--for (var i = 0; i < chartData.length; i++) {-->
+
+<!--//            $('li#newActivity3').remove();-->
+<!--//            $('p').remove();-->
+<!--//            $('h1').remove();-->
+
+
+            <!--if (chartData[i].value != null) {-->
+
+<!--//                console.log(chartData[i].value);-->
+<!--//                $('ul#youractivityid2').append(profile.clone());-->
+
+<!--//                var li = $('<li>').append(chartData.shift());-->
+<!--//                $('<li id="newActivity3 h1">').append(li.year);-->
+
+<!--//                $('ul#youractivityid3').append(profile.clone());-->
+                <!--$('ul#youractivityid3').append(profile.clone());-->
+
+                <!--$('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");-->
+                <!--$('li#newActivity3 p span').text("on " + chartData[i].year);-->
+                <!--$('li#newActivity3').removeAttr('id');-->
+
+
+
+
+<!--//                $('ul#youractivityid3').listview('refresh');-->
+
+            <!--} else {-->
+
+                <!--continue;-->
+<!--//                $('ul#youractivityid3').append(profile.clone());-->
+<!--//-->
+<!--//                $('li#newActivity3 h1').text("No data");-->
+<!--//                                $('li#newActivity3 p span').text("on date");-->
+<!--//-->
+<!--////                $('ul#youractivityid3').append(profile.clone());-->
+<!--//-->
+<!--////                $('ul#youractivityid3').listview('refresh');-->
+
+            <!--}-->
+        <!--}-->
+
+
+<!--//        $.each(chartData, function(i) {-->
+<!--//            var li = $('<li/>')-->
+<!--//                $('ul#youractivityid3').append(profile.clone());-->
+<!--//        //        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+<!--//                $('li#newActivity3 h1').text("WEIGHT:");-->
+<!--//                $('li#newActivity3 p span').text("Gain 5 lbs")-->
+<!--//                .appendTo(cList);-->
+<!--//            var a = $('<a/>')-->
+<!--//                    .addClass('ui-all')-->
+<!--//                    .text( this )-->
+<!--//                    .appendTo(li);-->
+<!--//        });-->
+
+
+
+
+
+<!--//        $('ul#youractivityid3').append(profile.clone());-->
+<!--////        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+<!--//        $('li#newActivity3 h1').text("WEIGHT:");-->
+<!--//        $('li#newActivity3 p span').text("Gain 5 lbs");-->
+
+<!--//        $('ul#youractivityid3').append(profile.clone());-->
+<!--////        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
+<!--//        $('li#newActivity3 h1').text("WEIGHT:");-->
+<!--//        $('li#newActivity3 p span').text("Gain 5 lbs");-->
+
+
+
+
+
+<!--//        console.log("you not here yet");-->
+
+        <!--$('ul#youractivityid3').listview('refresh');-->
+    <!--};-->
+
+
+
+
+
+    <!--//    $(window).resize(function(){-->
+<!--//        console.log("helloooo")-->
+<!--//        var newwidth = $(window).width();-->
+<!--//        var newheight = $(window).height();-->
+<!--//        $("#element").height(newheight).width(newwidth);-->
+<!--//    });-->
+<!--//-->
+<!--//-->
+<!--//$(window).resize(function() {-->
+<!--//-->
+<!--//    $(‘#element’).css(‘width’, window.innerWidth);-->
+
+<!--//-->
+<!--//-->
+<!--//    $(document).ready(function(){-->
+<!--//        $('a#a').click(function(e) {-->
+<!--//            e.preventDefault();-->
+<!--//            $('div#feed2').hide();-->
+<!--//            $('div#feed1').fadeIn();-->
+<!--//            return false;-->
+<!--//        });-->
+<!--//-->
+<!--//-->
+<!--//        $('a#b').click(function(e) {-->
+<!--//            e.preventDefault();-->
+<!--//            $('div#feed1').hide();-->
+<!--//            $('div#feed2').fadeIn();-->
+<!--//            return false;-->
+<!--//        });-->
+<!--//-->
+<!--//    });-->
+
+    <!--//});-->
+
+    <!--</script>-->
 
 
 
@@ -1566,12 +1557,6 @@ AND THE 3 ARRAYS of 2 elements each
                 </div>
 
                 </div>
-
-
-
-
-
-
 
 
     </div>
