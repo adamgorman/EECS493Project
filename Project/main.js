@@ -148,25 +148,42 @@ var inputPopupInit = function() {
             text: "Adding input...",
             textVisible: true
         });
-        var num = $('#input-form input[type=number]').val();
-        if(num == "" || num == null) {
+        var input = $.extend({},inputTemplate);
+        var date = new Date();
+        input.dateNum = Date.now();
+        input.dateString = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+        input.value = $('#input-form input[type=number]').val();
+        if(input.value == "" || input.value == null) {
             $('#input-form .form-error-text').text("Please enter a value.");
             $.mobile.loading('hide');
-        } else if(num < 0) {
+        } else if(input.value < 0) {
             $('#input-form .form-error-text').text("Value should not negative.");
             $.mobile.loading('hide');
         } else {
-            var input = $.extend({},inputTemplate);
-            var date = new Date();
-            input.dateNum = Date.now();
-            input.dateString = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
-            input.value = num;
             if(websiteData.inputType == "Food") {
-                user.get('calorieEntries').push(input);
+                var arrayLength = user.get('calorieEntries').length;
+                if(arrayLength != 0 && user.get('calorieEntries')[arrayLength - 1].dateString == input.dateString) {
+                    user.get('calorieEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('calorieEntries')[arrayLength - 1].value);
+                    user.get('calorieEntries')[arrayLength - 1].dateNum = input.dateNum;
+                } else {
+                    user.get('calorieEntries').push(input);
+                }
             } else if(websiteData.inputType == "Exercise") {
-                user.get('exerciseEntries').push(input);
+                var arrayLength = user.get('exerciseEntries').length;
+                if(arrayLength != 0 && user.get('exerciseEntries')[arrayLength - 1].dateString == input.dateString) {
+                    user.get('exerciseEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('exerciseEntries')[arrayLength - 1].value);
+                    user.get('exerciseEntries')[arrayLength - 1].dateNum = input.dateNum;
+                } else {
+                    user.get('exerciseEntries').push(input);
+                }
             } else {
-                user.get('weightEntries').push(input);
+                var arrayLength = user.get('weightEntries').length;
+                if(arrayLength != 0 && user.get('weightEntries')[arrayLength - 1].dateString == input.dateString) {
+                    user.get('weightEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('weightEntries')[arrayLength - 1].value);
+                    user.get('weightEntries')[arrayLength - 1].dateNum = input.dateNum;
+                } else {
+                    user.get('weightEntries').push(input);
+                }
             }
             user.save(null, {
                 success: function() {
