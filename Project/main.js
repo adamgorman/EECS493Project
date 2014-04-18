@@ -6,13 +6,16 @@ var constants = {
 };
 var websiteData = {
     inputType: null,
-    compareFriend: null
+    compareFriend: null,
+    targetToDelete: null
 };
 var user;
-
 var friends = [];
 var sentRequests = [];
 var pendingRequests = [];
+var inputTemplate = {
+    
+};
 
 // Global Functions
 $(document).on("pagecontainerbeforeshow", function(event) {
@@ -284,11 +287,12 @@ var confirmClickForRequests = function() {
     //* friend.save();
     user.get('friendUsernames').push(friend.get('username'));
     user.get('pendingRequests').splice(index, 1);
-    user.save({
+    websiteData.targetToDelete = $(event.target);
+    user.save(null, {
         success: function() {
             friends.push(pendingRequests[index]);
             pendingRequests.splice(index, 1);
-            $(event.target).closest('li').remove();
+            websiteData.targetToDelete.closest('li').remove();
             $.mobile.loading('hide');
             checkNoFriendRequests();
             $('#friend-request-popup .form-confirm-text').text("You and " + friend.get('username') + " are now friends.");

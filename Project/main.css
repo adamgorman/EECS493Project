@@ -1,12 +1,12 @@
 /* All Pages */
 .form-error-text {
-    height: 10px;
+    height: 15px;
     color: orangered;
     padding: 5px;
 }
 
 .form-confirm-text {
-    height: 10px;
+    height: 30px;
     color: lightseagreen;
     padding: 5px;
 }
