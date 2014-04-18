@@ -35,16 +35,26 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     } else if(pageId == "add-friend-popup") {
         addFriendInit();
     }
+    else if(pageId == "feed"){
+        addFriends();
+    } else if(pageId == "page3"){
+        achievementInit();
+    }
+    else if(pageId = "share_achievement"){
+        shareInit();
+    }
+
 });
 var compareUsersByUsername = function(a, b) { //intentionally backwards
-    if(a.username > b.username)
+    if(a.attributes.username > b.attributes.username)
         return -1;
-    else if(a.username < b.username)
+    else if(a.attributes.username < b.attributes.username)
         return 1;
     else
         return 0;
 };
 var initForAll = function() {
+    $.mobile.loading('hide');
     $('span.ui-li-count').text(pendingRequests.length);
 };
 
@@ -72,33 +82,32 @@ var loginPageInit = function() {
     });
 };
 var setUserInformation = function(rUser) {
-    user = rUser.attributes;
+    user = rUser;
     // friends
-    user.friendUsernames.forEach(function(fUsername) {
+    user.get('friendUsernames').forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
-                friends.push(buddy[0].attributes);
+                friends.push(buddy[0]);
             }
         });
     });
     // sent friend requests
-    user.sentRequests.forEach(function(fUsername) {
+    user.get('sentRequests').forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
-                sentRequests.push(buddy[0].attributes);
+                sentRequests.push(buddy[0]);
             }
         });
     });
     // pending friend requests
-    user.pendingRequests.forEach(function(fUsername) {
+    user.get('pendingRequests').forEach(function(fUsername) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
             success: function(buddy) {
-                pendingRequests.unshift(buddy[0].attributes);
-                $.mobile.loading('hide');
-                $.mobile.changePage("main/main.html");
+                pendingRequests.push(buddy[0]);
             }
         });
     });
+    $.mobile.changePage("main/main.html");
 };
 
 // Logout Page
@@ -165,8 +174,8 @@ var friendsInit = function() {
         friends.sort(compareUsersByUsername);
         friends.forEach(function(friend, index) {
             $('#friends-header').after(person.clone());
-            $('li#new-person img').attr('src', friend.pic.url());
-            $('li#new-person h2').text(friend.username);
+            $('li#new-person img').attr('src', friend.get('pic').url());
+            $('li#new-person h2').text(friend.get('username'));
             $('li#new-person p span').text("Some goal");
             $('li#new-person').data("friend-index", index).removeAttr('id');
         });
@@ -177,8 +186,8 @@ var friendsInit = function() {
         sentRequests.sort(compareUsersByUsername);
         sentRequests.forEach(function(friend) {
             $('#sent-requests-header').after(person.clone());
-            $('li#new-person img').attr('src', friend.pic.url());
-            $('li#new-person h2').text(friend.username);
+            $('li#new-person img').attr('src', friend.get('pic').url());
+            $('li#new-person h2').text(friend.get('username'));
             $('li#new-person p span').text("Some goal");
             $('li#new-person').removeAttr('id').addClass('ui-disabled');
         });
@@ -187,7 +196,7 @@ var friendsInit = function() {
     $('ul#friends-list').listview('refresh');
 
     $('ul#friends-list li').on('click', function(event) {
-        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")];
+        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")].attributes;
     })
 };
 
@@ -197,7 +206,7 @@ var friendCompareInit = function() {
     $('#friend-name-cell').text(websiteData.compareFriend.username);
 
     // pictures
-    $('#compare-me-pic').attr('src', user.pic.url());
+    $('#compare-me-pic').attr('src', user.get('pic').url());
     $('#compare-friend-pic').attr('src', websiteData.compareFriend.pic.url());
 
     // weights
@@ -213,14 +222,14 @@ var friendCompareInit = function() {
     $('tr.exercise-row td.friend-cell span').text("Workout");
 
     // achievements
-    for(i = 0; i <= user.achievementArray.length; i++) {
-        if(user.achievementArray[i] == 0) {
+    for(i = 0; i <= user.get('achievementArray').length; i++) {
+        if(user.get('achievementArray')[i] == 0) {
             $("tr.achievement" + i + "-row td.personal-cell").text("-");
         } else {
             $("tr.achievement" + i + "-row td.personal-cell").text("X");
         }
     }
-    for(i = 0; i <= user.achievementArray.length; i++) {
+    for(i = 0; i <= user.get('achievementArray').length; i++) {
         if(websiteData.compareFriend.achievementArray[i] == 0) {
             $("tr.achievement" + i + "-row td.friend-cell").text("-");
         } else {
@@ -245,8 +254,8 @@ var friendRequestInit = function() {
         pendingRequests.sort(compareUsersByUsername);
         pendingRequests.forEach(function (friend, index) {
             $('ul#friend-request-list').append(person.clone());
-            $('li#new-person img').attr('src', friend.pic.url());
-            $('li#new-person span.friend-request-list-name').text(friend.username);
+            $('li#new-person img').attr('src', friend.get('pic').url());
+            $('li#new-person span.friend-request-list-name').text(friend.get('username'));
             $('#new-person').data("pending-index", index).removeAttr('id');
         });
     }
@@ -267,15 +276,44 @@ var checkNoFriendRequests = function() {
     }
 };
 var confirmClickForRequests = function() {
+    $.mobile.loading( 'show', {
+        text: "Adding Friend...",
+        textVisible: true
+    });
     var index = $(event.target).closest('li').data("pending-index");
-    friends.push(pendingRequests[index]);
-    pendingRequests.splice(index, 1);
-    $(event.target).closest('li').remove();
-    checkNoFriendRequests();
+    var indexForFriend;
+    var friend = pendingRequests[index];
+    friend.get('friendUsernames').push(user.get('username'));
+    friend.get('sentRequests').forEach(function(buddy, i) {
+        if(buddy == user.get('username')) indexForFriend = i;
+    });
+    friend.get('sentRequests').splice(indexForFriend, 1);
+    // friend.save();
+    user.get('friendUsernames').push(friend.get('username'));
+    user.get('pendingRequests').splice(index, 1);
+    user.save({
+        success: function() {
+            friends.push(pendingRequests[index]);
+            pendingRequests.splice(index, 1);
+            $(event.target).closest('li').remove();
+            $.mobile.loading('hide');
+            checkNoFriendRequests();
+            $('#friend-request-popup .form-confirm-text').text("You and " + friend.get('username') + " are now friends.");
+        }
+    });
     return false;
 };
 var denyClickForRequests = function() {
-    pendingRequests.splice($(event.target).closest('li').data("pending-index"), 1);
+    var index = $(event.target).closest('li').data("pending-index");
+    user.get('pendingRequests').splice(index, 1);
+    user.save();
+    var nonFriend = pendingRequests[index];
+    nonFriend.get('sentRequests').forEach(function(buddy, i) {
+        if(buddy == user.get('username')) indexForFriend = i;
+    });
+    nonFriend.get('sentRequests').splice(indexForFriend, 1);
+    // nonFriend.save();
+    pendingRequests.splice(index, 1);
     $(event.target).closest('li').remove();
     checkNoFriendRequests();
     return false;
@@ -284,14 +322,21 @@ var denyClickForRequests = function() {
 // Add Friend Popup
 var addFriendInit = function() {
     $('#add-friend-popup #add-friend-form').on("submit", function() {
+        $.mobile.loading( 'show', {
+            text: "Adding a Friend...",
+            textVisible: true
+        });
         var username = $('#add-friend-popup input[type=text]').val();
         $('#add-friend-popup input[type=text]').val("");
         var index = alreadyPending(username);
         if(alreadyFriend(username)) { // already friend
+            $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text(username + " is already your friend.");
         } else if(alreadyRequested(username)) { // friend request processing
+            $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text("Request to " + username + " is already sent.");
-        } else if(username == user.username) {
+        } else if(username == user.get('username')) {
+            $.mobile.loading('hide');
             $('#add-friend-popup .form-error-text').text("Cannot be friends with yourself.");
         } else if(index  != -1) {
             // add them as your friend
@@ -308,7 +353,7 @@ var addFriendInit = function() {
 var alreadyFriend = function(username) {
     var result = false;
     friends.forEach(function(buddy) {
-        if(buddy.username == username) {
+        if(buddy.get('username') == username) {
             result = true;
         }
     });
@@ -317,7 +362,7 @@ var alreadyFriend = function(username) {
 var alreadyRequested = function(username) {
     var result = false;
     sentRequests.forEach(function(buddy) {
-        if(buddy.username == username) {
+        if(buddy.get('username') == username) {
             result = true;
         }
     });
@@ -326,7 +371,7 @@ var alreadyRequested = function(username) {
 var alreadyPending = function(username) {
     var result = -1;
     pendingRequests.forEach(function(buddy, index) {
-        if(buddy.username == username) {
+        if(buddy.get('username') == username) {
             result = index;
         }
     });
@@ -336,178 +381,178 @@ var getPersonForRequest = function(username) {
     new Parse.Query(Parse.User).equalTo("username", username).find({
         success: function(buddy) {
             if(buddy.length == 0) {
+                $.mobile.loading('hide');
                 $('#add-friend-popup .form-error-text').text(username + " does not exist.");
             } else {
                 // add them as a sent request on your account
                 // add you to their pending requests
-                sentRequests.push(buddy[0].attributes);
+                sentRequests.push(buddy[0]);
                 $.mobile.changePage("friends.html");
             }
         }
     });
 };
 
-/*
+
 //achievements page
 var achv0 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Beginner Bunny Achieved!</h2>' +
     '<p class ="adjust_indent">You worked out 5 days in a row</p></td></tr></table>');
-var achv1=('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Healthy Hare Achieved!</h2>'+
+var achv1 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Healthy Hare Achieved!</h2>' +
     '<p class ="adjust_indent">You worked out 6 days in a row</p></td></tr></table>');
-var achv2=('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Radical Rabbit Achieved!</h2>'+
+var achv2 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Radical Rabbit Achieved!</h2>' +
     '<p class ="adjust_indent">You worked out 7 days in a row</p></td></tr></table>');
-var achv3=('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Baby Carrot Achieved!</h2>'+
+var achv3 = ('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Baby Carrot Achieved!</h2>' +
     '<p class ="adjust_indent">Under 2000 calories 3 days in a row</p></td></tr></table>');
-var achv4=('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Carrot Pro Achieved!</h2>'+
+var achv4 = ('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Carrot Pro Achieved!</h2>' +
     '<p class ="adjust_indent">Under 2000 calories 5 days in a row</p></td></tr></table>');
-var achv5=('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slim Carrot Achieved!</h2>'+
+var achv5 = ('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slim Carrot Achieved!</h2>' +
     '<p class ="adjust_indent">Lost 3 pounds from starting weight</p></td></tr></table>');
-var achv6=('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slender Carrot Achieved!</h2>'+
+var achv6 = ('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slender Carrot Achieved!</h2>' +
     '<p class ="adjust_indent">Lost 5 pounds from starting weight</p></td></tr></table>');
-var achv7=('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">5 Carrot Log Achieved!</h2>'+
+var achv7 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">5 Carrot Log Achieved!</h2>' +
     '<p class ="adjust_indent">Logged in 5 days in a row</p></td></tr></table>');
-var achv8=('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">10 Carrot Log Achieved!</h2>'+
+var achv8 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">10 Carrot Log Achieved!</h2>' +
     '<p class ="adjust_indent">Logged in 10 days in a row</p></td></tr></table>');
-var achv9=('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log Achieved!</h2>'+
+var achv9 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log Achieved!</h2>' +
     '<p class ="adjust_indent">Logged in 15 days in a row</p></td></tr></table>');
+var curAchv;
+var achievementInit = function() {
+    var aArray = user.get('achievementArray');
+    var workout_counter = user.get("workoutCounter");
+    var under_2000 = user.get("daysUnderTwoThousandCalorieCounter");
+    var weight_counter = user.get("currentWeight") - user.get("startingWeight");
 
-
-var username = "username";
-var password = "password";
-
-
-var user = Parse.User.logIn(username, password, {
-    success: function (user) {
-        // if login is successful
-        alert("You have logged in");
-        var aArray = user.get("achievementArray");
-        var workout_counter = user.get("workoutCounter");
-        var under_2000 = user.get("daysUnderTwoThousandCalorieCounter");
-        var weight_counter = user.get("currentWeight")-user.get("startingWeight");;
-        var login_counter = user.get("loginCounter");
-        //    e.preventDefault();
-        if(workout_counter >= 5)
-            aArray[0]=1;
-        if(workout_counter >= 6)
-            aArray[1]=1;
-        if(workout_counter >= 7)
-            aArray[2]=1;
-        if(under_2000 >= 3)
-            aArray[3]=1;
-        if(under_2000 >= 5)
-            aArray[4]=1;
-        if(weight_counter <= -3)
-            aArray[5]=1;
-        if(weight_counter <= -5)
-            aArray[6]=1;
-        if(login_counter >= 5)
-            aArray[7]=1;
-        if(login_counter >= 10)
-            aArray[8]=1;
-        if(login_counter >= 15)
-            aArray[9]=1;
-        user.set("achievementArray",aArray);
-        user.save();
-
-        $("#fb_icon").click(function () {
-            FB.init({
-                //appId : '496828853760637',
-                //apiKey: '95df48eb35db42b7a4dbca37b4e55bae'
-                appId: '1578778675680791',
-                apiKey: 'a092a4e59e6b899c2a2e38c4b8adbc96',
-                status : true, // check login status
-                cookie : true, // enable cookies to allow the server to access the session
-                name: "Workout Carrot",
-                link: 'http://workoutcarrot.parseapp.com/'
-            });
-            FB.ui(
-                {
-                    method: 'feed',
-                    name: 'This is the content of the "name" field.'
-                });
-        });
-        if(aArray[0]) {
-            $("#a1").html(achv0);
-            $("#ws1").attr("href", "#share_achievement");
-        };
-        $("#ws1").click(function () {
-            $("#dup").html(achv0);
-        });
-        if(aArray[1]){
-            $("#a2").html(achv1);
-            $("#ws2").attr("href","#share_achievement");
-        }
-        $("#ws2").click(function () {
-            $("#dup").html(achv1);
-        });
-        if(aArray[2]) {
-            $("#a3").html(achv2);
-            $("#ws3").attr("href","#share_achievement");
-        }
-        $("#ws3").click(function () {
-            $("#dup").html(achv2);
-        });
-        if(aArray[3]){
-
-            $("#b1").html(achv3);
-            $("#hs1").attr("href","#share_achievement");
-        }
-        $("#hs1").click(function () {
-
-            $("#dup").html(achv3);
-        });
-        if(aArray[4]) {
-            $("#b2").html(achv4);
-            $("#hs2").attr("href","#share_achievement");
-        }
-        $("#hs2").click(function () {
-            $("#dup").html(achv4);
-        });
-
-        if(aArray[5]){
-            $("#c1").html(achv5);
-            $("#ls1").attr("href","#share_achievement");
-        }
-        $("#ls1").click(function () {
-            $("#dup").html(achv5);
-        });
-        if(aArray[6]) {
-            $("#c2").html(achv6);
-            $("#ls2").attr("href","#share_achievement");
-        }
-        $("#ls2").click(function () {
-            $("#dup").html(achv6);
-        });
-
-        if(aArray[7]) {
-            $("#d1").html(achv7);
-            $("#is1").attr("href","#share_achievement");
-        }
-        $("#is1").click(function () {
-            $("#dup").html(achv7);
-        });
-        if(aArray[8]) {
-            $("#d2").html(achv8);
-            $("#is2").attr("href","#share_achievement");
-        }
-        $("#is2").click(function () {
-            $("#dup").html(achv8);
-        });
-        if(aArray[9]) {
-            $("#d3").html(achv9);
-            $("#is3").attr("href","#share_achievement");
-        }
-        $("#is3").click(function () {
-            $("#dup").html(achv9);
-        });
-    },
-
-    error: function (user, error) {
-        // Show the error message somewhere and let the user try again.
-        alert("Error: " + error.code + " " + error.message);
+    var login_counter = user.get("loginCounter");
+    //    e.preventDefault();
+    if (workout_counter >= 5)
+        aArray[0] = 1;
+    if (workout_counter >= 6)
+        aArray[1] = 1;
+    if (workout_counter >= 7)
+        aArray[2] = 1;
+    if (under_2000 >= 3)
+        aArray[3] = 1;
+    if (under_2000 >= 5)
+        aArray[4] = 1;
+    if (weight_counter <= -3)
+        aArray[5] = 1;
+    if (weight_counter <= -5)
+        aArray[6] = 1;
+    if (login_counter >= 5)
+        aArray[7] = 1;
+    if (login_counter >= 10)
+        aArray[8] = 1;
+    if (login_counter >= 15)
+        aArray[9] = 1;
+    user.set("achievementArray", aArray);
+    user.save();
+    if (aArray[0]) {
+        $("#a1").html(achv0);
+        $("#ws1").attr("href", "shareAchievement.html");
+        $("#dup").html(achv0);
     }
-});
+    ;
+    if (aArray[1]) {
+        $("#a2").html(achv1);
+        $("#ws2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[2]) {
+        $("#a3").html(achv2);
+        $("#ws3").attr("href", "shareAchievement.html");
+    }
+    if (aArray[3]) {
+
+        $("#b1").html(achv3);
+        $("#hs1").attr("href", "shareAchievement.html");
+    }
+    if (aArray[4]) {
+        $("#b2").html(achv4);
+        $("#hs2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[5]) {
+        $("#c1").html(achv5);
+        $("#ls1").attr("href", "shareAchievement.html");
+    }
+    if (aArray[6]) {
+        $("#c2").html(achv6);
+        $("#ls2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[7]) {
+        $("#d1").html(achv7);
+        $("#is1").attr("href", "shareAchievement.html");
+    }
+    if (aArray[8]) {
+        $("#d2").html(achv8);
+        $("#is2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[9]) {
+        $("#d3").html(achv9);
+        $("#is3").attr("href", "shareAchievement.html");
+    }
+
+    $("#fb_icon").click(function () {
+        FB.init({
+            //appId : '496828853760637',
+            //apiKey: '95df48eb35db42b7a4dbca37b4e55bae'
+            appId: '1578778675680791',
+            apiKey: 'a092a4e59e6b899c2a2e38c4b8adbc96',
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            name: "Workout Carrot",
+            link: 'http://workoutcarrot.parseapp.com/'
+        });
+        FB.ui(
+            {
+                method: 'feed',
+                name: 'This is the content of the "name" field.'
+            });
+    });
+
+    $("#ws1").click(function () {
+        curAchv = achv0;
+    });
+
+    $("#ws2").click(function () {
+        curAchv = achv1;
+    });
+
+    $("#ws3").click(function () {
+        curAchv = achv2;
+    });
+
+    $("#hs1").click(function () {
+        curAchv = achv3;
+    });
+
+    $("#hs2").click(function () {
+        curAchv = achv4;
+    });
 
 
+    $("#ls1").click(function () {
+        curAchv = achv5;
+    });
+
+    $("#ls2").click(function () {
+        curAchv = achv6;
+    });
+
+
+    $("#is1").click(function () {
+        curAchv = achv7;
+    });
+
+    $("#is2").click(function () {
+        curAchv = achv8;
+    });
+
+    $("#is3").click(function () {
+        curAchv = achv9;
+    });
+}
+var shareInit = function() {
+    $("#dup").html(curAchv);
+}
 //news feed
 var feedFriends = [
     { "firstName":"John" , "lastName":"Doe",
@@ -519,7 +564,9 @@ var feedFriends = [
 ];
 
 var addFriends = function(){
+    $('#friendsFeed').children('li').remove();
     var count = 0;
+
     for(var i = 0; i < feedFriends.length; i++)
     {
         for(var j = 0; j < feedFriends[i].recentActivity.length; j++) {
@@ -537,7 +584,7 @@ var addFriends = function(){
 //    alert($("#13").size())
     sortFeed();
     $("#friendsFeed").listview('refresh');
-}
+};
 
 var sortFeed = function(){
     var elems = $('#friendsFeed').children('li').remove();
@@ -546,4 +593,4 @@ var sortFeed = function(){
         return parseInt(a.id) < parseInt(b.id);
     })
     $('#friendsFeed').append(elems);
-};*/
+};

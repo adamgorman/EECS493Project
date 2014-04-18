@@ -2,7 +2,7 @@
  * Created by Carla on 4/6/2014.
  */
 
-/*var feedFriends = [
+var feedFriends = [
     { "firstName":"John" , "lastName":"Doe",
         "recentActivity":[{"activity":"logged in","date":"March 1, 2012"},{"activity":"cool","date":"March 27, 2012"}]},
     { "firstName":"Anna" , "lastName":"Smith",
@@ -39,4 +39,4 @@ var sortFeed = function(){
         return parseInt(a.id) < parseInt(b.id);
     })
     $('#friendsFeed').append(elems);
-};*/
+};
