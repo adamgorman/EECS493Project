@@ -14,7 +14,9 @@ var friends = [];
 var sentRequests = [];
 var pendingRequests = [];
 var inputTemplate = {
-    
+    dateNum: null,
+    dateString: null,
+    value: null
 };
 
 // Global Functions
@@ -142,15 +144,39 @@ var inputPopupInit = function() {
     }
 
     $('#input-popup #input-form').on("submit", function() {
+        $.mobile.loading( 'show', {
+            text: "Adding input...",
+            textVisible: true
+        });
         var num = $('#input-form input[type=number]').val();
         if(num == "" || num == null) {
             $('#input-form .form-error-text').text("Please enter a value.");
+            $.mobile.loading('hide');
+        } else if(num < 0) {
+            $('#input-form .form-error-text').text("Value should not negative.");
+            $.mobile.loading('hide');
         } else {
-            var num = $('#input-form input[type=number]').val("");
-            websiteData.inputType = null;
-            $.mobile.changePage("input.html");
+            var input = $.extend({},inputTemplate);
+            var date = new Date();
+            input.dateNum = Date.now();
+            input.dateString = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+            input.value = num;
+            if(websiteData.inputType == "Food") {
+                user.get('calorieEntries').push(input);
+            } else if(websiteData.inputType == "Exercise") {
+                user.get('exerciseEntries').push(input);
+            } else {
+                user.get('weightEntries').push(input);
+            }
+            user.save(null, {
+                success: function() {
+                    $('#input-form input[type=number]').val("");
+                    websiteData.inputType = null;
+                    $.mobile.changePage("input.html");
+                }
+            });
         }
-        $('#input-form input:text').val("");
+        $('#input-form input[type=number]').val("");
         return false;
     });
 };
@@ -346,7 +372,7 @@ var addFriendInit = function() {
             //* friend.save();
             user.get('friendUsernames').push(friend.get('username'));
             user.get('pendingRequests').splice(index, 1);
-            user.save({
+            user.save(null, {
                 success: function() {
                     friends.push(pendingRequests[index]);
                     pendingRequests.splice(index, 1);
@@ -360,31 +386,28 @@ var addFriendInit = function() {
     });
 };
 var alreadyFriend = function(username) {
-    var result = false;
     friends.forEach(function(buddy) {
         if(buddy.get('username') == username) {
-            result = true;
+            return true;
         }
     });
-    return result;
+    return false;
 };
 var alreadyRequested = function(username) {
-    var result = false;
     sentRequests.forEach(function(buddy) {
         if(buddy.get('username') == username) {
-            result = true;
+            return true;
         }
     });
-    return result;
+    return false;
 };
 var alreadyPending = function(username) {
-    var result = -1;
     pendingRequests.forEach(function(buddy, index) {
         if(buddy.get('username') == username) {
-            result = index;
+            return index;
         }
     });
-    return result;
+    return -1;
 };
 var getPersonForRequest = function(username) {
     new Parse.Query(Parse.User).equalTo("username", username).find({
