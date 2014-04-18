@@ -131,15 +131,15 @@ var inputPageInit = function() {
 var inputPopupInit = function() {
     if(websiteData.inputType == "Food") {
         $('div[data-role=header] h2').text("Food Input");
-        $('label').text("Enter Your Calories Consumed Today:");
+        $('label').text("Enter Your Calories Consumed:");
         $('input[type=number]').attr("placeholder", "Calories");
     } else if(websiteData.inputType == "Exercise") {
         $('div[data-role=header] h2').text("Exercise Input");
-        $('label').text("Enter Your Hours Exercised Today:");
+        $('label').text("Enter Your Hours Exercised:");
         $('input[type=number]').attr("placeholder", "Hours");
     } else {
         $('div[data-role=header] h2').text("Weight Input");
-        $('label').text("Enter Your Current Weight:");
+        $('label').text("Enter Your Weight:");
         $('input[type=number]').attr("placeholder", "Pounds");
     }
 
