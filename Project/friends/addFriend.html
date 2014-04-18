@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="ui-mobile">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <link rel="stylesheet" href="../main.css">
+    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
+</head>
+<body>
+<div data-role="page" data-dialog="true" id="add-friend-popup">
+    <div data-role="header">
+        <h2>Add a Friend</h2>
+    </div>
+    <div data-role="content">
+        <form style="padding: 10px;" id="add-friend-form">
+            <div>
+                <label>Enter Your Friend's Username:</label>
+                <input type="text" placeholder="Username" />
+            </div>
+            <div id="add-friend-error"></div>
+            <div style="margin-top: 20px;">
+                <input type="submit" value="Send Request" />
+            </div>
+            <div class="form-error-text"></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

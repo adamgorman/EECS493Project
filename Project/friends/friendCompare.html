@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="ui-mobile">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+    <link rel="stylesheet" href="../main.css">
+    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="friend-compare-page">
+    <div data-role="panel" id="panel">
+        <ul data-role="listview">
+            <li><a href="../main/main.html">Home</a></li>
+            <li><a href="../achievements/achievements.html">Achievements</a></li>
+            <li><a href="../friends/friends.html">Friends<span class="ui-li-count">0</span></a></li>
+            <li><a href="../feed/feed.html">Feed</a></li>
+            <li><a href="../settings/settings.html">Settings</a></li>
+            <li><a href="../main/logout.html">Logout</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#panel" data-role="button">Menu</a>
+        <h1>Workout Carrot</h1>
+        <a href="../main/input.html" data-role="button">Input</a>
+    </div>
+    <div data-role="content">
+        <table data-type="table" data-mode="reflow">
+            <thead>
+            <tr>
+                <td class="left-cell"></td>
+                <th>
+                    <div>You</div>
+                    <img src="#" id="compare-me-pic" />
+                </th>
+                <th class="friend-cell">
+                    <div id="friend-name-cell"></div>
+                    <img src="#" id="compare-friend-pic" />
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="weight-row">
+                <th sclass="left-cell">Weight</th>
+                <td class="compare-cell personal-cell"><span></span> lb</td>
+                <td class="compare-cell friend-cell"><span></span> lb</td>
+            </tr>
+            <tr class="calories-row">
+                <th class="left-cell">Average Calories per Day</th>
+                <td class="compare-cell personal-cell"><span></span> Cal</td>
+                <td class="compare-cell friend-cell"><span></span> Cal</td>
+            </tr>
+            <tr class="exercise-row">
+                <th class="left-cell">Average Exercise per Day</th>
+                <td class="compare-cell personal-cell"><span></span> hr</td>
+                <td class="compare-cell friend-cell"><span></span> hr</td>
+            </tr>
+            <tr class="achievement0-row">
+                <th class="left-cell">A0</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement1-row">
+                <th class="left-cell">A1</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement2-row">
+                <th class="left-cell">A2</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement3-row">
+                <th class="left-cell">A3</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement4-row">
+                <th class="left-cell">A4</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement5-row">
+                <th class="left-cell">A5</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement6-row">
+                <th class="left-cell">A6</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement7-row">
+                <th class="left-cell">A7</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement8-row">
+                <th class="left-cell">A8</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            <tr class="achievement9-row">
+                <th class="left-cell">A9</th>
+                <td class="compare-cell personal-cell"></td>
+                <td class="compare-cell friend-cell"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script src="../main.js"></script>
+</body>
+</html>
