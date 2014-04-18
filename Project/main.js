@@ -179,7 +179,7 @@ var inputPopupInit = function() {
             } else {
                 var arrayLength = user.get('weightEntries').length;
                 if(arrayLength != 0 && user.get('weightEntries')[arrayLength - 1].dateString == input.dateString) {
-                    user.get('weightEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('weightEntries')[arrayLength - 1].value);
+                    user.get('weightEntries')[arrayLength - 1].value = parseInt(input.value);
                     user.get('weightEntries')[arrayLength - 1].dateNum = input.dateNum;
                 } else {
                     user.get('weightEntries').push(input);
@@ -327,7 +327,10 @@ var confirmClickForRequests = function() {
         if(buddy == user.get('username')) indexForFriend = i;
     });
     friend.get('sentRequests').splice(indexForFriend, 1);
-    //* friend.save();
+    Parse.Cloud.run('acceptFriend', {
+        targetFriend: friend.get('username'),
+        responderUsername: user.get('username')
+    });
     user.get('friendUsernames').push(friend.get('username'));
     user.get('pendingRequests').splice(index, 1);
     websiteData.targetToDelete = $(event.target);
@@ -352,7 +355,10 @@ var denyClickForRequests = function() {
         if(buddy == user.get('username')) indexForFriend = i;
     });
     nonFriend.get('sentRequests').splice(indexForFriend, 1);
-    //* nonFriend.save();
+    Parse.Cloud.run('rejectFriend', {
+        targetFriend: nonFriend.get('username'),
+        responderUsername: user.get('username')
+    });
     pendingRequests.splice(index, 1);
     $(event.target).closest('li').remove();
     checkNoFriendRequests();
@@ -386,7 +392,10 @@ var addFriendInit = function() {
                 if(buddy == user.get('username')) indexForFriend = i;
             });
             friend.get('sentRequests').splice(indexForFriend, 1);
-            //* friend.save();
+            Parse.Cloud.run('acceptFriend', {
+                targetFriend: friend.get('username'),
+                responderUsername: user.get('username')
+            });
             user.get('friendUsernames').push(friend.get('username'));
             user.get('pendingRequests').splice(index, 1);
             user.save(null, {
@@ -436,7 +445,10 @@ var getPersonForRequest = function(username) {
                 user.get('sentRequests').push(buddy[0].get('username'));
                 user.save();
                 buddy[0].get('pendingRequests').push(user.get('username'));
-                //* buddy[0].save();
+                Parse.Cloud.run('sendRequest', {
+                    targetFriend: buddy[0].get('username'),
+                    senderUsername: user.get('username')
+                });
                 sentRequests.push(buddy[0]);
                 $.mobile.changePage('friends.html');
             }
