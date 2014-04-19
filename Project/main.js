@@ -117,7 +117,7 @@ var loginPageInit = function() {
         return false;
     });
 
-
+//dskdnskn
     chartFunction();
 
 };
@@ -916,11 +916,11 @@ var recentActivityIn3 = function() {
 // SETTINGS PAGE
 var settingsPageInIt = function () {
 
-    var isPrivate = user.get("privateWeight");
-    var firstName = user.get("firstName");
-    var lastName = user.get("lastName")
+    var isPrivate = 0;
+    var firstName = "Sammy";
+    var lastName = "Smith";
     var initialWeight = 1;
-    var goalWeight = user.get("weightGoal");
+    var goalWeight = 1;
     var goalNumber = 1;
 
 
@@ -973,13 +973,7 @@ var settingsPageInIt = function () {
 
 
     $( "#saveSettings" ).click(function() {
-        user.set("privateWeight", isPrivate);
-        user.set("firstName", firstName);
-        user.set("lastName", lastName);
-        user.set("weightGoal", goalWeight);
-        user.set("privateWeight", isPrivate);
-        
-        user.save();
+
 
         alert( "Handler for .click() called." );
     });
