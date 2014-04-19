@@ -1,158 +1,116 @@
-<!--HELLLO GABE!
-DATA NEEDED FOR THIS PAGE IS
-
-NAME OF USER
-CURRENT WEIGHT OF USER
-CURRENT WEIGHT GOAL - done in settings
-AND THE 3 ARRAYS of 2 elements each
-    - weight per day, timetamp
-    - excise day, timestamp
-    - calrores day, timestamp
-
-    - and can possibly make the array of 2 elements each if you give me the data in an array(we talked about this
-
--->
-
-
-
-
 <!DOCTYPE html>
 <html class="ui-mobile">
 <head>
 
-<!--testing git on new pc-->
-    <title>Main Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Main Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
-    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
-    <link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
-    <link rel="stylesheet" href="amcharts_3.4.7.free/samples/style.css" type="text/css">
-
+<link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.theme.min.css">
+<link rel="stylesheet" href="../jquerymobile/jquery.mobile.custom.structure.min.css">
+<link rel="stylesheet" href="../jquerymobile/jquery.mobile.icons-1.4.2.css">
+<link rel="stylesheet" href="amcharts_3.4.7.free/samples/style.css" type="text/css">
 
 
-    <script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
-    <script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+<script type="text/javascript" src="../jquerymobile/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="../jquerymobile/jquery.mobile.custom.min.js"></script>
+
+<link rel="stylesheet" href="../main.css">
+
+// for parse
+<script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<script type="text/javascript" src="amcharts_3.4.7.free/amcharts/amcharts.js"></script>
+
+<script type="text/javascript" src="amcharts_3.4.7.free/amcharts/serial.js"></script>
+
+<script type="text/javascript" src="iosslider/_src/jquery.iosslider.js"></script>
+
+<script type="text/javascript" src="../main.js"></script>
 
 
-    // for parse
-    <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
+<!--<script src="../main/jquery.swipeplanes-1.2.min.js"></script>-->
 
 
-    <!--<link rel="stylesheet" href="jquery-ui.css">-->
-    <!--<script src="jquery-ui.min.js"></script>-->
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <!--<script src="Chart.js"></script>-->
-
-    <!--<script type="text/javascript" src="../DevExpressChartJS-13.2.8/Lib/js/dx.chartjs.js"></script>-->
-
-    <!--<link rel="stylesheet" type="text/css" href="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/css/reset.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/css/site.css" media="screen and (min-width: 740px)" />-->
-    <!--<link rel="stylesheet" type="text/css" href="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/css/phone.css" media="screen and (max-width: 739px)"/>-->
-
-    <!--<script type="text/javascript" src="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/scripts/tools.js"></script>-->
-    <!--<script type="text/javascript" src="../DevExpressChartJS-13.2.8/Demos/SalesDashboard/scripts/themes.js"></script>-->
-
-    <script type="text/javascript" src="amcharts_3.4.7.free/amcharts/amcharts.js"></script>
-
-    <script type="text/javascript" src="amcharts_3.4.7.free/amcharts/serial.js"></script>
+<!--<script>-->
+<!--$(document).ready(function(){-->
+<!--$('.myslider1').swipePlanes();-->
+<!--$('.myslider2').swipePlanes();-->
+<!--});-->
+<!--</script>-->
 
 
-
-<!-- jQuery library -->
-    <!--<script type = 'text/javascript' src = '../main/iosslider/_lib/jquery-1.4.min.js'></script>-->
-
-    <script tyoe="text/javascript" src="iosslider/_src/jquery.iosslider.js"></script>
-
-    <script type="text/javascript" src="../main.js"></script>
-
-    <!--<script src="../main/jquery.swipeplanes-1.2.min.js"></script>-->
+<!--<script type="text/javascript">-->
 
 
-    <!--<script>-->
-        <!--$(document).ready(function(){-->
-            <!--$('.myslider1').swipePlanes();-->
-            <!--$('.myslider2').swipePlanes();-->
-        <!--});-->
-    <!--</script>-->
+<!--// new used for parse-->
+<!--var exerciseArray;-->
+<!--var localexerciseArray =  new Array();-->
+<!--var localexerciseArray2;-->
 
 
-    <!--<script type="text/javascript">-->
+<!--var getGoalWeight = function() {-->
+
+<!--// get settings if array is ampty-->
+
+<!--};-->
 
 
-    <!--// new used for parse-->
-    <!--var exerciseArray;-->
-    <!--var localexerciseArray =  new Array();-->
-    <!--var localexerciseArray2;-->
+<!--// parse things-->
+<!--Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");-->
+<!--Parse.User.logOut();-->
+<!--var username = "username";-->
+<!--var password = "password";-->
 
 
-
-    <!--var getGoalWeight = function() {-->
-
-        <!--// get settings if array is ampty-->
-
-    <!--};-->
+<!--var parseFunction = function() {-->
 
 
-    <!--// parse things-->
-    <!--Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");-->
-    <!--Parse.User.logOut();-->
-    <!--var username = "username";-->
-    <!--var password = "password";-->
+<!--Parse.User.logIn(username, password, {-->
+<!--success: function (user) {-->
+<!--// if login is successful-->
+<!--alert("Welcome, " + user.get("firstName") + " " + user.get("lastName"));-->
+
+<!--user.save();-->
+<!--user.fetch({-->
+<!--success: function (user) {-->
+<!--//user has been refreshed.-->
+<!--},-->
+<!--error: function (error) {-->
+<!--alert("Couldn't refresh user!");-->
 
 
+<!--}-->
+<!--});-->
 
 
+<!--exerciseArray = user.get("exerciseEntries");-->
+<!--//debugger;-->
 
+<!--localexerciseArray.length = exerciseArray.length;-->
 
-   <!--var parseFunction = function() {-->
-
-
-       <!--Parse.User.logIn(username, password, {-->
-           <!--success: function (user) {-->
-               <!--// if login is successful-->
-               <!--alert("Welcome, " + user.get("firstName") + " " + user.get("lastName"));-->
-
-               <!--user.save();-->
-               <!--user.fetch({-->
-                   <!--success: function (user) {-->
-                       <!--//user has been refreshed.-->
-                   <!--},-->
-                   <!--error: function (error) {-->
-                       <!--alert("Couldn't refresh user!");-->
-
-
-                   <!--}-->
-               <!--});-->
-
-
-               <!--exerciseArray = user.get("exerciseEntries");-->
-               <!--//debugger;-->
-
-               <!--localexerciseArray.length = exerciseArray.length;-->
-
-               <!--console.log(localexerciseArray.length);-->
-               <!--for(var i = 0; i < exerciseArray.length; i++){-->
-                   <!--//Get the objectiD of the input-->
-                   <!--var exId = exerciseArray[i];-->
+<!--console.log(localexerciseArray.length);-->
+<!--for(var i = 0; i < exerciseArray.length; i++){-->
+<!--//Get the objectiD of the input-->
+<!--var exId = exerciseArray[i];-->
 
 <!--//                   console.log(exId);-->
 <!--//                   console.log(exId.length);-->
-                   <!--//Open on query on the ExerciseInput table-->
-                   <!--var inputQuery = new Parse.Query("ExerciseInput");-->
+<!--//Open on query on the ExerciseInput table-->
+<!--var inputQuery = new Parse.Query("ExerciseInput");-->
 
 
-                   <!--//Look for the matching objectId-->
-                   <!--inputQuery.equalTo("objectId", exId);-->
-                   <!--inputQuery.find({-->
-                       <!--success: function(result) {-->
-                           <!--//When you find it, print its date and value variables.-->
+<!--//Look for the matching objectId-->
+<!--inputQuery.equalTo("objectId", exId);-->
+<!--inputQuery.find({-->
+<!--success: function(result) {-->
+<!--//When you find it, print its date and value variables.-->
 
-                           <!--console.log("hello world");-->
+<!--console.log("hello world");-->
 
-                           <!--console.log("query returned: " + result[0].get("date") + " "-->
-                                   <!--+ result[0].get("value"));-->
+<!--console.log("query returned: " + result[0].get("date") + " "-->
+<!--+ result[0].get("value"));-->
 
 <!--//                           localexerciseArray.push(-->
 <!--//                               "year": result[0].get("date"),-->
@@ -160,83 +118,72 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//                           );-->
 
 
-                            <!--localexerciseArray[i] = {-->
-                                <!--"year": result[0].get("date"),-->
-                                <!--"value": result[0].get("value")-->
-                            <!--}-->
+<!--localexerciseArray[i] = {-->
+<!--"year": result[0].get("date"),-->
+<!--"value": result[0].get("value")-->
+<!--}-->
 
 
-
-                       <!--},-->
-                       <!--error: function(result) {-->
-                          <!--// alert("COULDN'T FIND OBJECT IN TABLE");-->
-                       <!--}-->
-                   <!--});-->
-               <!--}-->
-
+<!--},-->
+<!--error: function(result) {-->
+<!--// alert("COULDN'T FIND OBJECT IN TABLE");-->
+<!--}-->
+<!--});-->
+<!--}-->
 
 
 <!--//-->
 <!--//               console.log(exerciseArray);-->
 <!--//               console.log(localexerciseArray);-->
 
-           <!--},-->
-           <!--error: function (user, error) {-->
-               <!--// Show the error message somewhere and let the user try again.-->
-               <!--alert("Error: " + error.code + " " + error.message);-->
+<!--},-->
+<!--error: function (user, error) {-->
+<!--// Show the error message somewhere and let the user try again.-->
+<!--alert("Error: " + error.code + " " + error.message);-->
 
-               <!--// got to log in page-->
-           <!--}-->
-
-
+<!--// got to log in page-->
+<!--}-->
 
 
-
-       <!--});-->
+<!--});-->
 
 <!--//-->
 
 
-
-
-   <!--};-->
+<!--};-->
 <!--//-->
 <!--//    console.log("you suck");-->
 <!--//    parseFunction();-->
 
 
 <!--//    for (var i = 0; i < exerciseArray.length; i++) {-->
-    <!--//        console.log("what??/");-->
-    <!--//        console.log(exerciseArray);-->
-    <!--// }-->
-    <!--console.log(localexerciseArray, "sucks");-->
+<!--//        console.log("what??/");-->
+<!--//        console.log(exerciseArray);-->
+<!--// }-->
+<!--console.log(localexerciseArray, "sucks");-->
 
 
-    <!--$(document).on("pagecontainerbeforeshow", function(event) {-->
-        <!--var pageId = $('body').pagecontainer('getActivePage').prop('id');-->
-        <!--if(pageId == "page1") {-->
+<!--$(document).on("pagecontainerbeforeshow", function(event) {-->
+<!--var pageId = $('body').pagecontainer('getActivePage').prop('id');-->
+<!--if(pageId == "page1") {-->
 
-            <!--parseFunction();-->
+<!--parseFunction();-->
 
 
-
-            <!--profileIn();-->
-            <!--goalin();-->
-            <!--recentActivityIn();-->
-            <!--recentActivityIn2();-->
-            <!--recentActivityIn3();-->
+<!--profileIn();-->
+<!--goalin();-->
+<!--recentActivityIn();-->
+<!--recentActivityIn2();-->
+<!--recentActivityIn3();-->
 
 
 <!--//            parseFunction();-->
 
-            <!--console.log("what??/");-->
-            <!--buildChart();-->
+<!--console.log("what??/");-->
+<!--buildChart();-->
 
 
-
-
-
-        <!--}-->
+<!--}-->
 <!--//        if (pageId == "feed1") {-->
 <!--//            recentActivityIn();-->
 <!--//-->
@@ -244,13 +191,8 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//        if (pageId == "feed2") {-->
 <!--//            recentActivityIn2()-->
 <!--//        }-->
-        <!--console.log(pageId);-->
-    <!--});-->
-
-
-
-
-
+<!--console.log(pageId);-->
+<!--});-->
 
 
 <!--//    $('#nav1').click(function() {-->
@@ -269,53 +211,48 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//        return false;-->
 <!--//    });-->
 
-    <!--var chart3;-->
-    <!--var graph3;-->
-    <!--var chart2;-->
-    <!--var graph2;-->
-    <!--var chart;-->
-    <!--var graph;-->
+<!--var chart3;-->
+<!--var graph3;-->
+<!--var chart2;-->
+<!--var graph2;-->
+<!--var chart;-->
+<!--var graph;-->
 
 
+<!--console.log(exerciseArray);-->
+
+<!--for (var i = 0; i < localexerciseArray.length; i++) {-->
+<!--console.log("what??/");-->
+<!--console.log(localexerciseArray);-->
+<!--}-->
 
 
+<!--var buildChart = function() {-->
 
-    <!--console.log(exerciseArray);-->
-
-    <!--for (var i = 0; i < localexerciseArray.length; i++) {-->
-            <!--console.log("what??/");-->
-            <!--console.log(localexerciseArray);-->
-    <!--}-->
+<!--console.log("whhhhhhhhy");-->
+<!--console.log(exerciseArray);-->
 
 
-    <!--var buildChart = function() {-->
-
-        <!--console.log("whhhhhhhhy");-->
-        <!--console.log(exerciseArray);-->
-
-
-        <!--for (var i = 0; i < localexerciseArray.length; i++) {-->
-            <!--console.log(exerciseArray[i]);-->
-            <!--console.log(localexerciseArray[i]);-->
-        <!--}-->
+<!--for (var i = 0; i < localexerciseArray.length; i++) {-->
+<!--console.log(exerciseArray[i]);-->
+<!--console.log(localexerciseArray[i]);-->
+<!--}-->
 
 
-    <!--};-->
-
-
+<!--};-->
 
 
 <!--//-->
-    <!--// note, some of tada points don't have value field-->
-    <!--var chartData = [-->
-        <!--{-->
-            <!--"year": "March 27, 2014",-->
-            <!--"value": -0.307-->
-        <!--},-->
-        <!--{-->
-            <!--"year": "April 31, 2014",-->
-            <!--"value": -0.168-->
-        <!--}-->
+<!--// note, some of tada points don't have value field-->
+<!--var chartData = [-->
+<!--{-->
+<!--"year": "March 27, 2014",-->
+<!--"value": -0.307-->
+<!--},-->
+<!--{-->
+<!--"year": "April 31, 2014",-->
+<!--"value": -0.168-->
+<!--}-->
 <!--//        {-->
 <!--//            "year": "1952",-->
 <!--//            "value": -0.073-->
@@ -523,108 +460,105 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//            "year": "2005",-->
 <!--//            "value": 0.47-->
 <!--//        }-->
-    <!--];-->
+<!--];-->
 
 
-    <!--AmCharts.ready(function () {-->
-        <!--// SERIAL CHART-->
-        <!--chart = new AmCharts.AmSerialChart();-->
-        <!--chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
-        <!--chart.marginTop = 0;-->
-        <!--chart.marginRight = 0;-->
-        <!--chart.dataProvider = chartData;-->
-        <!--chart.categoryField = "year";-->
-        <!--chart.dataDateFormat = "YYYY";-->
-        <!--chart.balloon.cornerRadius = 6;-->
+<!--AmCharts.ready(function () {-->
+<!--// SERIAL CHART-->
+<!--chart = new AmCharts.AmSerialChart();-->
+<!--chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
+<!--chart.marginTop = 0;-->
+<!--chart.marginRight = 0;-->
+<!--chart.dataProvider = chartData;-->
+<!--chart.categoryField = "year";-->
+<!--chart.dataDateFormat = "YYYY";-->
+<!--chart.balloon.cornerRadius = 6;-->
 
-        <!--chart2 = new AmCharts.AmSerialChart();-->
-        <!--chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
-        <!--chart2.marginTop = 0;-->
-        <!--chart2.marginRight = 0;-->
-        <!--chart2.dataProvider = chartData;-->
-        <!--chart2.categoryField = "year";-->
-        <!--chart2.dataDateFormat = "YYYY";-->
-        <!--chart2.balloon.cornerRadius = 6;-->
+<!--chart2 = new AmCharts.AmSerialChart();-->
+<!--chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
+<!--chart2.marginTop = 0;-->
+<!--chart2.marginRight = 0;-->
+<!--chart2.dataProvider = chartData;-->
+<!--chart2.categoryField = "year";-->
+<!--chart2.dataDateFormat = "YYYY";-->
+<!--chart2.balloon.cornerRadius = 6;-->
 
-        <!--chart3 = new AmCharts.AmSerialChart();-->
-        <!--chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
-        <!--chart3.marginTop = 0;-->
-        <!--chart3.marginRight = 0;-->
-        <!--chart3.dataProvider = chartData;-->
-        <!--chart3.categoryField = "year";-->
-        <!--chart3.dataDateFormat = "YYYY";-->
-        <!--chart3.balloon.cornerRadius = 6;-->
-
-
-        <!--// AXES-->
-        <!--// category-->
-        <!--var categoryAxis = chart.categoryAxis;-->
-        <!--categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true-->
-        <!--categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY-->
-        <!--categoryAxis.dashLength = 1;-->
-        <!--categoryAxis.minorGridEnabled = true;-->
-        <!--categoryAxis.axisColor = "#DADADA";-->
-
-        <!--// value-->
-        <!--var valueAxis = new AmCharts.ValueAxis();-->
-        <!--valueAxis.axisAlpha = 0;-->
-        <!--valueAxis.dashLength = 1;-->
-        <!--valueAxis.inside = true;-->
-        <!--chart.addValueAxis(valueAxis);-->
-        <!--chart2.addValueAxis(valueAxis);-->
-        <!--chart3.addValueAxis(valueAxis);-->
+<!--chart3 = new AmCharts.AmSerialChart();-->
+<!--chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";-->
+<!--chart3.marginTop = 0;-->
+<!--chart3.marginRight = 0;-->
+<!--chart3.dataProvider = chartData;-->
+<!--chart3.categoryField = "year";-->
+<!--chart3.dataDateFormat = "YYYY";-->
+<!--chart3.balloon.cornerRadius = 6;-->
 
 
+<!--// AXES-->
+<!--// category-->
+<!--var categoryAxis = chart.categoryAxis;-->
+<!--categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true-->
+<!--categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY-->
+<!--categoryAxis.dashLength = 1;-->
+<!--categoryAxis.minorGridEnabled = true;-->
+<!--categoryAxis.axisColor = "#DADADA";-->
+
+<!--// value-->
+<!--var valueAxis = new AmCharts.ValueAxis();-->
+<!--valueAxis.axisAlpha = 0;-->
+<!--valueAxis.dashLength = 1;-->
+<!--valueAxis.inside = true;-->
+<!--chart.addValueAxis(valueAxis);-->
+<!--chart2.addValueAxis(valueAxis);-->
+<!--chart3.addValueAxis(valueAxis);-->
 
 
+<!--// GRAPH-->
+<!--graph = new AmCharts.AmGraph();-->
+<!--graph.lineColor = "#b6d278";-->
+<!--graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
+<!--graph.bullet = "round";-->
+<!--graph.bulletSize = 8;-->
+<!--graph.bulletBorderColor = "#FFFFFF";-->
 
-        <!--// GRAPH-->
-        <!--graph = new AmCharts.AmGraph();-->
-        <!--graph.lineColor = "#b6d278";-->
-        <!--graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
-        <!--graph.bullet = "round";-->
-        <!--graph.bulletSize = 8;-->
-        <!--graph.bulletBorderColor = "#FFFFFF";-->
+<!--graph.bulletBorderThickness = 2;-->
+<!--graph.bulletBorderAlpha = 1;-->
+<!--graph.connect = false; // this makes the graph not to connect data points if data is missing-->
+<!--graph.lineThickness = 2;-->
+<!--graph.valueField = "value";-->
+<!--graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
+<!--chart.addGraph(graph);-->
 
-        <!--graph.bulletBorderThickness = 2;-->
-        <!--graph.bulletBorderAlpha = 1;-->
-        <!--graph.connect = false; // this makes the graph not to connect data points if data is missing-->
-        <!--graph.lineThickness = 2;-->
-        <!--graph.valueField = "value";-->
-        <!--graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
-        <!--chart.addGraph(graph);-->
+<!--graph2 = new AmCharts.AmGraph();-->
+<!--graph2.lineColor = "#b6d278";-->
+<!--graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
+<!--graph2.bullet = "round";-->
+<!--graph2.bulletSize = 8;-->
+<!--graph2.bulletBorderColor = "#FFFFFF";-->
 
-        <!--graph2 = new AmCharts.AmGraph();-->
-        <!--graph2.lineColor = "#b6d278";-->
-        <!--graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
-        <!--graph2.bullet = "round";-->
-        <!--graph2.bulletSize = 8;-->
-        <!--graph2.bulletBorderColor = "#FFFFFF";-->
+<!--graph2.bulletBorderThickness = 2;-->
+<!--graph2.bulletBorderAlpha = 1;-->
+<!--graph2.connect = false; // this makes the graph not to connect data points if data is missing-->
+<!--graph2.lineThickness = 2;-->
+<!--graph2.valueField = "value";-->
+<!--graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
+<!--chart2.addGraph(graph2);-->
 
-        <!--graph2.bulletBorderThickness = 2;-->
-        <!--graph2.bulletBorderAlpha = 1;-->
-        <!--graph2.connect = false; // this makes the graph not to connect data points if data is missing-->
-        <!--graph2.lineThickness = 2;-->
-        <!--graph2.valueField = "value";-->
-        <!--graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
-        <!--chart2.addGraph(graph2);-->
+<!--graph3 = new AmCharts.AmGraph();-->
+<!--graph3.lineColor = "#b6d278";-->
+<!--graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
+<!--graph3.bullet = "round";-->
+<!--graph3.bulletSize = 8;-->
+<!--graph3.bulletBorderColor = "#FFFFFF";-->
 
-        <!--graph3 = new AmCharts.AmGraph();-->
-        <!--graph3.lineColor = "#b6d278";-->
-        <!--graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0-->
-        <!--graph3.bullet = "round";-->
-        <!--graph3.bulletSize = 8;-->
-        <!--graph3.bulletBorderColor = "#FFFFFF";-->
+<!--graph3.bulletBorderThickness = 2;-->
+<!--graph3.bulletBorderAlpha = 1;-->
+<!--graph3.connect = false; // this makes the graph not to connect data points if data is missing-->
+<!--graph3.lineThickness = 2;-->
+<!--graph3.valueField = "value";-->
+<!--graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
+<!--chart3.addGraph(graph3);-->
 
-        <!--graph3.bulletBorderThickness = 2;-->
-        <!--graph3.bulletBorderAlpha = 1;-->
-        <!--graph3.connect = false; // this makes the graph not to connect data points if data is missing-->
-        <!--graph3.lineThickness = 2;-->
-        <!--graph3.valueField = "value";-->
-        <!--graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";-->
-        <!--chart3.addGraph(graph3);-->
-
-        <!--// CURSOR-->
+<!--// CURSOR-->
 <!--//        var chartCursor = new AmCharts.ChartCursor();-->
 <!--//        chartCursor.cursorAlpha = 0;-->
 <!--//        chartCursor.cursorPosition = "mouse";-->
@@ -634,68 +568,60 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//        chart2.addChartCursor(chartCursor);-->
 <!--//        chart3.addChartCursor(chartCursor);-->
 
-        <!--chart.creditsPosition = "bottom-right";-->
-        <!--chart3.creditsPosition = "bottom-left";-->
+<!--chart.creditsPosition = "bottom-right";-->
+<!--chart3.creditsPosition = "bottom-left";-->
 
 <!--//        chart.creditsPosition = "bottom-right";-->
 
 
+<!--// WRITE-->
+<!--chart.write("a");-->
+<!--chart2.write("b");-->
+<!--chart3.write("c");-->
+<!--});-->
 
 
-        <!--// WRITE-->
-        <!--chart.write("a");-->
-        <!--chart2.write("b");-->
-        <!--chart3.write("c");-->
-    <!--});-->
+<!--$(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
+<!--chart.invalidateSize();-->
+<!--chart2.invalidateSize();-->
+<!--chart3.invalidateSize();-->
 
 
-    <!--$(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
-        <!--chart.invalidateSize();-->
-        <!--chart2.invalidateSize();-->
-        <!--chart3.invalidateSize();-->
+<!--console.log("helo sam 2")-->
 
 
+<!--//un-highlight and highlight only the buttons in the same navbar widget-->
+<!--$(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
+
+<!--//this bit is the same, you could chain it off of the last call by using two `.end()`s-->
+<!--$(this).addClass('ui-navbar-btn-active');-->
 
 
-        <!--console.log("helo sam 2")-->
-
-
-        <!--//un-highlight and highlight only the buttons in the same navbar widget-->
-        <!--$(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
-
-        <!--//this bit is the same, you could chain it off of the last call by using two `.end()`s-->
-        <!--$(this).addClass('ui-navbar-btn-active');-->
-
-
-        <!--//this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
-        <!--$('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();-->
+<!--//this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
+<!--$('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();-->
 <!--//        $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();-->
 
 
-    <!--});-->
+<!--});-->
 
 
+<!--$(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
 
-    <!--$(document).delegate('.ui-navbar ul li > a', 'click', function () {-->
+<!--console.log("helo sam 3")-->
 
-        <!--console.log("helo sam 3")-->
+<!--//un-highlight and highlight only the buttons in the same navbar widget-->
+<!--$(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
 
-        <!--//un-highlight and highlight only the buttons in the same navbar widget-->
-        <!--$(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');-->
-
-        <!--//this bit is the same, you could chain it off of the last call by using two `.end()`s-->
-        <!--$(this).addClass('ui-navbar-btn-active');-->
+<!--//this bit is the same, you could chain it off of the last call by using two `.end()`s-->
+<!--$(this).addClass('ui-navbar-btn-active');-->
 
 
-        <!--//this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
+<!--//this starts the same but then only selects the sibling `.content_div` elements to hide rather than all in the DOM-->
 <!--//        $('#' + $(this).attr('data-href')).show().siblings('.content_div').hide();-->
-        <!--$('#' + $(this).attr('data-href2')).show().siblings('.act').hide();-->
+<!--$('#' + $(this).attr('data-href2')).show().siblings('.act').hide();-->
 
 
-
-    <!--});-->
-
-
+<!--});-->
 
 
 <!--//-->
@@ -795,120 +721,117 @@ AND THE 3 ARRAYS of 2 elements each
 
 
 <!--// Making it like adam's-->
-    <!--var profileIn = function() {-->
-        <!--var profile = $('<li id="newPro">'+-->
-                <!--'<img>'+-->
-                <!--'<h1></h1>'+-->
-                <!--'<p>Weight: <span></span></p>'+-->
-                <!--'</li>');-->
+<!--var profileIn = function() {-->
+<!--var profile = $('<li id="newPro">'+-->
+<!--'<img>'+-->
+<!--'<h1></h1>'+-->
+<!--'<p>Weight: <span></span></p>'+-->
+<!--'</li>');-->
 
-        <!--$('li#newPro').remove();-->
+<!--$('li#newPro').remove();-->
 <!--//        $('p').remove();-->
 
 
-
-        <!--$('ul#profileid').append(profile.clone());-->
-        <!--$('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newPro h1').text("Sammy Hajalie");-->
-        <!--$('li#newPro p span').text("145 lbs");-->
+<!--$('ul#profileid').append(profile.clone());-->
+<!--$('li#newPro img').attr('src', 'img/mypic.jpg');-->
+<!--$('li#newPro h1').text("Sammy Hajalie");-->
+<!--$('li#newPro p span').text("145 lbs");-->
 
 <!--//        console.log("you not here yet");-->
 
-        <!--$('ul#profileid').listview('refresh');-->
-    <!--};-->
+<!--$('ul#profileid').listview('refresh');-->
+<!--};-->
 
 
-    <!--var goalin = function() {-->
-        <!--var profile = $('<li id="newGoal">'+-->
-                <!--'<h1></h1>'+-->
-                <!--'<p><span></span></p>'+-->
-                <!--'</li>');-->
+<!--var goalin = function() {-->
+<!--var profile = $('<li id="newGoal">'+-->
+<!--'<h1></h1>'+-->
+<!--'<p><span></span></p>'+-->
+<!--'</li>');-->
 
-        <!--$('li#newGoal').remove();-->
+<!--$('li#newGoal').remove();-->
 <!--//        $('p').remove();-->
 
-        <!--$('ul#goalmain').append(profile.clone());-->
+<!--$('ul#goalmain').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newGoal h1').text("Goal:");-->
-        <!--$('li#newGoal p span').text("Gain 5 lbs");-->
+<!--$('li#newGoal h1').text("Goal:");-->
+<!--$('li#newGoal p span').text("Gain 5 lbs");-->
 
 <!--//        console.log("you not here yet");-->
 
-        <!--$('ul#goalmain').listview('refresh');-->
-    <!--};-->
+<!--$('ul#goalmain').listview('refresh');-->
+<!--};-->
 
 
-    <!--var recentActivityIn = function() {-->
-        <!--var profile = $('<li id="newActivity">'+-->
-                <!--'<h1></h1>'+-->
-                <!--'<p><span></span></p>'+-->
-                <!--'</li>');-->
+<!--var recentActivityIn = function() {-->
+<!--var profile = $('<li id="newActivity">'+-->
+<!--'<h1></h1>'+-->
+<!--'<p><span></span></p>'+-->
+<!--'</li>');-->
 
 
-
-
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid').append(profile.clone());-->
+<!--$('ul#youractivityid').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity h1').text("Goal:");-->
-        <!--$('li#newActivity p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity h1').text("Goal:");-->
+<!--$('li#newActivity p span').text("Gain 5 lbs");-->
 
 
 <!--//        console.log("you not here yet");-->
 
-        <!--$('ul#youractivityid').listview('refresh');-->
-    <!--};-->
+<!--$('ul#youractivityid').listview('refresh');-->
+<!--};-->
 
-    <!--var recentActivityIn2 = function() {-->
-        <!--var profile = $('<li id="newActivity2">'+-->
-                <!--'<h1></h1>'+-->
-                <!--'<p><span></span></p>'+-->
-                <!--'</li>');-->
+<!--var recentActivityIn2 = function() {-->
+<!--var profile = $('<li id="newActivity2">'+-->
+<!--'<h1></h1>'+-->
+<!--'<p><span></span></p>'+-->
+<!--'</li>');-->
 
 
 <!--//        for (var i = 0; i < chartData.length; i++) {-->
@@ -929,90 +852,90 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//        }-->
 
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("WEIGHT 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("WEIGHT 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("WEIGHT 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("WEIGHT 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
-        <!--$('ul#youractivityid2').append(profile.clone());-->
+<!--$('ul#youractivityid2').append(profile.clone());-->
 <!--//        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
-        <!--$('li#newActivity2 h1').text("WEIGHT:");-->
-        <!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
+<!--$('li#newActivity2 h1').text("WEIGHT:");-->
+<!--$('li#newActivity2 p span').text("Gain 5 lbs");-->
 
 
 <!--//        console.log("you not here yet");-->
 
-        <!--$('ul#youractivityid2').listview('refresh');-->
-    <!--};-->
+<!--$('ul#youractivityid2').listview('refresh');-->
+<!--};-->
 
-    <!--var recentActivityIn3 = function() {-->
-        <!--var profile = $('<li id="newActivity3">'+-->
-                <!--'<h1></h1>'+-->
-                <!--'<p><span></span></p>'+-->
-                <!--'</li>');-->
+<!--var recentActivityIn3 = function() {-->
+<!--var profile = $('<li id="newActivity3">'+-->
+<!--'<h1></h1>'+-->
+<!--'<p><span></span></p>'+-->
+<!--'</li>');-->
 
 
-        <!--for (var j = 0; j < chartData.length; j++) {-->
-            <!--$('li#newActivity3').remove();-->
+<!--for (var j = 0; j < chartData.length; j++) {-->
+<!--$('li#newActivity3').remove();-->
 <!--//            $('h1').remove();-->
 <!--//            $('h1#newActivity3').remove();-->
-        <!--}-->
+<!--}-->
 
-        <!--console.log(chartData.length);-->
-
-
-        <!--var cList = $('youractivityid3');-->
+<!--console.log(chartData.length);-->
 
 
-        <!--for (var i = 0; i < chartData.length; i++) {-->
+<!--var cList = $('youractivityid3');-->
+
+
+<!--for (var i = 0; i < chartData.length; i++) {-->
 
 <!--//            $('li#newActivity3').remove();-->
 <!--//            $('p').remove();-->
 <!--//            $('h1').remove();-->
 
 
-            <!--if (chartData[i].value != null) {-->
+<!--if (chartData[i].value != null) {-->
 
 <!--//                console.log(chartData[i].value);-->
 <!--//                $('ul#youractivityid2').append(profile.clone());-->
@@ -1021,20 +944,18 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//                $('<li id="newActivity3 h1">').append(li.year);-->
 
 <!--//                $('ul#youractivityid3').append(profile.clone());-->
-                <!--$('ul#youractivityid3').append(profile.clone());-->
+<!--$('ul#youractivityid3').append(profile.clone());-->
 
-                <!--$('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");-->
-                <!--$('li#newActivity3 p span').text("on " + chartData[i].year);-->
-                <!--$('li#newActivity3').removeAttr('id');-->
-
-
+<!--$('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");-->
+<!--$('li#newActivity3 p span').text("on " + chartData[i].year);-->
+<!--$('li#newActivity3').removeAttr('id');-->
 
 
 <!--//                $('ul#youractivityid3').listview('refresh');-->
 
-            <!--} else {-->
+<!--} else {-->
 
-                <!--continue;-->
+<!--continue;-->
 <!--//                $('ul#youractivityid3').append(profile.clone());-->
 <!--//-->
 <!--//                $('li#newActivity3 h1').text("No data");-->
@@ -1044,8 +965,8 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//-->
 <!--////                $('ul#youractivityid3').listview('refresh');-->
 
-            <!--}-->
-        <!--}-->
+<!--}-->
+<!--}-->
 
 
 <!--//        $.each(chartData, function(i) {-->
@@ -1062,9 +983,6 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//        });-->
 
 
-
-
-
 <!--//        $('ul#youractivityid3').append(profile.clone());-->
 <!--////        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
 <!--//        $('li#newActivity3 h1').text("WEIGHT:");-->
@@ -1074,21 +992,15 @@ AND THE 3 ARRAYS of 2 elements each
 <!--////        $('li#newPro img').attr('src', 'img/mypic.jpg');-->
 <!--//        $('li#newActivity3 h1').text("WEIGHT:");-->
 <!--//        $('li#newActivity3 p span').text("Gain 5 lbs");-->
-
-
-
 
 
 <!--//        console.log("you not here yet");-->
 
-        <!--$('ul#youractivityid3').listview('refresh');-->
-    <!--};-->
+<!--$('ul#youractivityid3').listview('refresh');-->
+<!--};-->
 
 
-
-
-
-    <!--//    $(window).resize(function(){-->
+<!--//    $(window).resize(function(){-->
 <!--//        console.log("helloooo")-->
 <!--//        var newwidth = $(window).width();-->
 <!--//        var newheight = $(window).height();-->
@@ -1120,328 +1032,307 @@ AND THE 3 ARRAYS of 2 elements each
 <!--//-->
 <!--//    });-->
 
-    <!--//});-->
-
-    <!--</script>-->
-
-
-
-
-
-    <style>
-
-
-
-
-
-    body {
-        /* overflow: hidden; */
-        margin: 0;
-    }
-
-    .responsive_height {
-        /*height: 0;*/
-        height: 350px;
-        padding: 0 0 40% 0; /* responsive slider height = 40% of the browser width; ie. slide image aspect ratio: w10xh4 */
-        position: relative;
-        overflow: visible;
-    }
-
-    .responsive_height > .container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        height: 350px;
-
-        overflow: hidden;
-
-        border-radius: 25px;
-        border: 1.4px double dodgerblue;
-
-
-        margin: 10px 0px 10px 0px;
-        /*padding: 50px;*/
-        /*width: 95%;*/
-        /*height: 95%;*/
-    }
-
-    .iosSlider {
-        width: 100%;
-        height: 100%;
-        height: 350px;
-
-        /*background: #aaa;*/
-    }
-
-    .iosSlider .slider {
-        width: 100%;
-        height: 100%;
-        height: 350px;
-
-    }
-
-    .iosSlider .slider .item {
-        position: relative;
-        top: 0;
-        left: 0;
-
-        width: 100%;
-        height: 100%;
-        height: 350px;
-
-        margin: 0 0 0 0;
-    }
-
-    .iosSlider .slider .item .content_div {
-        height: 100%;
-        width: 100%;
-        height: 350px;
-
-    }
-
-    @import url(http://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
-    .content_div {
-        /*{background: #282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg');color: #fff;*/
-        /*width		: 100%;*/
-        /*height		: 500px;*/
-        /*font-size	: 11px;*/
-        /*border-radius: 25px;*/
-        /*border: 2px solid;*/
-        /*margin: 15px;*/
-        padding: 2px;
-        /*height: 220px;*/
-        /*width: 95%;*/
-        /*height: 95%;*/
-        /*margin-right: 7px;*/
-        /*margin-left: 3px;*/
-        /*margin-bottom: 7px;*/
-        /*margin-top: 7px;*/
-        border-radius: 35px;
-        /*border: 2px solid;*/
-        /*border-right-width: 5px;*/
-
-    }
-
-        /*body {*/
-            /*width: 100%;*/
-            /*height: 100%;*/
-        /*}*/
-
-
-        .box2 {
-            overflow: hidden;
-            position: relative;
-            width: 95%;
-
-
-            /*display: table;*/
-
-            border: 2px solid blue;
-            margin: 10px;
-
-        }
-
-        .myslider1{
-            width: 500px;
-            height: 150px;
-            border: 1px solid #CCC;
-        }
-
-        .slide1{
-            width: 200px;
-            height: 150px;
-            background: #E8E8E8;
-        }
-
-
-        /*html, body {*/
-            /*width: 100%;*/
-            /*height: 100%;*/
-        /*}*/
-
-        /*body > div  {*/
-            /*width: 90%;*/
-            /*height: 100%;*/
-            /*background: green;*/
-        /*}*/
-
-        /*body > div > div {*/
-            /*width: 100%;*/
-            /*background: red;*/
-        /*}*/
-
-
-        .myslider2{
-            margin: 5px;
-
-            /*background:green;*/
-            width: 400px;
-            height: 250px;
-            position: relative;
-            right: 0
-            border: 1px solid #CCC;
-            overflow: auto;
-
-        }
-
-        .slide2{
-            margin: 5px;
-            /*background:green;*/
-            width: 400px;
-            height: 250px;
-            position: relative;
-            right: 0
-
-
-        }
-        
-        div#element {
-
-            width: 100vw;
-        }
-        
-
-
-
-        #a, #b, #feed1, #feed2 {
-            display: none;
-        }
-
-        .box {
-            /*border: 2px solid #000000;*/
-
-            margin: 4px;
-
-            margin-left: auto;
-            margin-right: auto;
-            /*margin-right: 2500px;*/
-            padding-right: 0px;
-
-         }
-
-        /*#tabs { width: 100%: }*/
-        /*#tabs .tab { height: 300px; }*/
-        /*p { margin: 10px 0; }*/
-
-        /*.testing {*/
-            /*margin-top: 25px;*/
-        /*}*/
-
-        .supervisor-info .avatar {
-            background-image: url(../img/profile-picture-icon-md.png);
-            width: 50px;
-            height: 50px;
-            margin: 0px 12px 4px 4px;
-            float: left;
-            -moz-background-size: 50px 50px;
-            -o-background-size: 50px 50px;
-            -webkit-background-size: 50px 50px;
-            background-size: 50px 50px;
-            background-repeat: no-repeat;
-        }
-
-        .supervisor-info .name {
-            margin-left: 60px;
-            border: 1px solid #000000;
-            font-size: 1.5em;
-            padding: 0px 0 0 0;
-            -moz-box-sizing: 50px 50px;
-            -o-background-size: 50px 50px;
-            -webkit-box-sizing: 50px;
-        }
-
-        .goals {
-            /*margin-left: 60px;*/
-            margin: 5px 0px 5px 3px;
-            /*float: left;*/
-
-            border: 1px solid #000000;
-            font-size: 1.5em;
-            padding: 0px 0 0 0;
-            -moz-box-sizing: 50px 50px;
-            -o-background-size: 50px 50px;
-            -webkit-box-sizing: 50px;
-
-        }
-
-        .smaller {
-            font-size: .95em;
-
-        }
-
-        .book {
-            overflow: auto;
-            height: 265px;
-            /*width: 95%;*/
-            margin: 10px;
-            border-radius: 25px;
-            /*margin-left: 10px;*/
-            padding: 15px;
-            /*padding-bottom: 15px;*/
-            /*margin-bottom: 15px;*/
-        }
-
-        .activityH {
-            border-radius: 50px;
-            color: white;
-            background-color: #3388cc;
-            margin: 5px;
-
-        }
-
-
-
-
-
-    /*.box{*/
-            /*background-color: lightgray;*/
-            /*border: 1px solid black;*/
-            /*width: 100%;*/
-            /*margin: 0px auto;*/
-            /*position: relative;*/
-            /*font-weight: bold;*/
-            /*text-align: center;*/
-            /*padding: 5px;*/
-            /*margin: 0px 43px;*/
-        /*}*/
-
-        /*.ui-block-a,*/
-        /*.ul-block-b*/
-        /*{*/
-            /*background-color: lightgray;*/
-            /*border: 1px solid black;*/
-            /*width: 10px;*/
-            /*height: 63px;*/
-            /*font-weight: bold;*/
-            /*text-align: center;*/
-            /*padding: 5px;*/
-            /*margin-right: 5px;*/
-            /*margin: 0px 10px;*/
-        /*}*/
-        /*.ui-block-b*/
-        /*{*/
-            /*background-color: lightgray;*/
-            /*border: 1px solid black;*/
-            /*height: 63px;*/
-            /*font-weight: bold;*/
-            /*text-align: center;*/
-            /*padding: 30px;*/
-        /*}*/
-    </style>
-
-    <!--<script type="text/javascript">-->
-        <!--$(window).resize(function(){-->
-            <!--console.log("helloooo")-->
-            <!--var newwidth = $(window).width();-->
-            <!--var newheight = $(window).height();-->
-            <!--$("#element").height(newheight).width(newwidth);-->
-        <!--});-->
-    <!--</script>-->
+<!--//});-->
+
+<!--</script>-->
+
+
+<!--<style>-->
+
+
+<!--body {-->
+    <!--/* overflow: hidden; */-->
+    <!--margin: 0;-->
+<!--}-->
+
+<!--.responsive_height {-->
+    <!--/*height: 0;*/-->
+    <!--height: 350px;-->
+    <!--padding: 0 0 40% 0; /* responsive slider height = 40% of the browser width; ie. slide image aspect ratio: w10xh4 */-->
+    <!--position: relative;-->
+    <!--overflow: visible;-->
+<!--}-->
+
+<!--.responsive_height > .container {-->
+    <!--position: absolute;-->
+    <!--width: 100%;-->
+    <!--height: 100%;-->
+    <!--height: 350px;-->
+
+    <!--overflow: hidden;-->
+
+    <!--border-radius: 25px;-->
+    <!--border: 1.4px double dodgerblue;-->
+
+    <!--margin: 10px 0px 10px 0px;-->
+    <!--/*padding: 50px;*/-->
+    <!--/*width: 95%;*/-->
+    <!--/*height: 95%;*/-->
+<!--}-->
+
+<!--.iosSlider {-->
+    <!--width: 100%;-->
+    <!--height: 100%;-->
+    <!--height: 350px;-->
+
+    <!--/*background: #aaa;*/-->
+<!--}-->
+
+<!--.iosSlider .slider {-->
+    <!--width: 100%;-->
+    <!--height: 100%;-->
+    <!--height: 350px;-->
+
+<!--}-->
+
+<!--.iosSlider .slider .item {-->
+    <!--position: relative;-->
+    <!--top: 0;-->
+    <!--left: 0;-->
+
+    <!--width: 100%;-->
+    <!--height: 100%;-->
+    <!--height: 350px;-->
+
+    <!--margin: 0 0 0 0;-->
+<!--}-->
+
+<!--.iosSlider .slider .item .content_div {-->
+    <!--height: 100%;-->
+    <!--width: 100%;-->
+    <!--height: 350px;-->
+
+<!--}-->
+
+<!--@import url(http://fonts.googleapis.com/css?family=Covered+By+Your+Grace);-->
+<!--.content_div {-->
+    <!--/*{background: #282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg');color: #fff;*/-->
+    <!--/*width		: 100%;*/-->
+    <!--/*height		: 500px;*/-->
+    <!--/*font-size	: 11px;*/-->
+    <!--/*border-radius: 25px;*/-->
+    <!--/*border: 2px solid;*/-->
+    <!--/*margin: 15px;*/-->
+    <!--padding: 2px;-->
+    <!--/*height: 220px;*/-->
+    <!--/*width: 95%;*/-->
+    <!--/*height: 95%;*/-->
+    <!--/*margin-right: 7px;*/-->
+    <!--/*margin-left: 3px;*/-->
+    <!--/*margin-bottom: 7px;*/-->
+    <!--/*margin-top: 7px;*/-->
+    <!--border-radius: 35px;-->
+    <!--/*border: 2px solid;*/-->
+    <!--/*border-right-width: 5px;*/-->
+
+<!--}-->
+
+<!--/*body {*/-->
+<!--/*width: 100%;*/-->
+<!--/*height: 100%;*/-->
+<!--/*}*/-->
+
+<!--.box2 {-->
+    <!--overflow: hidden;-->
+    <!--position: relative;-->
+    <!--width: 95%;-->
+
+    <!--/*display: table;*/-->
+
+    <!--border: 2px solid blue;-->
+    <!--margin: 10px;-->
+
+<!--}-->
+
+<!--.myslider1 {-->
+    <!--width: 500px;-->
+    <!--height: 150px;-->
+    <!--border: 1px solid #CCC;-->
+<!--}-->
+
+<!--.slide1 {-->
+    <!--width: 200px;-->
+    <!--height: 150px;-->
+    <!--background: #E8E8E8;-->
+<!--}-->
+
+<!--/*html, body {*/-->
+<!--/*width: 100%;*/-->
+<!--/*height: 100%;*/-->
+<!--/*}*/-->
+
+<!--/*body > div  {*/-->
+<!--/*width: 90%;*/-->
+<!--/*height: 100%;*/-->
+<!--/*background: green;*/-->
+<!--/*}*/-->
+
+<!--/*body > div > div {*/-->
+<!--/*width: 100%;*/-->
+<!--/*background: red;*/-->
+<!--/*}*/-->
+
+<!--.myslider2 {-->
+    <!--margin: 5px;-->
+
+    <!--/*background:green;*/-->
+    <!--width: 400px;-->
+    <!--height: 250px;-->
+    <!--position: relative;-->
+    <!--right: 0 border : 1 px solid #CCC;-->
+    <!--overflow: auto;-->
+
+<!--}-->
+
+<!--.slide2 {-->
+    <!--margin: 5px;-->
+    <!--/*background:green;*/-->
+    <!--width: 400px;-->
+    <!--height: 250px;-->
+    <!--position: relative;-->
+    <!--right: 0-->
+
+<!--}-->
+
+<!--div#element {-->
+
+    <!--width: 100vw;-->
+<!--}-->
+
+<!--#a, #b, #feed1, #feed2 {-->
+    <!--display: none;-->
+<!--}-->
+
+<!--.box {-->
+    <!--/*border: 2px solid #000000;*/-->
+
+    <!--margin: 4px;-->
+
+    <!--margin-left: auto;-->
+    <!--margin-right: auto;-->
+    <!--/*margin-right: 2500px;*/-->
+    <!--padding-right: 0px;-->
+
+<!--}-->
+
+<!--/*#tabs { width: 100%: }*/-->
+<!--/*#tabs .tab { height: 300px; }*/-->
+<!--/*p { margin: 10px 0; }*/-->
+
+<!--/*.testing {*/-->
+<!--/*margin-top: 25px;*/-->
+<!--/*}*/-->
+
+<!--.supervisor-info .avatar {-->
+    <!--background-image: url(../img/profile-picture-icon-md.png);-->
+    <!--width: 50px;-->
+    <!--height: 50px;-->
+    <!--margin: 0px 12px 4px 4px;-->
+    <!--float: left;-->
+    <!---moz-background-size: 50px 50px;-->
+    <!---o-background-size: 50px 50px;-->
+    <!---webkit-background-size: 50px 50px;-->
+    <!--background-size: 50px 50px;-->
+    <!--background-repeat: no-repeat;-->
+<!--}-->
+
+<!--.supervisor-info .name {-->
+    <!--margin-left: 60px;-->
+    <!--border: 1px solid #000000;-->
+    <!--font-size: 1.5em;-->
+    <!--padding: 0px 0 0 0;-->
+    <!---moz-box-sizing: 50px 50px;-->
+    <!---o-background-size: 50px 50px;-->
+    <!---webkit-box-sizing: 50px;-->
+<!--}-->
+
+<!--.goals {-->
+    <!--/*margin-left: 60px;*/-->
+    <!--margin: 5px 0px 5px 3px;-->
+    <!--/*float: left;*/-->
+
+    <!--border: 1px solid #000000;-->
+    <!--font-size: 1.5em;-->
+    <!--padding: 0px 0 0 0;-->
+    <!---moz-box-sizing: 50px 50px;-->
+    <!---o-background-size: 50px 50px;-->
+    <!---webkit-box-sizing: 50px;-->
+
+<!--}-->
+
+<!--.smaller {-->
+    <!--font-size: .95em;-->
+
+<!--}-->
+
+<!--.book {-->
+    <!--overflow: auto;-->
+    <!--height: 265px;-->
+    <!--/*width: 95%;*/-->
+    <!--margin: 10px;-->
+    <!--border-radius: 25px;-->
+    <!--/*margin-left: 10px;*/-->
+    <!--padding: 15px;-->
+    <!--/*padding-bottom: 15px;*/-->
+    <!--/*margin-bottom: 15px;*/-->
+<!--}-->
+
+<!--.activityH {-->
+    <!--border-radius: 50px;-->
+    <!--color: white;-->
+    <!--background-color: #3388cc;-->
+    <!--margin: 5px;-->
+
+<!--}-->
+
+<!--/*.box{*/-->
+<!--/*background-color: lightgray;*/-->
+<!--/*border: 1px solid black;*/-->
+<!--/*width: 100%;*/-->
+<!--/*margin: 0px auto;*/-->
+<!--/*position: relative;*/-->
+<!--/*font-weight: bold;*/-->
+<!--/*text-align: center;*/-->
+<!--/*padding: 5px;*/-->
+<!--/*margin: 0px 43px;*/-->
+<!--/*}*/-->
+
+<!--/*.ui-block-a,*/-->
+<!--/*.ul-block-b*/-->
+<!--/*{*/-->
+<!--/*background-color: lightgray;*/-->
+<!--/*border: 1px solid black;*/-->
+<!--/*width: 10px;*/-->
+<!--/*height: 63px;*/-->
+<!--/*font-weight: bold;*/-->
+<!--/*text-align: center;*/-->
+<!--/*padding: 5px;*/-->
+<!--/*margin-right: 5px;*/-->
+<!--/*margin: 0px 10px;*/-->
+<!--/*}*/-->
+<!--/*.ui-block-b*/-->
+<!--/*{*/-->
+<!--/*background-color: lightgray;*/-->
+<!--/*border: 1px solid black;*/-->
+<!--/*height: 63px;*/-->
+<!--/*font-weight: bold;*/-->
+<!--/*text-align: center;*/-->
+<!--/*padding: 30px;*/-->
+<!--/*}*/-->
+<!--</style>-->
+
+<!--<script type="text/javascript">-->
+<!--$(window).resize(function(){-->
+<!--console.log("helloooo")-->
+<!--var newwidth = $(window).width();-->
+<!--var newheight = $(window).height();-->
+<!--$("#element").height(newheight).width(newwidth);-->
+<!--});-->
+<!--</script>-->
 
 
 </head>
 <body>
-
 
 
 <div data-role="page" id="page1">
@@ -1456,113 +1347,117 @@ AND THE 3 ARRAYS of 2 elements each
         </ul>
     </div>
     <div data-role="header" data-position="fixed">
-        <a href="#panel" data-role="button" id="open-panel-button" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+        <a href="#panel" data-role="button" id="open-panel-button"
+           class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+
         <h1>Workout Carrot</h1>
         <a href="#" data-role="button" id="input-data-button">Input</a>
     </div>
 
-        <div data-role="content" class="ui-content">
-            <div>
-                <!--<div class="supervisor-info">-->
-                    <ul data-role="listview" data-inset="true" id="profileid"></ul>
+    <div data-role="content" class="ui-content">
+        <div>
+            <!--<div class="supervisor-info">-->
+            <ul data-role="listview" data-inset="true" id="profileid"></ul>
 
 
-
-                     <!--<div class="avatar"></div>-->
-                      <!--<div class="name">Hello Sammy!<br class="smaller">Weight:145lbs</br></div>-->
-                 <!--</div>-->
-        <!--<span class="box">Hello, Sammy! Your current goal is to lose 5lbs.</span>-->
-        <!--<div class="name">Sammy</div>-->
-            </div>
-
-            <div>
-                <ul data-role="listview" data-inset="true" id="goalmain"></ul>
-
-
-            </div>
-
-
-            <!--<div id="Goals" class="goals">-->
-                <!--Goals: Lose #5lbs.-->
+            <!--<div class="avatar"></div>-->
+            <!--<div class="name">Hello Sammy!<br class="smaller">Weight:145lbs</br></div>-->
             <!--</div>-->
+            <!--<span class="box">Hello, Sammy! Your current goal is to lose 5lbs.</span>-->
+            <!--<div class="name">Sammy</div>-->
+        </div>
 
-            <div data-role="navbar" class="navybar">
-                <ul>
-                    <li><a href="#" data-href="a" data-href2="feed1"  >Calories</a></li>
-                    <li><a href="#" data-href="b" data-href2="feed2" >Exercise</a></li>
-                    <li><a href="#" data-href="c" data-href2="feed3" class="ui-btn-active ui-state-persist ">Weight</a></li>
-                </ul>
-            </div><!-- /navbar -->
-            <!--<div class="content_div">onLoad Content</div>-->
-            <!--<div data-role="page" id="a" style="width:95%; height:250px;" class="content_div box">-->
-                <!--ID USED TO BE IN HERE-->
+        <div>
+            <ul data-role="listview" data-inset="true" id="goalmain"></ul>
 
 
-
-            <!--<div class="box2">-->
-            <div class='responsive_height'>
-                <div class='container'>
-            <div id="#element" class='iosSlider'>
-
-                <div class='slider'>
-
-                    <div class='item'>
-                        <div id="a"  class="content_div">
-                        </div>
-
-                        <!--<div id="a" style="width:95%; height:250px;" class="content_div box">Some 'A' Content-->
-
-                    <!--<div data-role="page" id="b">-->
-
-                        <div id="b" class="content_div">
-                        </div>
+        </div>
 
 
-                        <div id="c"  class="content_div">
+        <!--<div id="Goals" class="goals">-->
+        <!--Goals: Lose #5lbs.-->
+        <!--</div>-->
 
-                        </div>
+        <div data-role="navbar" class="navybar">
+            <ul>
+                <li><a  data-href="a" data-href2="feed1">Calories</a></li>
+                <li><a  data-href="b" data-href2="feed2">Exercise</a></li>
+                <li><a  data-href="c" data-href2="feed3" class="ui-btn-active ui-state-persist ">Weight</a></li>
+            </ul>
+        </div>
+        <!-- /navbar -->
+        <!--<div class="content_div">onLoad Content</div>-->
+        <!--<div data-role="page" id="a" style="width:95%; height:250px;" class="content_div box">-->
+        <!--ID USED TO BE IN HERE-->
 
-                    </div>
 
-                    <div class='item'>
-                        <div>
-                            <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
-                            <div class="ui-body book">
+        <!--<div class="box2">-->
+        <div class='responsive_height'>
+            <div class='container'>
+                <div id="#element" class='iosSlider'>
 
-                             <div id="feed1" class="act">
-                                <ul data-role="listview"  id="youractivityid" class="activity"></ul>
+                    <div class='slider'>
 
-                                 <p>hello1</p>
+                        <div class='item'>
+                            <div id="a" class="content_div">
+                            </div>
 
-                             </div>
-                              <div id="feed2" class="act">
-                                <ul data-role="listview"  id="youractivityid2" class="activity"></ul>
-                                <p>hello2</p>
+                            <!--<div id="a" style="width:95%; height:250px;" class="content_div box">Some 'A' Content-->
 
-                              </div>
-                              <div id="feed3" class="act">
-                                 <ul data-role="listview"  id="youractivityid3" class="activity"></ul>
-                                   <p>hello</p>
-                                  <!--<script type="text/javascript">-->
-                                      <!--recentActivityIn();-->
-                                  <!--</script>-->
-                              </div>
+                            <!--<div data-role="page" id="b">-->
+
+                            <div id="b" class="content_div">
+                            </div>
+
+
+                            <div id="c" class="content_div">
 
                             </div>
 
                         </div>
+
+                        <div class='item'>
+                            <div>
+                                <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
+
+                                <div class="ui-body book">
+
+                                    <div id="feed1" class="act">
+                                        <ul data-role="listview" id="youractivityid" class="activity"></ul>
+
+                                        <p>hello1</p>
+
+                                    </div>
+                                    <div id="feed2" class="act">
+                                        <ul data-role="listview" id="youractivityid2" class="activity"></ul>
+                                        <p>hello2</p>
+
+                                    </div>
+                                    <div id="feed3" class="act">
+                                        <ul data-role="listview" id="youractivityid3" class="activity"></ul>
+                                        <p>hello</p>
+                                        <!--<script type="text/javascript">-->
+                                        <!--recentActivityIn();-->
+                                        <!--</script>-->
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
 
-                 </div>
+                </div>
+            </div>
 
-                </div>
-                </div>
-
-                </div>
+        </div>
 
 
     </div>
 </div>
+
+
 
 
 </body>

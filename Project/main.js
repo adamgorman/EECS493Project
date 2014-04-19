@@ -1,21 +1,23 @@
 Parse.initialize("PAjzQPglIFtzZyMJfDPe5Ozvfzr7Pz1ukpHoLXct", "zTU8emhQIg5xTKZrhfF5ulrKnXQv4M6ztT9kFi90");
 
-console.log("whhhhhhhy");
-
 // Global Data
 var constants = {
 
 };
 var websiteData = {
     inputType: null,
-    compareFriend: null
+    compareFriend: null,
+    targetToDelete: null
 };
 var user;
-
 var friends = [];
 var sentRequests = [];
 var pendingRequests = [];
-
+var inputTemplate = {
+    dateNum: null,
+    dateString: null,
+    value: null
+};
 
 // HOME PAGE DATA
 var chart3;
@@ -24,9 +26,6 @@ var chart2;
 var graph2;
 var chart;
 var graph;
-
-
-var testingGoal = 7;
 
 //var chartData;
 var excerciseArrayReal = [];
@@ -63,11 +62,9 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         friendRequestInit();
     } else if(pageId == "add-friend-popup") {
         addFriendInit();
-    } else if(pageId == "page1") {
+    } else if (pageId == "page1") {
 
-
-//        $.mobile.changePage("main/main.html");
-        console.log("made it");
+        console.log("hello!");
 
         homepageContents();
         profileIn();
@@ -75,8 +72,9 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         recentActivityIn();
         recentActivityIn2();
         recentActivityIn3();
+//        chartFunction();
 
-        chartFunction();
+
 
     } else if (pageId == "settings-page") {
         settingsPageInIt();
@@ -95,6 +93,7 @@ var initForAll = function() {
     $.mobile.loading('hide');
     $('span.ui-li-count').text(pendingRequests.length);
 };
+
 // Login Page
 var loginPageInit = function() {
     $("#login-form").submit(function() {
@@ -117,12 +116,12 @@ var loginPageInit = function() {
         });
         return false;
     });
+
+
+    chartFunction();
+
 };
 var setUserInformation = function(rUser) {
-
-    console.log("getting user stuff");
-
-
     user = rUser;
     // sent friend requests
     user.get('sentRequests').forEach(function(fUsername, index, array) {
@@ -149,86 +148,8 @@ var setUserInformation = function(rUser) {
             }
         });
     });
-
-
-//    user.get('exerciseEntries').forEach(function(fUsername, index, array) {
-//        new Parse.Query(Parse.User).equalTo("ExerciseInput").find({
-//            success: function(buddy) {
-//
-//                console.log("no sucesss");
-//                excerciseArrayReal.push(buddy[0]);
-//
-//                console.log(excerciseArrayReal[0].value);
-//                if(array.length - 1 == index) $.mobile.changePage("main/main.html");
-//            }
-//        });
-//    });
-
-
-
-
-
-    var exerciseArray = user.get("exerciseEntries");
-
-    excerciseArrayReal = [];
-
-    console.log("parse excise array length is ", exerciseArray.length);
-
-    for(var i = 0, j =0; i < exerciseArray.length; i++){
-        //Get the objectiD of the input
-        var exId = exerciseArray[i];
-        console.log("print out ids yo", exId);
-        //Open on query on the ExerciseInput table
-        var inputQuery = new Parse.Query("ExerciseInput");
-        //Look for the matching objectId
-
-        inputQuery.equalTo("objectId", exId);
-        inputQuery.find({
-            success: function(result) {
-                //When you find it, print its date and value variables.
-                console.log("query returned: " + result[0].get("date") + " "
-                    + result[0].get("value"));
-
-//                excerciseArrayReal.push({
-//                    "value": result[0].get
-//
-//
-//                });
-
-                testingGoal = 8;
-
-
-                excerciseArrayReal[j] = {
-                    "year": result[0].get("date"),
-                    "value": result[0].get("value")
-                }
-                j++;
-
-            },
-            error: function(result) {
-                alert("COULDN'T FIND OBJECT IN TABLE");
-            }
-        });
-    }
-
-
-
-
-    chartFunction();
-
-    console.log("whhhhhy", excerciseArrayReal.length);
-    console.log(excerciseArrayReal.length);
-//
-    for (var j= 0; j < excerciseArrayReal.length; j++) {
-        console.log(excerciseArrayReal.length);
-        console.log(excerciseArrayReal[j].value);
-    }
-
-
-
     if(user.get('friendUsernames').length == 0)
         $.mobile.changePage("main/main.html");
-
 };
 
 // Logout Page
@@ -267,15 +188,56 @@ var inputPopupInit = function() {
     }
 
     $('#input-popup #input-form').on("submit", function() {
-        var num = $('#input-form input[type=number]').val();
-        if(num == "" || num == null) {
+        $.mobile.loading( 'show', {
+            text: "Adding input...",
+            textVisible: true
+        });
+        var input = $.extend({},inputTemplate);
+        var date = new Date();
+        input.dateNum = Date.now();
+        input.dateString = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+        input.value = $('#input-form input[type=number]').val();
+        if(input.value == "" || input.value == null) {
             $('#input-form .form-error-text').text("Please enter a value.");
+            $.mobile.loading('hide');
+        } else if(input.value < 0) {
+            $('#input-form .form-error-text').text("Value should not negative.");
+            $.mobile.loading('hide');
         } else {
-            var num = $('#input-form input[type=number]').val("");
-            websiteData.inputType = null;
-            $.mobile.changePage("input.html");
+            if(websiteData.inputType == "Food") {
+                var arrayLength = user.get('calorieEntries').length;
+                if(arrayLength != 0 && user.get('calorieEntries')[arrayLength - 1].dateString == input.dateString) {
+                    user.get('calorieEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('calorieEntries')[arrayLength - 1].value);
+                    user.get('calorieEntries')[arrayLength - 1].dateNum = input.dateNum;
+                } else {
+                    user.get('calorieEntries').push(input);
+                }
+            } else if(websiteData.inputType == "Exercise") {
+                var arrayLength = user.get('exerciseEntries').length;
+                if(arrayLength != 0 && user.get('exerciseEntries')[arrayLength - 1].dateString == input.dateString) {
+                    user.get('exerciseEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('exerciseEntries')[arrayLength - 1].value);
+                    user.get('exerciseEntries')[arrayLength - 1].dateNum = input.dateNum;
+                } else {
+                    user.get('exerciseEntries').push(input);
+                }
+            } else {
+                var arrayLength = user.get('weightEntries').length;
+                if(arrayLength != 0 && user.get('weightEntries')[arrayLength - 1].dateString == input.dateString) {
+                    user.get('weightEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('weightEntries')[arrayLength - 1].value);
+                    user.get('weightEntries')[arrayLength - 1].dateNum = input.dateNum;
+                } else {
+                    user.get('weightEntries').push(input);
+                }
+            }
+            user.save(null, {
+                success: function() {
+                    $('#input-form input[type=number]').val("");
+                    websiteData.inputType = null;
+                    $.mobile.changePage("input.html");
+                }
+            });
         }
-        $('#input-form input:text').val("");
+        $('#input-form input[type=number]').val("");
         return false;
     });
 };
@@ -412,11 +374,12 @@ var confirmClickForRequests = function() {
     //* friend.save();
     user.get('friendUsernames').push(friend.get('username'));
     user.get('pendingRequests').splice(index, 1);
-    user.save({
+    websiteData.targetToDelete = $(event.target);
+    user.save(null, {
         success: function() {
             friends.push(pendingRequests[index]);
             pendingRequests.splice(index, 1);
-            $(event.target).closest('li').remove();
+            websiteData.targetToDelete.closest('li').remove();
             $.mobile.loading('hide');
             checkNoFriendRequests();
             $('#friend-request-popup .form-confirm-text').text("You and " + friend.get('username') + " are now friends.");
@@ -470,7 +433,7 @@ var addFriendInit = function() {
             //* friend.save();
             user.get('friendUsernames').push(friend.get('username'));
             user.get('pendingRequests').splice(index, 1);
-            user.save({
+            user.save(null, {
                 success: function() {
                     friends.push(pendingRequests[index]);
                     pendingRequests.splice(index, 1);
@@ -484,31 +447,28 @@ var addFriendInit = function() {
     });
 };
 var alreadyFriend = function(username) {
-    var result = false;
     friends.forEach(function(buddy) {
         if(buddy.get('username') == username) {
-            result = true;
+            return true;
         }
     });
-    return result;
+    return false;
 };
 var alreadyRequested = function(username) {
-    var result = false;
     sentRequests.forEach(function(buddy) {
         if(buddy.get('username') == username) {
-            result = true;
+            return true;
         }
     });
-    return result;
+    return false;
 };
 var alreadyPending = function(username) {
-    var result = -1;
     pendingRequests.forEach(function(buddy, index) {
         if(buddy.get('username') == username) {
-            result = index;
+            return index;
         }
     });
-    return result;
+    return -1;
 };
 var getPersonForRequest = function(username) {
     new Parse.Query(Parse.User).equalTo("username", username).find({
@@ -529,31 +489,154 @@ var getPersonForRequest = function(username) {
 };
 
 
+
 // HOME PAGE CONTENT YO
+
+//
+var chartFunction = function() {
+
+
+    console.log("yo in this function chart");
+
+
+
+AmCharts.ready(function () {
+    // SERIAL CHART
+
+    chart = new AmCharts.AmSerialChart();
+    chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+    chart.marginTop = 0;
+    chart.marginRight = 0;
+    chart.dataProvider = chartData;
+    chart.categoryField = "year";
+    chart.dataDateFormat = "YYYY";
+    chart.balloon.cornerRadius = 6;
+
+    chart2 = new AmCharts.AmSerialChart();
+    chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+    chart2.marginTop = 0;
+    chart2.marginRight = 0;
+    chart2.dataProvider = chartData;
+    chart2.categoryField = "year";
+    chart2.dataDateFormat = "YYYY";
+    chart2.balloon.cornerRadius = 6;
+
+    chart3 = new AmCharts.AmSerialChart();
+    chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+    chart3.marginTop = 0;
+    chart3.marginRight = 0;
+    chart3.dataProvider = chartData;
+    chart3.categoryField = "year";
+    chart3.dataDateFormat = "YYYY";
+    chart3.balloon.cornerRadius = 6;
+
+    // AXES
+    // category
+    var categoryAxis = chart.categoryAxis;
+    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+    categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY
+    categoryAxis.dashLength = 1;
+    categoryAxis.minorGridEnabled = true;
+    categoryAxis.axisColor = "#DADADA";
+
+    // value
+    var valueAxis = new AmCharts.ValueAxis();
+    valueAxis.axisAlpha = 0;
+    valueAxis.dashLength = 1;
+    valueAxis.inside = true;
+    chart.addValueAxis(valueAxis);
+    chart2.addValueAxis(valueAxis);
+    chart3.addValueAxis(valueAxis);
+
+
+    // GRAPH
+    graph = new AmCharts.AmGraph();
+    graph.lineColor = "#b6d278";
+    graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+    graph.bullet = "round";
+    graph.bulletSize = 8;
+    graph.bulletBorderColor = "#FFFFFF";
+
+    graph.bulletBorderThickness = 2;
+    graph.bulletBorderAlpha = 1;
+    graph.connect = false; // this makes the graph not to connect data points if data is missing
+    graph.lineThickness = 2;
+    graph.valueField = "value";
+    graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
+    chart.addGraph(graph);
+
+    graph2 = new AmCharts.AmGraph();
+    graph2.lineColor = "#b6d278";
+    graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+    graph2.bullet = "round";
+    graph2.bulletSize = 8;
+    graph2.bulletBorderColor = "#FFFFFF";
+
+    graph2.bulletBorderThickness = 2;
+    graph2.bulletBorderAlpha = 1;
+    graph2.connect = false; // this makes the graph not to connect data points if data is missing
+    graph2.lineThickness = 2;
+    graph2.valueField = "value";
+    graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
+    chart2.addGraph(graph2);
+
+    graph3 = new AmCharts.AmGraph();
+    graph3.lineColor = "#b6d278";
+    graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+    graph3.bullet = "round";
+    graph3.bulletSize = 8;
+    graph3.bulletBorderColor = "#FFFFFF";
+
+    graph3.bulletBorderThickness = 2;
+    graph3.bulletBorderAlpha = 1;
+    graph3.connect = false; // this makes the graph not to connect data points if data is missing
+    graph3.lineThickness = 2;
+    graph3.valueField = "value";
+    graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
+    chart3.addGraph(graph3);
+
+    // CURSOR
+//        var chartCursor = new AmCharts.ChartCursor();
+//        chartCursor.cursorAlpha = 0;
+//        chartCursor.cursorPosition = "mouse";
+//        chartCursor.categoryBalloonDateFormat = "YYYY";
+//        chartCursor.graphBulletSize = 2;
+//        chart.addChartCursor(chartCursor);
+//        chart2.addChartCursor(chartCursor);
+//        chart3.addChartCursor(chartCursor);
+
+    chart.creditsPosition = "bottom-right";
+    chart3.creditsPosition = "bottom-left";
+
+//        chart.creditsPosition = "bottom-right";
+
+
+    // WRITE
+
+    chart.write("a");
+    chart2.write("b");
+    chart3.write("c");
+
+
+
+});
+
+
+};
+
+
+
+
+
+
+
 var homepageContents = function() {
 
-//    $('body').pagecontainer('getActivePage')
+
+    console.log("hello!!!!");
 
 
-
-
-//    $('page1').ready(function() {
-//
-//        $(".iosSlider").iosSlider({
-//
-//            $('.iosSlider').iosSlider({
-//                snapToChildren: true,
-//                desktopClickDrag: true,
-//                infiniteSlider: true,
-//                snapSlideCenter: true
-//            });
-//        })
-//
-//
-//    });
-
-
-    $(document).ready(function() {
+//    $(document).ready(function() {
 
         $('.iosSlider').iosSlider({
             snapToChildren: true,
@@ -562,39 +645,20 @@ var homepageContents = function() {
             snapSlideCenter: true
         });
 
-    });
+//    });
 
 
     $(document).delegate('.ui-navbar ul li > a', 'click', function () {
+//        chart.invalidateSize();
 
-//        chartFunction();
 
-        chart.invalidateSize();
+
         chart2.invalidateSize();
         chart3.invalidateSize();
 
-//        console.log("trying again to print out arrat", excerciseArrayReal.length);
-//
-//        for (var k = 0; i < excerciseArrayReal.length; k++) {
-//            console.log("maybe");
-//            console.log(excerciseArrayReal[k].value);
-//        }
+        chart.invalidateSize();
 
-
-
-        console.log("whhhhhy      2", excerciseArrayReal.length);
-        console.log(excerciseArrayReal.length);
-//
-        for (var j= 0; j < excerciseArrayReal.length; j++) {
-            console.log(excerciseArrayReal[j].year);
-            console.log(excerciseArrayReal[j].value);
-
-
-        };
-
-
-
-            console.log("helo sam 2")
+        console.log("helo sam 2")
         //un-highlight and highlight only the buttons in the same navbar widget
         $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
         //this bit is the same, you could chain it off of the last call by using two `.end()`s
@@ -617,152 +681,7 @@ var homepageContents = function() {
         $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();
 
     });
-
-};
-
-var chartFunction = function() {
-
-
-//    $.mobile.changePage("main/main.html");
-
-    console.log("testing fola", testingGoal);
-
-    console.log("yo in this function chart");
-    console.log(excerciseArrayReal.length);
-//
-//    for (var i = 0; i < excerciseArrayReal.length; i++) {
-//        console.log("maybe");
-//        console.log(excerciseArrayReal[i].get("value"));
-//    }
-
-    AmCharts.ready(function () {
-        // SERIAL CHART
-
-
-        console.log("trying again to print out arrat", excerciseArrayReal.length);
-
-
-
-        chart = new AmCharts.AmSerialChart();
-        chart.pathToImages = "../Projects/main/amcharts_3.4.7.free/amcharts/images/";
-
-//        chart.pathToImages = "main/amcharts_3.4.7.free/amcharts/images/";
-        chart.marginTop = 0;
-        chart.marginRight = 0;
-        chart.dataProvider = excerciseArrayReal;
-        chart.categoryField = "year";
-        chart.dataDateFormat = "YYYY";
-        chart.balloon.cornerRadius = 6;
-
-        chart2 = new AmCharts.AmSerialChart();
-        chart2.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
-        chart2.marginTop = 0;
-        chart2.marginRight = 0;
-        chart2.dataProvider = excerciseArrayReal;
-        chart2.categoryField = "year";
-        chart2.dataDateFormat = "YYYY";
-        chart2.balloon.cornerRadius = 6;
-
-        chart3 = new AmCharts.AmSerialChart();
-        chart3.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
-        chart3.marginTop = 0;
-        chart3.marginRight = 0;
-        chart3.dataProvider = chartData;
-        chart3.categoryField = "year";
-        chart3.dataDateFormat = "YYYY";
-        chart3.balloon.cornerRadius = 6;
-
-
-        // AXES
-        // category
-        var categoryAxis = chart.categoryAxis;
-        categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
-        categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY
-        categoryAxis.dashLength = 1;
-        categoryAxis.minorGridEnabled = true;
-        categoryAxis.axisColor = "#DADADA";
-
-        // value
-        var valueAxis = new AmCharts.ValueAxis();
-        valueAxis.axisAlpha = 0;
-        valueAxis.dashLength = 1;
-        valueAxis.inside = true;
-        chart.addValueAxis(valueAxis);
-        chart2.addValueAxis(valueAxis);
-        chart3.addValueAxis(valueAxis);
-
-
-        // GRAPH
-        graph = new AmCharts.AmGraph();
-        graph.lineColor = "#b6d278";
-        graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
-        graph.bullet = "round";
-        graph.bulletSize = 8;
-        graph.bulletBorderColor = "#FFFFFF";
-
-        graph.bulletBorderThickness = 2;
-        graph.bulletBorderAlpha = 1;
-        graph.connect = false; // this makes the graph not to connect data points if data is missing
-        graph.lineThickness = 2;
-        graph.valueField = "value";
-        graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-        chart.addGraph(graph);
-
-        graph2 = new AmCharts.AmGraph();
-        graph2.lineColor = "#b6d278";
-        graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
-        graph2.bullet = "round";
-        graph2.bulletSize = 8;
-        graph2.bulletBorderColor = "#FFFFFF";
-
-        graph2.bulletBorderThickness = 2;
-        graph2.bulletBorderAlpha = 1;
-        graph2.connect = false; // this makes the graph not to connect data points if data is missing
-        graph2.lineThickness = 2;
-        graph2.valueField = "value";
-        graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-        chart2.addGraph(graph2);
-
-        graph3 = new AmCharts.AmGraph();
-        graph3.lineColor = "#b6d278";
-        graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
-        graph3.bullet = "round";
-        graph3.bulletSize = 8;
-        graph3.bulletBorderColor = "#FFFFFF";
-
-        graph3.bulletBorderThickness = 2;
-        graph3.bulletBorderAlpha = 1;
-        graph3.connect = false; // this makes the graph not to connect data points if data is missing
-        graph3.lineThickness = 2;
-        graph3.valueField = "value";
-        graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-        chart3.addGraph(graph3);
-
-        // CURSOR
-//        var chartCursor = new AmCharts.ChartCursor();
-//        chartCursor.cursorAlpha = 0;
-//        chartCursor.cursorPosition = "mouse";
-//        chartCursor.categoryBalloonDateFormat = "YYYY";
-//        chartCursor.graphBulletSize = 2;
-//        chart.addChartCursor(chartCursor);
-//        chart2.addChartCursor(chartCursor);
-//        chart3.addChartCursor(chartCursor);
-
-        chart.creditsPosition = "bottom-right";
-        chart3.creditsPosition = "bottom-left";
-
-//        chart.creditsPosition = "bottom-right";
-
-
-        // WRITE
-        chart.write("a");
-        chart2.write("b");
-        chart3.write("c");
-
-
-    });
-
-
+//    $('.navybar').create();
 };
 
 var profileIn = function() {
@@ -1067,4 +986,3 @@ var settingsPageInIt = function () {
 
 
 };
-
