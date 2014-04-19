@@ -22,52 +22,6 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Demos/SalesDashboard/index.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.51664877" vertical-offset="1211" max-vertical-offset="2142">
-                    <caret line="94" column="35" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="areaStacked.html" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/samples/areaStacked.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="4212" max-vertical-offset="4374">
-                    <caret line="234" column="25" selection-start-line="234" selection-start-column="17" selection-end-line="234" selection-end-column="25" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Project/main/main.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="-0.64128596" vertical-offset="10641" max-vertical-offset="28332">
-                    <caret line="528" column="12" selection-start-line="528" selection-start-column="8" selection-end-line="528" selection-end-column="12" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
             <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/Project/main/iosslider/_demos/_examples/3-Photo-Gallery/index.html">
                 <provider selected="true" editor-type-id="text-editor">
@@ -131,8 +85,54 @@
             <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Project/main/iosslider/_demos/_examples/9-Full-Width-Responsive-Height/1-Basic/index.html">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.6862745" vertical-offset="378" max-vertical-offset="1944">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="1944">
                     <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Demos/SalesDashboard/index.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.5456498" vertical-offset="1184" max-vertical-offset="2142">
+                    <caret line="94" column="35" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="areaStacked.html" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/samples/areaStacked.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="4212" max-vertical-offset="4374">
+                    <caret line="234" column="25" selection-start-line="234" selection-start-column="17" selection-end-line="234" selection-end-column="25" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/Project/main/main.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="2.4894562" vertical-offset="23119" max-vertical-offset="26460">
+                    <caret line="1409" column="0" selection-start-line="1409" selection-start-column="0" selection-end-line="1409" selection-end-column="0" />
                     <folding />
                   </state>
                 </provider>
@@ -152,7 +152,7 @@
       <file leaf-file-name="dx.chartjs.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Lib/js/dx.chartjs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
+            <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="252">
               <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
               <folding />
             </state>
@@ -162,12 +162,9 @@
       <file leaf-file-name="addFriend.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/friends/addFriend.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.333334" vertical-offset="0" max-vertical-offset="684">
+            <state vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="684">
               <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
-              <folding>
-                <element signature="n#style#0;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,18 +172,18 @@
       <file leaf-file-name="friendCompare.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/friends/friendCompare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7777778" vertical-offset="222" max-vertical-offset="2214">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            <state vertical-scroll-proportion="-4.6666665" vertical-offset="0" max-vertical-offset="2214">
+              <caret line="7" column="34" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/main/iosslider/_demos/_examples/9-Full-Width-Responsive-Height/3-variable-width/index.html">
+        <entry file="file://$PROJECT_DIR$/Project/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1674">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="882">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -212,11 +209,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pie3D.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/samples/pie3D.html">
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1278">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="8360" max-vertical-offset="11790">
+              <caret line="526" column="0" selection-start-line="526" selection-start-column="0" selection-end-line="528" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -225,14 +222,14 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74217117" vertical-offset="0" max-vertical-offset="19260">
-              <caret line="79" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.28110832" vertical-offset="10782" max-vertical-offset="19962">
+              <caret line="630" column="0" selection-start-line="630" selection-start-column="0" selection-end-line="630" selection-end-column="0" />
               <folding>
-                <marker date="1397813775131" expanded="false" signature="8231:8257" placeholder="..." />
-                <marker date="1397813775131" expanded="true" signature="8850:8877" placeholder="..." />
-                <marker date="1397813775131" expanded="false" signature="23173:23188" placeholder="..." />
-                <marker date="1397813775131" expanded="false" signature="23865:23880" placeholder="..." />
-                <marker date="1397813775131" expanded="false" signature="24559:24574" placeholder="..." />
+                <marker date="1397947017020" expanded="true" signature="9968:9994" placeholder="..." />
+                <marker date="1397947017020" expanded="true" signature="10587:10614" placeholder="..." />
+                <marker date="1397947017020" expanded="true" signature="21296:21311" placeholder="..." />
+                <marker date="1397947017020" expanded="true" signature="21912:21927" placeholder="..." />
+                <marker date="1397947017020" expanded="true" signature="22529:22544" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -241,7 +238,7 @@
       <file leaf-file-name="amcharts.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/amcharts/amcharts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-47.533333" vertical-offset="4046" max-vertical-offset="6606">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4046" max-vertical-offset="6606">
               <caret line="304" column="523" selection-start-line="304" selection-start-column="70" selection-end-line="304" selection-end-column="523" />
               <folding />
             </state>
@@ -251,7 +248,7 @@
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/main/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.966666" vertical-offset="6805" max-vertical-offset="15498">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6805" max-vertical-offset="15498">
               <caret line="393" column="23" selection-start-line="393" selection-start-column="17" selection-end-line="393" selection-end-column="23" />
               <folding />
             </state>
@@ -281,13 +278,14 @@
         <option value="$PROJECT_DIR$/Project/friends/friendCompare.html" />
         <option value="$PROJECT_DIR$/Project/friends/friendRequest.html" />
         <option value="$PROJECT_DIR$/Project/main/main.html" />
+        <option value="$PROJECT_DIR$/Project/main.css" />
         <option value="$PROJECT_DIR$/Project/main.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="2117" />
+    <option name="width" value="3840" />
+    <option name="height" value="2160" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -447,14 +445,6 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -465,14 +455,12 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
       <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -480,6 +468,16 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
+      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -510,14 +508,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="2117" extended-state="0" />
+    <frame x="0" y="0" width="3840" height="2160" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15913865" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0792364" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27833894" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -552,27 +550,10 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Project/main/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="16643">
-          <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Lib/js/dx.chartjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Demos/SalesDashboard/scripts/tools.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4964">
           <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -580,7 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -588,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="170">
           <caret line="3" column="28789" selection-start-line="3" selection-start-column="28789" selection-end-line="3" selection-end-column="28789" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -648,7 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4964">
           <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,7 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -664,7 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="170">
           <caret line="3" column="28789" selection-start-line="3" selection-start-column="28789" selection-end-line="3" selection-end-column="28789" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -764,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="682">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
           <caret line="3" column="28789" selection-start-line="3" selection-start-column="28789" selection-end-line="3" selection-end-column="28789" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,7 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="4380">
           <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -805,14 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/samples/areaStacked.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4212" max-vertical-offset="4374">
-          <caret line="234" column="25" selection-start-line="234" selection-start-column="17" selection-end-line="234" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/settings/settings.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1637" max-vertical-offset="4266">
@@ -821,9 +786,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Lib/js/dx.chartjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/friends/addFriend.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="684">
+          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/amcharts/amcharts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4046" max-vertical-offset="6606">
+          <caret line="304" column="523" selection-start-line="304" selection-start-column="70" selection-end-line="304" selection-end-column="523" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/main/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6805" max-vertical-offset="15498">
+          <caret line="393" column="23" selection-start-line="393" selection-start-column="17" selection-end-line="393" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/samples/areaStacked.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4212" max-vertical-offset="4374">
+          <caret line="234" column="25" selection-start-line="234" selection-start-column="17" selection-end-line="234" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Demos/SalesDashboard/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51664877" vertical-offset="1211" max-vertical-offset="2142">
+        <state vertical-scroll-proportion="0.5456498" vertical-offset="1184" max-vertical-offset="2142">
           <caret line="94" column="35" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
           <folding />
         </state>
@@ -877,28 +882,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/DevExpressChartJS-13.2.8/Lib/js/dx.chartjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/friends/addFriend.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.333334" vertical-offset="0" max-vertical-offset="684">
-          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/main/iosslider/_demos/_examples/9-Full-Width-Responsive-Height/1-Basic/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6862745" vertical-offset="378" max-vertical-offset="1944">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="1944">
           <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
           <folding />
         </state>
@@ -906,46 +892,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Project/friends/friendCompare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7777778" vertical-offset="222" max-vertical-offset="2214">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state vertical-scroll-proportion="-4.6666665" vertical-offset="0" max-vertical-offset="2214">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/main/amcharts_3.4.7.free/amcharts/amcharts.js">
+    <entry file="file://$PROJECT_DIR$/Project/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-47.533333" vertical-offset="4046" max-vertical-offset="6606">
-          <caret line="304" column="523" selection-start-line="304" selection-start-column="70" selection-end-line="304" selection-end-column="523" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1972">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Project/main/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.64128596" vertical-offset="10641" max-vertical-offset="28332">
-          <caret line="528" column="12" selection-start-line="528" selection-start-column="8" selection-end-line="528" selection-end-column="12" />
+        <state vertical-scroll-proportion="2.4894562" vertical-offset="23119" max-vertical-offset="26460">
+          <caret line="1409" column="0" selection-start-line="1409" selection-start-column="0" selection-end-line="1409" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/main/main.js">
+    <entry file="file://$PROJECT_DIR$/Project/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.966666" vertical-offset="6805" max-vertical-offset="15498">
-          <caret line="393" column="23" selection-start-line="393" selection-start-column="17" selection-end-line="393" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="8360" max-vertical-offset="11790">
+          <caret line="526" column="0" selection-start-line="526" selection-start-column="0" selection-end-line="528" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Project/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74217117" vertical-offset="0" max-vertical-offset="19260">
-          <caret line="79" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.28110832" vertical-offset="10782" max-vertical-offset="19962">
+          <caret line="630" column="0" selection-start-line="630" selection-start-column="0" selection-end-line="630" selection-end-column="0" />
           <folding>
-            <marker date="1397813775131" expanded="false" signature="8231:8257" placeholder="..." />
-            <marker date="1397813775131" expanded="true" signature="8850:8877" placeholder="..." />
-            <marker date="1397813775131" expanded="false" signature="23173:23188" placeholder="..." />
-            <marker date="1397813775131" expanded="false" signature="23865:23880" placeholder="..." />
-            <marker date="1397813775131" expanded="false" signature="24559:24574" placeholder="..." />
+            <marker date="1397947017020" expanded="true" signature="9968:9994" placeholder="..." />
+            <marker date="1397947017020" expanded="true" signature="10587:10614" placeholder="..." />
+            <marker date="1397947017020" expanded="true" signature="21296:21311" placeholder="..." />
+            <marker date="1397947017020" expanded="true" signature="21912:21927" placeholder="..." />
+            <marker date="1397947017020" expanded="true" signature="22529:22544" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -20,15 +20,18 @@ var inputTemplate = {
 };
 
 // HOME PAGE DATA
-var chart3;
-var graph3;
-var chart2;
-var graph2;
-var chart;
-var graph;
+var chart3 = new AmCharts.AmSerialChart();
+var graph3 = new AmCharts.AmGraph();
+var chart2 = new AmCharts.AmSerialChart();
+var graph2 = new AmCharts.AmGraph();
+var chart = new AmCharts.AmSerialChart();
+var graph = new AmCharts.AmGraph();
+var valueAxis = new AmCharts.ValueAxis();
 
 //var chartData;
 var excerciseArrayReal = [];
+
+var arrayK = [];
 
 
 var chartData = [
@@ -66,13 +69,52 @@ $(document).on("pagecontainerbeforeshow", function(event) {
 
         console.log("hello!");
 
-        homepageContents();
+
+
+//        $('.iosSlider').iosSlider({
+//            snapToChildren: true,
+//            desktopClickDrag: true,
+//            infiniteSlider: true,
+//            snapSlideCenter: true
+//        });
+
+
+        chartFunction();
+
+
+//        homepageContents();
         profileIn();
         goalin();
         recentActivityIn();
         recentActivityIn2();
         recentActivityIn3();
-//        chartFunction();
+        $(document).ready( function() {
+
+            console.log("running 2");
+
+//
+            chartFunction();
+        });
+
+        $(document).ready( function() {
+
+            console.log("running");
+            chart3.invalidateSize();
+
+            homepageContents();
+        });
+
+
+
+
+
+//        $(document).ready( function() {
+//
+//            console.log("running 2");
+//
+////
+//            chartFunction();
+//        });
 
 
 
@@ -118,7 +160,7 @@ var loginPageInit = function() {
     });
 
 //dskdnskn
-    chartFunction();
+//    chartFunction();
 
 };
 var setUserInformation = function(rUser) {
@@ -148,6 +190,42 @@ var setUserInformation = function(rUser) {
             }
         });
     });
+
+    arrayK = [];
+
+
+    var count = 0;
+
+
+    console.log("dooooooooooe");
+
+
+    user.get('exerciseEntries').forEach(function(element){
+
+        console.log("dooooooooooe");
+
+        arrayK[count] = {
+            "year": element.dateString,
+            "value": element.value
+        }
+        count++;
+    })
+
+    count = 0;
+    console.log("dooooooooooe", user.get('exerciseEntries').length);
+
+    for (var i = 0; i < user.get('exerciseEntries').length; i++) {
+
+       console.log(arrayK[i].value);
+
+
+    }
+
+
+
+
+
+
     if(user.get('friendUsernames').length == 0)
         $.mobile.changePage("main/main.html");
 };
@@ -500,29 +578,31 @@ var chartFunction = function() {
 
 
 
-AmCharts.ready(function () {
+
+
+//
+//AmCharts.ready(function () {
     // SERIAL CHART
 
-    chart = new AmCharts.AmSerialChart();
-    chart.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+    chart.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
     chart.marginTop = 0;
     chart.marginRight = 0;
-    chart.dataProvider = chartData;
+    chart.dataProvider = arrayK;
     chart.categoryField = "year";
     chart.dataDateFormat = "YYYY";
     chart.balloon.cornerRadius = 6;
 
-    chart2 = new AmCharts.AmSerialChart();
-    chart2.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+    chart2;
+    chart2.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
     chart2.marginTop = 0;
     chart2.marginRight = 0;
-    chart2.dataProvider = chartData;
+    chart2.dataProvider = arrayK;
     chart2.categoryField = "year";
     chart2.dataDateFormat = "YYYY";
     chart2.balloon.cornerRadius = 6;
 
-    chart3 = new AmCharts.AmSerialChart();
-    chart3.pathToImages = "../main/amcharts_3.4.7.free/amcharts/images/";
+    chart3;
+    chart3.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
     chart3.marginTop = 0;
     chart3.marginRight = 0;
     chart3.dataProvider = chartData;
@@ -540,7 +620,7 @@ AmCharts.ready(function () {
     categoryAxis.axisColor = "#DADADA";
 
     // value
-    var valueAxis = new AmCharts.ValueAxis();
+//    var valueAxis; //  = new AmCharts.ValueAxis();
     valueAxis.axisAlpha = 0;
     valueAxis.dashLength = 1;
     valueAxis.inside = true;
@@ -550,7 +630,7 @@ AmCharts.ready(function () {
 
 
     // GRAPH
-    graph = new AmCharts.AmGraph();
+    graph;
     graph.lineColor = "#b6d278";
     graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
     graph.bullet = "round";
@@ -563,9 +643,9 @@ AmCharts.ready(function () {
     graph.lineThickness = 2;
     graph.valueField = "value";
     graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-    chart.addGraph(graph);
+    chart.addGraph(graph2);
 
-    graph2 = new AmCharts.AmGraph();
+    graph2;
     graph2.lineColor = "#b6d278";
     graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
     graph2.bullet = "round";
@@ -580,7 +660,7 @@ AmCharts.ready(function () {
     graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
     chart2.addGraph(graph2);
 
-    graph3 = new AmCharts.AmGraph();
+    graph3;
     graph3.lineColor = "#b6d278";
     graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
     graph3.bullet = "round";
@@ -595,15 +675,15 @@ AmCharts.ready(function () {
     graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
     chart3.addGraph(graph3);
 
-    // CURSOR
-//        var chartCursor = new AmCharts.ChartCursor();
-//        chartCursor.cursorAlpha = 0;
-//        chartCursor.cursorPosition = "mouse";
-//        chartCursor.categoryBalloonDateFormat = "YYYY";
-//        chartCursor.graphBulletSize = 2;
-//        chart.addChartCursor(chartCursor);
-//        chart2.addChartCursor(chartCursor);
-//        chart3.addChartCursor(chartCursor);
+//    CURSOR
+        var chartCursor = new AmCharts.ChartCursor();
+        chartCursor.cursorAlpha = 0;
+        chartCursor.cursorPosition = "mouse";
+        chartCursor.categoryBalloonDateFormat = "YYYY";
+        chartCursor.graphBulletSize = 2;
+        chart.addChartCursor(chartCursor);
+        chart2.addChartCursor(chartCursor);
+        chart3.addChartCursor(chartCursor);
 
     chart.creditsPosition = "bottom-right";
     chart3.creditsPosition = "bottom-left";
@@ -619,13 +699,48 @@ AmCharts.ready(function () {
 
 
 
-});
+    chart.invalidateSize();
+
+    chart2.invalidateSize();
+
+    chart3.invalidateSize();
 
 
+//
+
+//});
+//    $(document).ready(function() {
+//
+//
+//        console.log("whhhsbhasbjhbsfhjbhjsbsfhjbsfhjbshjfbsfhjb");
+//        $('.iosSlider').iosSlider({
+//            snapToChildren: true,
+//            desktopClickDrag: true,
+//            infiniteSlider: true,
+//            snapSlideCenter: true
+//        });
+//
+//    });
+
+
+//
 };
 
 
-
+//
+//$(document).ready(function() {
+//
+////        console.log("helsifmslknmfsonsfkjnslo!!!!");
+//
+//
+//    $('.iosSlider').iosSlider({
+//        snapToChildren: true,
+//        desktopClickDrag: true,
+//        infiniteSlider: true,
+//        snapSlideCenter: true
+//    });
+//
+//});
 
 
 
@@ -636,27 +751,22 @@ var homepageContents = function() {
     console.log("hello!!!!");
 
 
-//    $(document).ready(function() {
 
-        $('.iosSlider').iosSlider({
-            snapToChildren: true,
-            desktopClickDrag: true,
-            infiniteSlider: true,
-            snapSlideCenter: true
-        });
 
-//    });
+
+
+
 
 
     $(document).delegate('.ui-navbar ul li > a', 'click', function () {
 //        chart.invalidateSize();
 
 
-
         chart2.invalidateSize();
-        chart3.invalidateSize();
 
         chart.invalidateSize();
+        chart3.invalidateSize();
+
 
         console.log("helo sam 2")
         //un-highlight and highlight only the buttons in the same navbar widget
@@ -671,6 +781,14 @@ var homepageContents = function() {
 
     $(document).delegate('.ui-navbar ul li > a', 'click', function () {
 
+        $('.iosSlider').iosSlider({
+            snapToChildren: true,
+            desktopClickDrag: true,
+            infiniteSlider: true,
+            snapSlideCenter: true
+        });
+
+
         console.log("helo sam 3")
         //un-highlight and highlight only the buttons in the same navbar widget
         $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
@@ -681,6 +799,9 @@ var homepageContents = function() {
         $('#' + $(this).attr('data-href2')).show().siblings('.act').hide();
 
     });
+
+
+
 //    $('.navybar').create();
 };
 
