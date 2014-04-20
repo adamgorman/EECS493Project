@@ -28,10 +28,52 @@ var chart = new AmCharts.AmSerialChart();
 var graph = new AmCharts.AmGraph();
 var valueAxis = new AmCharts.ValueAxis();
 
+
+var initialWeight;
+var howClosetoGoal;
+var currentWeight;
+var stringForGoal;
+
+
+
+var updateUserWeight = function() {
+
+
+    initialWeight = user.get('startingWeight');
+
+    if (arrayWeight.length > 0) {
+        currentWeight = arrayWeight[arrayWeight.length -1].value;
+
+    } else {
+        currentWeight = user.get('startingWeight');
+    }
+
+
+    if (currentWeight >  user.get('weightGoal')) {
+        howClosetoGoal = currentWeight - user.get('weightGoal')
+        stringForGoal = "Lose " + howClosetoGoal + " more lbs to reach your goal!";
+
+    } else if (currentWeight < user.get('weightGoal') ) {
+        howClosetoGoal = user.get('weightGoal') - currentWeight;
+        stringForGoal = "Gain " + howClosetoGoal + " more lbs to reach your goal!";
+
+    } else {
+        howClosetoGoal = user.get('weightGoal') - currentWeight;
+        stringForGoal = "You reached your goal!";
+    }
+
+
+
+}
+
+
+
 //var chartData;
 var excerciseArrayReal = [];
 
 var arrayK = [];
+var arrayCalories = [];
+var arrayWeight = [];
 
 
 var chartData = [
@@ -69,8 +111,6 @@ $(document).on("pagecontainerbeforeshow", function(event) {
 
         console.log("hello!");
 
-
-
 //        $('.iosSlider').iosSlider({
 //            snapToChildren: true,
 //            desktopClickDrag: true,
@@ -78,9 +118,7 @@ $(document).on("pagecontainerbeforeshow", function(event) {
 //            snapSlideCenter: true
 //        });
 
-
         chartFunction();
-
 
 //        homepageContents();
         profileIn();
@@ -89,10 +127,7 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         recentActivityIn2();
         recentActivityIn3();
         $(document).ready( function() {
-
             console.log("running 2");
-
-//
             chartFunction();
         });
 
@@ -192,18 +227,12 @@ var setUserInformation = function(rUser) {
     });
 
     arrayK = [];
-
+    arrayCalories = [];
+    arrayWeight = [];
 
     var count = 0;
 
-
-    console.log("dooooooooooe");
-
-
     user.get('exerciseEntries').forEach(function(element){
-
-        console.log("dooooooooooe");
-
         arrayK[count] = {
             "year": element.dateString,
             "value": element.value
@@ -211,20 +240,32 @@ var setUserInformation = function(rUser) {
         count++;
     })
 
-    count = 0;
-    console.log("dooooooooooe", user.get('exerciseEntries').length);
 
-    for (var i = 0; i < user.get('exerciseEntries').length; i++) {
-
-       console.log(arrayK[i].value);
-
-
+    for (var i = 0; i < arrayK.length; i++) {
+        console.log(arrayK[i].value);
     }
 
 
+    count = 0;
+    user.get('weightEntries').forEach(function(element){
 
+        arrayWeight[count] = {
+            "year": element.dateString,
+            "value": element.value
+        }
+        count++;
+    })
+    count = 0;
 
+    user.get('calorieEntries').forEach(function(element){
 
+        arrayCalories[count] = {
+            "year": element.dateString,
+            "value": element.value
+        }
+        count++;
+    })
+    count = 0;
 
     if(user.get('friendUsernames').length == 0)
         $.mobile.changePage("main/main.html");
@@ -574,23 +615,17 @@ var getPersonForRequest = function(username) {
 var chartFunction = function() {
 
 
-    console.log("yo in this function chart");
-
-
-
-
-
 //
 //AmCharts.ready(function () {
     // SERIAL CHART
 
     chart.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
-    chart.marginTop = 0;
-    chart.marginRight = 0;
-    chart.dataProvider = arrayK;
+    chart.marginTop = 2;
+    chart.marginRight = 2;
+    chart.dataProvider = arrayCalories;
     chart.categoryField = "year";
     chart.dataDateFormat = "YYYY";
-    chart.balloon.cornerRadius = 6;
+    chart.balloon.cornerRadius = 5;
 
     chart2;
     chart2.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
@@ -605,7 +640,7 @@ var chartFunction = function() {
     chart3.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
     chart3.marginTop = 0;
     chart3.marginRight = 0;
-    chart3.dataProvider = chartData;
+    chart3.dataProvider = arrayWeight;
     chart3.categoryField = "year";
     chart3.dataDateFormat = "YYYY";
     chart3.balloon.cornerRadius = 6;
@@ -622,7 +657,7 @@ var chartFunction = function() {
     // value
 //    var valueAxis; //  = new AmCharts.ValueAxis();
     valueAxis.axisAlpha = 0;
-    valueAxis.dashLength = 1;
+    valueAxis.dashLength = 10;
     valueAxis.inside = true;
     chart.addValueAxis(valueAxis);
     chart2.addValueAxis(valueAxis);
@@ -748,16 +783,6 @@ var chartFunction = function() {
 var homepageContents = function() {
 
 
-    console.log("hello!!!!");
-
-
-
-
-
-
-
-
-
     $(document).delegate('.ui-navbar ul li > a', 'click', function () {
 //        chart.invalidateSize();
 
@@ -816,11 +841,12 @@ var profileIn = function() {
 //        $('p').remove();
 
 
+    updateUserWeight();
 
     $('ul#profileid').append(profile.clone());
     $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newPro h1').text("Sammy Hajalie");
-    $('li#newPro p span').text("145 lbs");
+    $('li#newPro h1').text(user.get('firstName') + " " + user.get('lastName'));
+    $('li#newPro p span').text(currentWeight);
 
 //        console.log("you not here yet");
 
@@ -829,6 +855,10 @@ var profileIn = function() {
 
 
 var goalin = function() {
+
+
+    updateUserWeight();
+
     var profile = $('<li id="newGoal">'+
         '<h1></h1>'+
         '<p><span></span></p>'+
@@ -839,8 +869,8 @@ var goalin = function() {
 
     $('ul#goalmain').append(profile.clone());
 //        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newGoal h1').text("Goal:");
-    $('li#newGoal p span').text("Gain 5 lbs");
+    $('li#newGoal h1').text("Goal: " +  user.get("weightGoal"));
+    $('li#newGoal p span').text(stringForGoal);
 
 //        console.log("you not here yet");
 
