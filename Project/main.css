@@ -24,14 +24,15 @@
 
 /* Friends Page */
 #friends-page .count {
-    background: #e95230;
+    background: #FFFFFF;
     position: absolute;
     top: -8px;
     Right: -5px;
     min-width:15px;
     height: 15px;
-    color:#ffffff;
+    color:#e95230;
     border-radius: 50%;
+    border: solid 1px #e6e6e6;
     padding: 2px;
     text-align: center;
     font-size: 12px;
@@ -52,8 +53,8 @@
     width: 100%;
 }
 
-#friend-compare-page table th, #friend-compare-page table td {
-    border-bottom: 1px #e6e6e6;
+#friend-compare-page table td, #friend-compare-page table th {
+    border-bottom: solid 1px #e6e6e6;
 }
 
 #friend-compare-page .left-cell {
