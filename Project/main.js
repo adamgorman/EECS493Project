@@ -19,14 +19,10 @@ var inputTemplate = {
     value: null
 };
 
-// Website Init
-
-
 // Global Functions
 $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
     initForAll();
-    console.log(pageId);
     if(pageId == "login-page") {
         loginPageInit();
     } else if(pageId == "logout-popup") {
@@ -227,6 +223,7 @@ var inputPopupInit = function() {
 
 // Friends Page
 var friendsInit = function() {
+    $('.count').text(pendingRequests.length);
     var person = $('<li id="new-person" data-icon="recycle" class="friend"><a href="friendCompare.html">'+
         '<img>'+
         '<h2></h2>'+
@@ -840,12 +837,6 @@ var chartFunction = function() {
         count++;
     })
 
-
-    for (var i = 0; i < arrayK.length; i++) {
-        console.log(arrayK[i].value);
-    }
-
-
     count = 0;
     user.get('weightEntries').forEach(function(element){
 
@@ -1030,7 +1021,6 @@ var homepageContents = function() {
         chart.invalidateSize();
         chart3.invalidateSize();
 
-        console.log("helo sam 2")
         //un-highlight and highlight only the buttons in the same navbar widget
         $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
         //this bit is the same, you could chain it off of the last call by using two `.end()`s
@@ -1050,7 +1040,6 @@ var homepageContents = function() {
             snapSlideCenter: true
         });
 
-        console.log("helo sam 3")
         //un-highlight and highlight only the buttons in the same navbar widget
         $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
         //this bit is the same, you could chain it off of the last call by using two `.end()`s

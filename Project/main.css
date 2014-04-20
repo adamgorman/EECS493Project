@@ -22,6 +22,21 @@
     margin-bottom: 20px;
 }
 
+/* Friends Page */
+#friends-page .count {
+    background: #e95230;
+    position: absolute;
+    top: -8px;
+    Right: -5px;
+    min-width:15px;
+    height: 15px;
+    color:#ffffff;
+    border-radius: 50%;
+    padding: 2px;
+    text-align: center;
+    font-size: 12px;
+}
+
 /* Friend Compare Page */
 #friend-compare-page .compare-cell {
     width: 40%;
@@ -36,6 +51,11 @@
 #friend-compare-page table {
     width: 100%;
 }
+
+#friend-compare-page table th, #friend-compare-page table td {
+    border-bottom: 1px #e6e6e6;
+}
+
 #friend-compare-page .left-cell {
     width: 20%;
     padding-bottom: 20px;
@@ -117,9 +137,6 @@
     height: 350px;
 
     overflow: hidden;
-
-    border-radius: 25px;
-    border: 1.4px double dodgerblue;
 
 
     margin: 10px 0px 10px 0px;
@@ -219,7 +236,6 @@
     margin: 5px 0px 5px 3px;
     /*float: left;*/
 
-    border: 1px solid #000000;
     font-size: 1.5em;
     padding: 0px 0 0 0;
     -moz-box-sizing: 50px 50px;
@@ -244,8 +260,6 @@
 
 #page1 .activityH {
     border-radius: 50px;
-    color: white;
-    background-color: #3388cc;
     margin: 5px;
 
 }
