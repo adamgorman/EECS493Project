@@ -1093,6 +1093,7 @@ var achv8 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><
 var achv9 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log Achieved!</h2>' +
     '<p class ="adjust_indent">Logged in 15 days in a row</p></td></tr></table>');
 var curAchv;
+var sharedItem;
 var achievementInit = function() {
     var aArray = user.get('achievementArray');
     var workout_counter = user.get("workoutCounter");
@@ -1166,7 +1167,7 @@ var achievementInit = function() {
         $("#is3").attr("href", "shareAchievement.html");
     }
 
-    $("#fb_icon").click(function () {
+    /*$("#fb_icon").click(function () {
         FB.init({
             //appId : '496828853760637',
             //apiKey: '95df48eb35db42b7a4dbca37b4e55bae'
@@ -1182,52 +1183,74 @@ var achievementInit = function() {
                 method: 'feed',
                 name: 'This is the content of the "name" field.'
             });
-    });
+    });*/
 
     $("#ws1").click(function () {
         curAchv = achv0;
+        sharedItem = 0;
     });
 
     $("#ws2").click(function () {
         curAchv = achv1;
+        sharedItem = 1;
     });
 
     $("#ws3").click(function () {
         curAchv = achv2;
+        sharedItem = 2;
     });
 
     $("#hs1").click(function () {
         curAchv = achv3;
+        sharedItem = 3;
     });
 
     $("#hs2").click(function () {
         curAchv = achv4;
+        sharedItem = 4;
     });
 
 
     $("#ls1").click(function () {
         curAchv = achv5;
+        sharedItem = 5;
     });
 
     $("#ls2").click(function () {
         curAchv = achv6;
+        sharedItem = 6;
     });
 
 
     $("#is1").click(function () {
         curAchv = achv7;
+        sharedItem = 7;
     });
 
     $("#is2").click(function () {
         curAchv = achv8;
+        sharedItem = 8;
     });
 
     $("#is3").click(function () {
         curAchv = achv9;
+        sharedItem = 9;
     });
 }
 var shareInit = function() {
     $("#dup").html(curAchv);
+    var bArray = user.get('shareArray');
+    if(bArray[sharedItem] > 0)
+    {
+        $("#shareTextOrButton").html('<p><i>You have shared this achievement</i></p>');
+    }
+    $("#shareButton").click(function () {
+        var date = new Date();
+        bArray[sharedItem] = new Date();
+        this.disabled = true;
+        user.set("shareArray", bArray);
+        user.save();
+    });
 }
 //news feed
 var feedFriends = [
@@ -1242,11 +1265,11 @@ var feedFriends = [
 
 var feedInit = function() {
     $('#friendsFeed').children('li').remove();
-    var count = 0;
 
 
     friends.forEach(function(buddy)
        {
+           var count = 0;
            buddy.get('exerciseEntries').forEach(function(element) {
                var toAdd = $('<li id = ' + element.dateNum + '><div><table><tr>' +
                    '<td><img style="max-width:60px; max-height:60px; " src = ' + buddy.get("pic").url() + '></td>' +
@@ -1256,7 +1279,6 @@ var feedInit = function() {
                    '</table></div></li>');
 
                $("#friendsFeed").prepend(toAdd);
-               count++;
            });
            buddy.get('calorieEntries').forEach(function(element) {
                var toAdd = $('<li id = ' + element.dateNum + '><div><table><tr>' +
@@ -1267,6 +1289,41 @@ var feedInit = function() {
                    '</table></div></li>');
 
                $("#friendsFeed").prepend(toAdd);
+           });
+           buddy.get('shareArray').forEach(function(element)
+           {
+               var displayAchv;
+               if(count == 0)
+                   displayAchv = " achieved Beginner Bunny on ";
+               else if(count == 1)
+                   displayAchv = "achieved Healthy Hare on ";
+               else if(count == 2)
+                   displayAchv = "achieved Radical Rabbit on ";
+               else if(count == 3)
+                   displayAchv = "achieved Baby Carrot on ";
+               else if(count == 4)
+                   displayAchv = "achieved Carrot Pro on ";
+               else if(count == 5)
+                   displayAchv = "achieved Slim Carrot on ";
+               else if(count == 6)
+                   displayAchv = "achieved Slender Carrot on ";
+               else if(count == 7)
+                   displayAchv = "achieved 5 Carrot Log on ";
+               else if(count == 8)
+                   displayAchv = "achieved 10 Carrot Log on ";
+               else if(count == 9)
+                   displayAchv = "achieved 15 Carrot Log on ";
+               var date = new Date(element);
+               if(date.getTime() > 0) {
+                   var toAdd = $('<li id = ' + date.getTime() + '><div><table><tr>' +
+                       '<td><img style="max-width:60px; max-height:60px; " src = ' + buddy.get("pic").url() + '></td>' +
+                       '<td><h2 id="cur_name" class ="adjust_indent">' + buddy.get("firstName") + " " + buddy.get("lastName") + '</h2>' +
+                       '<p class ="adjust_indent">' + displayAchv + (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() +
+                       '</p></td></tr>' +
+                       '</table></div></li>');
+
+                   $("#friendsFeed").prepend(toAdd);
+               }
                count++;
            });
 
