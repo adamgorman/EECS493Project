@@ -1123,12 +1123,11 @@ var achievementInit = function() {
         aArray[9] = 1;
     user.set("achievementArray", aArray);
     user.save();
+
     if (aArray[0]) {
         $("#a1").html(achv0);
         $("#ws1").attr("href", "shareAchievement.html");
-        $("#dup").html(achv0);
     }
-    ;
     if (aArray[1]) {
         $("#a2").html(achv1);
         $("#ws2").attr("href", "shareAchievement.html");
@@ -1166,6 +1165,7 @@ var achievementInit = function() {
         $("#d3").html(achv9);
         $("#is3").attr("href", "shareAchievement.html");
     }
+
 
     $("#ws1").click(function () {
         curAchv = achv0;
