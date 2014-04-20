@@ -35,6 +35,9 @@ var currentWeight;
 var stringForGoal;
 
 
+var ateVerbs = [
+    "feasted on ","scarfed down ", "inhaled ", "devoured ", "gobbled up "
+]
 
 var updateUserWeight = function() {
 
@@ -67,7 +70,6 @@ var updateUserWeight = function() {
 }
 
 
-
 //var chartData;
 var excerciseArrayReal = [];
 
@@ -98,6 +100,7 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     } else if(pageId == "input-popup") {
         inputPopupInit();
     } else if(pageId == "input-page") {
+        console.log("okay dude");
         inputPageInit();
     } else if(pageId == "friends-page") {
         friendsInit();
@@ -109,25 +112,13 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         addFriendInit();
     } else if (pageId == "page1") {
 
-        console.log("hello!");
-
-//        $('.iosSlider').iosSlider({
-//            snapToChildren: true,
-//            desktopClickDrag: true,
-//            infiniteSlider: true,
-//            snapSlideCenter: true
-//        });
-
         chartFunction();
-
-//        homepageContents();
         profileIn();
         goalin();
         recentActivityIn();
         recentActivityIn2();
         recentActivityIn3();
         $(document).ready( function() {
-            console.log("running 2");
             chartFunction();
         });
 
@@ -138,20 +129,6 @@ $(document).on("pagecontainerbeforeshow", function(event) {
 
             homepageContents();
         });
-
-
-
-
-
-//        $(document).ready( function() {
-//
-//            console.log("running 2");
-//
-////
-//            chartFunction();
-//        });
-
-
 
     } else if (pageId == "settings-page") {
         settingsPageInIt();
@@ -234,7 +211,7 @@ var setUserInformation = function(rUser) {
 
     user.get('exerciseEntries').forEach(function(element){
         arrayK[count] = {
-            "year": element.dateString,
+            "date": element.dateString,
             "value": element.value
         }
         count++;
@@ -250,7 +227,7 @@ var setUserInformation = function(rUser) {
     user.get('weightEntries').forEach(function(element){
 
         arrayWeight[count] = {
-            "year": element.dateString,
+            "date": element.dateString,
             "value": element.value
         }
         count++;
@@ -260,12 +237,13 @@ var setUserInformation = function(rUser) {
     user.get('calorieEntries').forEach(function(element){
 
         arrayCalories[count] = {
-            "year": element.dateString,
+            "date": element.dateString,
             "value": element.value
         }
         count++;
     })
     count = 0;
+
 
     if(user.get('friendUsernames').length == 0)
         $.mobile.changePage("main/main.html");
@@ -607,33 +585,68 @@ var getPersonForRequest = function(username) {
     });
 };
 
-
-
-// HOME PAGE CONTENT YO
-
-//
+// HOME PAGE CONTENT
 var chartFunction = function() {
 
 
-//
+    arrayK = [];
+    arrayCalories = [];
+    arrayWeight = [];
+
+    var count = 0;
+
+    user.get('exerciseEntries').forEach(function(element){
+        arrayK[count] = {
+            "date": element.dateString,
+            "value": element.value
+        }
+        count++;
+    })
+
+
+    for (var i = 0; i < arrayK.length; i++) {
+        console.log(arrayK[i].value);
+    }
+
+
+    count = 0;
+    user.get('weightEntries').forEach(function(element){
+
+        arrayWeight[count] = {
+            "date": element.dateString,
+            "value": element.value
+        }
+        count++;
+    })
+    count = 0;
+
+    user.get('calorieEntries').forEach(function(element){
+
+        arrayCalories[count] = {
+            "date": element.dateString,
+            "value": element.value
+        }
+        count++;
+    })
+    count = 0;
+
 //AmCharts.ready(function () {
     // SERIAL CHART
-
     chart.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
-    chart.marginTop = 2;
-    chart.marginRight = 2;
+    chart.marginTop = 0;
+    chart.marginRight = 0;
     chart.dataProvider = arrayCalories;
-    chart.categoryField = "year";
-    chart.dataDateFormat = "YYYY";
-    chart.balloon.cornerRadius = 5;
+    chart.categoryField = "date";
+    chart.dataDateFormat = "YYYY-MM-DD";
+    chart.balloon.cornerRadius = 6;
 
     chart2;
     chart2.pathToImages = "amcharts_3.4.7.free/amcharts/images/";
     chart2.marginTop = 0;
     chart2.marginRight = 0;
     chart2.dataProvider = arrayK;
-    chart2.categoryField = "year";
-    chart2.dataDateFormat = "YYYY";
+    chart2.categoryField = "date";
+    chart2.dataDateFormat = "YYYY-MM-DD";
     chart2.balloon.cornerRadius = 6;
 
     chart3;
@@ -641,28 +654,43 @@ var chartFunction = function() {
     chart3.marginTop = 0;
     chart3.marginRight = 0;
     chart3.dataProvider = arrayWeight;
-    chart3.categoryField = "year";
-    chart3.dataDateFormat = "YYYY";
+    chart3.categoryField = "date";
+    chart3.dataDateFormat = "YYYY-MM-DD";
     chart3.balloon.cornerRadius = 6;
 
     // AXES
     // category
     var categoryAxis = chart.categoryAxis;
-    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
-    categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY
-    categoryAxis.dashLength = 1;
-    categoryAxis.minorGridEnabled = true;
-    categoryAxis.axisColor = "#DADADA";
+//    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+//    categoryAxis.minPeriod = "YYYY-MM-DD"; // our data is yearly, so we set minPeriod to YYYY
+//    categoryAxis.dashLength = 1;
+//    categoryAxis.minorGridEnabled = true;
+//    categoryAxis.axisColor = "#DADADA";
+    chart.categoryAxis = categoryAxis;
 
-    // value
+    var categoryAxis2 = chart3.categoryAxis;
+//    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+//    categoryAxis.minPeriod = "YYYY-MM-DD"; // our data is yearly, so we set minPeriod to YYYY
+//    categoryAxis.dashLength = 1;
+//    categoryAxis.minorGridEnabled = true;
+//    categoryAxis.axisColor = "#DADADA";
+    chart2.categoryAxis = categoryAxis2;
+
+    var categoryAxis3 = chart3.categoryAxis;
+//    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+//    categoryAxis.minPeriod = "YYYY-MM-DD"; // our data is yearly, so we set minPeriod to YYYY
+//    categoryAxis.dashLength = 1;
+//    categoryAxis.minorGridEnabled = true;
+//    categoryAxis.axisColor = "#DADADA";
+
+    chart3.categoryAxis = categoryAxis3;
 //    var valueAxis; //  = new AmCharts.ValueAxis();
     valueAxis.axisAlpha = 0;
-    valueAxis.dashLength = 10;
+    valueAxis.dashLength = 1;
     valueAxis.inside = true;
     chart.addValueAxis(valueAxis);
     chart2.addValueAxis(valueAxis);
     chart3.addValueAxis(valueAxis);
-
 
     // GRAPH
     graph;
@@ -674,11 +702,11 @@ var chartFunction = function() {
 
     graph.bulletBorderThickness = 2;
     graph.bulletBorderAlpha = 1;
-    graph.connect = false; // this makes the graph not to connect data points if data is missing
+    graph.connect = true; // this makes the graph not to connect data points if data is missing / changeed
     graph.lineThickness = 2;
     graph.valueField = "value";
     graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
-    chart.addGraph(graph2);
+    chart.addGraph(graph);
 
     graph2;
     graph2.lineColor = "#b6d278";
@@ -689,7 +717,7 @@ var chartFunction = function() {
 
     graph2.bulletBorderThickness = 2;
     graph2.bulletBorderAlpha = 1;
-    graph2.connect = false; // this makes the graph not to connect data points if data is missing
+    graph2.connect = true; // this makes the graph not to connect data points if data is missing
     graph2.lineThickness = 2;
     graph2.valueField = "value";
     graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
@@ -704,27 +732,24 @@ var chartFunction = function() {
 
     graph3.bulletBorderThickness = 2;
     graph3.bulletBorderAlpha = 1;
-    graph3.connect = false; // this makes the graph not to connect data points if data is missing
+    graph3.connect = true; // this makes the graph not to connect data points if data is missing
     graph3.lineThickness = 2;
     graph3.valueField = "value";
     graph3.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
     chart3.addGraph(graph3);
 
 //    CURSOR
-        var chartCursor = new AmCharts.ChartCursor();
-        chartCursor.cursorAlpha = 0;
-        chartCursor.cursorPosition = "mouse";
-        chartCursor.categoryBalloonDateFormat = "YYYY";
-        chartCursor.graphBulletSize = 2;
-        chart.addChartCursor(chartCursor);
-        chart2.addChartCursor(chartCursor);
-        chart3.addChartCursor(chartCursor);
+//        var chartCursor = new AmCharts.ChartCursor();
+//        chartCursor.cursorAlpha = 0;
+//        chartCursor.cursorPosition = "mouse";
+//        chartCursor.categoryBalloonDateFormat = "YYYY-MM-DD";
+//        chartCursor.graphBulletSize = 2;
+//        chart.addChartCursor(chartCursor);
+//        chart2.addChartCursor(chartCursor);
+//        chart3.addChartCursor(chartCursor);
 
     chart.creditsPosition = "bottom-right";
     chart3.creditsPosition = "bottom-left";
-
-//        chart.creditsPosition = "bottom-right";
-
 
     // WRITE
 
@@ -732,31 +757,11 @@ var chartFunction = function() {
     chart2.write("b");
     chart3.write("c");
 
-
-
     chart.invalidateSize();
-
     chart2.invalidateSize();
-
     chart3.invalidateSize();
 
-
-//
-
 //});
-//    $(document).ready(function() {
-//
-//
-//        console.log("whhhsbhasbjhbsfhjbhjsbsfhjbsfhjbshjfbsfhjb");
-//        $('.iosSlider').iosSlider({
-//            snapToChildren: true,
-//            desktopClickDrag: true,
-//            infiniteSlider: true,
-//            snapSlideCenter: true
-//        });
-//
-//    });
-
 
 //
 };
@@ -778,20 +783,15 @@ var chartFunction = function() {
 //});
 
 
-
-
 var homepageContents = function() {
 
 
     $(document).delegate('.ui-navbar ul li > a', 'click', function () {
 //        chart.invalidateSize();
-
-
         chart2.invalidateSize();
 
         chart.invalidateSize();
         chart3.invalidateSize();
-
 
         console.log("helo sam 2")
         //un-highlight and highlight only the buttons in the same navbar widget
@@ -813,7 +813,6 @@ var homepageContents = function() {
             snapSlideCenter: true
         });
 
-
         console.log("helo sam 3")
         //un-highlight and highlight only the buttons in the same navbar widget
         $(this).closest('.ui-navbar').find('a').removeClass('ui-navbar-btn-active');
@@ -826,8 +825,6 @@ var homepageContents = function() {
     });
 
 
-
-//    $('.navybar').create();
 };
 
 var profileIn = function() {
@@ -840,22 +837,18 @@ var profileIn = function() {
     $('li#newPro').remove();
 //        $('p').remove();
 
-
     updateUserWeight();
 
     $('ul#profileid').append(profile.clone());
-    $('li#newPro img').attr('src', 'img/mypic.jpg');
+    $('li#newPro img').attr('src', user.get('pic').url());
     $('li#newPro h1').text(user.get('firstName') + " " + user.get('lastName'));
     $('li#newPro p span').text(currentWeight);
-
-//        console.log("you not here yet");
 
     $('ul#profileid').listview('refresh');
 };
 
 
 var goalin = function() {
-
 
     updateUserWeight();
 
@@ -872,143 +865,94 @@ var goalin = function() {
     $('li#newGoal h1').text("Goal: " +  user.get("weightGoal"));
     $('li#newGoal p span').text(stringForGoal);
 
-//        console.log("you not here yet");
-
     $('ul#goalmain').listview('refresh');
 };
 
 
 var recentActivityIn = function() {
-    var profile = $('<li id="newActivity">'+
+    var profile = $('<li id="newActivity1" class="lastactivity1">'+
         '<h1></h1>'+
         '<p><span></span></p>'+
         '</li>');
 
 
+    $('li.lastactivity1').remove();
 
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+    for (var j = 0; j < arrayK.length; j++) {
+        $('li.lastactivity1').remove();
+//            $('h1').remove();
+//            $('h1#newActivity3').remove();
+    }
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+    var cList = $('youractivityid');
 
+    var count2 = 0;
+    for (var i = 0; i < arrayCalories.length; i++) {
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+        if (arrayCalories[i].value != null) {
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+            $('ul#youractivityid').append(profile.clone());
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+            $('li#newActivity1 h1').text("You " + ateVerbs[count2] + arrayCalories[i].value + " calories");
+            $('li#newActivity1 p span').text("on " + arrayCalories[i].date);
+            $('li#newActivity1').removeAttr('id');
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+            count2++;
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+            if (count2 == ateVerbs.length) {
+                count2 = 0;
+            }
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+        } else {
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+            continue;
 
-    $('ul#youractivityid').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity h1').text("Goal:");
-    $('li#newActivity p span').text("Gain 5 lbs");
+        }
+    }
 
+    count2 = 0;
 
-//        console.log("you not here yet");
 
     $('ul#youractivityid').listview('refresh');
 };
 
 var recentActivityIn2 = function() {
-    var profile = $('<li id="newActivity2">'+
+
+    var profile = $('<li id="newActivity2" class="lastactivity2">'+
         '<h1></h1>'+
         '<p><span></span></p>'+
         '</li>');
 
-    $('li.newActivity').remove();
+//    $('li#newActivity3').remove();
 
+    $('li.lastactivity2').remove();
 
+    for (var j = 0; j < arrayK.length; j++) {
+        $('li.lastactivity2').remove();
+//            $('h1').remove();
+//            $('h1#newActivity3').remove();
+    }
 
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
+    var cList = $('youractivityid2');
 
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
+    for (var i = 0; i < arrayK.length; i++) {
 
+        if (arrayK[i].value != null) {
 
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
+            $('ul#youractivityid2').append(profile.clone());
 
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
+            $('li#newActivity2 h1').text("You worked out for " + arrayK[i].value + " hours!");
+            $('li#newActivity2 p span').text("on " + arrayK[i].date);
+            $('li#newActivity2').removeAttr('id');
 
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
-
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("WEIGHT 5 lbs");
-
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("WEIGHT 5 lbs");
-
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
-
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
-
-    $('ul#youractivityid2').append(profile.clone());
-//        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newActivity2 h1').text("WEIGHT:");
-    $('li#newActivity2 p span').text("Gain 5 lbs");
-
-
-//        console.log("you not here yet");
+        } else {
+            continue;
+        }
+    }
 
     $('ul#youractivityid2').listview('refresh');
+
 };
 
 var recentActivityIn3 = function() {
@@ -1017,47 +961,34 @@ var recentActivityIn3 = function() {
         '<p><span></span></p>'+
         '</li>');
 
-
-//    $('li#newActivity3').remove();
-
     $('li.lastactivity').remove();
 
-//    $()
-
-
-    for (var j = 0; j < chartData.length; j++) {
+    for (var j = 0; j < arrayWeight.length; j++) {
         $('li.lastactivity').remove();
 //            $('h1').remove();
 //            $('h1#newActivity3').remove();
     }
 
-    console.log(chartData.length);
-
-
     var cList = $('youractivityid3');
 
 
-    for (var i = 0; i < chartData.length; i++) {
+    for (var i = 0; i < arrayWeight.length; i++) {
 
-        if (chartData[i].value != null) {
+        if (arrayWeight[i].value != null) {
 
             $('ul#youractivityid3').append(profile.clone());
 
-            $('li#newActivity3 h1').text("You weighed " + chartData[i].value + " lbs!");
-            $('li#newActivity3 p span').text("on " + chartData[i].year);
+            $('li#newActivity3 h1').text("You weighed " + arrayWeight[i].value + " lbs!");
+            $('li#newActivity3 p span').text("on " + arrayWeight[i].date);
             $('li#newActivity3').removeAttr('id');
 
 
         } else {
 
-
-            console.log("NO!");
             continue;
 
         }
     }
-
-
 
     $('ul#youractivityid3').listview('refresh');
 };
@@ -1067,52 +998,46 @@ var recentActivityIn3 = function() {
 // SETTINGS PAGE
 var settingsPageInIt = function () {
 
-    var isPrivate = 0;
-    var firstName = "Sammy";
-    var lastName = "Smith";
+    var isPrivate = user.get("privateWeight");
+    var firstName = user.get("firstName");
+    var lastName = user.get("lastName")
     var initialWeight = 1;
-    var goalWeight = 1;
+    var goalWeight = user.get("weightGoal");
     var goalNumber = 1;
-
-
     goalNumber = initialWeight - goalWeight;
 
-    $("#slider2").change(function() {
-        isPrivate = $("#slider2").val();
-
-        if (isPrivate == "off") {
-            isPrivate = 0;
-        }
-
-        if (isPrivate == "on") {
-            isPrivate = 1;
-        }
-
-//            $('#togshow').text(state.toString());
-    });
+//    $("#slider2").change(function() {
+//        isPrivate = $("#slider2").val();
+//
+//        if (isPrivate == "off") {
+//            isPrivate = 0;
+//        }
+//
+//        if (isPrivate == "on") {
+//            isPrivate = 1;
+//        }
+//
+////            $('#togshow').text(state.toString());
+//    });
 
 
     $("#firstNameLabel").on("keyup change", function() {
         firstName = this.value; // omit "var" to make it global
         $("#dom_element").text(value);
     });
-    console.log(firstName);
 
 
     $("#lastNameLabel").on("keyup change", function() {
         lastName = this.value; // omit "var" to make it global
         $("#dom_element").text(value);
     });
-    console.log(lastName);
 
-    $("#initialWeight").on("keyup change", function() {
-        initialWeight = this.value; // omit "var" to make it global
-        goalNumber = initialWeight - goalWeight;
-
-        $("#dom_element").text(value);
-    });
-    console.log(initialWeight);
-
+//    $("#initialWeight").on("keyup change", function() {
+//        initialWeight = this.value; // omit "var" to make it global
+//        goalNumber = initialWeight - goalWeight;
+//
+//        $("#dom_element").text(value);
+//    });
 
     $("#goalWeight").on("keyup change", function() {
         goalWeight = this.value; // omit "var" to make it global
@@ -1120,14 +1045,18 @@ var settingsPageInIt = function () {
 
         $("#dom_element").text(value);
     });
-    console.log(goalWeight);
 
 
     $( "#saveSettings" ).click(function() {
+//        user.set("privateWeight", isPrivate);
+        user.set("firstName", firstName);
+        user.set("lastName", lastName);
+        user.set("weightGoal", goalWeight);
+        user.set("privateWeight", isPrivate);
 
+        user.save();
 
-        alert( "Handler for .click() called." );
+        alert( "Settings Saved!" );
     });
-
 
 };

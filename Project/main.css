@@ -549,7 +549,7 @@
 /*}*/
 
 #page1 .supervisor-info .avatar {
-    background-image: url(main/img/mypic.jpg);
+    /*background-image: url(main/img/mypic.jpg);*/
     width: 50px;
     height: 50px;
     margin: 0px 12px 4px 4px;
