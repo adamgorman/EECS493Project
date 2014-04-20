@@ -922,8 +922,6 @@ var chartFunction = function() {
 
     // GRAPH
     graph;
-    graph.lineColor = "#b6d278";
-    graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
     graph.bullet = "round";
     graph.bulletSize = 8;
     graph.bulletBorderColor = "#FFFFFF";
@@ -933,12 +931,11 @@ var chartFunction = function() {
     graph.connect = true; // this makes the graph not to connect data points if data is missing / changeed
     graph.lineThickness = 2;
     graph.valueField = "value";
+    graph.lineColor = "#e95230";
     graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
     chart.addGraph(graph);
 
     graph2;
-    graph2.lineColor = "#b6d278";
-    graph2.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
     graph2.bullet = "round";
     graph2.bulletSize = 8;
     graph2.bulletBorderColor = "#FFFFFF";
@@ -947,15 +944,15 @@ var chartFunction = function() {
     graph2.bulletBorderAlpha = 1;
     graph2.connect = true; // this makes the graph not to connect data points if data is missing
     graph2.lineThickness = 2;
+    graph2.lineColor = "#e95230";
     graph2.valueField = "value";
     graph2.balloonText = "[[category]]<br><b><span style='font-size:14px;'>[[value]] C</span></b>";
     chart2.addGraph(graph2);
 
     graph3;
-    graph3.lineColor = "#b6d278";
-    graph3.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
     graph3.bullet = "round";
     graph3.bulletSize = 8;
+    graph3.lineColor = "#e95230";
     graph3.bulletBorderColor = "#FFFFFF";
 
     graph3.bulletBorderThickness = 2;
@@ -1037,7 +1034,8 @@ var homepageContents = function() {
             snapToChildren: true,
             desktopClickDrag: true,
             infiniteSlider: true,
-            snapSlideCenter: true
+            snapSlideCenter: true,
+            onSlideChange: slideChange
         });
 
         //un-highlight and highlight only the buttons in the same navbar widget
@@ -1050,13 +1048,17 @@ var homepageContents = function() {
 
     });
 
+};
 
+var slideChange = function(args) {
+    $('.indicators .item').removeClass('selected');
+    $('.indicators .item:eq(' + (args.currentSlideNumber -1 ) +')').addClass('selected');
 };
 
 var profileIn = function() {
     var profile = $('<li id="newPro">'+
         '<img>'+
-        '<h1></h1>'+
+        '<h2></h2>'+
         '<p>Weight: <span></span></p>'+
         '</li>');
 
@@ -1067,7 +1069,7 @@ var profileIn = function() {
 
     $('ul#profileid').append(profile.clone());
     $('li#newPro img').attr('src', user.get('pic').url());
-    $('li#newPro h1').text(user.get('firstName') + " " + user.get('lastName'));
+    $('li#newPro h2').text(user.get('firstName') + " " + user.get('lastName'));
     $('li#newPro p span').text(currentWeight);
 
     $('ul#profileid').listview('refresh');
@@ -1079,7 +1081,7 @@ var goalin = function() {
     updateUserWeight();
 
     var profile = $('<li id="newGoal">'+
-        '<h1></h1>'+
+        '<h2></h2>'+
         '<p><span></span></p>'+
         '</li>');
 
@@ -1088,7 +1090,7 @@ var goalin = function() {
 
     $('ul#goalmain').append(profile.clone());
 //        $('li#newPro img').attr('src', 'img/mypic.jpg');
-    $('li#newGoal h1').text("Goal: " +  user.get("weightGoal"));
+    $('li#newGoal h2').text("Goal Weight: " +  user.get("weightGoal") +" lb");
     $('li#newGoal p span').text(stringForGoal);
 
     $('ul#goalmain').listview('refresh');
@@ -1097,7 +1099,7 @@ var goalin = function() {
 
 var recentActivityIn = function() {
     var profile = $('<li id="newActivity1" class="lastactivity1">'+
-        '<h1></h1>'+
+        '<h2></h2>'+
         '<p><span></span></p>'+
         '</li>');
 
@@ -1120,13 +1122,13 @@ var recentActivityIn = function() {
 
             $('ul#youractivityid').append(profile.clone());
 
-            $('li#newActivity1 h1').text("You " + ateVerbs[count2] + arrayCalories[i].value + " calories");
+            $('li#newActivity1 h2').text("You " + ateVerbs[count2] + arrayCalories[i].value + " calories");
             $('li#newActivity1 p span').text("on " + arrayCalories[i].date);
             $('li#newActivity1').removeAttr('id');
 
             count2++;
 
-            if (count2 == ateVerbs.length) {
+            if (count2 == ateVerbs.length - 1) {
                 count2 = 0;
             }
 
@@ -1146,7 +1148,7 @@ var recentActivityIn = function() {
 var recentActivityIn2 = function() {
 
     var profile = $('<li id="newActivity2" class="lastactivity2">'+
-        '<h1></h1>'+
+        '<h2></h2>'+
         '<p><span></span></p>'+
         '</li>');
 
@@ -1168,7 +1170,7 @@ var recentActivityIn2 = function() {
 
             $('ul#youractivityid2').append(profile.clone());
 
-            $('li#newActivity2 h1').text("You worked out for " + arrayK[i].value + " hours!");
+            $('li#newActivity2 h2').text("You worked out for " + arrayK[i].value + " hours!");
             $('li#newActivity2 p span').text("on " + arrayK[i].date);
             $('li#newActivity2').removeAttr('id');
 
@@ -1183,7 +1185,7 @@ var recentActivityIn2 = function() {
 
 var recentActivityIn3 = function() {
     var profile = $('<li id="newActivity3" class="lastactivity">'+
-        '<h1></h1>'+
+        '<h2></h2>'+
         '<p><span></span></p>'+
         '</li>');
 
@@ -1204,7 +1206,7 @@ var recentActivityIn3 = function() {
 
             $('ul#youractivityid3').append(profile.clone());
 
-            $('li#newActivity3 h1').text("You weighed " + arrayWeight[i].value + " lbs!");
+            $('li#newActivity3 h2').text("You weighed " + arrayWeight[i].value + " lbs!");
             $('li#newActivity3 p span').text("on " + arrayWeight[i].date);
             $('li#newActivity3').removeAttr('id');
 
@@ -1224,11 +1226,15 @@ var settingsPageInIt = function () {
 
     var isPrivate = user.get("privateWeight");
     var firstName = user.get("firstName");
-    var lastName = user.get("lastName")
+    var lastName = user.get("lastName");
     var initialWeight = 1;
     var goalWeight = user.get("weightGoal");
     var goalNumber = 1;
     goalNumber = initialWeight - goalWeight;
+        $('#firstNameLabel').val(firstName);
+        $('#lastNameLabel').val(lastName);
+        $('#goalWeight').val(goalWeight);
+
 
 //    $("#slider2").change(function() {
 //        isPrivate = $("#slider2").val();
@@ -1271,16 +1277,23 @@ var settingsPageInIt = function () {
     });
 
 
-    $( "#saveSettings" ).click(function() {
+    $('#settings-page #saveSettings').submit(function() {
 //        user.set("privateWeight", isPrivate);
         user.set("firstName", firstName);
         user.set("lastName", lastName);
         user.set("weightGoal", goalWeight);
         user.set("privateWeight", isPrivate);
-
-        user.save();
-
-        alert( "Settings Saved!" );
+        $.mobile.loading( 'show', {
+            text: "Updating Settings...",
+            textVisible: true
+        });
+        user.save(null, {
+            success: function() {
+                $.mobile.loading('hide');
+                $('#settings-page .form-confirm-text').text('Settings have successfully updated');
+            }
+        });
+        return false;
     });
 
 };

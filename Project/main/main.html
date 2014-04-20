@@ -25,7 +25,7 @@
     <div data-role="header" data-position="fixed">
         <a href="#panel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
         <h1>Workout Carrot</h1>
-        <a href="../main/input.html" data-role="button" data-icon="plus" data-iconpos="notext">Input</a>
+        <a href="../main/input.html" data-role="button" data-icon="edit" data-iconpos="notext">Input</a>
     </div>
     <div data-role="content" class="ui-content" id="page1Content">
         <div>
@@ -51,7 +51,7 @@
 
                     <div class='slider'>
 
-                        <div class='item'>
+                        <div class='item item1'>
                             <div id="a" class="content_div">
                             </div>
 
@@ -64,23 +64,27 @@
 
                         </div>
 
-                        <div class='item'>
+                        <div class='item item2'>
                             <div>
-                                <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
-
                                 <div class="ui-body book">
 
                                     <div id="feed1" class="act">
-                                        <ul data-role="listview" id="youractivityid" class="activity"></ul>
+                                        <ul data-role="listview" id="youractivityid" class="activity">
+                                            <li data-role="list-divider">Recent Eating Activity</li>
+                                        </ul>
 
 
                                     </div>
                                     <div id="feed2" class="act">
-                                        <ul data-role="listview" id="youractivityid2" class="activity"></ul>
+                                        <ul data-role="listview" id="youractivityid2" class="activity">
+                                            <li data-role="list-divider">Recent Exercise Activity</li>
+                                        </ul>
 
                                     </div>
                                     <div id="feed3" class="act">
-                                        <ul data-role="listview" id="youractivityid3" class="activity"></ul>
+                                        <ul data-role="listview" id="youractivityid3" class="activity">
+                                            <li data-role="list-divider">Recent Weight Logs</li>
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -91,8 +95,11 @@
                     </div>
 
                 </div>
+                <div class="indicators">
+                    <div class="item selected"></div>
+                    <div class="item"></div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
