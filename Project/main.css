@@ -1,14 +1,19 @@
 /* All Pages */
 .form-error-text {
     height: 15px;
-    color: orangered;
+    color: red;
     padding: 5px;
 }
 
 .form-confirm-text {
     height: 30px;
-    color: lightseagreen;
+    color: green;
     padding: 5px;
+}
+
+/* Login Page */
+#login-page h1 {
+    color: #e95230;
 }
 
 /* Input Page */
