@@ -50,16 +50,6 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     } else if(pageId == "feed") {
         feedInit();
     }  else if (pageId == "page1") {
-        $('.iosSlider').iosSlider({
-            scrollbar: true,
-            snapToChildren: true,
-            desktopClickDrag: true,
-            scrollbarMargin: '5px 40px 0 40px',
-            scrollbarBorderRadius: 0,
-            scrollbarHeight: '2px',
-            navPrevSelector: $('.prevButton'),
-            navNextSelector: $('.nextButton')
-        });
         chartFunction();
         profileIn();
         goalin();
@@ -1239,8 +1229,6 @@ var recentActivityIn3 = function() {
 
     $('ul#youractivityid3').listview('refresh');
 };
-
-
 
 // SETTINGS PAGE
 var settingsPageInIt = function () {
