@@ -94,3 +94,158 @@
     padding-left: 0cm;
 }
 
+/* main page */
+
+#page1 body {
+    /* overflow: hidden; */
+    margin: 0;
+}
+
+#page1 .responsive_height {
+    /*height: 0;*/
+    /*width: 100%;*/
+    height: 350px;
+    padding: 0 0 40% 0; /* responsive slider height = 40% of the browser width; ie. slide image aspect ratio: w10xh4 */
+    position: relative;
+    overflow: visible;
+}
+
+#page1 .responsive_height > .container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    height: 350px;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+    border: 1.4px double dodgerblue;
+
+
+    margin: 10px 0px 10px 0px;
+    /*padding: 50px;*/
+    /*width: 95%;*/
+    /*height: 95%;*/
+}
+
+#page1 .iosSlider {
+    width: 100%;
+    height: 100%;
+    height: 350px;
+
+    /*background: #aaa;*/
+}
+
+#page1 .iosSlider .slider {
+    width: 100%;
+    height: 100%;
+    height: 350px;
+
+}
+
+#page1 .iosSlider .slider .item {
+    /*position: relative;*/
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    height: 350px;
+
+    margin: 0 0 0 0;
+}
+
+#page1 .iosSlider .slider .item .content_div {
+    height: 100%;
+    width: 100%;
+    height: 350px;
+
+}
+
+#page1 .content_div {
+    padding: 2px;
+    border-radius: 35px;
+
+}
+
+#page1 div#element {
+
+    width: 100vw;
+}
+
+
+
+#a, #b, #feed1, #feed2 {
+    display: none;
+}
+
+#page1 .box {
+    /*border: 2px solid #000000;*/
+
+    margin: 4px;
+
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-right: 2500px;*/
+    padding-right: 0px;
+
+}
+
+#page1 .supervisor-info .avatar {
+    /*background-image: url(main/img/mypic.jpg);*/
+    width: 50px;
+    height: 50px;
+    margin: 0px 12px 4px 4px;
+    float: left;
+    -moz-background-size: 50px 50px;
+    -o-background-size: 50px 50px;
+    -webkit-background-size: 50px 50px;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+}
+
+#page1 .supervisor-info .name {
+    margin-left: 60px;
+    border: 1px solid #000000;
+    font-size: 1.5em;
+    padding: 0px 0 0 0;
+    -moz-box-sizing: 50px 50px;
+    -o-background-size: 50px 50px;
+    -webkit-box-sizing: 50px;
+}
+
+#page1 .goals {
+    /*margin-left: 60px;*/
+    margin: 5px 0px 5px 3px;
+    /*float: left;*/
+
+    border: 1px solid #000000;
+    font-size: 1.5em;
+    padding: 0px 0 0 0;
+    -moz-box-sizing: 50px 50px;
+    -o-background-size: 50px 50px;
+    -webkit-box-sizing: 50px;
+
+}
+
+#page1 .smaller {
+    font-size: .95em;
+
+}
+
+#page1 .book {
+    overflow: auto;
+    height: 265px;
+    /*width: 95%;*/
+    margin: 10px;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+#page1 .activityH {
+    border-radius: 50px;
+    color: white;
+    background-color: #3388cc;
+    margin: 5px;
+
+}

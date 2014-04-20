@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
 </head>
 <body>
-<div data-role="page">
+<div data-role="page" id="page1">
     <div data-role="panel" id="panel">
         <ul data-role="listview">
             <li><a href="../main/main.html">Home</a></li>
@@ -27,7 +27,73 @@
         <h1>Workout Carrot</h1>
         <a href="../main/input.html" data-role="button" data-icon="plus" data-iconpos="notext">Input</a>
     </div>
-    <div data-role="content">
+    <div data-role="content" class="ui-content" id="page1Content">
+        <div>
+            <ul data-role="listview" data-inset="true" id="profileid"></ul>
+
+        </div>
+
+        <div>
+            <ul data-role="listview" data-inset="true" id="goalmain"></ul>
+
+        </div>
+
+        <div data-role="navbar" class="navybar">
+            <ul>
+                <li><a  data-href="a" data-href2="feed1">Calories</a></li>
+                <li><a  data-href="b" data-href2="feed2">Exercise</a></li>
+                <li><a  data-href="c" data-href2="feed3" class="ui-btn-active ui-state-persist ">Weight</a></li>
+            </ul>
+        </div>
+        <div class='responsive_height'>
+            <div class='container'>
+                <div id="#element" class='iosSlider'>
+
+                    <div class='slider'>
+
+                        <div class='item'>
+                            <div id="a" class="content_div">
+                            </div>
+
+                            <div id="b" class="content_div">
+                            </div>
+
+                            <div id="c" class="content_div">
+
+                            </div>
+
+                        </div>
+
+                        <div class='item'>
+                            <div>
+                                <h3 class="ui-bar ui-bar-a ui-corner-all activityH">Your Recent Activity</h3>
+
+                                <div class="ui-body book">
+
+                                    <div id="feed1" class="act">
+                                        <ul data-role="listview" id="youractivityid" class="activity"></ul>
+
+
+                                    </div>
+                                    <div id="feed2" class="act">
+                                        <ul data-role="listview" id="youractivityid2" class="activity"></ul>
+
+                                    </div>
+                                    <div id="feed3" class="act">
+                                        <ul data-role="listview" id="youractivityid3" class="activity"></ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="../main.js"></script>
