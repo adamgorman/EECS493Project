@@ -57,7 +57,7 @@ var initForAll = function() {
 // Login Page
 var loginPageInit = function() {
     $("#login-form").submit(function() {
-        var name = $('#login-form input:text[name=username]').val();
+        var name = $('#login-form input:text[name=username]').val().toLowerCase();
         var password = $('#login-form input:password[name=password]').val();
         $('#login-form input:password[name=password]').val("");
         $('#login-form .form-error-text').text("");
@@ -157,7 +157,7 @@ var inputPopupInit = function() {
             $('#input-form .form-error-text').text("Please enter a value.");
             $.mobile.loading('hide');
         } else if(input.value < 0) {
-            $('#input-form .form-error-text').text("Value should not negative.");
+            $('#input-form .form-error-text').text("Value cannot be negative.");
             $.mobile.loading('hide');
         } else {
             if(websiteData.inputType == "Food") {
@@ -235,46 +235,66 @@ var friendsInit = function() {
     $('ul#friends-list').listview('refresh');
 
     $('ul#friends-list li').on('click', function(event) {
-        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")].attributes;
+        websiteData.compareFriend = friends[$(event.target).closest('li').data("friend-index")];
     })
 };
 
 // Friends Compare Page
 var friendCompareInit = function() {
     // names
-    $('#friend-name-cell').text(websiteData.compareFriend.username);
+    $('#friend-name-cell').text(websiteData.compareFriend.get('username')[0].toUpperCase() + websiteData.compareFriend.get('username').slice(1));
 
     // pictures
     $('#compare-me-pic').attr('src', user.get('pic').url());
-    $('#compare-friend-pic').attr('src', websiteData.compareFriend.pic.url());
+    $('#compare-friend-pic').attr('src', websiteData.compareFriend.get("pic").url());
 
     // weights
-    $('tr.weight-row td.personal-cell span').text("Weight");
-    $('tr.weight-row td.friend-cell span').text("Weight");
+    $('tr.weight-row td.personal-cell span').text(friendCompareGetGoal(user));
+    $('tr.weight-row td.friend-cell span').text(friendCompareGetGoal(websiteData.compareFriend));
 
     // calories
-    $('tr.calories-row td.personal-cell span').text("Cal");
-    $('tr.calories-row td.friend-cell span').text("Cal");
+    $('tr.calories-row td.personal-cell span').text(getAverageValue(user.get("calorieEntries")));
+    $('tr.calories-row td.friend-cell span').text(getAverageValue(websiteData.compareFriend.get("calorieEntries")));
 
     // exercise
-    $('tr.exercise-row td.personal-cell span').text("Workout");
-    $('tr.exercise-row td.friend-cell span').text("Workout");
+    $('tr.exercise-row td.personal-cell span').text(getAverageValue(user.get("exerciseEntries")));
+    $('tr.exercise-row td.friend-cell span').text(getAverageValue(websiteData.compareFriend.get("exerciseEntries")));
 
     // achievements
-    for(i = 0; i <= user.get('achievementArray').length; i++) {
-        if(user.get('achievementArray')[i] == 0) {
-            $("tr.achievement" + i + "-row td.personal-cell").text("-");
+    user.get('achievementArray').forEach(function(element, index) {
+        if(element == 0) {
+            $("tr.achievement" + index + "-row td.personal-cell").text("-");
         } else {
-            $("tr.achievement" + i + "-row td.personal-cell").text("X");
+            $("tr.achievement" + index + "-row td.personal-cell").text("X");
         }
-    }
-    for(i = 0; i <= user.get('achievementArray').length; i++) {
-        if(websiteData.compareFriend.achievementArray[i] == 0) {
-            $("tr.achievement" + i + "-row td.friend-cell").text("-");
+    });
+    websiteData.compareFriend.get('achievementArray').forEach(function(element, index) {
+        if(element == 0) {
+            $("tr.achievement" + index + "-row td.friend-cell").text("-");
         } else {
-            $("tr.achievement" + i + "-row td.friend-cell").text("X");
+            $("tr.achievement" + index + "-row td.friend-cell").text("X");
         }
+    });
+};
+var friendCompareGetGoal = function(user) {
+    var weightEntries = user.get("weightEntries");
+    var closenessToGoal = weightEntries[weightEntries.length - 1].value - user.get("weightGoal");
+    if(closenessToGoal > 0) {
+        return ("Lose " + closenessToGoal + " lb");
+    } else if(closenessToGoal < 0) {
+        return ("Gain " + (-1 * closenessToGoal) + " lb");
+    } else {
+        return "Maintain Weight";
     }
+};
+var getAverageValue = function(inputArray) {
+    var sum = 0;
+    var counter = 0;
+    inputArray.forEach(function(element) {
+        sum += parseInt(element.value);
+        counter++;
+    });
+    return (sum / counter);
 };
 
 // Friend Requests Page
@@ -372,7 +392,7 @@ var addFriendInit = function() {
             text: "Adding a Friend...",
             textVisible: true
         });
-        var username = $('#add-friend-popup input[type=text]').val();
+        var username = $('#add-friend-popup input[type=text]').val().toLowerCase();
         $('#add-friend-popup input[type=text]').val("");
         var index = alreadyPending(username);
         if(alreadyFriend(username)) { // already friend
