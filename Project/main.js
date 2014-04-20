@@ -23,6 +23,7 @@ var inputTemplate = {
 $(document).on("pagecontainerbeforeshow", function(event) {
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
     initForAll();
+    console.log(pageId);
     if(pageId == "login-page") {
         loginPageInit();
     } else if(pageId == "logout-popup") {
@@ -39,6 +40,12 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         friendRequestInit();
     } else if(pageId == "add-friend-popup") {
         addFriendInit();
+    }  else if(pageId == "achievements-page"){
+        achievementInit();
+    } else if(pageId == "share_achievement"){
+        shareInit();
+    } else if(pageId == "feed") {
+        feedInit();
     }
 });
 var compareUsersByUsername = function(a, b) { //intentionally backwards
@@ -474,4 +481,264 @@ var getPersonForRequest = function(username) {
             }
         }
     });
+};
+
+//achievements page
+var achv0 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Beginner Bunny Achieved!</h2>' +
+    '<p class ="adjust_indent">You worked out 5 days in a row</p></td></tr></table>');
+var achv1 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Healthy Hare Achieved!</h2>' +
+    '<p class ="adjust_indent">You worked out 6 days in a row</p></td></tr></table>');
+var achv2 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Radical Rabbit Achieved!</h2>' +
+    '<p class ="adjust_indent">You worked out 7 days in a row</p></td></tr></table>');
+var achv3 = ('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Baby Carrot Achieved!</h2>' +
+    '<p class ="adjust_indent">Under 2000 calories 3 days in a row</p></td></tr></table>');
+var achv4 = ('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Carrot Pro Achieved!</h2>' +
+    '<p class ="adjust_indent">Under 2000 calories 5 days in a row</p></td></tr></table>');
+var achv5 = ('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slim Carrot Achieved!</h2>' +
+    '<p class ="adjust_indent">Lost 3 pounds from starting weight</p></td></tr></table>');
+var achv6 = ('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slender Carrot Achieved!</h2>' +
+    '<p class ="adjust_indent">Lost 5 pounds from starting weight</p></td></tr></table>');
+var achv7 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">5 Carrot Log Achieved!</h2>' +
+    '<p class ="adjust_indent">Logged in 5 days in a row</p></td></tr></table>');
+var achv8 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">10 Carrot Log Achieved!</h2>' +
+    '<p class ="adjust_indent">Logged in 10 days in a row</p></td></tr></table>');
+var achv9 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log Achieved!</h2>' +
+    '<p class ="adjust_indent">Logged in 15 days in a row</p></td></tr></table>');
+var curAchv;
+var sharedItem;
+var achievementInit = function() {
+    var aArray = user.get('achievementArray');
+    var workout_counter = user.get("workoutCounter");
+    var under_2000 = user.get("daysUnderTwoThousandCalorieCounter");
+    var weight_counter = user.get("currentWeight") - user.get("startingWeight");
+    var login_counter = user.get("loginCounter");
+    //    e.preventDefault();
+    if (workout_counter >= 5)
+        aArray[0] = 1;
+    if (workout_counter >= 6)
+        aArray[1] = 1;
+    if (workout_counter >= 7)
+        aArray[2] = 1;
+    if (under_2000 >= 3)
+        aArray[3] = 1;
+    if (under_2000 >= 5)
+        aArray[4] = 1;
+    if (weight_counter <= -3)
+        aArray[5] = 1;
+    if (weight_counter <= -5)
+        aArray[6] = 1;
+    if (login_counter >= 5)
+        aArray[7] = 1;
+    if (login_counter >= 10)
+        aArray[8] = 1;
+    if (login_counter >= 15)
+        aArray[9] = 1;
+    user.set("achievementArray", aArray);
+    user.save();
+    if (aArray[0]) {
+        $("#a1").html(achv0);
+        $("#ws1").attr("href", "shareAchievement.html");
+        $("#dup").html(achv0);
+    }
+    ;
+    if (aArray[1]) {
+        $("#a2").html(achv1);
+        $("#ws2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[2]) {
+        $("#a3").html(achv2);
+        $("#ws3").attr("href", "shareAchievement.html");
+    }
+    if (aArray[3]) {
+
+        $("#b1").html(achv3);
+        $("#hs1").attr("href", "shareAchievement.html");
+    }
+    if (aArray[4]) {
+        $("#b2").html(achv4);
+        $("#hs2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[5]) {
+        $("#c1").html(achv5);
+        $("#ls1").attr("href", "shareAchievement.html");
+    }
+    if (aArray[6]) {
+        $("#c2").html(achv6);
+        $("#ls2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[7]) {
+        $("#d1").html(achv7);
+        $("#is1").attr("href", "shareAchievement.html");
+    }
+    if (aArray[8]) {
+        $("#d2").html(achv8);
+        $("#is2").attr("href", "shareAchievement.html");
+    }
+    if (aArray[9]) {
+        $("#d3").html(achv9);
+        $("#is3").attr("href", "shareAchievement.html");
+    }
+
+    $("#ws1").click(function () {
+        curAchv = achv0;
+        sharedItem = 0;
+    });
+
+    $("#ws2").click(function () {
+        curAchv = achv1;
+        sharedItem = 1;
+    });
+
+    $("#ws3").click(function () {
+        curAchv = achv2;
+        sharedItem = 2;
+    });
+
+    $("#hs1").click(function () {
+        curAchv = achv3;
+        sharedItem = 3;
+    });
+
+    $("#hs2").click(function () {
+        curAchv = achv4;
+        sharedItem = 4;
+    });
+
+
+    $("#ls1").click(function () {
+        curAchv = achv5;
+        sharedItem = 5;
+    });
+
+    $("#ls2").click(function () {
+        curAchv = achv6;
+        sharedItem = 6;
+    });
+
+
+    $("#is1").click(function () {
+        curAchv = achv7;
+        sharedItem = 7;
+    });
+
+    $("#is2").click(function () {
+        curAchv = achv8;
+        sharedItem = 8;
+    });
+
+    $("#is3").click(function () {
+        curAchv = achv9;
+        sharedItem = 9;
+    });
+};
+
+//share popup
+var shareInit = function() {
+    $("#dup").html(curAchv);
+    var bArray = user.get('shareArray');
+    if(bArray[sharedItem] > 0)
+    {
+        $("#shareTextOrButton").html('<p><i>You have shared this achievement</i></p>');
+    }
+    $("#shareButton").click(function () {
+        var date = new Date();
+        bArray[sharedItem] = new Date();
+        this.disabled = true;
+        user.set("shareArray", bArray);
+        user.save();
+    });
+};
+//news feed
+var feedFriends = [
+    { "firstName":"John" , "lastName":"Doe",
+        "recentActivity":[{"activity":"logged in","date":"March 1, 2012"},{"activity":"cool","date":"March 27, 2012"}]},
+    { "firstName":"Anna" , "lastName":"Smith",
+        "recentActivity":[{"activity":"worked out","date":"March 25, 2012"}]},
+    { "firstName":"Peter" , "lastName": "Jones",
+        "recentActivity":[{"activity":"compared","date":"March 1, 2012"},{"activity":"dsfsd","date":"March 28, 2012"}] }
+];
+
+
+var feedInit = function() {
+    $('#friendsFeed').children('li').remove();
+    friends.forEach(function(buddy)
+    {
+        var count = 0;
+        buddy.get('exerciseEntries').forEach(function(element) {
+            var toAdd = $('<li id = ' + element.dateNum + '><div><table><tr>' +
+                '<td><img style="max-width:60px; max-height:60px; " src = ' + buddy.get("pic").url() + '></td>' +
+                '<td><h2 id="cur_name" class ="adjust_indent">' + buddy.get("firstName") + " " + buddy.get("lastName") + '</h2>' +
+                '<p class ="adjust_indent">' + "exercised for " + element.value + " hours on " + element.dateString +
+                '</p></td></tr>' +
+                '</table></div></li>');
+
+            $("#friendsFeed").prepend(toAdd);
+        });
+        buddy.get('calorieEntries').forEach(function(element) {
+            var toAdd = $('<li id = ' + element.dateNum + '><div><table><tr>' +
+                '<td><img style="max-width:60px; max-height:60px; " src = ' + buddy.get("pic").url() + '></td>' +
+                '<td><h2 id="cur_name" class ="adjust_indent">' + buddy.get("firstName") + " " + buddy.get("lastName") + '</h2>' +
+                '<p class ="adjust_indent">' + "consumed " + element.value + " calories on " + element.dateString +
+                '</p></td></tr>' +
+                '</table></div></li>');
+
+            $("#friendsFeed").prepend(toAdd);
+        });
+        buddy.get('shareArray').forEach(function(element)
+        {
+            var displayAchv;
+            if(count == 0)
+                displayAchv = "shared Beginner Bunny on ";
+            else if(count == 1)
+                displayAchv = "shared Healthy Hare on ";
+            else if(count == 2)
+                displayAchv = "shared Radical Rabbit on ";
+            else if(count == 3)
+                displayAchv = "shared Baby Carrot on ";
+            else if(count == 4)
+                displayAchv = "shared Carrot Pro on ";
+            else if(count == 5)
+                displayAchv = "shared Slim Carrot on ";
+            else if(count == 6)
+                displayAchv = "shared Slender Carrot on ";
+            else if(count == 7)
+                displayAchv = "shared 5 Carrot Log on ";
+            else if(count == 8)
+                displayAchv = "shared 10 Carrot Log on ";
+            else if(count == 9)
+                displayAchv = "shared 15 Carrot Log on ";
+            var date = new Date(element);
+            if(date.getTime() > 0) {
+                var toAdd = $('<li id = ' + date.getTime() + '><div><table><tr>' +
+                    '<td><img style="max-width:60px; max-height:60px; " src = ' + buddy.get("pic").url() + '></td>' +
+                    '<td><h2 id="cur_name" class ="adjust_indent">' + buddy.get("firstName") + " " + buddy.get("lastName") + '</h2>' +
+                    '<p class ="adjust_indent">' + displayAchv + (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() +
+                    '</p></td></tr>' +
+                    '</table></div></li>');
+
+                $("#friendsFeed").prepend(toAdd);
+            }
+            count++;
+        });
+
+    });
+    var elems = $('#friendsFeed').children('li').remove();
+
+    elems.sort(function (a, b) {
+        //return parseInt(a.id) < parseInt(b.id);
+        return b.id - a.id;
+    })
+    $('#friendsFeed').append(elems);
+
+    $("#friendsFeed").listview('refresh');
+
+};
+
+var sortFeed = function () {
+    var elems = $('#friendsFeed').children('li').remove();
+
+    elems.sort(function (a, b) {
+        return parseInt(a.id) < parseInt(b.id);
+    })
+    $('#friendsFeed').append(elems);
 };

@@ -66,3 +66,31 @@
 #friend-request-popup li span.friend-request-list-button-holder a.confirm-button {
     margin-right: 5px;
 }
+
+/* Achievements Page */
+#achievements-page #dup{
+    border: 2px solid;
+    /*border-radius:15px;*/
+    font-size: 65%;
+}
+#achievements-page  #share_header{
+    font-size: 75%;
+}
+
+#achievements-page img {
+    padding-top: .2cm;
+    padding-left: .2cm;
+}
+#achievements-page  .adjust_indent{
+    /*text-indent: 20px;*/
+}
+
+#achievements-page .not_yet{
+    /*text-indent: 20px;*/
+    font-size: smaller;
+}
+
+#achievements-page #a2{
+    padding-left: 0cm;
+}
+
