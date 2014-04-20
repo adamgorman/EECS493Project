@@ -24,13 +24,13 @@
 
 /* Friends Page */
 #friends-page .count {
-    background: #FFFFFF;
+    background: #e95230;
     position: absolute;
     top: -8px;
     Right: -5px;
     min-width:15px;
     height: 15px;
-    color:#e95230;
+    color:#FFFFFF;
     border-radius: 50%;
     border: solid 1px #e6e6e6;
     padding: 2px;
