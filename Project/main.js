@@ -100,7 +100,6 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     } else if(pageId == "input-popup") {
         inputPopupInit();
     } else if(pageId == "input-page") {
-        console.log("okay dude");
         inputPageInit();
     } else if(pageId == "friends-page") {
         friendsInit();
