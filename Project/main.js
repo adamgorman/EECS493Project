@@ -50,6 +50,16 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     } else if(pageId == "feed") {
         feedInit();
     }  else if (pageId == "page1") {
+        $('.iosSlider').iosSlider({
+            scrollbar: true,
+            snapToChildren: true,
+            desktopClickDrag: true,
+            scrollbarMargin: '5px 40px 0 40px',
+            scrollbarBorderRadius: 0,
+            scrollbarHeight: '2px',
+            navPrevSelector: $('.prevButton'),
+            navNextSelector: $('.nextButton')
+        });
         chartFunction();
         profileIn();
         goalin();
@@ -255,7 +265,7 @@ var friendsInit = function() {
             $('li#new-person img').attr('src', friend.get('pic').url());
             $('li#new-person h2').text(friend.get('username'));
             $('li#new-person p span').text("Some goal");
-            $('li#new-person').removeAttr('id').addClass('ui-disabled');
+            $('li#new-person').removeAttr('id').addClass('ui-disabled'); //*C
         });
     }
 
