@@ -79,7 +79,7 @@ $(document).on("pagecontainerbeforeshow", function(event) {
         settingsPageInIt();
 
     }
-     else if(pageId == "page3"){
+     else if(pageId == "achievements-page"){
         achievementInit();
     }
     else if(pageId == "share_achievement"){
@@ -1167,24 +1167,6 @@ var achievementInit = function() {
         $("#is3").attr("href", "shareAchievement.html");
     }
 
-    /*$("#fb_icon").click(function () {
-        FB.init({
-            //appId : '496828853760637',
-            //apiKey: '95df48eb35db42b7a4dbca37b4e55bae'
-            appId: '1578778675680791',
-            apiKey: 'a092a4e59e6b899c2a2e38c4b8adbc96',
-            status: true, // check login status
-            cookie: true, // enable cookies to allow the server to access the session
-            name: "Workout Carrot",
-            link: 'http://workoutcarrot.parseapp.com/'
-        });
-        FB.ui(
-            {
-                method: 'feed',
-                name: 'This is the content of the "name" field.'
-            });
-    });*/
-
     $("#ws1").click(function () {
         curAchv = achv0;
         sharedItem = 0;
@@ -1237,6 +1219,8 @@ var achievementInit = function() {
         sharedItem = 9;
     });
 }
+
+//share popup
 var shareInit = function() {
     $("#dup").html(curAchv);
     var bArray = user.get('shareArray');
@@ -1294,25 +1278,25 @@ var feedInit = function() {
            {
                var displayAchv;
                if(count == 0)
-                   displayAchv = " achieved Beginner Bunny on ";
+                   displayAchv = "shared Beginner Bunny on ";
                else if(count == 1)
-                   displayAchv = "achieved Healthy Hare on ";
+                   displayAchv = "shared Healthy Hare on ";
                else if(count == 2)
-                   displayAchv = "achieved Radical Rabbit on ";
+                   displayAchv = "shared Radical Rabbit on ";
                else if(count == 3)
-                   displayAchv = "achieved Baby Carrot on ";
+                   displayAchv = "shared Baby Carrot on ";
                else if(count == 4)
-                   displayAchv = "achieved Carrot Pro on ";
+                   displayAchv = "shared Carrot Pro on ";
                else if(count == 5)
-                   displayAchv = "achieved Slim Carrot on ";
+                   displayAchv = "shared Slim Carrot on ";
                else if(count == 6)
-                   displayAchv = "achieved Slender Carrot on ";
+                   displayAchv = "shared Slender Carrot on ";
                else if(count == 7)
-                   displayAchv = "achieved 5 Carrot Log on ";
+                   displayAchv = "shared 5 Carrot Log on ";
                else if(count == 8)
-                   displayAchv = "achieved 10 Carrot Log on ";
+                   displayAchv = "shared 10 Carrot Log on ";
                else if(count == 9)
-                   displayAchv = "achieved 15 Carrot Log on ";
+                   displayAchv = "shared 15 Carrot Log on ";
                var date = new Date(element);
                if(date.getTime() > 0) {
                    var toAdd = $('<li id = ' + date.getTime() + '><div><table><tr>' +
