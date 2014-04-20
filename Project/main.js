@@ -1107,7 +1107,7 @@ var recentActivityIn = function() {
     $('li.lastactivity1').remove();
 
 
-    for (var j = 0; j < arrayK.length; j++) {
+    for (var j = 0; j < arrayCalories.length; j++) {
         $('li.lastactivity1').remove();
 //            $('h1').remove();
 //            $('h1#newActivity3').remove();
@@ -1116,7 +1116,7 @@ var recentActivityIn = function() {
     var cList = $('youractivityid');
 
     var count2 = 0;
-    for (var i = 0; i < arrayCalories.length; i++) {
+    for (var i = arrayCalories.length - 1; i >= 0; i--) {
 
         if (arrayCalories[i].value != null) {
 
@@ -1164,7 +1164,7 @@ var recentActivityIn2 = function() {
 
     var cList = $('youractivityid2');
 
-    for (var i = 0; i < arrayK.length; i++) {
+    for (var i = arrayK.length - 1; i >= 0; i--) {
 
         if (arrayK[i].value != null) {
 
@@ -1191,7 +1191,7 @@ var recentActivityIn3 = function() {
 
     $('li.lastactivity').remove();
 
-    for (var j = 0; j < arrayWeight.length; j++) {
+    for (var i = arrayWeight.length - 1; i >= 0; i--) {
         $('li.lastactivity').remove();
 //            $('h1').remove();
 //            $('h1#newActivity3').remove();
@@ -1200,7 +1200,7 @@ var recentActivityIn3 = function() {
     var cList = $('youractivityid3');
 
 
-    for (var i = 0; i < arrayWeight.length; i++) {
+    for (var i = arrayWeight.length - 1; i >= 0; i--) {
 
         if (arrayWeight[i].value != null) {
 
