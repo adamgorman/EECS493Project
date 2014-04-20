@@ -242,7 +242,7 @@ var friendsInit = function() {
             $('#friends-header').after(person.clone());
             $('li#new-person img').attr('src', friend.get('pic').url());
             $('li#new-person h2').text(friend.get('username'));
-            $('li#new-person p span').text("Some goal");
+            $('li#new-person p span').text(friendCompareGetGoal(friend) + '.');
             $('li#new-person').data("friend-index", index).removeAttr('id');
         });
     }
@@ -254,7 +254,7 @@ var friendsInit = function() {
             $('#sent-requests-header').after(person.clone());
             $('li#new-person img').attr('src', friend.get('pic').url());
             $('li#new-person h2').text(friend.get('username'));
-            $('li#new-person p span').text("Some goal");
+            $('li#new-person p span').text("Private");
             $('li#new-person').removeAttr('id').addClass('ui-disabled'); //*C
         });
     }
