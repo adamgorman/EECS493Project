@@ -114,7 +114,6 @@ var signupPageInit = function() {
         var currentWeight = $('#signup-form input[type=number][name=currentWeight]').val();
 
         var selectedPicture = 0;
-        debugger
         $("input[name=radio-choice]:checked").each(function() {
             selectedPicture = $(this).val();
         });
@@ -214,6 +213,17 @@ var signupPageInit = function() {
 
 var setUserInformation = function(rUser) {
     user = rUser;
+    var loginTime = Date.now();
+    user.set('loginCounter', user.get('loginCounter') + 1);
+    if(user.get('loginCounter') != 1 && loginTime - user.get('lastLoginTime') < 86400000) {
+        user.set('loginCounter', user.get('loginCounter') - 1);
+    } else {
+        if(user.get('loginCounter') != 1 && loginTime - user.get('lastLoginTime') > 86400000 * 2) {
+            user.set('loginCounter', 0);
+        }
+        user.set('lastLoginTime', loginTime);
+    }
+    user.save();
     // sent friend requests
     user.get('sentRequests').forEach(function(fUsername, index, array) {
         new Parse.Query(Parse.User).equalTo("username", fUsername).find({
