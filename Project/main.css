@@ -89,6 +89,12 @@
 }
 
 /* Achievements Page */
+
+#achievements-page img, #share_achievement img {
+    width: 70px;
+    height: 70px;
+}
+
 #achievements-page #dup{
     border: 2px solid;
     /*border-radius:15px;*/

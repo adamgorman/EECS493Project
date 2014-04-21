@@ -223,6 +223,7 @@ var setUserInformation = function(rUser) {
         }
         user.set('lastLoginTime', loginTime);
     }
+    setAchievements();
     user.save();
     // sent friend requests
     user.get('sentRequests').forEach(function(fUsername, index, array) {
@@ -335,14 +336,10 @@ var inputPopupInit = function() {
                     user.get('weightEntries')[arrayLength - 1].value = parseInt(input.value);
                     user.get('weightEntries')[arrayLength - 1].dateNum = input.dateNum;
                 } else {
-                    if(arrayLength > 1 && parseInt(user.get('weightEntries')[arrayLength - 2].value) >= parseInt(user.get('weightEntries')[arrayLength - 1].value)) {
-                        user.set('lostWeightCounter', user.get('lostWeightCounter') + 1);
-                    } else if(arrayLength > 1 && parseInt(user.get('weightEntries')[arrayLength - 2].value) < parseInt(user.get('weightEntries')[arrayLength - 1].value)) {
-                        user.set('lostWeightCounter', 0);
-                    }
                     user.get('weightEntries').push(input);
                 }
             }
+            setAchievements();
             user.save(null, {
                 success: function() {
                     $('#input-form input[type=number]').val("");
@@ -639,33 +636,35 @@ var getPersonForRequest = function(username) {
 };
 
 //achievements page
-var achv0 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Beginner Bunny Achieved!</h2>' +
+var achv0 = ('<table><tr><td><img src="../achievements/beginnerBunny.jpg"></td><td><h2 class ="adjust_indent">Beginner Bunny</h2>' +
     '<p class ="adjust_indent">You worked out 5 days in a row</p></td></tr></table>');
-var achv1 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Healthy Hare Achieved!</h2>' +
+var achv1 = ('<table><tr><td><img src="../achievements/healthyhare.jpg"></td><td><h2 class ="adjust_indent">Healthy Hare</h2>' +
     '<p class ="adjust_indent">You worked out 6 days in a row</p></td></tr></table>');
-var achv2 = ('<table><tr><td><img src="../achievements/dumbbell.jpg"></td><td><h2 class ="adjust_indent">Radical Rabbit Achieved!</h2>' +
+var achv2 = ('<table><tr><td><img src="../achievements/radicalRabbit.jpg"></td><td><h2 class ="adjust_indent">Radical Rabbit</h2>' +
     '<p class ="adjust_indent">You worked out 7 days in a row</p></td></tr></table>');
-var achv3 = ('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Baby Carrot Achieved!</h2>' +
+var achv3 = ('<table><tr><td><img src="../achievements/babyCarrot.jpg"></td><td><h2 class ="adjust_indent">Baby Carrot</h2>' +
     '<p class ="adjust_indent">Under 2000 calories 3 days in a row</p></td></tr></table>');
-var achv4 = ('<table><tr><td><img src="../achievements/healthy.jpg"></td><td><h2 class ="adjust_indent">Carrot Pro Achieved!</h2>' +
+var achv4 = ('<table><tr><td><img src="../achievements/carrotPro.jpg""></td><td><h2 class ="adjust_indent">Carrot Pro</h2>' +
     '<p class ="adjust_indent">Under 2000 calories 5 days in a row</p></td></tr></table>');
-var achv5 = ('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slim Carrot Achieved!</h2>' +
+var achv5 = ('<table><tr><td><img src="../achievements/slimCarrot.jpg"></td><td><h2 class ="adjust_indent">Slim Carrot</h2>' +
     '<p class ="adjust_indent">Lost 3 pounds from starting weight</p></td></tr></table>');
-var achv6 = ('<table><tr><td><img src="../achievements/scale.jpg"></td><td><h2 class ="adjust_indent">Slender Carrot Achieved!</h2>' +
+var achv6 = ('<table><tr><td><img src="../achievements/slenderCarrot.jpg"></td><td><h2 class ="adjust_indent">Slender Carrot</h2>' +
     '<p class ="adjust_indent">Lost 5 pounds from starting weight</p></td></tr></table>');
-var achv7 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">5 Carrot Log Achieved!</h2>' +
+var achv7 = ('<table><tr><td><img src="../achievements/5CarrotLog.jpg"></td><td><h2 class ="adjust_indent">5 Carrot Log</h2>' +
     '<p class ="adjust_indent">Logged in 5 days in a row</p></td></tr></table>');
-var achv8 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">10 Carrot Log Achieved!</h2>' +
+var achv8 = ('<table><tr><td><img src="../achievements/10CarrotLog.jpg"></td><td><h2 class ="adjust_indent">10 Carrot Log</h2>' +
     '<p class ="adjust_indent">Logged in 10 days in a row</p></td></tr></table>');
-var achv9 = ('<table><tr><td><img src="../achievements/checkmark.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log Achieved!</h2>' +
+var achv9 = ('<table><tr><td><img src="../achievements/15CarrotLog.jpg"></td><td><h2 class ="adjust_indent">15 Carrot Log</h2>' +
     '<p class ="adjust_indent">Logged in 15 days in a row</p></td></tr></table>');
 var curAchv;
 var sharedItem;
-var achievementInit = function() {
+var setAchievements = function() {
     var aArray = user.get('achievementArray');
     var workout_counter = user.get("workoutCounter");
     var under_2000 = user.get("daysUnderTwoThousandCalorieCounter");
-    var weight_counter = user.get("currentWeight") - user.get("startingWeight");
+    // Assuming that weightEntries is not empty
+    var currentWeight  = parseInt(user.get('weightEntries')[user.get('weightEntries').length - 1].value);
+    var weight_counter = currentWeight - user.get("startingWeight");
     var login_counter = user.get("loginCounter");
     //    e.preventDefault();
     if (workout_counter >= 5)
@@ -690,46 +689,60 @@ var achievementInit = function() {
         aArray[9] = 1;
     user.set("achievementArray", aArray);
     user.save();
+    return aArray
+};
+var achievementInit = function() {
+    var aArray = setAchievements();
     if (aArray[0]) {
         $("#a1").html(achv0);
         $("#ws1").attr("href", "shareAchievement.html");
+        $('#a1').closest('a').removeClass('ui-disabled');
     }
     if (aArray[1]) {
         $("#a2").html(achv1);
         $("#ws2").attr("href", "shareAchievement.html");
+        $('#a2').closest('a').removeClass('ui-disabled');
     }
     if (aArray[2]) {
         $("#a3").html(achv2);
         $("#ws3").attr("href", "shareAchievement.html");
+        $('#a3').closest('a').removeClass('ui-disabled');
     }
     if (aArray[3]) {
 
         $("#b1").html(achv3);
         $("#hs1").attr("href", "shareAchievement.html");
+        $('#b1').closest('a').removeClass('ui-disabled');
     }
     if (aArray[4]) {
         $("#b2").html(achv4);
         $("#hs2").attr("href", "shareAchievement.html");
+        $('#b2').closest('a').removeClass('ui-disabled');
     }
     if (aArray[5]) {
         $("#c1").html(achv5);
         $("#ls1").attr("href", "shareAchievement.html");
+        $('#c1').closest('a').removeClass('ui-disabled');
     }
     if (aArray[6]) {
         $("#c2").html(achv6);
         $("#ls2").attr("href", "shareAchievement.html");
+        $('#c2').closest('a').removeClass('ui-disabled');
     }
     if (aArray[7]) {
         $("#d1").html(achv7);
         $("#is1").attr("href", "shareAchievement.html");
+        $('#d1').closest('a').removeClass('ui-disabled');
     }
     if (aArray[8]) {
         $("#d2").html(achv8);
         $("#is2").attr("href", "shareAchievement.html");
+        $('#d2').closest('a').removeClass('ui-disabled');
     }
     if (aArray[9]) {
         $("#d3").html(achv9);
         $("#is3").attr("href", "shareAchievement.html");
+        $('#d3').closest('a').removeClass('ui-disabled');
     }
 
     $("#ws1").click(function () {
