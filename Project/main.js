@@ -311,6 +311,11 @@ var inputPopupInit = function() {
                     user.get('calorieEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('calorieEntries')[arrayLength - 1].value);
                     user.get('calorieEntries')[arrayLength - 1].dateNum = input.dateNum;
                 } else {
+                    if(arrayLength != 0 && parseInt(user.get('calorieEntries')[arrayLength - 1].value) <2000 && parseInt(user.get('calorieEntries')[arrayLength - 1].value) > 0) {
+                        user.set('daysUnderTwoThousandCalorieCounter', user.get('daysUnderTwoThousandCalorieCounter') + 1);
+                    } else if(arrayLength != 0 && (parseInt(user.get('calorieEntries')[arrayLength - 1].value) >= 2000 || parseInt(user.get('calorieEntries')[arrayLength - 1].value) <= 0)) {
+                        user.set('daysUnderTwoThousandCalorieCounter', 0);
+                    }
                     user.get('calorieEntries').push(input);
                 }
             } else if(websiteData.inputType == "Exercise") {
@@ -319,6 +324,9 @@ var inputPopupInit = function() {
                     user.get('exerciseEntries')[arrayLength - 1].value = parseInt(input.value) + parseInt(user.get('exerciseEntries')[arrayLength - 1].value);
                     user.get('exerciseEntries')[arrayLength - 1].dateNum = input.dateNum;
                 } else {
+                    if(arrayLength != 0 && parseInt(user.get('exerciseEntries')[arrayLength - 1].value) > 0) {
+                        user.set('workoutCounter', user.get('workoutCounter') + 1);
+                    }
                     user.get('exerciseEntries').push(input);
                 }
             } else {
@@ -327,6 +335,11 @@ var inputPopupInit = function() {
                     user.get('weightEntries')[arrayLength - 1].value = parseInt(input.value);
                     user.get('weightEntries')[arrayLength - 1].dateNum = input.dateNum;
                 } else {
+                    if(arrayLength > 1 && parseInt(user.get('weightEntries')[arrayLength - 2].value) >= parseInt(user.get('weightEntries')[arrayLength - 1].value)) {
+                        user.set('lostWeightCounter', user.get('lostWeightCounter') + 1);
+                    } else if(arrayLength > 1 && parseInt(user.get('weightEntries')[arrayLength - 2].value) < parseInt(user.get('weightEntries')[arrayLength - 1].value)) {
+                        user.set('lostWeightCounter', 0);
+                    }
                     user.get('weightEntries').push(input);
                 }
             }
