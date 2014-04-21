@@ -106,6 +106,10 @@ var loginPageInit = function() {
 // Signup Page
 var signupPageInit = function() {
     $("#signup-form").submit(function() {
+        $.mobile.loading( 'show', {
+           text: "Signing up...",
+            textVisible: true
+        });
         var name = $('#signup-form input:text[name=username]').val().toLowerCase();
         var password = $('#signup-form input:password[name=password]').val();
         var firstName = $('#signup-form input:text[name=firstName]').val();
@@ -117,15 +121,6 @@ var signupPageInit = function() {
         $("input[name=radio-choice]:checked").each(function() {
             selectedPicture = $(this).val();
         });
-        debugger;
-        //alert("User selected " + selectedPicture);
-
-//        $('#signup-form input:password[name=password]').val("");
-//        $('#signup-form .form-error-text').text("");
-//        $.mobile.loading( 'show', {
-//            text: "Signing up...",
-//            textVisible: true
-//        });
         user = new Parse.User();
         user.set("username", name.toString());
         user.set("password", password);
@@ -163,7 +158,6 @@ var signupPageInit = function() {
         var canvas = document.createElement("canvas");
         var img1 = document.createElement("img");
         var dataForParse;
-        debugger;
 
         if(selectedPicture == "choice-1"){
             img1.setAttribute('src', "images/Pelican.png" );
@@ -179,36 +173,41 @@ var signupPageInit = function() {
             img1.setAttribute('src', "images/Frog.png");
         } else if(selectedPicture == "choice-7") {
             img1.setAttribute('src', "images/Pelican.png");
-        } else {
-            alert("Radio buttons broken. :'(");
         }
 
         canvas.width = img1.width;
         canvas.height = img1.height;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img1, 0, 0);
-        debugger;
         dataForParse = canvas.toDataURL("image/png");
-        debugger;
         var parseFile = new Parse.File("mypic.png", {base64: dataForParse});
         /*******************************************/
-        parseFile.save().then(function(){
-            user.set("pic", parseFile);
-            user.signUp(null, {
-                success: function(user){
+        new Parse.Query(Parse.User).equalTo("username", name.toString()).find({
+            success: function (buddy) {
+                if (buddy.length != 0) {
                     $.mobile.loading('hide');
-                    //$('#settings-page .form-confirm-text').text('Settings have successfully updated');
-                    setUserInformation(user);
-                },
-                error: function(user, error){
-                    $.mobile.loading('hide');
-                    $('#login-form .form-error-text').text("Error: " + error.message);
+                    $('#signup-page .form-error-text').text("Username " + name.toString() + " is already taken.");
+                } else {
+                    parseFile.save().then(function(){
+                        user.set("pic", parseFile);
+                        user.signUp(null, {
+                            success: function(user){
+                                //$('#settings-page .form-confirm-text').text('Settings have successfully updated');
+                                setUserInformation(user);
+                            },
+                            error: function(user, error){
+                                $('#login-form .form-error-text').text("Error: " + error.message);
+                            }
+                        });
+                        return false;
+                    });
                 }
-            });
-            return false;
+                return false;
+            }
         });
-
+        return false;
     });
+    return false;
 };
 
 var setUserInformation = function(rUser) {
@@ -450,7 +449,7 @@ var getAverageValue = function(inputArray) {
         sum += parseInt(element.value);
         counter++;
     });
-    return (sum / counter);
+    return Math.round(sum / counter);
 };
 
 // Friend Requests Page
@@ -1144,7 +1143,6 @@ var chartFunction = function() {
 //
 //$(document).ready(function() {
 //
-////        console.log("helsifmslknmfsonsfkjnslo!!!!");
 //
 //
 //    $('.iosSlider').iosSlider({
@@ -1422,7 +1420,7 @@ var settingsPageInIt = function () {
         goalWeight = this.value; // omit "var" to make it global
         goalNumber = initialWeight - goalWeight;
 
-        $("#dom_element").text(value);
+        $("#dom_element").value(value);
     });
 
 
@@ -1430,7 +1428,7 @@ var settingsPageInIt = function () {
 //        user.set("privateWeight", isPrivate);
         user.set("firstName", firstName);
         user.set("lastName", lastName);
-        user.set("weightGoal", goalWeight);
+        user.set("weightGoal", parseInt(goalWeight));
         user.set("privateWeight", isPrivate);
         $.mobile.loading( 'show', {
             text: "Updating Settings...",
