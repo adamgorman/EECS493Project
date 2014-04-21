@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../parse/parse-1.2.18.min.js"></script>
     <script type="text/javascript" src="../main/amcharts_3.4.7.free/amcharts/amcharts.js"></script>
     <script type="text/javascript" src="../main/amcharts_3.4.7.free/amcharts/serial.js"></script>
-    <script type="text/javascript" src="../main/iosslider/_src/jquery.iosslider.js"></script>
+    <script type="text/javascript" src="../main/iosslider/src/jquery.iosslider.js"></script>
 </head>
 <body>
 <div data-role="page" id="achievements-page">
@@ -36,8 +36,15 @@
             <ul data-role="listview"  class="achv_list" data-rel="dialog" data-icon="false">
                 <li data-role="list-divider">Workout Achievements</li>
                 <li><a id="ws1" href="noAchievement.html">
-                    <img src="x.jpg">
-                        <h2>Beginner Bunny</h2><p>Worked out 5 days in a row</p>
+
+                    <div id="a1">
+                        <table>
+                            <tr>
+                                <td><img src="x.jpg"></td>
+                                <td><h2 class ="adjust_indent">Beginner Bunny</h2><p class ="adjust_indent">Worked out 5 days in a row</p></td>
+                            </tr>
+                        </table>
+                    </div>
                 </a></li>
                 <li><a id="ws2" href="noAchievement.html">
                     <div id="a2"  style="float:left;">
@@ -62,9 +69,9 @@
             </ul>
         </div>
         <br>
-        <h2>Diet Achievements</h2>
         <div>
             <ul data-role="listview" class="achv_list" data-rel="dialog" data-icon="false">
+                <li data-role="list-divider">Diet Achievements</li>
                 <li><a id="hs1" href="noAchievement.html">
                     <div id="b1">
                         <table>
@@ -88,9 +95,9 @@
             </ul>
         </div>
         <br>
-        <h2>Lost Weight Achievements</h2>
         <div>
             <ul data-role="listview" class="achv_list" data-rel="dialog" data-icon="false">
+                <li data-role="list-divider">Lost Weight Achievements</li>
                 <li><a id="ls1" href="noAchievement.html">
                     <div id="c1">
                         <table>
@@ -114,9 +121,9 @@
             </ul>
         </div>
         <br>
-        <h2>Login Achievements</h2>
         <div>
             <ul data-role="listview" class="achv_list" data-rel="dialog" data-icon="false">
+                <li data-role="list-divider">Login Achievements</li>
                 <li><a id="is1" href="noAchievement.html">
                     <div id="d1">
                         <table>

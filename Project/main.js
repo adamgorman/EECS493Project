@@ -25,6 +25,8 @@ $(document).on("pagecontainerbeforeshow", function(event) {
     initForAll();
     if(pageId == "login-page") {
         loginPageInit();
+    } else if(pageId == "signup-page"){
+        signupPageInit();
     } else if(pageId == "logout-popup") {
         logoutPageInit();
     } else if(pageId == "input-popup") {
@@ -100,6 +102,116 @@ var loginPageInit = function() {
         return false;
     });
 };
+
+// Signup Page
+var signupPageInit = function() {
+    $("#signup-form").submit(function() {
+        var name = $('#signup-form input:text[name=username]').val().toLowerCase();
+        var password = $('#signup-form input:password[name=password]').val();
+        var firstName = $('#signup-form input:text[name=firstName]').val();
+        var lastName = $('#signup-form input:text[name=lastName]').val();
+        var weightGoal = $('#signup-form input[type=number][name=weightGoal]').val();
+        var currentWeight = $('#signup-form input[type=number][name=currentWeight]').val();
+
+        var selectedPicture = 0;
+        debugger
+        $("input[name=radio-choice]:checked").each(function() {
+            selectedPicture = $(this).val();
+        });
+        debugger;
+        //alert("User selected " + selectedPicture);
+
+//        $('#signup-form input:password[name=password]').val("");
+//        $('#signup-form .form-error-text').text("");
+//        $.mobile.loading( 'show', {
+//            text: "Signing up...",
+//            textVisible: true
+//        });
+        user = new Parse.User();
+        user.set("username", name.toString());
+        user.set("password", password);
+        user.set("firstName", firstName.toString());
+        user.set("lastName", lastName.toString());
+        user.set("numAchievements", 10);
+        user.set("achievementArray", [0,0,0,0,0,0,0,0,0,0]);
+        user.set("workoutCounter", 0);
+        user.set("lostWeightCounter", 0);
+        user.set("daysUnderTwoThousandCalorieCounter", 0);
+        user.set("loginCounter", 1);
+        user.set("privateWeight", false);
+        user.set("weightGoal", parseInt(weightGoal));
+
+        var initialWeightInput = $.extend({},inputTemplate);
+        var date = new Date();
+        initialWeightInput.dateNum = Date.now();
+        initialWeightInput.dateString = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+        initialWeightInput.value = parseInt(currentWeight);
+
+        var tempExer = [];
+        tempExer.push(initialWeightInput);
+
+        user.set("weightEntries", tempExer);
+        user.set("exerciseEntries", []);
+        user.set("calorieEntries", []);
+        user.set("friendUsernames", []);
+        user.set("sentRequests", []);
+        user.set("pendingRequests", []);
+        user.set("currentWeight", parseInt(currentWeight));
+        user.set("startingWeight", parseInt(currentWeight));
+        user.set("shareArray", [0,0,0,0,0,0,0,0,0,0]);
+
+        /********PROFILE PICTURE CODE **************/
+        var canvas = document.createElement("canvas");
+        var img1 = document.createElement("img");
+        var dataForParse;
+        debugger;
+
+        if(selectedPicture == "choice-1"){
+            img1.setAttribute('src', "images/Pelican.png" );
+        } else if(selectedPicture == "choice-2") {
+            img1.setAttribute('src', "images/Whale.png" );
+        } else if(selectedPicture == "choice-3") {
+            img1.setAttribute('src', "images/Starfish.png");
+        } else if(selectedPicture == "choice-4") {
+            img1.setAttribute('src', "images/Lion.png");
+        } else if(selectedPicture == "choice-5") {
+            img1.setAttribute('src', "images/Bee.png");
+        } else if(selectedPicture == "choice-6"){
+            img1.setAttribute('src', "images/Frog.png");
+        } else if(selectedPicture == "choice-7") {
+            img1.setAttribute('src', "images/Pelican.png");
+        } else {
+            alert("Radio buttons broken. :'(");
+        }
+
+        canvas.width = img1.width;
+        canvas.height = img1.height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img1, 0, 0);
+        debugger;
+        dataForParse = canvas.toDataURL("image/png");
+        debugger;
+        var parseFile = new Parse.File("mypic.png", {base64: dataForParse});
+        /*******************************************/
+        parseFile.save().then(function(){
+            user.set("pic", parseFile);
+            user.signUp(null, {
+                success: function(user){
+                    $.mobile.loading('hide');
+                    //$('#settings-page .form-confirm-text').text('Settings have successfully updated');
+                    setUserInformation(user);
+                },
+                error: function(user, error){
+                    $.mobile.loading('hide');
+                    $('#login-form .form-error-text').text("Error: " + error.message);
+                }
+            });
+            return false;
+        });
+
+    });
+};
+
 var setUserInformation = function(rUser) {
     user = rUser;
     // sent friend requests
@@ -456,28 +568,31 @@ var addFriendInit = function() {
     });
 };
 var alreadyFriend = function(username) {
+    var result = false;
     friends.forEach(function(buddy) {
         if(buddy.get('username') == username) {
-            return true;
+            result = true;
         }
     });
-    return false;
+    return result;
 };
 var alreadyRequested = function(username) {
+    var result = false;
     sentRequests.forEach(function(buddy) {
         if(buddy.get('username') == username) {
-            return true;
+            result = true;
         }
     });
-    return false;
+    return result;
 };
 var alreadyPending = function(username) {
+    var result = -1;
     pendingRequests.forEach(function(buddy, index) {
         if(buddy.get('username') == username) {
-            return index;
+            result = index;
         }
     });
-    return -1;
+    return result;
 };
 var getPersonForRequest = function(username) {
     new Parse.Query(Parse.User).equalTo("username", username).find({
@@ -555,9 +670,7 @@ var achievementInit = function() {
     if (aArray[0]) {
         $("#a1").html(achv0);
         $("#ws1").attr("href", "shareAchievement.html");
-        $("#dup").html(achv0);
     }
-    ;
     if (aArray[1]) {
         $("#a2").html(achv1);
         $("#ws2").attr("href", "shareAchievement.html");
