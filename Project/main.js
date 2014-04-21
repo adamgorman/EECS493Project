@@ -96,7 +96,7 @@ var loginPageInit = function() {
             },
             error: function(user, error) {
                 $.mobile.loading('hide');
-                $('#login-form .form-error-text').text("Error: " + error.message);
+                $('#login-form .form-error-text').text("Invalid username / password.");
             }
         });
         return false;
